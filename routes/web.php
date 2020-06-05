@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Routing\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+# Auth Route
+Route::get('login', "UserController@login")->name('company.login');
+Route::get('login/taskmaster', "UserController@login")->name('taskmaster.login');
