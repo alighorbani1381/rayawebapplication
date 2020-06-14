@@ -36,10 +36,10 @@
 
 
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-invert-colors"></i> <span> رابط کاربی </span> <span class="menu-arrow"></span></a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-users"></i> <span> مدیریت کاربران </span> <span class="menu-arrow fa-angle-left"></span></a>
                     <ul class="list-unstyled">
-                        <li><a href="ui-buttons.html">دکمه ها</a></li>
-                        <li><a href="ui-cards.html">کارد</a></li>
+                        <li><a href="{{ route('users.index') }}">لیست کاربران</a></li>
+                        <li><a href="{{ route('users.create') }}">افزودن کاربر جدید</a></li>
                     </ul>
                 </li>
 
