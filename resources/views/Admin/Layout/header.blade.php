@@ -6,7 +6,7 @@
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <link rel="shortcut icon" href="admin/images/favicon.ico">
+        <link rel="shortcut icon" href="/admin/images/favicon.ico">
 
         <title>@yield('title')</title>
 
@@ -21,6 +21,7 @@
         <link href="{{ asset('admin/css/pages.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('admin/css/menu.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('admin/css/responsive.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/css/developer.css') }}" rel="stylesheet" type="text/css" />
         <script src="{{ asset('admin/js/modernizr.min.js') }} "></script>
 
     </head>
@@ -53,7 +54,7 @@
                                 </button>
                             </li>
                             <li>
-                                <h4 class="page-title">داشبورد</h4>
+                                <h4 class="page-title">@yield('header')</h4>
                             </li>
                         </ul>
 
