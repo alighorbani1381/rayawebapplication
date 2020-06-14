@@ -6,18 +6,8 @@
     <h4 class="">اعلانات</h4>
     <div class="notification-list nicescroll">
         <ul class="list-group list-no-border user-list">
-            <li class="list-group-item">
-                <a href="#" class="user-list-item">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-2.jpg" alt="">
-                    </div>
-                    <div class="user-desc">
-                        <span class="name">کاربر شماره یک</span>
-                        <span class="desc">متن کاربر شماره یک</span>
-                        <span class="time">2 ساعت قبل</span>
-                    </div>
-                </a>
-            </li>
+
+
             <li class="list-group-item">
                 <a href="#" class="user-list-item">
                     <div class="icon bg-info">
@@ -30,6 +20,7 @@
                     </div>
                 </a>
             </li>
+
             <li class="list-group-item">
                 <a href="#" class="user-list-item">
                     <div class="icon bg-pink">
@@ -42,31 +33,7 @@
                     </div>
                 </a>
             </li>
-            <li class="list-group-item active">
-                <a href="#" class="user-list-item">
-                    <div class="avatar">
-                        <img src="assets/images/users/avatar-3.jpg" alt="">
-                    </div>
-                    <div class="user-desc">
-                        <span class="name">کاربر شماره 2</span>
-                        <span class="desc">با سلام من یک متن کاملا آزمایشی هستم</span>
-                        <span class="time">2 روز قبل</span>
-                    </div>
-                </a>
-            </li>
-            <li class="list-group-item active">
-                <a href="#" class="user-list-item">
-                    <div class="icon bg-warning">
-                        <i class="zmdi zmdi-settings"></i>
-                    </div>
-                    <div class="user-desc">
-                        <span class="name">تنظیمات</span>
-                        <span class="desc">تنظیمات جدید برای دسترسی و راحتی شما موجود است</span>
-                        <span class="time">1 روز قبل</span>
-                    </div>
-                </a>
-            </li>
-
+ 
         </ul>
     </div>
 </div>

@@ -36,7 +36,9 @@
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="index-2.html" class="logo"><span>آقای<span>ادمین</span></span><i class="zmdi zmdi-layers"></i></a>
+                    <a href="index-2.html" class="logo">
+                        <span>رایا<span> مدیر</span></span>
+                        <i class="zmdi zmdi-layers"></i></a>
                 </div>
 
                 <!-- Button mobile view to collapse sidebar menu -->
