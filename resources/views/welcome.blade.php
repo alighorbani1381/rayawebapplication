@@ -83,11 +83,6 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
-
-                <div class="links">
-                    <a href="{{ route('route') }}">ورود کاربران شرکت</a>
-                    <a href="{{ route('') }}">ورود کارفرما</a>
-                </div>
             </div>
         </div>
     </body>

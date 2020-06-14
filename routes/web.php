@@ -16,8 +16,7 @@ Route::get('/', function () {
 });
 
 # Auth Route
-Route::group(['namespace' => 'Admin'], function(){
-    Route::get('login', "UserController@login")->name('company.login');
-    Route::get('login/taskmaster', "UserController@login")->name('taskmaster.login');
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+    Route::resource('users', 'UserController');
 });
 
