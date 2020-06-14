@@ -11,17 +11,17 @@
         <title>@yield('title')</title>
 
         <!--Morris Chart CSS -->
-		<link rel="stylesheet" href="admin/plugins/morris/morris.css">
+        <link rel="stylesheet" href="{{ asset('admin/plugins/morris/morris.css') }}">
 
         <!-- App css -->
-        <link href="{{ public_path('admin/css/bootstrap-rtl.min.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ public_path('admin/css/core.css' }}" rel="stylesheet" type="text/css" />
-        <link href="admin/css/components.css" rel="stylesheet" type="text/css" />
-        <link href="admin/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="admin/css/pages.css" rel="stylesheet" type="text/css" />
-        <link href="admin/css/menu.css" rel="stylesheet" type="text/css" />
-        <link href="admin/css/responsive.css" rel="stylesheet" type="text/css" />
-        <script src="admin/js/modernizr.min.js"></script>
+        <link href="{{ asset('admin/css/bootstrap-rtl.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/css/core.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/css/components.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/css/icons.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/css/pages.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/css/menu.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/css/responsive.css') }}" rel="stylesheet" type="text/css" />
+        <script src="{{ asset('admin/js/modernizr.min.js') }} "></script>
 
     </head>
 
