@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class UserController extends AdminController
 {
 
+    public function index(){
+
+    }
+
     public function login(Request $request)
     {
         return $request->all();
@@ -15,7 +19,7 @@ class UserController extends AdminController
 
     public function create()
     {
-        //
+        return view('Admin.User.create');
     }
 
    

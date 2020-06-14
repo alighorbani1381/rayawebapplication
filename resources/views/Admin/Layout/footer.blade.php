@@ -3,32 +3,32 @@
 </script>
 
 <!-- jQuery  -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap-rtl.min.js"></script>
-<script src="assets/js/detect.js"></script>
-<script src="assets/js/fastclick.js"></script>
-<script src="assets/js/jquery.blockUI.js"></script>
-<script src="assets/js/waves.js"></script>
-<script src="assets/js/jquery.nicescroll.js"></script>
-<script src="assets/js/jquery.slimscroll.js"></script>
-<script src="assets/js/jquery.scrollTo.min.js"></script>
+<script src="admin/js/jquery.min.js"></script>
+<script src="admin/js/bootstrap-rtl.min.js"></script>
+<script src="admin/js/detect.js"></script>
+<script src="admin/js/fastclick.js"></script>
+<script src="admin/js/jquery.blockUI.js"></script>
+<script src="admin/js/waves.js"></script>
+<script src="admin/js/jquery.nicescroll.js"></script>
+<script src="admin/js/jquery.slimscroll.js"></script>
+<script src="admin/js/jquery.scrollTo.min.js"></script>
 
 <!-- KNOB JS -->
 <!--[if IE]>
-<script type="text/javascript" src="assets/plugins/jquery-knob/excanvas.js"></script>
+<script type="text/javascript" src="admin/plugins/jquery-knob/excanvas.js"></script>
 <![endif]-->
-<script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
+<script src="admin/plugins/jquery-knob/jquery.knob.js"></script>
 
 <!--Morris Chart-->
-<script src="assets/plugins/morris/morris.min.js"></script>
-<script src="assets/plugins/raphael/raphael-min.js"></script>
+<script src="admin/plugins/morris/morris.min.js"></script>
+<script src="admin/plugins/raphael/raphael-min.js"></script>
 
 <!-- Dashboard init -->
-<script src="assets/pages/jquery.dashboard.js"></script>
+<script src="admin/pages/jquery.dashboard.js"></script>
 
 <!-- App js -->
-<script src="assets/js/jquery.core.js"></script>
-<script src="assets/js/jquery.app.js"></script>
+<script src="admin/js/jquery.core.js"></script>
+<script src="admin/js/jquery.app.js"></script>
 
 </body>
 

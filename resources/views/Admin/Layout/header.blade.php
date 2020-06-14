@@ -6,22 +6,22 @@
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="admin/images/favicon.ico">
 
         <title>@yield('title')</title>
 
         <!--Morris Chart CSS -->
-		<link rel="stylesheet" href="assets/plugins/morris/morris.css">
+		<link rel="stylesheet" href="admin/plugins/morris/morris.css">
 
         <!-- App css -->
-        <link href="assets/css/bootstrap-rtl.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
-        <script src="assets/js/modernizr.min.js"></script>
+        <link href="{{ public_path('admin/css/bootstrap-rtl.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ public_path('admin/css/core.css' }}" rel="stylesheet" type="text/css" />
+        <link href="admin/css/components.css" rel="stylesheet" type="text/css" />
+        <link href="admin/css/icons.css" rel="stylesheet" type="text/css" />
+        <link href="admin/css/pages.css" rel="stylesheet" type="text/css" />
+        <link href="admin/css/menu.css" rel="stylesheet" type="text/css" />
+        <link href="admin/css/responsive.css" rel="stylesheet" type="text/css" />
+        <script src="admin/js/modernizr.min.js"></script>
 
     </head>
 
