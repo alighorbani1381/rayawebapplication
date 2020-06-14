@@ -1,6 +1,6 @@
-<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+{{-- <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     var resizefunc = [];
-</script>
+</script> --}}
 
 <!-- jQuery  -->
 <script src="{{ asset('admin/js/jquery.min.js') }}"></script>
