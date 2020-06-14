@@ -1,0 +1,77 @@
+#rayaLogo {
+    max-width: 50px;
+}
+
+.panel-text {
+    text-shadow: 0px 1px 3px #aeaeae;
+}
+
+#logout-button:hover {
+    color: #df1c1c !important;
+}
+
+.txt-custom {
+
+    height: 34px;
+    resize: vertical;
+}
+
+.submit-button {
+    float: left;
+    margin-left: 12px;
+}
+
+.form-control {
+    margin-bottom: 10px;
+}
+
+.sendRequest {
+    padding: 0;
+    margin: 0;
+}
+
+.sendRequest button {
+    display: inline-block !important;
+}
+
+.tac {
+    text-align: center;
+}
+
+.tumb-pic {
+    width: 100px;
+    margin: 9px 0px;
+    box-shadow: 1px 2px 9px 6px #bbbd;
+    border-radius: 3px;
+}
+
+.inb {
+    display: inline-block !important;
+}
+
+.cbfl {
+    vertical-align: -19px;
+    margin-right: 10px;
+}
+
+.tumb-pic-index {
+    width: 60px;
+    box-shadow: 1px 2px 9px 6px #bbbd;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+.tumb-pic-index:hover {
+    cursor: pointer;
+    margin-bottom: 17px;
+}
+
+.per-date {
+    direction: ltr !important;
+    font-size: 17px;
+    font-weight: bold !important;
+}
+
+.swal2-popup {
+    font-size: 17px;
+}
