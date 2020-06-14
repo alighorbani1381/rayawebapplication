@@ -18,12 +18,12 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('lastname');
             $table->string('phone')->unique()->nullable();
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('profile');
-            $table->enum('type', ['admin', 'contractor', 'taskmaster']);
-            $table->string('email')->unique()->nullable();
+            $table->enum('type', ['admin', 'contractor']);
+            $table->string('username')->unique()->nullable();
             $table->string('password');
-        });
+        }); 
     }
 
     /**
