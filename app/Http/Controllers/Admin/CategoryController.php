@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class CategoryController extends AdminController
 {
    
     public function index()
@@ -17,7 +16,8 @@ class CategoryController extends Controller
     
     public function create()
     {
-        //
+        $mainCategories = Category::where('child', '0')->get();
+        return view('Admin.Category.create', compact('mainCategories'));
     }
 
     
