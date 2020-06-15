@@ -19,10 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('lastname');
             $table->string('phone')->unique()->nullable();
             $table->string('address')->nullable();
-            $table->string('profile');
+            $table->string('profile')->default('default');
             $table->enum('type', ['admin', 'contractor']);
             $table->string('username')->unique()->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
+            $table->timestamps();
         }); 
     }
 
