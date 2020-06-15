@@ -75,3 +75,6 @@
 .swal2-popup {
     font-size: 17px;
 }
+#sidebar-menu ul li .menu-arrow{
+    transform: rotate(180deg);
+}
