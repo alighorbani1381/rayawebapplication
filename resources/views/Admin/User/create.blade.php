@@ -48,8 +48,8 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">آدرس</label>
                             <div class="col-md-10">
-                                <textarea class="form-control txt-custom" value="{{ old('adderss') }}"
-                                    placeholder="آدرس را وارد کنید ..." name="address" rows="5"></textarea>
+                                <textarea class="form-control txt-custom"
+                                    placeholder="آدرس را وارد کنید ..." name="address" rows="5">{{ old('address') }}</textarea>
                                 @error('address')
                                 <div class="alert alert-danger">وارد کردن آدرس الزامی است.</div>
                                 @enderror
