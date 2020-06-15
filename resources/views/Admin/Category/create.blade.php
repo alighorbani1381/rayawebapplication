@@ -3,12 +3,12 @@
 @section('header', 'افزودن خدمات جدید')
 @section('content')
 <div class="row">
-    <div class="col-sm-10 col-lg-offset-1">
+    <div class="col-sm-8 col-lg-offset-2">
         <div class="card-box">
             <h4 class="header-title m-t-0 m-b-30">افزودن خدمت جدید</h4>
             <div class="row">
-                <div class="col-lg-10">
-                    <form class="form-horizontal" role="form" action="{{ route('category.store') }}" method="post">
+                <div class="col-lg-11">
+                    <form class="form-horizontal" role="form" action="{{ route('categories.store') }}" method="post">
                         @csrf
                         <div class="form-group">
                             <label class="col-md-2 control-label">عنوان خدمات</label>
@@ -30,6 +30,9 @@
                             <div class="col-sm-10">
                                 <select class="form-control" name="child">
                                     <option value="0" selected>سرگروه</option>
+                                    @foreach($mainCategories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->title}} </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
