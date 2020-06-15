@@ -34,6 +34,13 @@
                     <a href="index-2.html" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> داشبورد </span> </a>
                 </li>
 
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-briefcase"></i> <span> مدیریت خدمات</span> <span class="menu-arrow  fa-angle-left"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="{{ route('category.index') }}">لیست خدمات</a></li>
+                        <li><a href="{{ route('category.create') }}">افزودن خدمات جدید</a></li>
+                    </ul>
+                </li>
 
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-users"></i> <span> مدیریت کاربران </span> <span class="menu-arrow fa-angle-left"></span></a>
@@ -42,6 +49,7 @@
                         <li><a href="{{ route('users.create') }}">افزودن کاربر جدید</a></li>
                     </ul>
                 </li>
+                
 
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-collection-text"></i><span class="label label-warning pull-right">7</span><span> فرم ها </span> </a>
