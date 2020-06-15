@@ -22,8 +22,11 @@
         <link href="{{ asset('admin/css/menu.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('admin/css/responsive.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('admin/css/developer.css') }}" rel="stylesheet" type="text/css" />
+        <script src="{{ asset('admin/js/jquery.min.js') }}"></script>
         <script src="{{ asset('admin/js/modernizr.min.js') }} "></script>
         <script src="{{ asset('admin/js/sweetalert.js') }} "></script>
+        @stack('css')
+        @stack('js')
 
     </head>
 
