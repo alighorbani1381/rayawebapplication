@@ -147,6 +147,8 @@ return [
     */
 
     'attributes' => [
+        'title' => 'عنوان',
+        'description' => 'توضیحات',
         'phone' => 'شماره تماس',
         'username' => 'نام کاربری',
         'password' => 'رمز عبور',

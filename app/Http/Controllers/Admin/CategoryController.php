@@ -5,6 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use Illuminate\Http\Request;
 
+class CategoryRequest{
+
+    public static function store($request){
+        $request->validate([
+            'title' => 'required',            
+            'description' => 'required',            
+            'child' => 'required',            
+        ]);
+    }
+
+}
+
 class CategoryController extends AdminController
 {
    
@@ -23,7 +35,9 @@ class CategoryController extends AdminController
     
     public function store(Request $request)
     {
-        //
+        CategoryRequest::store($request);
+        Category::create($request->all());
+        return redirect()->route('categories.index');
     }
 
     
