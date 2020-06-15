@@ -28,7 +28,7 @@
         <!--- Sidemenu -->
         <div id="sidebar-menu">
             <ul>
-                <li class="text-muted menu-title">دسته بندی ها</li>
+                <li class="text-muted menu-title">به پنل مدیریت خوش آمدید !</li>
 
                 <li>
                     <a href="index-2.html" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> داشبورد </span> </a>
@@ -37,8 +37,8 @@
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-briefcase"></i> <span> مدیریت خدمات</span> <span class="menu-arrow  fa-angle-left"></span></a>
                     <ul class="list-unstyled" style="display: none;">
-                        <li><a href="{{ route('category.index') }}">لیست خدمات</a></li>
-                        <li><a href="{{ route('category.create') }}">افزودن خدمات جدید</a></li>
+                        <li><a href="{{ route('categories.index') }}">لیست خدمات</a></li>
+                        <li><a href="{{ route('categories.create') }}">افزودن خدمات جدید</a></li>
                     </ul>
                 </li>
 
