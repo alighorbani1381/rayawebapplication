@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CategoryRequest{
@@ -17,12 +18,13 @@ class CategoryRequest{
 
 }
 
-class CategoryController extends AdminController
+class CategoryController extends Controller
 {
    
     public function index()
     {
-        //
+        $categories = Category::orderBy('id')->paginate(15);
+        return view('Admin.Category.index', compact('categories'));
     }
 
     

@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('child');
+            $table->timestamps();
         });
     }
 
