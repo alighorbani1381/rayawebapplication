@@ -38,7 +38,7 @@
                             <form action="{{ route('users.destroy', $user->id) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i class="fa fa-remove"></i> </button>
+                                <button class="delete-user btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i class="fa fa-remove"></i> </button>
                             </form>     
                         </td>
                     </tr>
@@ -46,6 +46,7 @@
 
                 </tbody>
             </table>
+            {{ $users->links() }}
 
         </div>
     </div>
