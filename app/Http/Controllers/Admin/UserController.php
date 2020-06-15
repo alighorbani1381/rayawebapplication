@@ -22,6 +22,7 @@ class UserRequest
 
         $messages = [
             'username.regex' => 'نام کاربری تنها می تواند دارای حروف انگلیسی باشد.',
+            'username.unique' => 'این نام کاربری تکراری است یک نام کاربری دیگر انتخاب کنید .',
             'phone.numeric' => 'فرمت شماره موبایل وارد شده نا معتبر است.',
         ];
         $request->validate($fileds, $messages);
@@ -35,6 +36,8 @@ class UserController extends AdminController
 
     public function index()
     {
+        $users = User::latest()->paginate(15);
+        return view('Admin.User.index', compact('users'));
     }
 
     public function login(Request $request)
