@@ -15,7 +15,7 @@ class UserRequest
         $fileds = [
             'name' => 'required|max:20',
             'lastname' => 'required|max:30',
-            'phone' => 'required|numeric|min:11',
+            'phone' => 'required|unique:App\User,phone|numeric|min:11',
             'address' => 'required',
             'username' => 'required|unique:App\User,username|regex:/^[a-zA-Z]+$/u|min:8',
         ];
@@ -24,6 +24,7 @@ class UserRequest
             'username.regex' => 'نام کاربری تنها می تواند دارای حروف انگلیسی باشد.',
             'username.unique' => 'این نام کاربری تکراری است یک نام کاربری دیگر انتخاب کنید .',
             'phone.numeric' => 'فرمت شماره موبایل وارد شده نا معتبر است.',
+            'phone.unique' => 'این شماره موبایل در سامانه ثبت شده است از شماره دیگری استفاده کنید.',
         ];
         $request->validate($fileds, $messages);
     }
@@ -64,6 +65,7 @@ class UserController extends AdminController
             'username' => $request->username,
             'password' => 'raya-px724',
         ]);
+        return redirect()->route('users.index');
     }
 
 
@@ -87,6 +89,8 @@ class UserController extends AdminController
 
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        Session::flash('deleteUser');
+        return redirect()->route('users.index');
     }
 }

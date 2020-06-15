@@ -3,7 +3,6 @@
 </script> --}}
 
 <!-- jQuery  -->
-<script src="{{ asset('admin/js/jquery.min.js') }}"></script>
 <script src="{{ asset('admin/js/bootstrap-rtl.min.js') }}"></script>
 {{-- <script src="{{ asset('admin/js/detect.js') }}"></script>
 <script src="{{ asset('admin/js/fastclick.js') }} "></script>

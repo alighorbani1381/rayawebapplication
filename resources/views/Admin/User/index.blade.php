@@ -1,13 +1,20 @@
 @extends('Admin.Layout.main')
 @section('title', 'لیست کاربران')
 @section('header', 'لیست کاربران')
+@push('js')
+<script src="{{ asset('admin/js/customJS/users.js') }} "></script>
+@endpush
 @section('content')
+@if(session()->has('deleteUser'))
+    <script> $(document).ready(function(){showUserDeleteMessage();}); </script>
+@endif
+
 <div class="row">
     <div class="col-sm-12">
         <div class="card-box table-responsive">
             <h4 class="header-title m-t-0 m-b-30 inb">لیست کاربران</h4>
             <a href="{{ route('users.create') }}" class="cbfl btn btn-info btn-bordred waves-effect waves-dark m-b-5">
-                 <i class="fa fa-plus-circle"></i> <span>افزودن جدید </span> </a>
+                <i class="fa fa-plus-circle"></i> <span>افزودن جدید </span> </a>
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -26,7 +33,7 @@
                     @foreach ($users as $row => $user)
                     <tr>
                         <td>{{ $row + 1 }}</td>
-                        <td>{{ $user->full_name}}</td>
+                        <td class="fullname">{{ $user->full_name}}</td>
                         <td>{{ $user->phone}}</td>
                         <td>{{ $user->username}}</td>
                         <td>{{ $user->password}}</td>
@@ -35,11 +42,12 @@
                                     class="fa fa-pencil"></i> </a>
                         </td>
                         <td class="tac">
-                            <form action="{{ route('users.destroy', $user->id) }}">
+                            <form method="post" action="{{ route('users.destroy', $user->id) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="delete-user btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i class="fa fa-remove"></i> </button>
-                            </form>     
+                                <button class="delete-user btn btn-icon waves-effect waves-light btn-danger m-b-5"
+                                    type="button"> <i class="fa fa-remove"></i> </button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
