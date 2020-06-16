@@ -126,7 +126,7 @@
                         <div class="col-md-9">
                             <input type="text" name="name" class="form-control" value="{{ old ('name') }}"
                                 placeholder="نام کارفرما را وارد کنید ...">
-                            @error('title')
+                            @error('name')
                             <div class="alert alert-danger"> {{ $message }} </div>
                             @enderror
                         </div>
