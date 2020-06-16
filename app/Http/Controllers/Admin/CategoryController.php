@@ -71,7 +71,7 @@ class CategoryController extends Controller
             return null;
         }
         $category->delete();
-        Session::flash('DeletedCategory');
+        Session::flash('DeleteCategory');
         return redirect()->route('categories.index');
     }
 }

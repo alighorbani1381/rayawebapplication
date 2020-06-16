@@ -1,6 +1,9 @@
 @extends('Admin.Layout.main')
 @section('title', 'لیست خدمات')
 @section('header', 'لیست خدمات شما')
+@push('js')
+<script src="{{ asset('admin/js/customJS/categories.js') }} "></script>
+@endpush
 @section('content')
 <div class="row">
     <div class="col-sm-12">
@@ -30,7 +33,7 @@
                     @foreach ($categories as $row => $category)
                     <tr>
                         <td><?= $row  + 1 ?></td>
-                        <td>{{ $category->title }}</td>
+                        <td class="categoryName">{{ $category->title }}</td>
                         <td>{{ $category->sub_desc }}</td>
                         <td>{{ $category->main_group }}</td>
                         <td class="tac">
@@ -40,7 +43,9 @@
                         </td>
                         <td class="tac">
                             <form method="post" action="{{ route('categories.destroy', $category->id) }}">
-                                <button class="btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
                                         class="fa fa-remove"></i> </button>
                             </form>
                         </td>
@@ -52,4 +57,11 @@
         </div>
     </div><!-- end col -->
 </div>
+@if(session()->has('DeleteCategoryFail'))
+    <script>maxMbox("حذف این مورد با شکست مواجه شد!", "این خدمت دارای زیر گروه است و نمی توان آن را حذف کرد", "error", "آها",350 );</script>
+@endif
+
+@if(session()->has('DeleteCategory'))
+    <script>minMbox('خدمت مورد نظر با موفقیت حذف شد.', 350);</script>
+@endif
 @endsection
