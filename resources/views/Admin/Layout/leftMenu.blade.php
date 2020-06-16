@@ -31,7 +31,7 @@
                 <li class="text-muted menu-title">به پنل مدیریت خوش آمدید !</li>
 
                 <li>
-                    <a href="index-2.html" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> داشبورد </span> </a>
+                    <a href="{{ route('admin.dashboard') }}" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> داشبورد </span> </a>
                 </li>
 
                 <li class="has_sub">
