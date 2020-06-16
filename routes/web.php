@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 # Auth Route
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+    Route::get('/', 'IndexController@index');
     Route::resource('categories', 'CategoryController');
     Route::resource('projects', 'ProjectController');
     Route::resource('users', 'UserController');
