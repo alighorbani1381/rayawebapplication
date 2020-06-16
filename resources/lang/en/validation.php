@@ -153,6 +153,15 @@ return [
         'username' => 'نام کاربری',
         'password' => 'رمز عبور',
         'password_repeat' => 'تکرار رمز عبور',
+        'price' => 'قیمت',
+        'lastname' => 'نام خانوادگی',
+        'father_name' => 'نام پدر',
+        'address' => 'آدرس',
+        'meli_code' => 'کد ملی',
+        'date_start' => 'تاریخ شروع',
+        'complete_after' => 'زمان تحویل',
+        'contract_started' => 'تاریخ شروع قرارداد',
+        'completed_at' => 'تاریخ پایان قرارداد',
     ],
 
 ];
