@@ -87,7 +87,7 @@ return [
     'min' => [
         'numeric' => 'فیلد :attribute باید حداقل دارای :min رقم باشد.',
         'file' => 'The :attribute must be at least :min kilobytes.',
-        'string' => 'The :attribute must be at least :min characters.',
+        'string' => 'فیلد :attribute حداقل باید دارای :min کاراکتر باشد.',
         'array' => 'The :attribute must have at least :min items.',
     ],
     'not_in' => 'The selected :attribute is invalid.',
