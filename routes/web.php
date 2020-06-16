@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,5 +21,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
     Route::resource('categories', 'CategoryController');
     Route::resource('projects', 'ProjectController');
     Route::resource('users', 'UserController');
+});
+Route::get('test', function(){
+    
 });
 
