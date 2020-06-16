@@ -9,6 +9,30 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+class ProjectRequest{
+
+    public static function projectValidate($request){
+        $fileds = [
+            'name' => 'required',
+            'lastname' => 'required',
+            'father_name' => 'required',
+            'meli_code' => 'required',
+            //'meli_image' => 'none',
+            'phone' => 'required',
+            'address' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            //'contract_image' => 'Default',
+            'contract_started' => 'required',
+            'completed_at' => 'required',
+            'date_start' => 'required',
+            'complete_after' => 'required',
+        ];
+
+        $request->validate($fileds);
+    }
+}
 class ProjectRepository
 {
 
@@ -84,6 +108,8 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
+        ProjectRequest::projectValidate($request);
+
         DB::transaction(function () use ($request) {
             $taskmaster = ProjectRepository::createTaskMaster($request);
             $project = ProjectRepository::createProject($request, $taskmaster);
