@@ -35,6 +35,14 @@
                 </li>
 
                 <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-laptop"></i> <span> مدیریت پروژه ها</span> <span class="menu-arrow  fa-angle-left"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="{{ route('projects.index') }}">لیست پروژه ها</a></li>
+                        <li><a href="{{ route('projects.create') }}">افزودن پروژه جدید</a></li>
+                    </ul>
+                </li>
+
+                <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-briefcase"></i> <span> مدیریت خدمات</span> <span class="menu-arrow  fa-angle-left"></span></a>
                     <ul class="list-unstyled" style="display: none;">
                         <li><a href="{{ route('categories.index') }}">لیست خدمات</a></li>
@@ -50,19 +58,6 @@
                     </ul>
                 </li>
                 
-
-                <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="zmdi zmdi-collection-text"></i><span class="label label-warning pull-right">7</span><span> فرم ها </span> </a>
-                    <ul class="list-unstyled">
-                        <li><a href="form-elements.html">فرم های عمومی</a></li>
-                        <li><a href="form-advanced.html">فرم های پیشرفته</a></li>
-                        <li><a href="form-validation.html">فرم ولیدشن</a></li>
-                        <li><a href="form-wizard.html">فرم پیشفرض</a></li>
-                        <li><a href="form-fileupload.html">فرم آپلود</a></li>
-                        <li><a href="form-wysiwig.html">ادیتور 1</a></li>
-                        <li><a href="form-xeditable.html">ادیتور 2</a></li>
-                    </ul>
-                </li>
 
             </ul>
             <div class="clearfix"></div>
