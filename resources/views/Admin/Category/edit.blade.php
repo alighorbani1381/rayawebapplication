@@ -68,4 +68,9 @@
         </div>
     </div><!-- end col -->
 </div>
+
+@if(session()->has('CategoryUpdateFail'))
+    <script>maxMbox("اعمال تغییرات با خطا مواجه شد!", "این مورد خود سرگروه است و نمی تواند زیر گروه شود", "error", "آها",350 );</script>
+@endif
+
 @endsection

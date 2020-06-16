@@ -61,7 +61,12 @@
     <script>maxMbox("حذف این مورد با شکست مواجه شد!", "این خدمت دارای زیر گروه است و نمی توان آن را حذف کرد", "error", "آها",350 );</script>
 @endif
 
+
 @if(session()->has('DeleteCategory'))
     <script>minMbox('خدمت مورد نظر با موفقیت حذف شد.', 350);</script>
+@endif
+
+@if(session()->has('CategoryUpdate'))
+    <script>minMbox('خدمت مورد نظر با موفقیت ویرایش شد.', 350);</script>
 @endif
 @endsection
