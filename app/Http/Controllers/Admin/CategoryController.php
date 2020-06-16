@@ -47,25 +47,36 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        //
+        return redirect()->route('categories.index');
     }
 
     public function edit(Category $category)
     {
-        $mainCategories = Category::where('child', '0')->get();
+        $mainCategories = Category::where('child', '0')->where('id', '!=', $category->id)->get();
         return view('Admin.Category.edit', compact('category', 'mainCategories'));
     }
 
 
     public function update(Request $request, Category $category)
     {
-        //
+        CategoryRequest::store($request);        
+        $subCatsCount = count($category->sub_cats);
+
+        if($subCatsCount != 0 && $request->child != 0){
+            Session::flash('CategoryUpdateFail');    
+            return back();
+            return null;
+        }
+
+        $category->update($request->all());
+        Session::flash('CategoryUpdate');
+        return redirect()->route('categories.index');
     }
 
 
     public function destroy(Category $category)
     {
-        $subCatsCount = $category->sub_cats->count();
+        $subCatsCount = count($category->sub_cats);
         if ($subCatsCount != 0) {
             Session::flash('DeleteCategoryFail');
             return redirect()->route('categories.index');
