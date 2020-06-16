@@ -16,11 +16,21 @@ class Category extends Model
     public function getMainGroupAttribute()
     {
         if ($this->child != 0){
-            $subCategory = Category::where('id', $this->child)->first();
-            $subCategory = $subCategory->title;
+            $mainCategory = Category::where('id', $this->child)->first();
+            $mainCategory = $mainCategory->title;
         }
         else
-            $subCategory = "ندارد";
+            $mainCategory = "ندارد";
+
+            return $mainCategory;
+    }
+
+    public function getSubCatsAttribute()
+    {
+        if ($this->child == 0)
+            $subCategory = Category::where('child', $this->id)->get();        
+        else
+            $subCategory = [];
 
             return $subCategory;
     }
