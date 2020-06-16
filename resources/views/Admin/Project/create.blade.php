@@ -22,6 +22,9 @@
                             <div class="col-md-9">
                                 <input type="text" name="title" class="form-control" value=""
                                     placeholder="عنوان پروژه را وارد کنید ...">
+                                @error('title')
+                                <div class="alert alert-danger"> {{ $message }} </div>
+                                @enderror
                             </div>
                         </div>
 
@@ -44,6 +47,9 @@
                                 <textarea class="form-control txt-custom"
                                     placeholder="توضیحات مربوط به پروژه را وارد کنید ..." name="description"
                                     rows="3"></textarea>
+                                @error('description')
+                                <div class="alert alert-danger"> {{ $message }} </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="form-group">
@@ -51,6 +57,9 @@
                             <div class="col-md-9">
                                 <input type="number" placeholder="قیمت این پروژه را وارد کنید ..." name="price"
                                     class="form-control" value="">
+                                @error('price')
+                                <div class="alert alert-danger"> {{ $message }} </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -78,6 +87,9 @@
                             <div class="col-md-9">
                                 <input type="date" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="date_start"
                                     class="form-control" value="">
+                                @error('date_start')
+                                <div class="alert alert-danger"> {{ $message }} </div>
+                                @enderror
                             </div>
                         </div>
 
@@ -86,6 +98,9 @@
                             <div class="col-md-9">
                                 <input type="number" placeholder="زمان تحویل پروژه بر حسب روز را وارد کنید ..."
                                     name="complete_after" class="form-control" value="">
+                                @error('complete_after')
+                                <div class="alert alert-danger"> {{ $message }} </div>
+                                @enderror
                             </div>
                         </div>
 
@@ -111,6 +126,9 @@
                         <div class="col-md-9">
                             <input type="text" name="name" class="form-control" value=""
                                 placeholder="نام کارفرما را وارد کنید ...">
+                            @error('title')
+                            <div class="alert alert-danger"> {{ $message }} </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -119,6 +137,9 @@
                         <div class="col-md-9">
                             <input type="text" name="lastname" class="form-control" value=""
                                 placeholder="نام خانوادگی کارفرما را وارد کنید ...">
+                            @error('lastname')
+                            <div class="alert alert-danger"> {{ $message }} </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -127,6 +148,9 @@
                         <div class="col-md-9">
                             <input type="text" name="father_name" class="form-control" value=""
                                 placeholder="نام پدر کارفرما را وارد کنید ...">
+                            @error('father_name')
+                            <div class="alert alert-danger"> {{ $message }} </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -135,6 +159,9 @@
                         <div class="col-md-9">
                             <input type="text" name="phone" class="form-control" value=""
                                 placeholder="شماره تماس کارفرما را وارد کنید ...">
+                            @error('phone')
+                            <div class="alert alert-danger"> {{ $message }} </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -146,6 +173,9 @@
                             <textarea class="form-control txt-custom"
                                 placeholder="آدرس کارفرما را به صورت دقیق وارد کنید ..." name="address"
                                 rows="3"></textarea>
+                            @error('address')
+                            <div class="alert alert-danger"> {{ $message }} </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -154,6 +184,9 @@
                         <div class="col-md-9">
                             <input type="text" name="meli_code" class="form-control" value=""
                                 placeholder="کد ملی کارفرما را وارد کنید ...">
+                            @error('meli_code')
+                            <div class="alert alert-danger"> {{ $message }} </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -161,6 +194,9 @@
                         <label class="col-md-3 control-label">تصویر کد ملی</label>
                         <div class="col-md-9">
                             <input type="file" name="meli_image">
+                            @error('meli_image')
+                            <div class="alert alert-danger"> {{ $message }} </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -182,6 +218,9 @@
                         <div class="col-md-9">
                             <input type="date" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="contract_started"
                                 class="form-control" value="">
+                            @error('contract_started')
+                            <div class="alert alert-danger"> {{ $message }} </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -190,6 +229,9 @@
                         <div class="col-md-9">
                             <input type="date" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="completed_at"
                                 class="form-control" value="">
+                            @error('completed_at')
+                            <div class="alert alert-danger"> {{ $message }} </div>
+                            @enderror
                         </div>
                     </div>
 
@@ -197,6 +239,9 @@
                         <label class="col-md-3 control-label">تصویر قرارداد</label>
                         <div class="col-md-9">
                             <input type="file" name="contract_image">
+                            @error('contract_image')
+                            <div class="alert alert-danger"> {{ $message }} </div>
+                            @enderror
                         </div>
                     </div>
 
