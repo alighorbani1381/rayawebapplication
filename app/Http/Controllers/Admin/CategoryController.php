@@ -52,7 +52,8 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        //
+        $mainCategories = Category::where('child', '0')->get();
+        return view('Admin.Category.edit', compact('category', 'mainCategories'));
     }
 
 
