@@ -21,3 +21,18 @@ function minMbox(message, timeout) {
 
     });
 }
+
+function maxMbox(titleText, messageText, iconText, btnText, timeout) {
+    $(document).ready(function () {
+        setTimeout(function () {
+            Swal.fire({
+                icon: iconText,
+                title: titleText,
+                text: messageText,
+                confirmButtonText: btnText,
+            });
+        }, timeout);
+
+    });
+
+}
