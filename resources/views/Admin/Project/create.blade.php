@@ -6,8 +6,10 @@
     <div class="col-sm-10 col-lg-offset-1">
         <div class="card-box">
             <div class="row">
-                <form class="form-vertical" method="post" action="{{ route('projects.store') }}" enctype="multipart/form-data">
-                    
+                <form class="form-vertical" method="post" action="{{ route('projects.store') }}"
+                    enctype="multipart/form-data">
+                    @csrf
+
 
                     <div class="col-lg-6">
                         <h4 class="header-title m-t-0 m-b-30">
@@ -74,7 +76,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">تاریخ شروع کار </label>
                             <div class="col-md-9">
-                                <input type="date" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="completed_at"
+                                <input type="date" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="date_start"
                                     class="form-control" value="">
                             </div>
                         </div>
@@ -83,7 +85,7 @@
                             <label class="col-md-3 control-label">زمان تحویل پروژه (روز)</label>
                             <div class="col-md-9">
                                 <input type="number" placeholder="زمان تحویل پروژه بر حسب روز را وارد کنید ..."
-                                    name="price" class="form-control" value="">
+                                    name="complete_after" class="form-control" value="">
                             </div>
                         </div>
 
@@ -131,7 +133,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">شماره تماس کارفرما</label>
                         <div class="col-md-9">
-                            <input type="text" name="lastname" class="form-control" value=""
+                            <input type="text" name="phone" class="form-control" value=""
                                 placeholder="شماره تماس کارفرما را وارد کنید ...">
                         </div>
                     </div>
@@ -142,7 +144,7 @@
                         <label class="col-md-3 control-label">آدرس دقیق کارفرما</label>
                         <div class="col-md-9">
                             <textarea class="form-control txt-custom"
-                                placeholder="آدرس کارفرما را به صورت دقیق وارد کنید ..." name="description"
+                                placeholder="آدرس کارفرما را به صورت دقیق وارد کنید ..." name="address"
                                 rows="3"></textarea>
                         </div>
                     </div>
@@ -150,7 +152,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">کد ملی</label>
                         <div class="col-md-9">
-                            <input type="text" name="melli_code" class="form-control" value=""
+                            <input type="text" name="meli_code" class="form-control" value=""
                                 placeholder="کد ملی کارفرما را وارد کنید ...">
                         </div>
                     </div>
@@ -158,7 +160,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تصویر کد ملی</label>
                         <div class="col-md-9">
-                            <input type="file" name="melli_image">
+                            <input type="file" name="meli_image">
                         </div>
                     </div>
 
@@ -178,7 +180,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تاریخ شروع قرارداد </label>
                         <div class="col-md-9">
-                            <input type="date" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="completed_at"
+                            <input type="date" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="contract_started"
                                 class="form-control" value="">
                         </div>
                     </div>
@@ -194,7 +196,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تصویر قرارداد</label>
                         <div class="col-md-9">
-                            <input type="file" name="image[0]">
+                            <input type="file" name="contract_image">
                         </div>
                     </div>
 
