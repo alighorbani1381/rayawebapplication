@@ -15,4 +15,8 @@ class User extends Authenticatable
         return $fullName;
     }
 
+    public function projects(){
+        return $this->belongsToMany(Project::class);
+    }
+
 }
