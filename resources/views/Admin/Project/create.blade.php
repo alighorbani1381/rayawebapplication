@@ -1,6 +1,9 @@
 @extends('Admin.Layout.main')
 @section('title', 'افزودن پروژه')
 @section('header', 'ایجاد پروژه')
+@push('js')
+<script src="{{ asset('admin/js/customJS/projects.js') }} "></script>
+@endpush
 @section('content')
 <div class="row">
     <div class="col-sm-10 col-lg-offset-1">
@@ -55,8 +58,8 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">قیمت (تومان)</label>
                             <div class="col-md-9">
-                                <input type="number" placeholder="قیمت این پروژه را وارد کنید ..." name="price"
-                                    class="form-control" value="{{ old ('price') }}">
+                                <input type="number" placeholder="قیمت این پروژه را وارد کنید ..." name="price" class="form-control" value="{{ old ('price') }}" id="price">
+                                    
                                 @error('price')
                                 <div class="alert alert-danger"> {{ $message }} </div>
                                 @enderror
