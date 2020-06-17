@@ -156,6 +156,7 @@ class ProjectController extends Controller
         $proj = ProjectRepository::getProject($project);
         $categories = ProjectRepository::getCategories($project);
         $contractors = ProjectRepository::getContractors($project);
+        //dd($proj);
         return view('Admin.Project.show', compact('proj', 'categories', 'contractors'));
     }
 
