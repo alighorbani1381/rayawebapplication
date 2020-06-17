@@ -93,6 +93,29 @@ class ProjectRepository
         ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
         ->paginate(15);
     }
+
+    public static function getProject($id){
+        return DB::table('projects')
+        ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
+        ->where('projects.id', $id)
+        ->first();
+    }
+
+    public static function getCategories($projectId){
+        return DB::table('project_category')
+        ->join('categories', 'project_category.category_id', '=', 'categories.id')
+        ->select('project_category.*', 'categories.title')
+        ->where('project_category.project_id', $projectId)
+        ->get();
+    }
+
+    public static function getContractors($projectId){
+        return DB::table('project_contractor')
+        ->where('project_contractor.project_id', $projectId)
+        ->join('users', 'project_contractor.contractor_id', '=', 'users.id')
+        ->select('users.id', 'users.name', 'users.lastname', 'project_contractor.progress', 'project_contractor.progress_access')
+        ->get();
+    }
 }
 
 class ProjectController extends Controller
@@ -127,9 +150,13 @@ class ProjectController extends Controller
     }
 
 
-    public function show(Project $project)
+    public function show($project)
     {
-        //
+        Project::findOrFail($project);
+        $proj = ProjectRepository::getProject($project);
+        $projectCategories = ProjectRepository::getCategories($project);
+        $projectContractors = ProjectRepository::getContractors($project);
+        
     }
 
 
