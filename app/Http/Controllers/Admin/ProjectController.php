@@ -154,9 +154,9 @@ class ProjectController extends Controller
     {
         Project::findOrFail($project);
         $proj = ProjectRepository::getProject($project);
-        $projectCategories = ProjectRepository::getCategories($project);
-        $projectContractors = ProjectRepository::getContractors($project);
-        
+        $categories = ProjectRepository::getCategories($project);
+        $contractors = ProjectRepository::getContractors($project);
+        return view('Admin.Project.show', compact('proj', 'categories', 'contractors'));
     }
 
 

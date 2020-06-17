@@ -114,104 +114,30 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="#">متن یک</a></li>
-                    <li><a href="#">متن دو</a></li>
-                    <li><a href="#">متن سه</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">متن پا ورقی</a></li>
                 </ul>
             </div>
 
-            <h4 class="header-title m-t-0 m-b-30">بازخورد (6)</h4>
+            <h4 class="header-title m-t-0 m-b-30">
+                 پیمانکاران  
+            ({{ $contractors->count() }}) 
+            </h4>
 
             <div>
+                @foreach($contractors as $key => $contractor)
                 <div class="media m-b-10">
                     <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64" src="assets/images/users/avatar-1.jpg"> </a>
+                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64" src="/admin/images/users/avatar-1.jpg"> </a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">نام کاربر</h4>
+                        <h4 class="media-heading">{{ $contractor->name . " " . $contractor->lastname }}</h4>
                         <p class="font-13 text-muted m-b-0">
-                            <a href="#" class="text-primary">@نام کاربری</a>
-                            ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود 
+                            <input type="hidden" value="{{ $contractor->id }}" name="access[{{ $key }}]">
+                            <input class="form-control input-sm" type="number" max="100" name="progress[{{ $key }}]" id="progress">
                         </p>
-                        <a href="#" class="text-success font-13">جواب دادن</a>
                     </div>
-                </div>
-                <div class="media m-b-10">
-                    <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64" src="assets/images/users/avatar-2.jpg"> </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">نام کاربر</h4>
-                        <p class="font-13 text-muted m-b-0">
-                            <a href="#" class="text-primary">@نام کاربری</a>
-                            ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود 
-                        </p>
-                        <a href="#" class="text-success font-13">جواب دادن</a>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64" src="assets/images/users/avatar-3.jpg"> </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">نام کاربر</h4>
-                                <p class="font-13 text-muted m-b-0">
-                                    <a href="#" class="text-primary">@نام کاربری</a>
-                                    ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. 
-                                </p>
-                                <a href="#" class="text-success font-13">جواب دادن</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="media m-b-10">
-                    <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64" src="assets/images/users/avatar-1.jpg"> </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">نام کاربر</h4>
-                        <p class="font-13 text-muted m-b-0">
-                            <a href="#" class="text-primary">@نام کاربری</a>
-                            ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود 
-                        </p>
-                        <a href="#" class="text-success font-13">جواب دادن</a>
-                    </div>
                 </div>
-                <div class="media m-b-10">
-                    <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64" src="assets/images/users/avatar-2.jpg"> </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">نام کاربر</h4>
-                        <p class="font-13 text-muted m-b-0">
-                            <a href="#" class="text-primary">@نام کاربری</a>
-                            ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود 
-                        </p>
-                        <a href="#" class="text-success font-13">جواب دادن</a>
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64" src="assets/images/users/avatar-3.jpg"> </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">نام کاربر</h4>
-                                <p class="font-13 text-muted m-b-0">
-                                    <a href="#" class="text-primary">@نام کاربری</a>
-                                    ورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. 
-                                </p>
-                                <a href="#" class="text-success font-13">جواب دادن</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64" src="assets/images/users/avatar-1.jpg"> </a>
-                    </div>
-                    <div class="media-body">
-                        <input type="text" class="form-control input-sm" placeholder="دیدگاهی جدید بنویسید">
-                    </div>
-                </div>
+                @endforeach
 
             </div>
         </div>
