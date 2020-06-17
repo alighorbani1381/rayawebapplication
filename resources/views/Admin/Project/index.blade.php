@@ -1,9 +1,6 @@
 @extends('Admin.Layout.main')
 @section('title', 'لیست پروژه های شما')
 @section('header', 'پروژه های شما')
-@push('js')
-<script src="{{ asset('admin/js/customJS/categories.js') }} "></script>
-@endpush
 @section('content')
 <div class="row">
     <div class="col-sm-12">
