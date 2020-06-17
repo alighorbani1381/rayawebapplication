@@ -87,6 +87,12 @@ class ProjectRepository
                 'category_id' => $category,
             ]);
     }
+
+    public static function getProjects(){
+        return DB::table('projects')
+        ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
+        ->get();
+    }
 }
 
 class ProjectController extends Controller
@@ -94,7 +100,8 @@ class ProjectController extends Controller
 
     public function index()
     {
-        //
+        $projects = ProjectRepository::getProjects();
+        
     }
 
 
