@@ -91,7 +91,7 @@ class ProjectRepository
     public static function getProjects(){
         return DB::table('projects')
         ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
-        ->get();
+        ->paginate(15);
     }
 }
 
@@ -101,7 +101,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = ProjectRepository::getProjects();
-        
+        return view('Admin.Project.index', compact('projects'));
     }
 
 

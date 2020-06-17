@@ -82,6 +82,7 @@
 
                 </tbody>
             </table>
+            {{ $projects->links() }}
         </div>
     </div><!-- end col -->
 </div>
