@@ -9,9 +9,11 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ProjectRequest{
+class ProjectRequest
+{
 
-    public static function projectValidate($request){
+    public static function projectValidate($request)
+    {
         $fileds = [
             'name' => 'required',
             'lastname' => 'required',
@@ -88,38 +90,66 @@ class ProjectRepository
             ]);
     }
 
-    public static function getProjects(){
+    public static function getProjects()
+    {
         return DB::table('projects')
-        ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
-        ->paginate(15);
+            ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
+            ->paginate(15);
     }
 
-    public static function getProject($id){
+    public static function getProject($id)
+    {
         return DB::table('projects')
-        ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
-        ->where('projects.id', $id)
-        ->first();
+            ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
+            ->where('projects.id', $id)
+            ->first();
     }
 
-    public static function getCategories($projectId){
+    public static function getCategories($projectId)
+    {
         return DB::table('project_category')
-        ->join('categories', 'project_category.category_id', '=', 'categories.id')
-        ->select('project_category.*', 'categories.title')
-        ->where('project_category.project_id', $projectId)
-        ->get();
+            ->join('categories', 'project_category.category_id', '=', 'categories.id')
+            ->select('project_category.*', 'categories.title')
+            ->where('project_category.project_id', $projectId)
+            ->get();
     }
 
-    public static function getContractors($projectId){
+    public static function getContractors($projectId)
+    {
         return DB::table('project_contractor')
-        ->where('project_contractor.project_id', $projectId)
-        ->join('users', 'project_contractor.contractor_id', '=', 'users.id')
-        ->select('users.id', 'users.name', 'users.lastname', 'project_contractor.progress', 'project_contractor.progress_access')
-        ->get();
+            ->where('project_contractor.project_id', $projectId)
+            ->join('users', 'project_contractor.contractor_id', '=', 'users.id')
+            ->select('users.id', 'users.name', 'users.lastname', 'project_contractor.progress', 'project_contractor.progress_access')
+            ->get();
+    }
+
+    public function projectCreateFull($request)
+    {
+        DB::transaction(function () use ($request) {
+            $taskmaster = ProjectRepository::createTaskMaster($request);
+            $project = ProjectRepository::createProject($request, $taskmaster);
+            ProjectRepository::setContractors($project, $request->contractors);
+            ProjectRepository::setCategories($project, $request->categories);
+        });
+    }
+
+    public function getProjectFull($id)
+    {
+        Project::findOrFail($id);
+        $project['project'] = $this->getProject($id);
+        $project['categories'] = $this->getCategories($id);
+        $project['contractors'] = $this->getContractors($id);
+        return $project;
     }
 }
 
 class ProjectController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->repo = new ProjectRepository();
+    }
 
     public function index()
     {
@@ -139,25 +169,15 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         ProjectRequest::projectValidate($request);
-
-        DB::transaction(function () use ($request) {
-            $taskmaster = ProjectRepository::createTaskMaster($request);
-            $project = ProjectRepository::createProject($request, $taskmaster);
-            ProjectRepository::setContractors($project, $request->contractors);
-            ProjectRepository::setCategories($project, $request->categories);
-        });
+        $this->repo->projectCreateFull($request);
         return redirect()->route('projects.index');
     }
 
 
     public function show($project)
     {
-        Project::findOrFail($project);
-        $proj = ProjectRepository::getProject($project);
-        $categories = ProjectRepository::getCategories($project);
-        $contractors = ProjectRepository::getContractors($project);
-        //dd($proj);
-        return view('Admin.Project.show', compact('proj', 'categories', 'contractors'));
+        $project = $this->repo->getProjectFull($project);
+        return view('Admin.Project.show', compact('project'));
     }
 
 
