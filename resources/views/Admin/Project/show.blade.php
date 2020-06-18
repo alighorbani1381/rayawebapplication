@@ -185,8 +185,9 @@
                     <i class="zmdi zmdi-more-vert"></i>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="{{ route('users.create') }}">افزودن کاربر</a></li>
-                    <li><a href="#">افزودن پیمانکار</a></li>
+                    <li><a href="#" id="auto-divide">
+                        <i class="fa fa-spin fa-refresh" style="margin-left: 8px;"></i>
+                        تقسیم بندی خودکار</a></li>
                 </ul>
             </div>
 
