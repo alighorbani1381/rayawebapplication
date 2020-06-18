@@ -119,7 +119,7 @@ class ProjectRepository
         return DB::table('project_contractor')
             ->where('project_contractor.project_id', $projectId)
             ->join('users', 'project_contractor.contractor_id', '=', 'users.id')
-            ->select('users.id', 'users.name', 'users.lastname', 'project_contractor.progress', 'project_contractor.progress_access')
+            ->select('users.id', 'users.name', 'users.lastname', 'users.profile', 'project_contractor.progress', 'project_contractor.progress_access')
             ->get();
     }
 
@@ -177,7 +177,6 @@ class ProjectController extends Controller
     public function show($project)
     {
         $project = $this->repo->getProjectFull($project);
-        // dd($project);
         return view('Admin.Project.show', compact('project'));
     }
 
