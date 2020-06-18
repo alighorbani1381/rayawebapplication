@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     @else
-                    <div class="alert alert-warning war">
+                    <div class="alert alert-danger war">
                         <b>
                             <i class="fa fa-warning"></i>&nbsp;
                             هشدار:
@@ -114,7 +114,11 @@
                     <div class="card-box items-box">
                         <h4 class="header-title">تصویر قرار داد :</h4>
                         <b>
-                            <img class="media-object thumb-sm" src="/admin/images/users/avatar-1.jpg" alt="">
+                            @if($project['project']->contract_image != 'default')
+                                <img class="media-object thumb-sm" src="{{ $project['project']->contract_image }}" alt="">
+                            @else
+                                <img class="media-object thumb-sm" src="{{ asset('admin/images/users/default.png') }}" alt="">
+                            @endif
                         </b>
                     </div>
                 </div>
@@ -159,12 +163,23 @@
 
                 <div role="tabpanel" class="tab-pane fade" id="contractors" aria-labelledby="contractors-tab">
                     @foreach($project['contractors'] as $contractor)
+                    @php
+                    $fullName = $contractor->name . " " . $contractor->lastname;
+                    @endphp
                     <div class="card-box items-box">
                         <div style="margin-bottom:30px;">
-                            <a href="#"> <img class="media-object img-circle thumb-sm" style="display:inline-block;" alt="64x64"
-                                    src="/admin/images/users/avatar-1.jpg"> </a>
+                            <a href="#">
+                            @if($contractor->profile != 'default')
+                                <img class="media-object img-circle thumb-sm" style="display:inline-block; margin-left:8px;" alt="{{ $fullName }}"
+                                    src="{{ $contractor->profile }}"></a>
+                            @else
+                                <img class="media-object img-circle thumb-sm" style="display:inline-block; margin-left:8px;" alt="{{ $fullName }}"
+                                    src="{{ asset('admin/images/users/default.png') }}"></a>
+
+                            @endif
+
                             <h4 class="header-title">نام پیمانکار : </h4>
-                            <b>{{ $contractor->name . " " . $contractor->lastname }}</b>
+                            <b>{{ $fullName }}</b>
                         </div>
 
                         @php
