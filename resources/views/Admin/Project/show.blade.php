@@ -219,14 +219,28 @@
                         <h4 class="media-heading">{{ $contractor->name . " " . $contractor->lastname }}</h4>
                         <p class="font-13 text-muted m-b-0">
                             <input type="hidden" value="{{ $contractor->id }}" name="access[{{ $key }}]">
-                            <input class="form-control input-sm"
+                            <input class="progress-divide form-control input-sm"
                                 placeholder="درصد مشارکت این پیمانکار در پروژه را وارد کنید ..." type="number" max="100"
-                                name="progress[{{ $key }}]" id="progress" value="{{ $personPercent[$key] }}">
+                                name="progress[{{ $key }}]"  value="{{ $personPercent[$key] }}">
                         </p>
                     </div>
 
                 </div>
                 @endforeach
+
+                <div class="media m-b-10">
+                    <div class="media-left">
+                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
+                                src="/admin/images/users/avatar-1.jpg"> </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">مجموع درصد همکاری</h4>
+                        <p class="font-13 text-muted m-b-0">
+                            <input class="form-control input-sm sucsok" type="number" value="100" disabled id="All-Percent">
+                        </p>
+                    </div>
+
+                </div>
 
             </div>
         </div>
