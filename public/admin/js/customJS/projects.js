@@ -9,6 +9,14 @@ function sumAllPercent() {
 
 }
 
+function countOfContractor() {
+    var $count = 0;
+    $('.progress-divide').each(function () {
+        $count += 1;
+    });
+    return $count;
+}
+
 
 $(document).ready(function () {
 
@@ -53,6 +61,25 @@ $(document).ready(function () {
 
 
 
+    });
+
+    $('#auto-divide').click(function () {
+        var count = countOfContractor();
+        var percent = Math.round(100 / count);
+        var $personPercent = [];
+        for (i = 0; i < count; i++) {
+            var extra = 100 - (percent * i);
+
+            if (i == (count - 1))
+                $personPercent[i] = extra;
+            else
+                $personPercent[i] = percent;
+        }
+        var $number = 0;
+        $('.progress-divide').each(function () {
+            $(this).val($personPercent[$number]);
+            $number += 1;
+        });
     });
 
 
