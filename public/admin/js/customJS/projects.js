@@ -122,6 +122,18 @@ $(document).ready(function () {
     });
 
     $('#divide-contractor').on('click', function () {
+        var allPercent = parseInt($('#All-Percent').val());
+        var message = "درصد ها به طور کامل تقسیم نشده !" + " " + "( " + allPercent + "%" + " )";
+        if (allPercent != 100) {
+            Swal.fire({
+                icon: 'error',
+                title: message,
+                text: "مجموع درصد های تقسیم شده توسط شما باید 100 باشه همچنین شما میتونید از قسمت «تقسیم بندی خودکار» وظایف را به صورت اتوماتیک تقسیم کنید.",
+                confirmButtonText: "حله الان درستش می کنم",
+            });
+            return false;
+        }
+
         Swal.fire({
             title: "آیا از تقسیم وظایف بین پیمانکاران اطمینان دارید؟!",
             text: "این تنظیمات به دلایل امنیتی قابل تغییر نیستند.",
