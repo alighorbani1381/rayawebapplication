@@ -100,6 +100,24 @@ $(document).ready(function () {
 
     });
 
+    $('#divide-contractor').on('click', function(){
+        Swal.fire({
+            title: "آیا از تقسیم وظایف بین پیمانکاران اطمینان دارید؟!",
+            text: "این تنظیمات به دلایل امنیتی قابل تغییر نیستند.",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'نه بزار دوباره چک کنم',
+            cancelButtonText: 'آره مطمئنم',
+        }).then((result) => {
+            if (result.value)
+                return false;
+            var form = $(this).parents('form');
+            form.submit();
+        });
+    });
+
 
 
 

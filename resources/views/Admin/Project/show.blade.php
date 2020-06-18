@@ -27,14 +27,14 @@
 
                 @php
                 if($project['contractors'][0]->progress_access == null)
-                    $taskDivide = "false";
+                $taskDivide = "false";
                 else
-                    $taskDivide = "true";
+                $taskDivide = "true";
                 @endphp
 
                 <li role="presentation" class="">
                     <a href="#contractors" role="tab" id="contractors-tab" data-toggle="tab" aria-controls="contractors"
-                    aria-expanded="false" taskdivide="{{ $taskDivide }}">وضعیت انجام پروژه</a>
+                        aria-expanded="false" taskdivide="{{ $taskDivide }}">وضعیت انجام پروژه</a>
                 </li>
 
             </ul>
@@ -239,40 +239,47 @@
                 </h4>
 
                 <div>
-                    @foreach($project['contractors'] as $key => $contractor)
-                    <div class="media m-b-10">
-                        <div class="media-left">
-                            <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
-                                    src="/admin/images/users/avatar-1.jpg"> </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{ $contractor->name . " " . $contractor->lastname }}</h4>
-                            <p class="font-13 text-muted m-b-0">
-                                <input type="hidden" value="{{ $contractor->id }}" name="access[{{ $key }}]">
-                                <input class="progress-divide form-control input-sm"
-                                    placeholder="درصد مشارکت این پیمانکار در پروژه را وارد کنید ..." type="number"
-                                    max="100" name="progress[{{ $key }}]" value="{{ $personPercent[$key] }}">
-                            </p>
-                        </div>
+                    <form method="post" action="www.google.com">
+                        @foreach($project['contractors'] as $key => $contractor)
+                        <div class="media m-b-10">
+                            <div class="media-left">
+                                <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
+                                        src="/admin/images/users/avatar-1.jpg"> </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{ $contractor->name . " " . $contractor->lastname }}</h4>
+                                <p class="font-13 text-muted m-b-0">
+                                    <input type="hidden" value="{{ $contractor->id }}" name="access[{{ $key }}]">
+                                    <input class="progress-divide form-control input-sm"
+                                        placeholder="درصد مشارکت این پیمانکار در پروژه را وارد کنید ..." type="number"
+                                        max="100" name="progress[{{ $key }}]" value="{{ $personPercent[$key] }}">
+                                </p>
+                            </div>
 
-                    </div>
-                    @endforeach
-
-                    <div class="media m-b-10">
-                        <div class="media-left">
-                            <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
-                                    src="/admin/images/users/avatar-1.jpg"> </a>
                         </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">مجموع درصد همکاری</h4>
-                            <p class="font-13 text-muted m-b-0">
-                                <input class="form-control input-sm sucsok" type="number" value="100" disabled
-                                    id="All-Percent">
-                            </p>
+                        @endforeach
+
+                        <div class="media m-b-10">
+                            <div class="media-left">
+                                <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
+                                        src="/admin/images/users/avatar-1.jpg"> </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">مجموع درصد همکاری</h4>
+                                <p class="font-13 text-muted m-b-0">
+                                    <input class="form-control input-sm sucsok" type="number" value="100" disabled
+                                        id="All-Percent">
+                                </p>
+                            </div>
+
                         </div>
+                        <div class="media m-b-10">
+                            <button type="button" id="divide-contractor" class="btn btn-primary waves-effect submit-button">
+                                تقسیم وظایف و فعالسازی پروژه
+                            </button>
 
-                    </div>
-
+                        </div>
+                    </form>
                 </div>
         </div>
     </div>
