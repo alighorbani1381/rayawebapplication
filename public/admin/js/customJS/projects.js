@@ -86,6 +86,20 @@ $(document).ready(function () {
         
     });
 
+    $('li a#contractors-tab').on('click', function(){        
+        var isActive = $(this).attr('taskdivide');
+        if(isActive == "false")
+        Swal.fire({
+            icon: 'warning',
+            title: "هشدار این پروژه غیر فعال است !",
+            text: "همونطور که تو صفحه اول هم توضیح دادم شما باید از قسمت پیمانکاران این پروژه تو همین صفحه وظایف رو میون پیمانکار های این پروژه تقسیم کنی.",
+            confirmButtonText: "حله گرفتم",
+        });
+        return false;
+        
+
+    });
+
 
 
 

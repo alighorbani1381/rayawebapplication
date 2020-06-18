@@ -25,9 +25,16 @@
                         aria-expanded="false">اطلاعات کارفرما</a>
                 </li>
 
+                @php
+                if($project['contractors'][0]->progress_access == null)
+                    $taskDivide = "false";
+                else
+                    $taskDivide = "true";
+                @endphp
+
                 <li role="presentation" class="">
                     <a href="#contractors" role="tab" id="contractors-tab" data-toggle="tab" aria-controls="contractors"
-                        aria-expanded="false">وضعیت انجام پروژه</a>
+                    aria-expanded="false" taskdivide="{{ $taskDivide }}">وضعیت انجام پروژه</a>
                 </li>
 
             </ul>
@@ -115,9 +122,10 @@
                         <h4 class="header-title">تصویر قرار داد :</h4>
                         <b>
                             @if($project['project']->contract_image != 'default')
-                                <img class="media-object thumb-sm" src="{{ $project['project']->contract_image }}" alt="">
+                            <img class="media-object thumb-sm" src="{{ $project['project']->contract_image }}" alt="">
                             @else
-                                <img class="media-object thumb-sm" src="{{ asset('admin/images/users/default.png') }}" alt="">
+                            <img class="media-object thumb-sm" src="{{ asset('admin/images/users/default.png') }}"
+                                alt="">
                             @endif
                         </b>
                     </div>
@@ -169,12 +177,13 @@
                     <div class="card-box items-box">
                         <div style="margin-bottom:30px;">
                             <a href="#">
-                            @if($contractor->profile != 'default')
-                                <img class="media-object img-circle thumb-sm" style="display:inline-block; margin-left:8px;" alt="{{ $fullName }}"
+                                @if($contractor->profile != 'default')
+                                <img class="media-object img-circle thumb-sm"
+                                    style="display:inline-block; margin-left:8px;" alt="{{ $fullName }}"
                                     src="{{ $contractor->profile }}"></a>
                             @else
-                                <img class="media-object img-circle thumb-sm" style="display:inline-block; margin-left:8px;" alt="{{ $fullName }}"
-                                    src="{{ asset('admin/images/users/default.png') }}"></a>
+                            <img class="media-object img-circle thumb-sm" style="display:inline-block; margin-left:8px;"
+                                alt="{{ $fullName }}" src="{{ asset('admin/images/users/default.png') }}"></a>
 
                             @endif
 
@@ -225,7 +234,7 @@
             $personPercent=[];
             for($i = 0; $i < $count; $i++){ $extra=100 - ($percent * $i); if($i==($count - 1)) $personPercent[]=$extra;
                 else $personPercent[]=$percent; } @endphp <h4 class="header-title m-t-0 m-b-30">
-                پیمانکاران این پروژه
+                تقسیم وظایف پیمانکاران این پروژه
                 ({{  $count . "نفر"}})
                 </h4>
 
