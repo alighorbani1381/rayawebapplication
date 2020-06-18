@@ -18,6 +18,10 @@
                     <a href="#contract" role="tab" id="contract-tab" data-toggle="tab" aria-controls="contract"
                         aria-expanded="false">اطلاعات قرارداد</a>
                 </li>
+                <li role="presentation" class="">
+                    <a href="#taskmaster" role="tab" id="taskmaster-tab" data-toggle="tab" aria-controls="taskmaster"
+                        aria-expanded="false">اطلاعات کارفرما</a>
+                </li>
                 <li role="presentation" class="dropdown">
                     <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown"
                         aria-controls="myTabDrop1-contents" aria-expanded="false">
@@ -35,44 +39,66 @@
                     </ul>
                 </li>
             </ul>
+
             <div class="tab-content">
 
+                {{-- Home Tab --}}
                 <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
 
+                    <div class="card-box items-box">
+                        <h4 class="header-title">عنوان پروژه:</h4>
+                        <b> {{ $project['project']->title }} </b>
+                    </div>
+
+                    <div class="card-box items-box">
+                        <h4 class="header-title">قیمت:</h4>
+                        <b> {{ number_format($project['project']->price) }} </b>
+                    </div>
+
+                    <div class="card-box items-box">
+                        <h4 class="header-title">شناسه پروژه:</h4>
+                        <b> {{ $project['project']->unique_id }} </b>
+                    </div>
 
 
-                    <h4 class="font-600 m-b-20">{{ $project['project']->title }}</h4>
 
                     @php
                     $paragraphs = explode('\n', $project['project']->description);
                     @endphp
 
-                    @foreach($paragraphs as $paragraph)
-                    <p class="text-muted" style="text-align: justify;">
-                        {{ $paragraph . "."}}
-                    </p>
-                    @endforeach
+                    <div class="card-box items-box">
+                        <h4 class="header-title">توضیحات پروژه:</h4>
+
+                        @foreach($paragraphs as $paragraph)
+                        <p class="text-muted" style="text-align: justify;">
+                            {{ $paragraph . "."}}
+                        </p>
+                        @endforeach
+                    </div>
 
                     <div class="m-b-20"></div>
-                    @php
-                   // dd($project);
-                    @endphp
+
                     @if($project['contractors'][0]->progress_access != null)
-                        <p class="font-600 m-b-5">پیشرفت کار <span class="text-success pull-right">80%</span></p>
-                        <div class="progress progress-bar-success-alt progress-md m-b-5">
-                            <div class="progress-bar progress-bar-success progress-bar-striped progress-animated wow animated animated "
-                                role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                                style="width: 80%; visibility: visible; animation-name: animationProgress;">
-                            </div>
-                        </div>                    
+                    <p class="font-600 m-b-5">پیشرفت کار <span class="text-success pull-right">80%</span></p>
+                    <div class="progress progress-bar-success-alt progress-md m-b-5">
+                        <div class="progress-bar progress-bar-success progress-bar-striped progress-animated wow animated animated "
+                            role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+                            style="width: 80%; visibility: visible; animation-name: animationProgress;">
+                        </div>
+                    </div>
                     @else
-                        <p class="font-600 m-b-5">پیشرفت کار <span class="text-success pull-right">0%</span></p>
-                            <div class="progress progress-bar-success-alt progress-md m-b-5">
-                                <div class="progress-bar progress-bar-success progress-bar-striped progress-animated wow animated animated "
-                                    role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
-                                    style="width: 0; visibility: visible; animation-name: animationProgress;">
-                                </div>
-                            </div>                    
+                    <div class="alert alert-warning war">
+                        <b>
+                            <i class="fa fa-warning"></i>&nbsp;
+                            هشدار:
+                        </b>
+                        <p>این پروژه در انتظار اجرا است (غیر فعال است) پس از تقسیم وظایف توسط مدیر برای پیمانکاران این
+                            پروژه درصد پیشرفت قابل مشاهده خواهد بود.</p>
+                    </div>
+                    <div class="alert alert-info war">
+                        <b><i class="fa fa-info-circle"></i>&nbsp;راهنمایی:</b>
+                        <p>برای فعالسازی پروژه و تقسیم وظایف از سمت چپ همین صفحه قسمت پیمانکاران استفاده کنید.</p>
+                    </div>
                     @endif
 
 
@@ -81,28 +107,62 @@
 
                 </div>
 
-
+                {{-- Home Tab --}}
                 <div role="tabpanel" class="tab-pane fade" id="contract" aria-labelledby="contract-tab">
-                    <h4 class="header-title m-b-30">درآمد کل</h4>
-                    <ul class="list-inline task-dates m-b-0 m-t-20">
+                    <div class="card-box items-box">
+                        <h4 class="header-title">تاریخ شروع قرارداد :</h4>
+                        <b> {{ $project['project']->contract_started }} </b>
+                    </div>
 
-                        <li>
-                            <h5 class="font-600 m-b-5">تاریخ اتمام قرارداد</h5>
-                            <p> {{ $project['project']->contract_ended }} </p>
-                        </li>
+                    <div class="card-box items-box">
+                        <h4 class="header-title">تاریخ پایان قرارداد :</h4>
+                        <b> {{ $project['project']->contract_ended }} </b>
+                    </div>
 
-                        <li>
-                            <h5 class="font-600 m-b-5">تاریخ شروع قرارداد</h5>
-                            <p> {{ $project['project']->contract_started }} </p>
-                        </li>
-
-
-                        <li>
-                            <h5 class="font-600 m-b-5">تصویر قرارداد</h5>
+                    <div class="card-box items-box">
+                        <h4 class="header-title">تصویر قرار داد :</h4>
+                        <b>
                             <img class="media-object thumb-sm" src="/admin/images/users/avatar-1.jpg" alt="">
-                        </li>
+                        </b>
+                    </div>
+                </div>
 
-                    </ul>
+                <div role="tabpanel" class="tab-pane fade" id="taskmaster" aria-labelledby="taskmaster-tab">
+
+                    <div class="card-box items-box">
+                        <h4 class="header-title">نام و نام خانوادگی :</h4>
+                        <b> {{ $project['project']->name . " " . $project['project']->lastname }} </b>
+                    </div>
+
+                    <div class="card-box items-box">
+                        <h4 class="header-title">نام پدر :</h4>
+                        <b> {{ $project['project']->father_name }} </b>
+                    </div>
+
+                    <div class="card-box items-box">
+                        <h4 class="header-title">شماره تماس :</h4>
+                        <b> {{ $project['project']->phone }} </b>
+                    </div>
+
+                    <div class="card-box items-box">
+                        <h4 class="header-title">آدرس :</h4>
+                        <b class="jus"> {{ $project['project']->address }} </b>
+                    </div>
+
+                    <div class="card-box items-box">
+                        <h4 class="header-title">کد ملی :</h4>
+                        <b> {{ $project['project']->meli_code }} </b>
+                    </div>
+
+                    <div class="card-box items-box">
+                        <h4 class="header-title">تصویر کد ملی:</h4>
+                        <b>
+                            <img src="{{ $project['project']->meli_code }}"
+                                alt="{{ $project['project']->name . " " . $project['project']->lastname }}">
+                        </b>
+                    </div>
+
+
                 </div>
 
                 <div role="tabpanel" class="tab-pane fade" id="dropdown1" aria-labelledby="dropdown1-tab">
@@ -130,9 +190,22 @@
                 </ul>
             </div>
 
+            @php
+            $count = $project['contractors']->count();
+            $percent = round(100 / $count,0);
+            $personPercent=[];
+            for($i = 0; $i < $count; $i++){
+                $extra = 100 - ($percent * $i);
+
+                if($i == ($count - 1))
+                    $personPercent[] = $extra;
+                else
+                    $personPercent[] = $percent;
+            }            
+            @endphp
             <h4 class="header-title m-t-0 m-b-30">
-                پیمانکاران این پروژه 
-                ({{  $project['contractors']->count() . "نفر"}})
+                پیمانکاران این پروژه
+                ({{  $count . "نفر"}})
             </h4>
 
             <div>
@@ -148,7 +221,7 @@
                             <input type="hidden" value="{{ $contractor->id }}" name="access[{{ $key }}]">
                             <input class="form-control input-sm"
                                 placeholder="درصد مشارکت این پیمانکار در پروژه را وارد کنید ..." type="number" max="100"
-                                name="progress[{{ $key }}]" id="progress">
+                                name="progress[{{ $key }}]" id="progress" value="{{ $personPercent[$key] }}">
                         </p>
                     </div>
 
