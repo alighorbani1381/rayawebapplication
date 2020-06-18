@@ -79,3 +79,10 @@
 #sidebar-menu ul li .menu-arrow{
     transform: rotate(180deg);
 }
+.items-box h4 {
+    display: inline-block;
+    margin-left: 20px;
+}
+.war{
+   font-size:16px;
+}
