@@ -80,6 +80,10 @@ $(document).ready(function () {
             $(this).val($personPercent[$number]);
             $number += 1;
         });
+        $('#All-Percent').removeClass("parsley-error");
+        $('#All-Percent').addClass("sucsok");
+        $('#All-Percent').val(100);
+        
     });
 
 
