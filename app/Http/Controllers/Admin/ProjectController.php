@@ -197,4 +197,8 @@ class ProjectController extends Controller
     {
         //
     }
+
+    public function percentDivide(Request $request){
+        return $request->all();
+    }
 }
