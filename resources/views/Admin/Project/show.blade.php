@@ -239,7 +239,8 @@
                 </h4>
 
                 <div>
-                    <form method="post" action="www.google.com">
+                    <form method="post" action="{{ route('projects.divide') }}">
+                        @csrf
                         @foreach($project['contractors'] as $key => $contractor)
                         <div class="media m-b-10">
                             <div class="media-left">
