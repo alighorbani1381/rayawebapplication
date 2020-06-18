@@ -177,6 +177,7 @@ class ProjectController extends Controller
     public function show($project)
     {
         $project = $this->repo->getProjectFull($project);
+        // dd($project);
         return view('Admin.Project.show', compact('project'));
     }
 

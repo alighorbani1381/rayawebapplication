@@ -14,30 +14,22 @@
                     <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home"
                         aria-expanded="true">اطلاعات کلی پروژه</a>
                 </li>
+
                 <li role="presentation" class="">
                     <a href="#contract" role="tab" id="contract-tab" data-toggle="tab" aria-controls="contract"
                         aria-expanded="false">اطلاعات قرارداد</a>
                 </li>
+
                 <li role="presentation" class="">
                     <a href="#taskmaster" role="tab" id="taskmaster-tab" data-toggle="tab" aria-controls="taskmaster"
                         aria-expanded="false">اطلاعات کارفرما</a>
                 </li>
-                <li role="presentation" class="dropdown">
-                    <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown"
-                        aria-controls="myTabDrop1-contents" aria-expanded="false">
-                        باز شونده <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
-                        <li>
-                            <a href="#dropdown1" role="tab" id="dropdown1-tab" data-toggle="tab"
-                                aria-controls="dropdown1">متن 1</a>
-                        </li>
-                        <li>
-                            <a href="#dropdown2" role="tab" id="dropdown2-tab" data-toggle="tab"
-                                aria-controls="dropdown2">متن 2</a>
-                        </li>
-                    </ul>
+
+                <li role="presentation" class="">
+                    <a href="#contractors" role="tab" id="contractors-tab" data-toggle="tab" aria-controls="contractors"
+                        aria-expanded="false">وضعیت انجام پروژه</a>
                 </li>
+
             </ul>
 
             <div class="tab-content">
@@ -165,13 +157,34 @@
 
                 </div>
 
-                <div role="tabpanel" class="tab-pane fade" id="dropdown1" aria-labelledby="dropdown1-tab">
+                <div role="tabpanel" class="tab-pane fade" id="contractors" aria-labelledby="contractors-tab">
+                    @foreach($project['contractors'] as $contractor)
+                    <div class="card-box items-box">
+                        <div style="margin-bottom:30px;">
+                            <a href="#"> <img class="media-object img-circle thumb-sm" style="display:inline-block;" alt="64x64"
+                                    src="/admin/images/users/avatar-1.jpg"> </a>
+                            <h4 class="header-title">نام پیمانکار : </h4>
+                            <b>{{ $contractor->name . " " . $contractor->lastname }}</b>
+                        </div>
 
+                        @php
+                        $colors = ['purple', 'primary', 'success', 'pink', 'inverse'];
+                        $index = rand(0, 4);
+                        @endphp
+                        <p class="font-600 m-b-5">پیشرفت کار <span
+                                class="text-{{$colors[$index]}} pull-right">{{ $contractor->progress . "%"}}</span></p>
+                        <div class="progress progress-bar-{{$colors[$index]}}-alt progress-md m-b-5">
+                            <div class="progress-bar progress-bar-{{$colors[$index]}} progress-bar-striped progress-animated wow animated animated "
+                                role="progressbar" aria-valuenow="{{ $contractor->progress}}" aria-valuemin="0"
+                                aria-valuemax="100"
+                                style="width: {{ $contractor->progress}}%; visibility: visible; animation-name: animationProgress;">
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
 
-                <div role="tabpanel" class="tab-pane fade" id="dropdown2" aria-labelledby="dropdown2-tab">
 
-                </div>
             </div>
         </div>
     </div>
@@ -186,8 +199,8 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="#" id="auto-divide">
-                        <i class="fa fa-spin fa-refresh" style="margin-left: 8px;"></i>
-                        تقسیم بندی خودکار</a></li>
+                            <i class="fa fa-spin fa-refresh" style="margin-left: 8px;"></i>
+                            تقسیم بندی خودکار</a></li>
                 </ul>
             </div>
 
@@ -195,55 +208,48 @@
             $count = $project['contractors']->count();
             $percent = round(100 / $count,0);
             $personPercent=[];
-            for($i = 0; $i < $count; $i++){
-                $extra = 100 - ($percent * $i);
-
-                if($i == ($count - 1))
-                    $personPercent[] = $extra;
-                else
-                    $personPercent[] = $percent;
-            }            
-            @endphp
-            <h4 class="header-title m-t-0 m-b-30">
+            for($i = 0; $i < $count; $i++){ $extra=100 - ($percent * $i); if($i==($count - 1)) $personPercent[]=$extra;
+                else $personPercent[]=$percent; } @endphp <h4 class="header-title m-t-0 m-b-30">
                 پیمانکاران این پروژه
                 ({{  $count . "نفر"}})
-            </h4>
+                </h4>
 
-            <div>
-                @foreach($project['contractors'] as $key => $contractor)
-                <div class="media m-b-10">
-                    <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
-                                src="/admin/images/users/avatar-1.jpg"> </a>
+                <div>
+                    @foreach($project['contractors'] as $key => $contractor)
+                    <div class="media m-b-10">
+                        <div class="media-left">
+                            <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
+                                    src="/admin/images/users/avatar-1.jpg"> </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ $contractor->name . " " . $contractor->lastname }}</h4>
+                            <p class="font-13 text-muted m-b-0">
+                                <input type="hidden" value="{{ $contractor->id }}" name="access[{{ $key }}]">
+                                <input class="progress-divide form-control input-sm"
+                                    placeholder="درصد مشارکت این پیمانکار در پروژه را وارد کنید ..." type="number"
+                                    max="100" name="progress[{{ $key }}]" value="{{ $personPercent[$key] }}">
+                            </p>
+                        </div>
+
                     </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">{{ $contractor->name . " " . $contractor->lastname }}</h4>
-                        <p class="font-13 text-muted m-b-0">
-                            <input type="hidden" value="{{ $contractor->id }}" name="access[{{ $key }}]">
-                            <input class="progress-divide form-control input-sm"
-                                placeholder="درصد مشارکت این پیمانکار در پروژه را وارد کنید ..." type="number" max="100"
-                                name="progress[{{ $key }}]"  value="{{ $personPercent[$key] }}">
-                        </p>
+                    @endforeach
+
+                    <div class="media m-b-10">
+                        <div class="media-left">
+                            <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
+                                    src="/admin/images/users/avatar-1.jpg"> </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">مجموع درصد همکاری</h4>
+                            <p class="font-13 text-muted m-b-0">
+                                <input class="form-control input-sm sucsok" type="number" value="100" disabled
+                                    id="All-Percent">
+                            </p>
+                        </div>
+
                     </div>
 
                 </div>
-                @endforeach
-
-                <div class="media m-b-10">
-                    <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
-                                src="/admin/images/users/avatar-1.jpg"> </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">مجموع درصد همکاری</h4>
-                        <p class="font-13 text-muted m-b-0">
-                            <input class="form-control input-sm sucsok" type="number" value="100" disabled id="All-Percent">
-                        </p>
-                    </div>
-
-                </div>
-
-            </div>
         </div>
     </div>
     <!-- Contractor Col End -->
