@@ -63,6 +63,7 @@ $(document).ready(function () {
 
     });
 
+    // Auto Divider Percent for Contractors
     $('#auto-divide').click(function () {
         var count = countOfContractor();
         var percent = Math.round(100 / count);
@@ -83,24 +84,44 @@ $(document).ready(function () {
         $('#All-Percent').removeClass("parsley-error");
         $('#All-Percent').addClass("sucsok");
         $('#All-Percent').val(100);
-        
+        setTimeout(function () {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-start',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                onOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+
+            Toast.fire({
+                icon: 'success',
+                title: 'وظایف تا حد ممکن مساوی تقسیم شدند.'
+            });
+
+        }, 150);
+
+
     });
 
-    $('li a#contractors-tab').on('click', function(){        
+    $('li a#contractors-tab').on('click', function () {
         var isActive = $(this).attr('taskdivide');
-        if(isActive == "false")
-        Swal.fire({
-            icon: 'warning',
-            title: "هشدار این پروژه غیر فعال است !",
-            text: "همونطور که تو صفحه اول هم توضیح دادم شما باید از قسمت پیمانکاران این پروژه تو همین صفحه وظایف رو میون پیمانکار های این پروژه تقسیم کنی.",
-            confirmButtonText: "حله گرفتم",
-        });
+        if (isActive == "false")
+            Swal.fire({
+                icon: 'warning',
+                title: "هشدار این پروژه غیر فعال است !",
+                text: "همونطور که تو صفحه اول هم توضیح دادم شما باید از قسمت پیمانکاران این پروژه تو همین صفحه وظایف رو میون پیمانکار های این پروژه تقسیم کنی.",
+                confirmButtonText: "حله گرفتم",
+            });
         return false;
-        
+
 
     });
 
-    $('#divide-contractor').on('click', function(){
+    $('#divide-contractor').on('click', function () {
         Swal.fire({
             title: "آیا از تقسیم وظایف بین پیمانکاران اطمینان دارید؟!",
             text: "این تنظیمات به دلایل امنیتی قابل تغییر نیستند.",
