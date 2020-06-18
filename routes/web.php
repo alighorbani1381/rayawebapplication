@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
     Route::get('dashborad', 'IndexController@index')->name('admin.dashboard');
     Route::resource('categories', 'CategoryController');
+    Route::post('projects/contractors/divide', 'ProjectController@percentDivide')->name('projects.divide');
     Route::resource('projects', 'ProjectController');
     Route::resource('users', 'UserController');
 });
