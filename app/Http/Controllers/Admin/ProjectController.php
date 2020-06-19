@@ -258,13 +258,15 @@ class ProjectController extends Controller
     }
 
 
-    public function edit(Project $project)
+    public function edit($project)
     {
-        //
+        $project = $this->repo->getProjectFull($project);
+       // dd($project);
+        return view('Admin.Project.edit', compact('project'));
     }
 
 
-    public function update(Request $request, Project $project)
+    public function update(Request $request, $project)
     {
         //
     }
