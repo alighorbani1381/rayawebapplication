@@ -86,5 +86,11 @@
 </script>
 @endif
 
+@if(session()->has('ProjectUpdate'))
+<script>
+    minMbox("اطلاعات پروژه بروز رسانی شد.", 300);
+</script>
+@endif
+
 
 @endsection

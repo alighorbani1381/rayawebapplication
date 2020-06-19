@@ -1,13 +1,13 @@
-/* Helpful Function Start */ 
+/* Helpful Function Start */
 function sumAllPercent() {
-    
+
     var $sumAllPer = 0;
     $('.progress-divide').each(function () {
         var percent = parseInt($(this).val());
         $sumAllPer = parseInt($sumAllPer + percent);
     });
     return $sumAllPer;
-    
+
 }
 
 function countOfContractor() {
@@ -18,7 +18,7 @@ function countOfContractor() {
     return $count;
 }
 
-/* Helpful Function End */ 
+/* Helpful Function End */
 
 $(document).ready(function () {
 
@@ -111,14 +111,14 @@ $(document).ready(function () {
     // Alert When Admin Want to See Contractors Tab
     $('li a#contractors-tab').on('click', function () {
         var isActive = $(this).attr('taskdivide');
-        if (isActive == "false"){
+        if (isActive == "false") {
             Swal.fire({
                 icon: 'warning',
                 title: "هشدار: این پروژه غیر فعال است !",
                 text: "همونطور که تو صفحه اول هم توضیح دادم شما باید از قسمت پیمانکاران این پروژه تو همین صفحه وظایف رو میون پیمانکار های این پروژه تقسیم کنی.",
                 confirmButtonText: "حله گرفتم",
             });
-        return false;
+            return false;
         }
 
     });
@@ -166,7 +166,7 @@ $(document).ready(function () {
     });
 
     // Delete Project Ask Ready?!
-    $('#delete-project').click(function(){
+    $('#delete-project').click(function () {
         var projectName = $(this).parents('td').siblings('td.projectName').text();
         var message = "آیا از حذف پروژه «" + projectName + "»" + "مطمئن هستید ؟";
         Swal.fire({
@@ -186,6 +186,24 @@ $(document).ready(function () {
         });
     });
 
+    //Edit Project Ask is it OK?
+    $('#edit-project').on('click', function () {
+        Swal.fire({
+            title: "آیا از بروزرسانی اطلاعات این پروژه اطمینان دارید؟",
+            text: "تغییر این اطلاعات برای پیمانکاران نیز قابل مشاهده خواهد بود.",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'نه منصرف شدم',
+            cancelButtonText: 'آره مطمئنم',
+        }).then((result) => {
 
+            if (result.value)
+                return false;
+
+            $('#form').submit();
+        });
+    });
 
 });
