@@ -119,7 +119,7 @@ class ProjectRepository
         return DB::table('project_contractor')
             ->where('project_contractor.project_id', $projectId)
             ->join('users', 'project_contractor.contractor_id', '=', 'users.id')
-            ->select('users.id', 'users.name', 'users.lastname', 'users.profile', 'project_contractor.progress', 'project_contractor.progress_access')
+            ->select('users.id', 'users.name', 'users.lastname', 'users.profile', 'project_contractor.id AS contract_id', 'project_contractor.progress', 'project_contractor.progress_access')
             ->get();
     }
 
@@ -140,6 +140,22 @@ class ProjectRepository
         $project['categories'] = $this->getCategories($id);
         $project['contractors'] = $this->getContractors($id);
         return $project;
+    }
+
+    public function dividePercnets($request)
+    {
+        DB::transaction(function () use ($request) {
+            foreach ($request->access as $key => $access)
+                if (array_key_exists($key, $request->progress)) {
+                    $percent = $request->progress[$key];
+                    DB::table('project_contractor')
+                        ->where('project_contractor.id', $access)
+                        ->update(['progress_access' => $percent, 'progress' => '0']);
+                }
+                DB::table('projects')
+                ->where('id', $request->project_id)
+                ->update(['status' => 'ongoing']);
+        });
     }
 }
 
@@ -177,6 +193,7 @@ class ProjectController extends Controller
     public function show($project)
     {
         $project = $this->repo->getProjectFull($project);
+        //dd($project);
         return view('Admin.Project.show', compact('project'));
     }
 
@@ -198,7 +215,8 @@ class ProjectController extends Controller
         //
     }
 
-    public function percentDivide(Request $request){
-        return $request->all();
+    public function percentDivide(Request $request)
+    {
+        $this->repo->dividePercnets($request);
     }
 }
