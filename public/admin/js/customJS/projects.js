@@ -162,6 +162,26 @@ $(document).ready(function () {
         });
     });
 
+    $('#delete-project').click(function(){
+        var projectName = $(this).parents('td').siblings('td.projectName').text();
+        var message = "آیا از حذف پروژه «" + projectName + "»" + "مطمئن هستید ؟";
+        Swal.fire({
+            title: message,
+            text: "با حدف این پروژه تمامی اطلاعات مربوط به آن از سیستم پاک خواهد شد.",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'نه منصرف شدم',
+            cancelButtonText: 'آره مطمئنم',
+        }).then((result) => {
+            if (result.value)
+                return false;
+            var form = $(this).parents('form');
+            form.submit();
+        });
+    });
+
 
 
 

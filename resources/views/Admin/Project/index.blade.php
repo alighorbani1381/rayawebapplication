@@ -1,6 +1,9 @@
 @extends('Admin.Layout.main')
 @section('title', 'لیست پروژه های شما')
 @section('header', 'پروژه های شما')
+@push('js')
+<script src="{{ asset('admin/js/customJS/projects.js') }} "></script>
+@endpush
 @section('content')
 <div class="row">
     <div class="col-sm-12">
@@ -53,11 +56,7 @@
                             </td>
                             
                         <td class="tac">
-                            @if ($project->status != 'waiting')
-                                {{ $project->progress }}
-                            @else
                                 {{ "-" }}
-                            @endif
                         </td>
                         <td class="tac">
                             <a href="{{ route('projects.show', $project->id) }}"class="btn btn-icon waves-effect waves-light btn-success m-b-5"> <i class="fa fa-eye"></i> </a>
@@ -71,7 +70,7 @@
                             <form method="post" action="{{ route('projects.destroy', $project->id) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i class="fa fa-remove"></i> </button>
+                                <button type="button" id="delete-project" class="delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i class="fa fa-remove"></i> </button>
                             </form>
                         </td>
                     </tr>
@@ -83,23 +82,13 @@
         </div>
     </div><!-- end col -->
 </div>
-@if(session()->has('DeleteCategoryFail'))
+
+
+@if(session()->has('ProjectDelete'))
 <script>
-    maxMbox("حذف این مورد با شکست مواجه شد!", "این خدمت دارای زیر گروه است و نمی توان آن را حذف کرد", "error", "آها",350 );
+    minMbox('پروژه مورد نظر به طور کامل حدف شد.', 350);
 </script>
 @endif
 
-
-@if(session()->has('DeleteCategory'))
-<script>
-    minMbox('خدمت مورد نظر با موفقیت حذف شد.', 350);
-</script>
-@endif
-
-@if(session()->has('CategoryUpdate'))
-<script>
-    minMbox('خدمت مورد نظر با موفقیت ویرایش شد.', 350);
-</script>
-@endif
 
 @endsection
