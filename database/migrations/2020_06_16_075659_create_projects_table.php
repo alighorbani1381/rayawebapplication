@@ -23,16 +23,16 @@ class CreateProjectsTable extends Migration
 
             // Detail
             $table->string('title')->index();
-            $table->string('description');
+            $table->text('description');
             $table->integer('price');
 
-            // Contract
-            $table->integer('contract_image');
-            $table->integer('contract_started');
+            // Contract Data
+            $table->string('contract_image')->default('default');
+            $table->date('contract_started');
+            $table->date('contract_ended');
 
-            //Status & Progress
+            //Status
             $table->enum('status', ['waiting', 'ongoing', 'finished']);
-            $table->integer('progress');
 
             //Date Data
             $table->date('date_start');
@@ -50,8 +50,8 @@ class CreateProjectsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('project_id');
             $table->integer('contractor_id');
-            $table->integer('progress_access');
-            $table->integer('progress');
+            $table->integer('progress_access')->nullable();
+            $table->integer('progress')->nullable();
         });
 
         Schema::create('project_taskmaster', function (Blueprint $table) {
@@ -60,7 +60,7 @@ class CreateProjectsTable extends Migration
             $table->string('lastname');
             $table->string('father_name');
             $table->string('meli_code');
-            $table->string('meli_image');
+            $table->string('meli_image')->default('default');
             $table->string('phone');
             $table->string('address');
         });
