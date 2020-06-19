@@ -92,3 +92,7 @@
 .sucsok{
     border: 1px solid #41b141;
 }
+
+.card-box.items-box b, p {
+    font-size: 16px;
+}
