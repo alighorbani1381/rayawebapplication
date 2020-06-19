@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Project;
 use App\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -34,6 +35,12 @@ class ProjectRequest
 
         $request->validate($fileds);
     }
+
+    public static function percentValidate($request){
+        $fileds = ['progress.*' => 'required|numeric|min:1|max:100'];
+        $request->validate($fileds);
+    }
+    
 }
 class ProjectRepository
 {
@@ -152,7 +159,7 @@ class ProjectRepository
                         ->where('project_contractor.id', $access)
                         ->update(['progress_access' => $percent, 'progress' => '0']);
                 }
-                DB::table('projects')
+            DB::table('projects')
                 ->where('id', $request->project_id)
                 ->update(['status' => 'ongoing']);
         });
@@ -217,6 +224,9 @@ class ProjectController extends Controller
 
     public function percentDivide(Request $request)
     {
+        ProjectRequest::percentValidate($request);
         $this->repo->dividePercnets($request);
+        session()->flash('ActiveProject');
+        return back();
     }
 }
