@@ -1,20 +1,30 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
-
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+    <img src="http://www.rayapro.ir/public/img/logo/rayapro-dark.png" width="150">
+    <img src="https://laravel.com/img/logotype.min.svg" width="150">
 </p>
 
-## About Laravel
+<p align="center">
+RayaManager Web Application
+</p>
+        
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## About This App
-Create with Laravel Freamwork you can use this App for your Company save your data
+## About Laravel Freamwork
+<p align="left">
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative            experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects
+</p>
+
+## About This  Web Application
+This Application is a Good Way for Manage Company Project And Pay Money to there contractor.
+
+
+Create with Laravel Freamwork you can use this App for your Company save your data.
+
+Manage your Costs in your Company.
 
 
 ## License
 
-AliGhorbani
+This Application Create for [Raya Pro Company](http://www.rayapro.ir) but license return to AliGhorbani
+
+maybe share in the open source world!
