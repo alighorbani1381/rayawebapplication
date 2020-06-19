@@ -61,6 +61,7 @@ class ProjectRepository
 
     public static function createProject($request, $taskmaster)
     {
+        $dateTime = date('Y:m:d h:m:s');
         $uniqueId =  'rayaweb' . '-' . uniqid() . '-' . $request->phone;
         return DB::table('projects')->insertGetId([
             'project_creator' => '1',
@@ -76,6 +77,8 @@ class ProjectRepository
             'progress' => '0',
             'date_start' => $request->date_start,
             'complete_after' => $request->complete_after,
+            'created_at' => $dateTime,
+            'updated_at' => $dateTime,
         ]);
     }
 
