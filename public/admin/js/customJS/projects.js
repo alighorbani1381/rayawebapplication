@@ -1,12 +1,13 @@
+/* Helpful Function Start */ 
 function sumAllPercent() {
-
+    
     var $sumAllPer = 0;
     $('.progress-divide').each(function () {
         var percent = parseInt($(this).val());
         $sumAllPer = parseInt($sumAllPer + percent);
     });
     return $sumAllPer;
-
+    
 }
 
 function countOfContractor() {
@@ -17,18 +18,18 @@ function countOfContractor() {
     return $count;
 }
 
+/* Helpful Function End */ 
 
 $(document).ready(function () {
 
-    console.clear();
-
+    // Control Price Whene Specify Project Price
     $("#price").bind('change', function () {
         var price = parseInt($(this).val());
         if (price <= 0)
             $(this).val(1);
     });
 
-
+    // Change Percent for Any Person
     $('.progress-divide').bind('keyup input change', function () {
         $('#All-Percent').removeClass("parsley-error");
         $('#All-Percent').removeClass("sucsok");
@@ -107,6 +108,7 @@ $(document).ready(function () {
 
     });
 
+    // Alert When Admin Want to See Contractors Tab
     $('li a#contractors-tab').on('click', function () {
         var isActive = $(this).attr('taskdivide');
         if (isActive == "false"){
@@ -121,6 +123,7 @@ $(document).ready(function () {
 
     });
 
+    // Check Percent Between Contractor
     $('#divide-contractor').on('click', function () {
         var allPercent = parseInt($('#All-Percent').val());
         var message = "درصد ها به طور کامل تقسیم نشده !" + " " + "( " + allPercent + "%" + " )";
@@ -162,6 +165,7 @@ $(document).ready(function () {
         });
     });
 
+    // Delete Project Ask Ready?!
     $('#delete-project').click(function(){
         var projectName = $(this).parents('td').siblings('td.projectName').text();
         var message = "آیا از حذف پروژه «" + projectName + "»" + "مطمئن هستید ؟";
@@ -181,7 +185,6 @@ $(document).ready(function () {
             form.submit();
         });
     });
-
 
 
 
