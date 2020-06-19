@@ -59,6 +59,34 @@ class ProjectRepository
             ]);
     }
 
+    public static function deleteTaskMaster($taskmasterId)
+    {
+        return  DB::table('project_taskmaster')
+            ->where('project_id', $taskmasterId)
+            ->delete();
+    }
+
+    public static function deleteContractors($projectId)
+    {
+        DB::table('project_contractor')
+            ->where('project_id', $projectId)
+            ->delete();
+    }
+    public static function deleteCategories($projectId)
+    {
+        DB::table('project_category')
+            ->where('project_id', $projectId)
+            ->delete();
+    }
+
+    public static function deleteProject($projectId)
+    {
+        DB::table('projects')
+            ->where('project_id', $projectId)
+            ->delete();
+    }
+
+
     public static function createProject($request, $taskmaster)
     {
         $dateTime = date('Y:m:d h:m:s');
@@ -73,7 +101,7 @@ class ProjectRepository
             'contract_image' => 'Default',
             'contract_started' => $request->contract_started,
             'contract_ended' => $request->completed_at,
-            'status' => 'waiting',            
+            'status' => 'waiting',
             'date_start' => $request->date_start,
             'complete_after' => $request->complete_after,
             'created_at' => $dateTime,
@@ -168,7 +196,8 @@ class ProjectRepository
         });
     }
 
-    public function getProgress($contractorData){
+    public function getProgress($contractorData)
+    {
         $allProgress = 0;
         foreach ($contractorData['contractors'] as $contractor) {
             $percent = $contractor->progress_access / 100;
@@ -177,6 +206,16 @@ class ProjectRepository
         }
         $allProgress = round($allProgress, 0);
         return $allProgress;
+    }
+
+    public function deleteFullProject($projectId)
+    {
+        DB::transaction(function () use ($projectId) {
+            ProjectRepository::deleteTaskMaster($projectId);
+            ProjectRepository::deleteContractors($projectId);
+            ProjectRepository::deleteCategories($projectId);
+            ProjectRepository::deleteProject($projectId);
+        });
     }
 }
 
@@ -231,9 +270,12 @@ class ProjectController extends Controller
     }
 
 
-    public function destroy(Project $project)
+    public function destroy($project)
     {
-        //
+        Project::findOrFail($project);
+       // $this->repo->deleteFullProject($project);
+        session()->flash('ProjectDelete');
+        return back();
     }
 
     public function percentDivide(Request $request)
