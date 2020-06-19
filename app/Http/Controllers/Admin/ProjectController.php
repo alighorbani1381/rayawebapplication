@@ -127,6 +127,7 @@ class ProjectRepository
             ->where('project_contractor.project_id', $projectId)
             ->join('users', 'project_contractor.contractor_id', '=', 'users.id')
             ->select('users.id', 'users.name', 'users.lastname', 'users.profile', 'project_contractor.id AS contract_id', 'project_contractor.progress', 'project_contractor.progress_access')
+            ->orderBy('project_contractor.progress_access', 'desc')
             ->get();
     }
 
