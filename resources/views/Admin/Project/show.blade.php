@@ -191,11 +191,20 @@
                             <b>{{ $fullName }}</b>
                         </div>
 
+                        <div style="margin-bottom:30px;">
+                            <a href="#">
+                                <img class="media-object img-circle thumb-sm"
+                                style="display:inline-block; margin-left:8px;" alt="{{ $fullName }}"
+                                src="{{ asset('admin/images/symbols/percent2.jpg') }}"></a>
+                            <h4 class="header-title">درصد اختصاص یافته  : </h4>
+                            <b>{{ $contractor->progress_access . "%" }}</b>
+                        </div>
+
                         @php
                         $colors = ['purple', 'primary', 'success', 'pink', 'inverse'];
                         $index = rand(0, 4);
                         @endphp
-                        <p class="font-600 m-b-5">پیشرفت کار <span
+                        <p class="font-600 m-b-5 text-{{$colors[$index]}}">پیشرفت کار <span
                                 class="text-{{$colors[$index]}} pull-right">{{ $contractor->progress . "%"}}</span></p>
                         <div class="progress progress-bar-{{$colors[$index]}}-alt progress-md m-b-5">
                             <div class="progress-bar progress-bar-{{$colors[$index]}} progress-bar-striped progress-animated wow animated animated "
