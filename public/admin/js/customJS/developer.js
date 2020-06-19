@@ -23,7 +23,7 @@ function minMbox(message, timeout) {
 }
 
 function maxMbox(titleText, messageText, iconText, btnText, timeout) {
-    $(document).ready(function () {
+    $(window).on('load',function () {
         setTimeout(function () {
             Swal.fire({
                 icon: iconText,
