@@ -77,7 +77,7 @@
 
                     <div class="m-b-20"></div>
 
-                    @if($project['contractors'][0]->progress_access != null)
+                    @if($project['project']->status == 'ongoing')
                     <p class="font-600 m-b-5">پیشرفت کار <span class="text-success pull-right">80%</span></p>
                     <div class="progress progress-bar-success-alt progress-md m-b-5">
                         <div class="progress-bar progress-bar-success progress-bar-striped progress-animated wow animated animated "
@@ -241,6 +241,7 @@
                 <div>
                     <form method="post" action="{{ route('projects.divide') }}">
                         @csrf
+                        <input type="hidden" name="project_id" value="{{ $project['project']->id }}">
                         @foreach($project['contractors'] as $key => $contractor)
                         <div class="media m-b-10">
                             <div class="media-left">
@@ -250,7 +251,8 @@
                             <div class="media-body">
                                 <h4 class="media-heading">{{ $contractor->name . " " . $contractor->lastname }}</h4>
                                 <p class="font-13 text-muted m-b-0">
-                                    <input type="hidden" value="{{ $contractor->id }}" name="access[{{ $key }}]">
+                                    <input type="hidden" value="{{ $contractor->contract_id }}"
+                                        name="access[{{ $key }}]">
                                     <input class="progress-divide form-control input-sm"
                                         placeholder="درصد مشارکت این پیمانکار در پروژه را وارد کنید ..." type="number"
                                         max="100" name="progress[{{ $key }}]" value="{{ $personPercent[$key] }}">
@@ -275,7 +277,8 @@
 
                         </div>
                         <div class="media m-b-10">
-                            <button type="button" id="divide-contractor" class="btn btn-primary waves-effect submit-button">
+                            <button type="button" id="divide-contractor"
+                                class="btn btn-primary waves-effect submit-button">
                                 تقسیم وظایف و فعالسازی پروژه
                             </button>
 
