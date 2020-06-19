@@ -239,6 +239,14 @@
                 </h4>
 
                 <div>
+
+                    @error('progress.*')
+                    <div class="alert alert-danger">
+                        <i class="fa fa-warning"></i>
+                        اطلاعات وارد شده برای تقسیم وظایف نادرست می باشد.
+                    </div>
+                    @enderror
+
                     <form method="post" action="{{ route('projects.divide') }}">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $project['project']->id }}">
@@ -331,5 +339,9 @@
 
 </div>
 
-
+@if(session()->has('ActiveProject'))
+<script>
+    maxMbox("پروژه فعال شد☕ ", "الان میتونید کار رو به پیمانکارانتون بسپارید و از همین پنل قسمت وضعیت انجام پروژه علمکرد آن ها را مدیریت کنید. .", "success", "ممنون", 500);
+</script>
+@endif
 @endsection
