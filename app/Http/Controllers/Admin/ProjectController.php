@@ -36,11 +36,11 @@ class ProjectRequest
         $request->validate($fileds);
     }
 
-    public static function percentValidate($request){
+    public static function percentValidate($request)
+    {
         $fileds = ['progress.*' => 'required|numeric|min:1|max:100'];
         $request->validate($fileds);
     }
-    
 }
 class ProjectRepository
 {
@@ -165,6 +165,17 @@ class ProjectRepository
                 ->update(['status' => 'ongoing']);
         });
     }
+
+    public function getProgress($contractorData){
+        $allProgress = 0;
+        foreach ($contractorData['contractors'] as $contractor) {
+            $percent = $contractor->progress_access / 100;
+            $progress = $contractor->progress * $percent;
+            $allProgress += $progress;
+        }
+        $allProgress = round($allProgress, 0);
+        return $allProgress;
+    }
 }
 
 class ProjectController extends Controller
@@ -201,8 +212,8 @@ class ProjectController extends Controller
     public function show($project)
     {
         $project = $this->repo->getProjectFull($project);
-        //dd($project);
-        return view('Admin.Project.show', compact('project'));
+        $allProgress = $this->repo->getProgress($project);
+        return view('Admin.Project.show', compact('project', 'allProgress'));
     }
 
 
