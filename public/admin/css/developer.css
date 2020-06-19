@@ -11,7 +11,6 @@
 }
 
 .txt-custom {
-
     height: 34px;
     resize: vertical;
 }
@@ -76,23 +75,33 @@
     font-size: 1.2em !important;
 }
 
-#sidebar-menu ul li .menu-arrow{
+#sidebar-menu ul li .menu-arrow {
     transform: rotate(180deg);
 }
 .items-box h4 {
     display: inline-block;
     margin-left: 20px;
 }
-.war{
-   font-size:16px;
+.war {
+    font-size: 16px;
 }
-.jus{
-    text-align:justify !important;
+.jus {
+    text-align: justify !important;
 }
-.sucsok{
+.sucsok {
     border: 1px solid #41b141;
 }
 
-.card-box.items-box b, p {
+.card-box.items-box b,
+p {
     font-size: 16px;
+}
+.contract-image {
+    margin: 0 auto;
+    border: 1px solid #d4d0d0;
+    box-shadow: 1px 2px 3px #ddd;
+    border-radius: 3px;
+    padding: 9px;
+    width: 40%;
+    box-sizing: border-box;
 }
