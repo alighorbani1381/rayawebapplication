@@ -162,9 +162,14 @@
 
                     <div class="card-box items-box">
                         <h4 class="header-title">تصویر کد ملی:</h4>
-                        <b>
-                            <img src="{{ $project['project']->meli_code }}"
+                        <a href="" target="_blank">
+                            @if($project['project']->meli_image != 'default')
+                            <img class="contract-image" src="{{ $project['project']->meli_image }}"
                                 alt="{{ $project['project']->name . " " . $project['project']->lastname }}">
+                            @else
+                            <img class="contract-image" src="{{ asset('admin/images/users/default.png') }}"
+                                alt="{{ $project['project']->name . " " . $project['project']->lastname }}">
+                            @endif
                         </b>
                     </div>
 
