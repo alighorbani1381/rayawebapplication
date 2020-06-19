@@ -40,7 +40,7 @@ $(document).ready(function () {
 
         $('.progress-divide').each(function () {
             var value = $(this).val();
-            if (value == "")
+            if (value == "" || isNaN(value))
                 $(this).val(1);
 
             var percent = parseInt($(this).val());
@@ -109,7 +109,7 @@ $(document).ready(function () {
 
     $('li a#contractors-tab').on('click', function () {
         var isActive = $(this).attr('taskdivide');
-        if (isActive == "false")
+        if (isActive == "false"){
             Swal.fire({
                 icon: 'warning',
                 title: "هشدار این پروژه غیر فعال است !",
@@ -117,7 +117,7 @@ $(document).ready(function () {
                 confirmButtonText: "حله گرفتم",
             });
         return false;
-
+        }
 
     });
 
