@@ -13,7 +13,6 @@
                     enctype="multipart/form-data">
                     @csrf
 
-
                     <div class="col-lg-6">
                         <h4 class="header-title m-t-0 m-b-30">
                             <i class="fa fa-map"></i>
@@ -23,7 +22,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">عنوان پروژه</label>
                             <div class="col-md-9">
-                            <input type="text" name="title" class="form-control" value="{{ old ('title') }}"
+                                <input type="text" name="title" class="form-control" value="{{ old ('title') }}"
                                     placeholder="عنوان پروژه را وارد کنید ...">
                                 @error('title')
                                 <div class="alert alert-danger"> {{ $message }} </div>
@@ -58,8 +57,9 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">قیمت (تومان)</label>
                             <div class="col-md-9">
-                                <input type="number" placeholder="قیمت این پروژه را وارد کنید ..." name="price" class="form-control" value="{{ old ('price') }}" id="price">
-                                    
+                                <input type="number" placeholder="قیمت این پروژه را وارد کنید ..." name="price"
+                                    class="form-control" value="{{ old ('price') }}" id="price">
+
                                 @error('price')
                                 <div class="alert alert-danger"> {{ $message }} </div>
                                 @enderror
