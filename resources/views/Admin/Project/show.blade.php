@@ -78,11 +78,31 @@
                     <div class="m-b-20"></div>
 
                     @if($project['project']->status == 'ongoing')
-                    <p class="font-600 m-b-5">پیشرفت کار <span class="text-success pull-right">80%</span></p>
-                    <div class="progress progress-bar-success-alt progress-md m-b-5">
-                        <div class="progress-bar progress-bar-success progress-bar-striped progress-animated wow animated animated "
-                            role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                            style="width: 80%; visibility: visible; animation-name: animationProgress;">
+                    @php
+
+                    if($allProgress < 25)
+                    $color = "danger";
+
+                    if($allProgress >= 25 && $allProgress < 50 )
+                    $color = "warning";
+
+                    if($allProgress >= 50 && $allProgress < 75 )
+                    $color = "info";
+
+                    if($allProgress >= 75 && $allProgress <= 100 )
+                    $color = "success";
+
+                    @endphp
+
+                    <p class="font-600 m-b-5">
+                        وضعیت پیشرفت پروژه
+                        <span class="text-{{$color}} pull-right">{{ $allProgress }}%</span></p>
+                    <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
+                        <div class="progress-bar progress-bar-{{$color}} progress-bar-striped progress-animated wow animated animated "
+                            role="progressbar" aria-valuenow="{{ $allProgress }}" aria-valuemin="0" aria-valuemax="100"
+                            style="width: {{ $allProgress }}%; visibility: visible; animation-name: animationProgress;">
+
+
                         </div>
                     </div>
                     @else
@@ -170,7 +190,7 @@
                             <img class="contract-image" src="{{ asset('admin/images/users/default.png') }}"
                                 alt="{{ $project['project']->name . " " . $project['project']->lastname }}">
                             @endif
-                        </b>
+                            </b>
                     </div>
 
 
@@ -181,6 +201,7 @@
                     @foreach($project['contractors'] as $contractor)
                     @php
                     $fullName = $contractor->name . " " . $contractor->lastname;
+                    $progress = $contractor->progress;
                     @endphp
                     <div class="card-box items-box">
                         <div style="margin-bottom:30px;">
@@ -207,15 +228,26 @@
                             <h4 class="header-title">درصد اختصاص یافته : </h4>
                             <b>{{ $contractor->progress_access . "%" }}</b>
                         </div>
+                    @php
+                        if( $progress < 25)
+                        $color = "danger";
 
-                        @php
-                        $colors = ['purple', 'primary', 'success', 'pink', 'inverse'];
-                        $index = rand(0, 4);
-                        @endphp
-                        <p class="font-600 m-b-5 text-{{$colors[$index]}}">پیشرفت کار <span
-                                class="text-{{$colors[$index]}} pull-right">{{ $contractor->progress . "%"}}</span></p>
-                        <div class="progress progress-bar-{{$colors[$index]}}-alt progress-md m-b-5">
-                            <div class="progress-bar progress-bar-{{$colors[$index]}} progress-bar-striped progress-animated wow animated animated "
+                        if($progress >= 25 && $progress < 50 )
+                        $color = "warning";
+
+                        if($progress >= 50 && $progress < 75 )
+                        $color = "info";
+
+                        if($progress >= 75 && $progress <= 100 )
+                        $color = "success";
+                    @endphp
+
+                        <p class="font-600 m-b-5 text-{{$color}}">
+                            پیشرفت کار این پیمانکار
+                            <span class="text-{{$color}} pull-right">{{ $progress . "%"}}</span>
+                        </p>
+                        <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
+                            <div class="progress-bar progress-bar-{{$color}} progress-bar-striped progress-animated wow animated animated "
                                 role="progressbar" aria-valuenow="{{ $contractor->progress}}" aria-valuemin="0"
                                 aria-valuemax="100"
                                 style="width: {{ $contractor->progress}}%; visibility: visible; animation-name: animationProgress;">
@@ -224,7 +256,7 @@
                     </div>
                     @endforeach
                 </div>
-                @endif()
+                @endif
 
 
             </div>
@@ -232,6 +264,7 @@
     </div>
 
 
+    @if($project['project']->status == 'waiting')
     <!-- Contractor Col Start   -->
     <div class="col-md-4">
         <div class="card-box">
@@ -314,6 +347,7 @@
         </div>
     </div>
     <!-- Contractor Col End -->
+    @endif
 
     <!-- Category col Start -->
     <div class="col-md-4">
