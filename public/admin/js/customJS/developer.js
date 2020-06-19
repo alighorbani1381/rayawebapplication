@@ -1,5 +1,5 @@
 function minMbox(message, timeout) {
-    $(document).ready(function () {
+    $(window).on('load', function () {
         setTimeout(function () {
             const Toast = Swal.mixin({
                 toast: true,
