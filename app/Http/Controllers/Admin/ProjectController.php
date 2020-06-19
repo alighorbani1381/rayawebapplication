@@ -131,6 +131,7 @@ class ProjectRepository
     {
         return DB::table('projects')
             ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
+            ->orderBy('projects.id', 'desc')
             ->paginate(15);
     }
 
@@ -217,6 +218,51 @@ class ProjectRepository
             ProjectRepository::deleteProject($projectId);
         });
     }
+
+    public function updateTaskMaster($taskmasterId, $request)
+    {
+        $fileds = [
+            'name' => $request->name,
+            'lastname' => $request->lastname,
+            'father_name' => $request->father_name,
+            'meli_code' => $request->meli_code,
+            'meli_image' => 'default',
+            'phone' => $request->phone,
+            'address' => $request->address,
+        ];
+        return DB::table('project_taskmaster')
+            ->where('id', $taskmasterId)
+            ->update($fileds);
+    }
+
+    public function updateProject($projectId, $request)
+    {
+        $dateTime = date('Y:m:d h:m:s');
+        $fileds = [
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price,
+            'contract_image' => 'Default',
+            'contract_started' => $request->contract_started,
+            'contract_ended' => $request->completed_at,
+            'date_start' => $request->date_start,
+            'complete_after' => $request->complete_after,
+            'updated_at' => $dateTime,
+        ];
+
+        return DB::table('projects')
+            ->where('id', $projectId)
+            ->update($fileds);
+    }
+
+    public function updateProjectFull($projectId, $request)
+    {
+        DB::transaction(function () use ($projectId, $request) {
+            $project = Project::findorFail($projectId);
+            $this->updateTaskMaster($project->taskmaster, $request);
+            $this->updateProject($project->id, $request);
+        });
+    }
 }
 
 class ProjectController extends Controller
@@ -261,21 +307,22 @@ class ProjectController extends Controller
     public function edit($project)
     {
         $project = $this->repo->getProjectFull($project);
-       // dd($project);
         return view('Admin.Project.edit', compact('project'));
     }
 
 
     public function update(Request $request, $project)
     {
-        //
+        $this->repo->updateProjectFull($project, $request);
+        session()->flash('ProjectUpdate');
+        return redirect()->route('projects.index');
     }
 
 
     public function destroy($project)
     {
         Project::findOrFail($project);
-       // $this->repo->deleteFullProject($project);
+        // $this->repo->deleteFullProject($project);
         session()->flash('ProjectDelete');
         return back();
     }
