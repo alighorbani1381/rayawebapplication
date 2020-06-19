@@ -124,6 +124,17 @@ $(document).ready(function () {
     $('#divide-contractor').on('click', function () {
         var allPercent = parseInt($('#All-Percent').val());
         var message = "درصد ها به طور کامل تقسیم نشده !" + " " + "( " + allPercent + "%" + " )";
+
+        if (isNaN(allPercent)) {
+            Swal.fire({
+                icon: 'error',
+                title: "اطلاعات وارد شده نادرست است!",
+                text: "شما باید در این فیلد ها عدد وارد کنید 😐😑",
+                confirmButtonText: "حواست هستا !",
+            });
+            return false;
+        }
+
         if (allPercent != 100) {
             Swal.fire({
                 icon: 'error',
