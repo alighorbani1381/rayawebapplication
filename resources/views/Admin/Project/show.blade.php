@@ -26,10 +26,10 @@
                 </li>
 
                 @php
-                if($project['contractors'][0]->progress_access == null)
-                $taskDivide = "false";
-                else
+                if($project['project']->status != 'waiting')
                 $taskDivide = "true";
+                else
+                $taskDivide = "false";
                 @endphp
 
                 <li role="presentation" class="">
@@ -45,17 +45,17 @@
                 <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
 
                     <div class="card-box items-box">
-                        <h4 class="header-title">عنوان پروژه:</h4>
+                        <h4 class="header-title">عنوان پروژه :</h4>
                         <b> {{ $project['project']->title }} </b>
                     </div>
 
                     <div class="card-box items-box">
-                        <h4 class="header-title">قیمت:</h4>
+                        <h4 class="header-title">قیمت : </h4>
                         <b> {{ number_format($project['project']->price) }} </b>
                     </div>
 
                     <div class="card-box items-box">
-                        <h4 class="header-title">شناسه پروژه:</h4>
+                        <h4 class="header-title">شناسه پروژه : </h4>
                         <b> {{ $project['project']->unique_id }} </b>
                     </div>
 
@@ -66,7 +66,7 @@
                     @endphp
 
                     <div class="card-box items-box">
-                        <h4 class="header-title">توضیحات پروژه:</h4>
+                        <h4 class="header-title">توضیحات پروژه : </h4>
 
                         @foreach($paragraphs as $paragraph)
                         <p class="text-muted" style="text-align: justify;">
@@ -91,12 +91,13 @@
                             <i class="fa fa-warning"></i>&nbsp;
                             هشدار:
                         </b>
-                        <p>این پروژه در انتظار اجرا است (غیر فعال است) پس از تقسیم وظایف توسط مدیر برای پیمانکاران این
+                        <p>این پروژه غیر فعال است پس از تقسیم وظایف توسط مدیر برای پیمانکاران این
                             پروژه درصد پیشرفت قابل مشاهده خواهد بود.</p>
                     </div>
                     <div class="alert alert-info war">
                         <b><i class="fa fa-info-circle"></i>&nbsp;راهنمایی:</b>
-                        <p>برای فعالسازی پروژه و تقسیم وظایف از سمت چپ همین صفحه قسمت پیمانکاران استفاده کنید.</p>
+                        <p>برای فعالسازی پروژه و تقسیم وظایف در همین صفحه قسمت «تقسیم وظایف پیمانکاران» استفاده کنید.
+                        </p>
                     </div>
                     @endif
 
@@ -120,14 +121,15 @@
 
                     <div class="card-box items-box">
                         <h4 class="header-title">تصویر قرار داد :</h4>
-                        <b>
-                            @if($project['project']->contract_image != 'default')
-                            <img class="media-object thumb-sm" src="{{ $project['project']->contract_image }}" alt="">
-                            @else
-                            <img class="media-object thumb-sm" src="{{ asset('admin/images/users/default.png') }}"
-                                alt="">
-                            @endif
-                        </b>
+                        @if($project['project']->contract_image != 'default')
+                        <a href="{{ $project['project']->contract_image }}" target="_blank">
+                            <img class="contract-image" src="{{ $project['project']->contract_image }}" alt="">
+                        </a>
+                        @else
+                        <a href="{{ asset('admin/images/users/default.png') }}" target="_blank">
+                            <img class="contract-image" src="{{ asset('admin/images/users/default.png') }}" alt="">
+                        </a>
+                        @endif
                     </div>
                 </div>
 
@@ -169,6 +171,7 @@
 
                 </div>
 
+                @if($project['project']->status != 'waiting')
                 <div role="tabpanel" class="tab-pane fade" id="contractors" aria-labelledby="contractors-tab">
                     @foreach($project['contractors'] as $contractor)
                     @php
@@ -194,9 +197,9 @@
                         <div style="margin-bottom:30px;">
                             <a href="#">
                                 <img class="media-object img-circle thumb-sm"
-                                style="display:inline-block; margin-left:8px;" alt="{{ $fullName }}"
-                                src="{{ asset('admin/images/symbols/percent2.jpg') }}"></a>
-                            <h4 class="header-title">درصد اختصاص یافته  : </h4>
+                                    style="display:inline-block; margin-left:8px;" alt="{{ $fullName }}"
+                                    src="{{ asset('admin/images/symbols/percent2.jpg') }}"></a>
+                            <h4 class="header-title">درصد اختصاص یافته : </h4>
                             <b>{{ $contractor->progress_access . "%" }}</b>
                         </div>
 
@@ -216,6 +219,7 @@
                     </div>
                     @endforeach
                 </div>
+                @endif()
 
 
             </div>
