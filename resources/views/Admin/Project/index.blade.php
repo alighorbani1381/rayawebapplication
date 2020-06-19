@@ -40,7 +40,7 @@
                        
                             <td class="tac">
                                 @if ($project->status == 'waiting')
-                                    <button type="button" class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">در انتظار اجرا</button>
+                                    <button type="button" class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">غیر فعال</button>
                                 @endif
 
                                 @if ($project->status == 'ongoing')
