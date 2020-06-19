@@ -9,10 +9,10 @@
     <div class="col-sm-10 col-lg-offset-1">
         <div class="card-box">
             <div class="row">
-                <form class="form-vertical" method="post" action="{{ route('projects.store') }}"
+                <form class="form-vertical" method="post" action="{{ route('projects.update', $project['project']->id) }}" id="form"
                     enctype="multipart/form-data">
                     @csrf
-
+                    @method('PATCH')
                     <div class="col-lg-6">
                         <h4 class="header-title m-t-0 m-b-30">
                             <i class="fa fa-map"></i>
@@ -160,7 +160,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">کد ملی</label>
                         <div class="col-md-9">
-                            <input type="text" name="meli_code" class="form-control" value="{{ $project['project']->address }}"
+                            <input type="text" name="meli_code" class="form-control" value="{{ $project['project']->meli_code }}"
                                 placeholder="کد ملی کارفرما را وارد کنید ...">
                             @error('meli_code')
                             <div class="alert alert-danger"> {{ $message }} </div>
@@ -224,7 +224,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="button" class="btn btn-info waves-effect submit-button">
+                    <button type="button" id="edit-project" class="btn btn-info waves-effect submit-button">
                             ویرایش این پروژه
                         </button>
                     </div>
@@ -236,4 +236,5 @@
         </div>
     </div>
 </div>
+
 @endsection
