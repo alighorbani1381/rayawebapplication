@@ -19,6 +19,42 @@
                     <form class="form-horizontal" role="form" action="{{ route('earnings.store') }}" method="post">
                         @csrf
 
+                        @if($errors->any())
+                        @error('project')
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">خطای پروژه:</label>
+                            <div class="col-sm-10">
+                                <div class="form-control alert alert-danger">
+                                    انتخاب فیلد پروژه الزامی است.
+                                </div>
+                            </div>
+                        </div>
+                        @enderror
+
+                        @error('title.*')
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">خطای عنوان:</label>
+                            <div class="col-sm-10">
+                                <div class="form-control alert alert-danger">
+                                    وارد کردن فیلد های عنوان الزامی است.
+                                </div>
+                            </div>
+                        </div>
+                        @enderror
+
+                        @error('received_money.*')
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">خطای میزان درآمد:</label>
+                            <div class="col-sm-10">
+                                <div class="form-control alert alert-danger">
+                                    اطلاعات وارد شده در فیلد میزان در آمد اشتباه می باشد.
+                                </div>
+                            </div>
+                        </div>
+                        @enderror
+
+                        @endif
+
                         <div class="form-group">
                             <label class="col-md-2 control-label">پروژه</label>
                             <div class="col-sm-10">
@@ -28,9 +64,7 @@
                                         {{ $project->title . "  " . '(' . $project->unique_id . ')'}} </option>
                                     @endforeach
                                 </select>
-                                @error('project')
-                                <div class="alert alert-danger">{{ $description }}</div>
-                                @enderror
+
                             </div>
                         </div>
                         <div id="main-holders">
@@ -46,10 +80,8 @@
                                     <label class="col-md-2 control-label">عنوان درآمد</label>
                                     <div class="col-md-10">
                                         <input type="text" name="title[0]" class="form-control earning-title"
-                                            value="{{ old('title') }}" placeholder="عنوان در آمد را وارد کنید ...">
-                                        @error('title')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
+                                            placeholder="عنوان در آمد را وارد کنید ...">
+
                                     </div>
                                 </div>
 
@@ -57,11 +89,8 @@
                                     <label class="col-md-2 control-label">میزان درآمد</label>
                                     <div class="col-md-10">
                                         <input type="number" name="received_money[0]" class="form-control earning-moeny"
-                                            value="{{ old('received_money') }}"
                                             placeholder="میزان در آمد را وارد کنید ...">
-                                        @error('received_money')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
+
                                     </div>
                                 </div>
 
@@ -70,10 +99,8 @@
                                     <div class="col-md-10">
                                         <textarea class="form-control txt-custom earning-description"
                                             placeholder="توضیحات در آمد را وارد کنید ..." name="description[0]"
-                                            rows="3">{{ old('description') }}</textarea>
-                                        @error('description')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
+                                            rows="3"></textarea>
+
                                     </div>
                                 </div>
 
@@ -90,7 +117,8 @@
 
 
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-status" type="radio" checked name="status[0]" value="unpaid" />
+                                        <input class="earning-status" type="radio" checked name="status[0]"
+                                            value="unpaid" />
                                         <div class="state p-danger">
                                             <label>پرداخت نشده</label> &nbsp; &nbsp; &nbsp; &nbsp;
                                             <i class="icon mdi mdi-check"></i>
