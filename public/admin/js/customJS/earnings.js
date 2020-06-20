@@ -69,4 +69,26 @@ $(document).ready(function () {
             $(this).val('1');
     });
 
+    // Delete Earning Item
+    $('.delete-earning').on('click', function () {
+        var earningName = $(this).parents('td').siblings('td.earningName').text();
+        var projectName = $(this).parents('td').siblings('td.projectName').text();
+        var message = "آیا از حذف  «" + earningName + "»" + " برای پروژه " + "«" + projectName + "»" + " مطمئن هستید ؟ ";
+        Swal.fire({
+            title: message,
+            text: "با حدف این درآمد تمامی اطلاعات مربوط به آن از سیستم پاک خواهد شد.",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'نه منصرف شدم',
+            cancelButtonText: 'آره مطمئنم',
+        }).then((result) => {
+            if (result.value)
+                return false;
+            var form = $(this).parents('form');
+            form.submit();
+        });
+    });
+
 });

@@ -60,7 +60,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="button"
-                                    class="delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
+                                    class="delete-earning btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
                                         class="fa fa-remove"></i> </button>
                             </form>
                         </td>
