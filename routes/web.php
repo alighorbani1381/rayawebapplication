@@ -19,6 +19,7 @@ Route::get('/', function () {
 # Auth Route
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
     Route::get('dashborad', 'IndexController@index')->name('admin.dashboard');
+    Route::resource('earnings', 'EarningController');
     Route::resource('categories', 'CategoryController');
     Route::post('projects/contractors/divide', 'ProjectController@percentDivide')->name('projects.divide');
     Route::resource('projects', 'ProjectController');
