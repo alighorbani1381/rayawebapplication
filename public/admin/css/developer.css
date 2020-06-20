@@ -135,3 +135,7 @@ p {
     color: rgb(153, 5, 5);
     cursor: pointer;
 }
+
+h2#swal2-title {
+    line-height: 45px;
+}
