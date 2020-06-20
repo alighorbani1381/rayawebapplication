@@ -34,6 +34,15 @@
                     <a href="{{ route('admin.dashboard') }}" class="waves-effect active"><i class="zmdi zmdi-view-dashboard"></i> <span> داشبورد </span> </a>
                 </li>
 
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-money"></i> <span> مدیریت درآمد ها</span> <span class="menu-arrow  fa-angle-left"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="{{ route('earnings.index') }}">لیست درآمد ها</a></li>
+                        <li><a href="{{ route('earnings.create') }}">افزایش موجودی</a></li>
+                    </ul>
+                </li>
+
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-laptop"></i> <span> مدیریت پروژه ها</span> <span class="menu-arrow  fa-angle-left"></span></a>
                     <ul class="list-unstyled" style="display: none;">
