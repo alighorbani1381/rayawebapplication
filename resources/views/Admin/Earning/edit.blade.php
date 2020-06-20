@@ -20,7 +20,7 @@
                             <div class="col-sm-10">
                                 <select class="form-control" name="project">
                                     @foreach($projects as $project)
-                                    <option price="{{ $project->price }}" value="{{ $project->id }}">
+                                    <option price="{{ $project->price }}" value="{{ $project->id }}" @if($project->id == $earning->project_id) @endif>
                                         {{ $project->title . "  " . '(' . $project->unique_id . ')'}} </option>
                                     @endforeach
                                 </select>
@@ -63,7 +63,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">وضعیت</label>
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-status" type="radio" @if($earning->status == 'paid') {{ "checked "}} @endif name="status" value="paid">
+                                        <input class="earning-paid" type="radio" @if($earning->status == 'paid') {{ "checked "}} @endif name="status" value="paid">
 
                                         <div class="state p-success">
                                             <label>پرداخت شده</label> &nbsp; &nbsp; &nbsp; &nbsp;
@@ -73,7 +73,7 @@
 
 
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-status" type="radio"  @if($earning->status == 'unpaid') {{ "checked "}} @endif name="status" value="unpaid" />
+                                        <input class="earning-unpaid" type="radio"  @if($earning->status == 'unpaid') {{ "checked "}} @endif name="status" value="unpaid" />
                                         <div class="state p-danger">
                                             <label>پرداخت نشده</label> &nbsp; &nbsp; &nbsp; &nbsp;
                                             <i class="icon mdi mdi-check"></i>
