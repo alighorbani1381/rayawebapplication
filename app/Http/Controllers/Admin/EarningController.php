@@ -49,7 +49,11 @@ class EarningController extends Controller
 
     public function index()
     {
-        $earnings = Earning::orderBy('id', 'desc')->paginate(15);
+        $earnings = Earning::join('projects', 'earnings.project_id', '=', 'projects.id')
+            ->select('projects.title AS project_title', 'projects.unique_id', 'projects.price', 'earnings.*')
+            ->orderBy('earnings.id', 'desc')
+            ->paginate(15);
+            
         return view('Admin.Earning.index', compact('earnings'));
     }
 
