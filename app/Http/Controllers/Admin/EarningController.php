@@ -11,17 +11,37 @@ class EarningRequest{
     
     public static function storeValidate($request){
         $request->validate([
-            'title.*' => 'required|array',
-            'received_money.*' => 'required|array|numeric|min:1',
-            'status.*' => 'required|array',
+            'title.*' => 'required',
+            'received_money.*' => 'required|numeric|min:1',
+            'status.*' => 'required',
         ]);
     }
 
 }
 
+class EarningRepository{
+
+    public function createEarning($request){
+        foreach($request->title as $index => $title){            
+            $fileds = [
+                'generator' => '1',
+                'project_id' => $request->project,
+                'title' => $title,
+                'description' => $request->description[$index],
+                'received_money' => $request->received_money[$index],
+                'status' => $request->status[$index],
+            ];
+            Earning::create($fileds);
+        }
+    }
+}
+
 class EarningController extends Controller
 {
 
+    public function __construct(){
+        $this->repo = new EarningRepository();
+    }
     public function index()
     {
         //
@@ -42,11 +62,10 @@ class EarningController extends Controller
 
 
     public function store(Request $request)
-    {
-        // return $request->all();
-        // return null;
-
+    {        
         EarningRequest::storeValidate($request);
+        $this->repo->createEarning($request);
+        return redirect()->route('earnings.index');
     }
 
 
