@@ -73,7 +73,7 @@ $(document).ready(function () {
     $('.delete-earning').on('click', function () {
         var earningName = $(this).parents('td').siblings('td.earningName').text();
         var projectName = $(this).parents('td').siblings('td.projectName').text();
-        var message = "آیا از حذف  «" + earningName + "»" + " برای پروژه " + "«" + projectName + "»" + " مطمئن هستید ؟ ";
+        var message = "آیا از حذف در آمد   «" + earningName + "»" + " برای پروژه " + "«" + projectName + "»" + " مطمئن هستید ؟ ";
         Swal.fire({
             title: message,
             text: "با حدف این درآمد تمامی اطلاعات مربوط به آن از سیستم پاک خواهد شد.",
