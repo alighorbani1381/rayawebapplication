@@ -9,7 +9,7 @@
 {{-- <script src="{{ asset('admin/js/detect.js') }}"></script>
 <script src="{{ asset('admin/js/jquery.blockUI.js') }}"></script>
  --}}
-<script src="{{ asset('admin/js/waves.js') }}"></script>
+{{-- <script src="{{ asset('admin/js/waves.js') }}"></script> --}}
 {{-- 
 <script src="{{ asset('admin/js/jquery.nicescroll.js') }}"></script>
 <script src="{{ asset('admin/js/jquery.slimscroll.js') }}"></script>
@@ -21,7 +21,7 @@
 
 <!--Morris Chart-->
 
-     <script src="{{ asset('admin/plugins/morris/morris.min.js') }}"></script>
+     {{-- <script src="{{ asset('admin/plugins/morris/morris.min.js') }}"></script> --}}
      
      {{-- <script src="{{ asset('admin/plugins/raphael/raphael-min.js') }}"></script>  --}}
 
