@@ -53,7 +53,7 @@ class EarningController extends Controller
             ->select('projects.title AS project_title', 'projects.unique_id', 'projects.price', 'earnings.*')
             ->orderBy('earnings.id', 'desc')
             ->paginate(15);
-            
+
         return view('Admin.Earning.index', compact('earnings'));
     }
 
@@ -102,6 +102,8 @@ class EarningController extends Controller
 
     public function destroy(Earning $earning)
     {
-        //
+        $earning->delete();
+        session()->flash('DeleteEarning');
+        return redirect()->route('earnings.index');
     }
 }
