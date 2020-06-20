@@ -114,4 +114,24 @@ p {
     border-radius: 5px;
     margin-right: 17%;
     margin-bottom: 12px;
+    position: relative;
+}
+
+.delete-box{
+    border: 1px solid #ddd;
+    color: red;
+    text-align: left;
+    border-radius: 3px;
+    margin-bottom: 4px;
+    position: absolute;
+    padding: 5px;
+    display: inline-block;
+    left: 9px;
+    font-size: 17px;
+    font-weight: bold;
+    z-index: 99;
+}
+.delete-box:hover{
+    color: rgb(153, 5, 5);
+    cursor: pointer;
 }
