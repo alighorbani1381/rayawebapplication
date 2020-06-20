@@ -20,7 +20,8 @@ $(document).ready(function () {
             $(this).find('.earning-title').attr('name', title);
             $(this).find('.earning-moeny').attr('name', money);
             $(this).find('.earning-description').attr('name', description);
-            $(this).find('.earning-status').attr('name', status);
+            $(this).find('.earning-paid').attr('name', status);
+            $(this).find('.earning-unpaid').attr('name', status);
             $number += 1;
         });
 
@@ -39,7 +40,7 @@ $(document).ready(function () {
 
     // Add Earning Button Click
     $('#add-earning-box').on('click', function () {
-        var box = $('.earning-holder').first().clone(true);
+        var box = $('.earning-holder').eq(0).clone(true);
         clearCloneBox(box);
 
         $('#main-holders').hide().append(box).fadeIn();
@@ -108,6 +109,11 @@ $(document).ready(function () {
             var form = $(this).parents('form');
             form.submit();
         });
+    });
+
+    $("#create-earning").on('click', function(){
+        var form = $(this).parents('form');
+        form.submit();
     });
 
 });
