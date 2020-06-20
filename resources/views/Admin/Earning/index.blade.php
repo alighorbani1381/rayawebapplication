@@ -44,10 +44,12 @@
                         <td>
                             @if($earning->status == 'paid')
                             <button type="button"
-                                class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">پرداخت نشده</button>
+                                class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">پرداخت
+                                شده</button>
                             @else
                             <button type="button"
-                                class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">پرداخت شده</button>
+                                class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">پرداخت
+                                نشده</button>
                             @endif
                         </td>
                         <td class="tac">
@@ -74,16 +76,10 @@
         </div>
     </div><!-- end col -->
 </div>
-@if(session()->has('DeleteCategoryFail'))
-<script>
-    maxMbox("حذف این مورد با شکست مواجه شد!", "این خدمت دارای زیر گروه است و نمی توان آن را حذف کرد", "error", "آها",350 );
-</script>
-@endif
 
-
-@if(session()->has('DeleteCategory'))
+@if(session()->has('DeleteEarning'))
 <script>
-    minMbox('خدمت مورد نظر با موفقیت حذف شد.', 350);
+    minMbox('درآمد مورد نظر با موفقیت حذف شد.', 350);
 </script>
 @endif
 
