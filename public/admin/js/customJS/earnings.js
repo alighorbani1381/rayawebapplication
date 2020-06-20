@@ -19,7 +19,7 @@ $(document).ready(function () {
 
     }
 
-    function mustExistOneBox(){
+    function mustExistOneBox() {
         setTimeout(function () {
             Swal.fire({
                 icon: 'warning',
@@ -40,13 +40,24 @@ $(document).ready(function () {
     // Delete Box
     $('.delete-box').on('click', function () {
         var boxCount = $('.earning-holder').length;
-        if (boxCount == 1){
+        if (boxCount == 1) {
             mustExistOneBox();
             return false;
         }
         $(this).parents('.earning-holder').remove();
         $('#main-holders').hide().fadeIn();
         refreshBoxNames();
+    });
+
+    // Control Recieve Money Input
+    $('.earning-moeny').bind('input keyup change', function () {
+        var value = parseInt($(this).val());
+        
+        if (isNaN(value))
+            $(this).val('1');
+
+        if (value <= 0)
+            $(this).val('1');
     });
 
 });
