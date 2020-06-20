@@ -12,7 +12,7 @@ $(document).ready(function () {
 
         var $number = 0;
         $('.earning-holder').each(function () {
-            var title = "name[" + $number + "]";
+            var title = "title[" + $number + "]";
             var money = "received_money[" + $number + "]";
             var description = "description[" + $number + "]";
             var status = "status[" + $number + "]";
