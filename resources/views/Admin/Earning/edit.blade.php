@@ -12,7 +12,7 @@
 
             <div class="row">
                 <div class="col-lg-11">
-                    <form class="form-horizontal" role="form" action="{{ route('earnings.update') }}" method="post">
+                    <form class="form-horizontal" role="form" action="{{ route('earnings.update', $earning->id) }}" method="post">
                         @csrf
                         @method('PATCH ')
                         <div class="form-group">
@@ -55,7 +55,7 @@
                                     <div class="col-md-10">
                                         <textarea class="form-control txt-custom earning-description"
                                             placeholder="توضیحات در آمد را وارد کنید ..." name="description"
-                                            rows="3">value="{{ $earning->description }}"</textarea>
+                                            rows="3">{{ $earning->description }}</textarea>
 
                                     </div>
                                 </div>
