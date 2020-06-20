@@ -27,6 +27,7 @@
                         <th>شناسه پروژه</th>
                         <th class="tac">وضعیت</th>
                         <th class="tac">نمایش / فعالسازی</th>
+                        <th class="tac">پرداخت</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
                     </tr>
@@ -54,8 +55,14 @@
                                 @endif
                             </td>
                             
+                      
+
                         <td class="tac">
                             <a href="{{ route('projects.show', $project->id) }}"class="btn btn-icon waves-effect waves-light btn-success m-b-5"> <i class="fa fa-eye"></i> </a>
+                        </td>
+
+                        <td class="tac">
+                            <a href="{{ route('earnings.pay', $project->id) }}"class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i class="fa fa-money"></i> </a>
                         </td>
 
                         <td class="tac">
