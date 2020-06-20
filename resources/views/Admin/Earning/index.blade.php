@@ -22,7 +22,10 @@
                     <tr>
                         <th>ردیف</th>
                         <th>عنوان درآمد</th>
+                        <th>عنوان پروژه</th>
+                        <th>شناسه پروژه</th>
                         <th>میزان درآمد (تومان)</th>
+                        <th>قیمت پروژه (تومان)</th>
                         <th>وضعیت</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
@@ -33,8 +36,11 @@
                     @foreach ($earnings as $row => $earning)
                     <tr>
                         <td><?= $row  + 1 ?></td>
-                        <td class="categoryName">{{ $earning->title }}</td>
+                        <td class="earningName">{{ $earning->title }}</td>
+                        <td class="projectName">{{ $earning->project_title }}</td>
+                        <td>{{ $earning->unique_id }}</td>
                         <td>{{ number_format($earning->received_money) }}</td>
+                        <td>{{ number_format($earning->price) }}</td>
                         <td>
                             @if($earning->status == 'paid')
                             <button type="button"
