@@ -7,6 +7,18 @@ use App\Http\Controllers\Controller;
 use App\Project;
 use Illuminate\Http\Request;
 
+class EarningRequest{
+    
+    public static function storeValidate($request){
+        $request->validate([
+            'title.*' => 'required|array',
+            'received_money.*' => 'required|array|numeric|min:1',
+            'status.*' => 'required|array',
+        ]);
+    }
+
+}
+
 class EarningController extends Controller
 {
 
@@ -19,7 +31,7 @@ class EarningController extends Controller
     public function create()
     {
         $projects  = Project::where('status', '!=', 'finished')->get();
-        
+
         if ($projects->count() != 0)
             return view('Admin.Earning.create', compact('projects'));
 
@@ -31,7 +43,10 @@ class EarningController extends Controller
 
     public function store(Request $request)
     {
-        //
+        // return $request->all();
+        // return null;
+
+        EarningRequest::storeValidate($request);
     }
 
 
