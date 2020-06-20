@@ -19,7 +19,13 @@ class EarningController extends Controller
     public function create()
     {
         $projects  = Project::where('status', '!=', 'finished')->get();
-        return view('Admin.Earning.create', compact('projects'));
+        
+        if ($projects->count() != 0)
+            return view('Admin.Earning.create', compact('projects'));
+
+        session()->flash('EarningProblem');
+        return redirect()->route('projects.create');
+        return null;
     }
 
 
