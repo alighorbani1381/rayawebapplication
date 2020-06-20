@@ -7,22 +7,25 @@ use App\Http\Controllers\Controller;
 use App\Project;
 use Illuminate\Http\Request;
 
-class EarningRequest{
-    
-    public static function storeValidate($request){
+class EarningRequest
+{
+
+    public static function storeValidate($request)
+    {
         $request->validate([
             'title.*' => 'required',
             'received_money.*' => 'required|numeric|min:1',
             'status.*' => 'required',
         ]);
     }
-
 }
 
-class EarningRepository{
+class EarningRepository
+{
 
-    public function createEarning($request){
-        foreach($request->title as $index => $title){            
+    public function createEarning($request)
+    {
+        foreach ($request->title as $index => $title) {
             $fileds = [
                 'generator' => '1',
                 'project_id' => $request->project,
@@ -39,18 +42,23 @@ class EarningRepository{
 class EarningController extends Controller
 {
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->repo = new EarningRepository();
     }
+
     public function index()
     {
         //
     }
 
 
-    public function create()
+    public function create($earning = null)
     {
-        $projects  = Project::where('status', '!=', 'finished')->get();
+        if ($earning != null)
+            $projects = Project::where('id', $earning)->get();
+        else
+            $projects  = Project::where('status', '!=', 'finished')->get();
 
         if ($projects->count() != 0)
             return view('Admin.Earning.create', compact('projects'));
@@ -62,7 +70,7 @@ class EarningController extends Controller
 
 
     public function store(Request $request)
-    {        
+    {
         EarningRequest::storeValidate($request);
         $this->repo->createEarning($request);
         return redirect()->route('earnings.index');
