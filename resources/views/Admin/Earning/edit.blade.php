@@ -18,7 +18,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">پروژه</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="project">
+                                <select class="form-control" name="project_id">
                                     @foreach($projects as $project)
                                     <option price="{{ $project->price }}" value="{{ $project->id }}" @if($project->id == $earning->project_id) @endif>
                                         {{ $project->title . "  " . '(' . $project->unique_id . ')'}} </option>
@@ -89,7 +89,7 @@
 
 
                         <div class="form-group">
-                            <button type="button" id="update-earining" class="btn btn-success waves-effect waves-light submit-button">
+                            <button type="button" id="update-earning" class="btn btn-success waves-effect waves-light submit-button">
                                 ویرایش این درآمد
                             </button>
                         </div>
