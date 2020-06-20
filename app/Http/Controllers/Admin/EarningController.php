@@ -90,7 +90,8 @@ class EarningController extends Controller
 
     public function edit(Earning $earning)
     {
-        //
+        $projects  = Project::where('status', '!=', 'finished')->get();
+        return view('Admin.Earning.edit', compact('projects', 'earning'));
     }
 
 
