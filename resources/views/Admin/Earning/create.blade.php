@@ -18,7 +18,7 @@
                 <div class="col-lg-11">
                     <form class="form-horizontal" role="form" action="{{ route('earnings.store') }}" method="post">
                         @csrf
-
+                                        
                         @if($errors->any())
                         @error('project')
                         <div class="form-group">
@@ -107,8 +107,8 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">وضعیت</label>
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-status" type="radio" name="status[0]" value="paid"
-                                            checked />
+                                        <input class="earning-paid" type="radio" name="status[0]" value="paid">
+
                                         <div class="state p-success">
                                             <label>پرداخت شده</label> &nbsp; &nbsp; &nbsp; &nbsp;
                                             <i class="icon mdi mdi-check"></i>
@@ -117,8 +117,9 @@
 
 
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-status" type="radio" checked name="status[0]"
-                                            value="unpaid" />
+                                        <input class="earning-unpaid" type="radio"  name="status[0]" 
+                                            value="unpaid">
+
                                         <div class="state p-danger">
                                             <label>پرداخت نشده</label> &nbsp; &nbsp; &nbsp; &nbsp;
                                             <i class="icon mdi mdi-check"></i>
@@ -130,11 +131,8 @@
 
                         </div>
 
-
-
-
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success waves-effect waves-light submit-button">
+                            <button type="button" id="create-earning" class="btn btn-success waves-effect waves-light submit-button">
                                 ثبت در آمد
                             </button>
                         </div>
