@@ -90,14 +90,16 @@ class EarningController extends Controller
 
     public function edit(Earning $earning)
     {
-        $projects  = Project::where('status', '!=', 'finished')->get();
+        $projects  = Project::where('status', '!=', 'finished')->get();        
         return view('Admin.Earning.edit', compact('projects', 'earning'));
     }
 
 
     public function update(Request $request, Earning $earning)
     {
-        //
+        $earning->update($request->all());
+        session()->flash('UpdateEarning');
+        return redirect()->route('earnings.index');
     }
 
 
