@@ -49,7 +49,8 @@ class EarningController extends Controller
 
     public function index()
     {
-        //
+        $earnings = Earning::orderBy('id', 'desc')->paginate(15);
+        return view('Admin.Earning.index', compact('earnings'));
     }
 
 
