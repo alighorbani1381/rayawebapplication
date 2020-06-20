@@ -78,8 +78,9 @@
 </div>
 
 @if(session()->has('DeleteEarning'))
-<script>
+<script class="showMessage">
     minMbox('درآمد مورد نظر با موفقیت حذف شد.', 350);
+    setTimeout(function(){$(".showMessage").remove();}, 400);
 </script>
 @endif
 
