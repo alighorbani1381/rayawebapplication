@@ -91,4 +91,23 @@ $(document).ready(function () {
         });
     });
 
+    // Update Earning Ask
+    $('.update-earining').on('click', function () {
+        Swal.fire({
+            title: "آیا از بروزرسانی این مورد اطمینان دارید؟",
+            text: " اگر از تغییر این اطلاعات مطمئن هستید رو گزینه آره مطمئنم کلیک کنید. ",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'نه منصرف شدم',
+            cancelButtonText: 'آره مطمئنم',
+        }).then((result) => {
+            if (result.value)
+                return false;
+            var form = $(this).parents('form');
+            form.submit();
+        });
+    });
+
 });
