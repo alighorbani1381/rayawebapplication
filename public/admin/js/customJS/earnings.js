@@ -1,6 +1,13 @@
 $(document).ready(function () {
     console.clear();
 
+    function clearCloneBox(box) {
+        box.find('.earning-title').val('');
+        box.find('.earning-moeny').val('');
+        box.find('.earning-description').val('');
+        box.find('.earning-status').val('');
+    }
+
     function refreshBoxNames() {
 
         var $number = 0;
@@ -33,6 +40,8 @@ $(document).ready(function () {
     // Add Earning Button Click
     $('#add-earning-box').on('click', function () {
         var box = $('.earning-holder').first().clone(true);
+        clearCloneBox(box);
+
         $('#main-holders').hide().append(box).fadeIn();
         refreshBoxNames();
     });
@@ -52,7 +61,7 @@ $(document).ready(function () {
     // Control Recieve Money Input
     $('.earning-moeny').bind('input keyup change', function () {
         var value = parseInt($(this).val());
-        
+
         if (isNaN(value))
             $(this).val('1');
 
