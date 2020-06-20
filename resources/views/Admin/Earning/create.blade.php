@@ -90,7 +90,7 @@
 
 
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-status" type="radio" name="status[0]" value="unpaid" />
+                                        <input class="earning-status" type="radio" checked name="status[0]" value="unpaid" />
                                         <div class="state p-danger">
                                             <label>پرداخت نشده</label> &nbsp; &nbsp; &nbsp; &nbsp;
                                             <i class="icon mdi mdi-check"></i>
