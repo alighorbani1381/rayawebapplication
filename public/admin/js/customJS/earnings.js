@@ -93,7 +93,7 @@ $(document).ready(function () {
     });
 
     // Update Earning Ask
-    $('.update-earining').on('click', function () {
+    $('#update-earning').on('click', function () {
         Swal.fire({
             title: "آیا از بروزرسانی این مورد اطمینان دارید؟",
             text: " اگر از تغییر این اطلاعات مطمئن هستید رو گزینه آره مطمئنم کلیک کنید. ",
