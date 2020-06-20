@@ -263,4 +263,13 @@
         </div>
     </div>
 </div>
+
+@if(session()->has('EarningProblem'))
+<script>
+var title = "پروژه ای برای افزایش در آمد شما وجود نداره!";
+var message = "برای این که بتوانید در آمد خود را ثبت کنید باید پروژه ای وجود داشته باشه برای این کار از همین صفحه پروژه رو ایجاد کن.";
+var btnText= "متوجه شدم" ;
+maxMbox(title, message, 'warning', btnText, 250);
+</script>
+@endif
 @endsection
