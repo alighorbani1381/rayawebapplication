@@ -84,9 +84,9 @@
 </script>
 @endif
 
-@if(session()->has('CategoryUpdate'))
+@if(session()->has('UpdateEarning'))
 <script>
-    minMbox('خدمت مورد نظر با موفقیت ویرایش شد.', 350);
+    minMbox('درآمد مورد نظر با موفقیت ویرایش شد.', 350);
 </script>
 @endif
 @endsection
