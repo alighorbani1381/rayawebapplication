@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     // Add Earning Button Click
     $('#add-earning-box').on('click', function () {
-        var box = $('.earning-holder').first().clone(true)
+        var box = $('.earning-holder').first().clone(true);
         $('#main-holders').hide().append(box).fadeIn();
         refreshBoxNames();
     });
