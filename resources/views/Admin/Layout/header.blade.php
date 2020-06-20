@@ -21,6 +21,11 @@
         <link href="{{ asset('admin/css/pages.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('admin/css/menu.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('admin/css/responsive.css') }}" rel="stylesheet" type="text/css" />
+        
+        <!-- Pretty CheckBox !-->
+        <link href="{{ asset('admin/css/checkbox.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('admin/css/materialdesignicons.min.css') }}" rel="stylesheet" type="text/css" />
+
         <link href="{{ asset('admin/css/developer.css') }}" rel="stylesheet" type="text/css" />
         <script src="{{ asset('admin/js/jquery.min.js') }}"></script>
         <script src="{{ asset('admin/js/modernizr.min.js') }} "></script>
