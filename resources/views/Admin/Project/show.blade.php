@@ -80,49 +80,39 @@
                     @if($project['project']->status == 'ongoing')
                     @php
 
-                    if($allProgress < 25)
-                    $color = "danger";
-
-                    if($allProgress >= 25 && $allProgress < 50 )
-                    $color = "warning";
-
-                    if($allProgress >= 50 && $allProgress < 75 )
-                    $color = "info";
-
-                    if($allProgress >= 75 && $allProgress <= 100 )
-                    $color = "success";
-
-                    @endphp
-
-                    <p class="font-600 m-b-5">
-                        وضعیت پیشرفت پروژه
-                        <span class="text-{{$color}} pull-right">{{ $allProgress }}%</span></p>
-                    <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
-                        <div class="progress-bar progress-bar-{{$color}} progress-bar-striped progress-animated wow animated animated "
-                            role="progressbar" aria-valuenow="{{ $allProgress }}" aria-valuemin="0" aria-valuemax="100"
-                            style="width: {{ $allProgress }}%; visibility: visible; animation-name: animationProgress;">
+                    if($allProgress < 25) $color="danger" ; if($allProgress>= 25 && $allProgress < 50 ) $color="warning"
+                            ; if($allProgress>= 50 && $allProgress < 75 ) $color="info" ; if($allProgress>= 75 &&
+                                $allProgress <= 100 ) $color="success" ; @endphp <p class="font-600 m-b-5">
+                                    وضعیت پیشرفت پروژه
+                                    <span class="text-{{$color}} pull-right">{{ $allProgress }}%</span></p>
+                                    <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
+                                        <div class="progress-bar progress-bar-{{$color}} progress-bar-striped progress-animated wow animated animated "
+                                            role="progressbar" aria-valuenow="{{ $allProgress }}" aria-valuemin="0"
+                                            aria-valuemax="100"
+                                            style="width: {{ $allProgress }}%; visibility: visible; animation-name: animationProgress;">
 
 
-                        </div>
-                    </div>
-                    @else
-                    <div class="alert alert-danger war">
-                        <b>
-                            <i class="fa fa-warning"></i>&nbsp;
-                            هشدار:
-                        </b>
-                        <p>این پروژه غیر فعال است پس از تقسیم وظایف توسط مدیر برای پیمانکاران این
-                            پروژه درصد پیشرفت قابل مشاهده خواهد بود.</p>
-                    </div>
-                    <div class="alert alert-info war">
-                        <b><i class="fa fa-info-circle"></i>&nbsp;راهنمایی:</b>
-                        <p>برای فعالسازی پروژه و تقسیم وظایف در همین صفحه قسمت «تقسیم وظایف پیمانکاران» استفاده کنید.
-                        </p>
-                    </div>
-                    @endif
+                                        </div>
+                                    </div>
+                                    @else
+                                    <div class="alert alert-danger war">
+                                        <b>
+                                            <i class="fa fa-warning"></i>&nbsp;
+                                            هشدار:
+                                        </b>
+                                        <p>این پروژه غیر فعال است پس از تقسیم وظایف توسط مدیر برای پیمانکاران این
+                                            پروژه درصد پیشرفت قابل مشاهده خواهد بود.</p>
+                                    </div>
+                                    <div class="alert alert-info war">
+                                        <b><i class="fa fa-info-circle"></i>&nbsp;راهنمایی:</b>
+                                        <p>برای فعالسازی پروژه و تقسیم وظایف در همین صفحه قسمت «تقسیم وظایف پیمانکاران»
+                                            استفاده کنید.
+                                        </p>
+                                    </div>
+                                    @endif
 
 
-                    <div class="clearfix"></div>
+                                    <div class="clearfix"></div>
 
 
                 </div>
@@ -228,31 +218,20 @@
                             <h4 class="header-title">درصد اختصاص یافته : </h4>
                             <b>{{ $contractor->progress_access . "%" }}</b>
                         </div>
-                    @php
-                        if( $progress < 25)
-                        $color = "danger";
-
-                        if($progress >= 25 && $progress < 50 )
-                        $color = "warning";
-
-                        if($progress >= 50 && $progress < 75 )
-                        $color = "info";
-
-                        if($progress >= 75 && $progress <= 100 )
-                        $color = "success";
-                    @endphp
-
-                        <p class="font-600 m-b-5 text-{{$color}}">
-                            پیشرفت کار این پیمانکار
-                            <span class="text-{{$color}} pull-right">{{ $progress . "%"}}</span>
-                        </p>
-                        <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
-                            <div class="progress-bar progress-bar-{{$color}} progress-bar-striped progress-animated wow animated animated "
-                                role="progressbar" aria-valuenow="{{ $contractor->progress}}" aria-valuemin="0"
-                                aria-valuemax="100"
-                                style="width: {{ $contractor->progress}}%; visibility: visible; animation-name: animationProgress;">
-                            </div>
-                        </div>
+                        @php
+                        if( $progress < 25) $color="danger" ; if($progress>= 25 && $progress < 50 ) $color="warning" ;
+                                if($progress>= 50 && $progress < 75 ) $color="info" ; if($progress>= 75 && $progress <=
+                                        100 ) $color="success" ; @endphp <p class="font-600 m-b-5 text-{{$color}}">
+                                        پیشرفت کار این پیمانکار
+                                        <span class="text-{{$color}} pull-right">{{ $progress . "%"}}</span>
+                                        </p>
+                                        <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
+                                            <div class="progress-bar progress-bar-{{$color}} progress-bar-striped progress-animated wow animated animated "
+                                                role="progressbar" aria-valuenow="{{ $contractor->progress}}"
+                                                aria-valuemin="0" aria-valuemax="100"
+                                                style="width: {{ $contractor->progress}}%; visibility: visible; animation-name: animationProgress;">
+                                            </div>
+                                        </div>
                     </div>
                     @endforeach
                 </div>
@@ -387,6 +366,55 @@
         </div>
     </div>
     <!-- Category col End -->
+
+    <!-- Pay List col Start -->
+    <div class="col-md-4">
+        <div class="card-box">
+            <div class="dropdown pull-right">
+                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">متن یک</a></li>
+                </ul>
+            </div>
+
+            <h4 class="header-title m-t-0 m-b-30">
+                در آمد های ثبت شده
+                ({{ $project['categories']->count() . "مورد"}})
+            </h4>
+
+            <div>
+                @foreach($project['earnings'] as $key => $earning)
+                <div class="media m-b-10 earning-box">
+                    <div class="media-left">
+                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
+                                src="/admin/images/symbols/rial.png"> </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading" style="margin-bottom: 12px;">{{ $earning->earning_title }}</h4>
+                        <p class="font-13 text-muted m-b-0" style="display: block; text-align:right;">
+                            <span>تاریخ ثبت:</span>
+                            <time dir="ltr" class="date-show">{{ verta($earning->earning_submit) }}</time>
+                        </p>
+                        <div class="date-show earning-time" style="margin-top: 10px;">
+                            <span>میزان درآمد:</span>
+                            {{ number_format($earning->earning_money) . " تومان " }}
+                        </div>
+                        <a href="{{ route('earnings.show', $earning->earning_id)}}" target="_blank"
+                            class="btn btn-purple waves-effect submit-button">
+                            <i class="fa fa-eye"></i> &nbsp;
+                            مشاهده
+                        </a>
+                    </div>
+
+                </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+    <!-- Pay list col End -->
 
 
 </div>
