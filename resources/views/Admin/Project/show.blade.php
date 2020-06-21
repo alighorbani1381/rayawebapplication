@@ -426,7 +426,17 @@
                 </div>
                 @endforeach
                 @else
-                هنوز درآمدی برای این پروژه ثبت نشده است.
+                <div class="alert alert-warning">
+                    <i class="fa fa-info-circle"></i>&nbsp;
+                    هنوز درآمدی برای این پروژه ثبت نشده است.
+                </div>
+
+                <div class="alert alert-info">
+                    <i class="fa fa-info"></i>&nbsp;
+                    <strong>راهنمایی:</strong>
+                    با استفاده از دکمه افزودن در منوی همین باکس درآمد خود را برای این پروژه ثبت کنید .
+                </div>
+                
                 @endif
 
             </div>
