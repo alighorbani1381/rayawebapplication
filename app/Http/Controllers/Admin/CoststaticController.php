@@ -56,8 +56,11 @@ class CoststaticController extends Controller
     }
 
    
-    public function destroy(CostStatic $costStatic)
+    public function destroy($costStatic)
     {
-        //
+        $costStatic = CostStatic::findOrFail($costStatic);
+        session()->flash('DeleteCostStatic');
+        $costStatic->delete();
+        return back();
     }
 }
