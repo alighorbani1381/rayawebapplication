@@ -41,10 +41,7 @@ class CoststaticController extends Controller
     public function edit($costStatic)
     {
         $costStatic = CostStatic::findOrFail($costStatic);
-        if ($costStatic->child != 0)
-            $mainCategories = CostStatic::where('child', '0')->where('id', '!=', $costStatic)->get();
-        else
-            $mainCategories = [];
+        $mainCategories = ($costStatic->child == 0) ? [] : CostStatic::where('child', '0')->where('id', '!=', $costStatic)->get();
         return view('Admin.CostStatic.edit', compact('costStatic', 'mainCategories'));
     }
 
