@@ -77,9 +77,9 @@
 </script>
 @endif
 
-@if(session()->has('CategoryUpdate'))
+@if(session()->has('UpdateCostStatic'))
 <script>
-    minMbox('خدمت مورد نظر با موفقیت ویرایش شد.', 350);
+    minMbox('هزینه ثابت مورد نظر با موفقیت ویرایش شد.', 350);
 </script>
 @endif
 @endsection
