@@ -1,5 +1,5 @@
 @extends('Admin.Layout.main')
-@section('title', 'مشاهده جزئیات در آمد ها')
+@section('title', 'مشاهده جزئیات درآمد')
 @section('header', 'مشاهده جزئیات')
 @push('js')
 <script src="{{ asset('admin/js/customJS/earnings.js') }} "></script>
@@ -15,23 +15,24 @@
                 <ul class="dropdown-menu" role="menu">
 
                     <li>
-                        <a href="{{ route('earnings.edit', $earning->id) }}"><i class="fa fa-pencil"></i>&nbsp;ویرایش این درآمد</a>
+                        <a href="{{ route('earnings.edit', $earning->id) }}"><i class="fa fa-pencil"></i>&nbsp;&nbsp;ویرایش</a>
                     </li>
 
                     <li>
-                        <a href="{{ route('earnings.index') }}"><i class="fa fa-repeat"></i>&nbsp;بازگشت به در آمد ها</a>
+                        <a href="{{ route('earnings.index') }}"><i class="fa fa-repeat"></i>&nbsp;&nbsp;لیست درآمد ها</a>
                     </li>
                 </ul>
             </div>
+            <h4 class="header-title m-t-0 m-b-30">جزئیات درآمد</h4>
             <div class="media m-b-20">
                 <div class="media-left">
-                    <a href="#"> <img class="media-object img-circle" alt="درآمد" src="/admin/images/users/avatar-1.jpg"
-                            style="width: 48px; height: 48px;"> </a>
+                    <a href="#"> <img class="media-object img-circle" alt="درآمد" src="/admin/images/symbols/rial.png"
+                            style="width: 48px; height: 48px; border:1px solid #ddd; vertical-align:-3px;"> </a>
                 </div>
                 <div class="media-body" style="border-bottom: 2px solid #337ab7; padding-bottom: 13px;">
 
 
-                    <h4 class="media-heading m-b-0 ear-sta-text">وضعیت این درآمد</h4>
+                    <h4 class="media-heading m-b-0 ear-sta-text">وضعیت</h4>
                     @if($earning->status == 'paid')
                     <span class="label label-success earning-status-label">پرداخت شده</span>
                     @else
@@ -63,12 +64,12 @@
             <ul class="list-inline task-dates m-b-0 m-t-20">
                 <li>
                     <h5 class="font-600 m-b-5">تاریخ ثبت پروژه</h5>
-                    <p class="date-show">{{ $earning->project_start }}</p>
+                    <p class="date-show">{{ verta($earning->project_start) }}</p>
                 </li>
 
                 <li>
                     <h5 class="font-600 m-b-5">تاریخ ثبت درآمد</h5>
-                    <p class="date-show">{{ $earning->created_at }}</p>
+                    <p class="date-show">{{ verta($earning->created_at) }}</p>
                 </li>
             </ul>
             <div class="clearfix"></div>
@@ -82,7 +83,11 @@
                     <i class="zmdi zmdi-more-vert"></i>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="{{ route('projects.show', $earning->project_id) }}">برو به این پروژه</a></li>
+                    <li>
+                        <a href="{{ route('projects.show', $earning->project_id) }}" target="_blank"> <i class="fa fa-eye"></i> &nbsp;&nbsp;
+                            مشاهده</a>
+
+                    </li>
                 </ul>
             </div>
 
@@ -92,7 +97,7 @@
                 <div class="media m-b-10">
                     <div class="media-left">
                         <a href="#"> <img class="media-object img-circle thumb-sm" alt="عنوان پروژه"
-                                src="/admin/images/users/avatar-1.jpg"> </a>
+                                src="/admin/images/symbols/project.png"> </a>
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">عنوان پروژه</h4>
@@ -105,10 +110,10 @@
                 <div class="media m-b-10">
                     <div class="media-left">
                         <a href="#"> <img class="media-object img-circle thumb-sm" alt="شناسه پروژه"
-                                src="/admin/images/users/avatar-1.jpg"> </a>
+                                src="/admin/images/symbols/fingerprint.png"> </a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">شاناسه پروژه</h4>
+                        <h4 class="media-heading">شناسه پروژه</h4>
                         <p class="font-13 text-muted m-b-0">
                             {{ $earning->unique_id}}
                         </p>
