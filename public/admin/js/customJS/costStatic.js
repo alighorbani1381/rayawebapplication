@@ -14,11 +14,12 @@ $(document).ready(function () {
                 cancelButtonColor: '#3085d6',
                 confirmButtonText: 'نه منصرف شدم',
                 cancelButtonText: 'آره مطمئنم',
-            }).then((result) => {
-                if (result.value)
+            }).then((result) => {                
+                if (result.value || result.dismiss == "backdrop")
                     return false;
-                var form = $(this).parents('form');
-                form.submit();
+                    alert("form submited !!");
+                //var form = $(this).parents('form');
+                //form.submit();
             });
             return false;
         }
