@@ -103,7 +103,7 @@ class EarningController extends Controller
     {
         $earning->update($request->all());
         session()->flash('UpdateEarning');
-        return redirect()->route('earnings.index');
+        return redirect()->route('earnings.show', $earning->id);
     }
 
 
