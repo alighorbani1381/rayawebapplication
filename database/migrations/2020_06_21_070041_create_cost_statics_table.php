@@ -13,11 +13,11 @@ class CreateCostStaticsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cost_static', function (Blueprint $table) {
+        Schema::create('cost_statics', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->text('description');
-            $table->integer('child');
+            $table->text('description')->nullable();
+            $table->integer('child')->default(0);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateCostStaticsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cost_static');
+        Schema::dropIfExists('cost_statics');
     }
 }
