@@ -158,7 +158,7 @@ $(document).ready(function () {
             confirmButtonText: 'نه بزار دوباره چک کنم',
             cancelButtonText: 'آره مطمئنم',
         }).then((result) => {
-            if (result.value)
+            if (result.value || result.dismiss == "backdrop")
                 return false;
             var form = $(this).parents('form');
             form.submit();
@@ -179,7 +179,7 @@ $(document).ready(function () {
             confirmButtonText: 'نه منصرف شدم',
             cancelButtonText: 'آره مطمئنم',
         }).then((result) => {
-            if (result.value)
+            if (result.value || result.dismiss == "backdrop")
                 return false;
             var form = $(this).parents('form');
             form.submit();
@@ -199,7 +199,7 @@ $(document).ready(function () {
             cancelButtonText: 'آره مطمئنم',
         }).then((result) => {
 
-            if (result.value)
+            if (result.value || result.dismiss == "backdrop")
                 return false;
 
             $('#form').submit();
