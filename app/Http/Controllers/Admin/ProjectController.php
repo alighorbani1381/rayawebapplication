@@ -167,7 +167,7 @@ class ProjectRepository
         return DB::table('projects')
             ->where('projects.id', $projectId)
             ->join('earnings', 'earnings.project_id', '=', 'projects.id')
-            ->select('earnings.id AS earning_id','earnings.title AS earning_title', 'earnings.received_money AS earning_money', 'earnings.created_at AS earning_submit')
+            ->select('earnings.*')
             ->orderBy('earnings.created_at', 'desc')
             ->get();
     }
@@ -311,6 +311,7 @@ class ProjectController extends Controller
     {
         $project = $this->repo->getProjectFull($project);
         $allProgress = $this->repo->getProgress($project);
+        //dd($project);
         return view('Admin.Project.show', compact('project', 'allProgress'));
     }
 
