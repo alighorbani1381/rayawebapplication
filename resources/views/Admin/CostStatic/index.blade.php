@@ -77,6 +77,12 @@
 </script>
 @endif
 
+@if(session()->has('DeleteCostStaticAllMember'))
+<script>
+    minMbox('سرگروه مورد نظر به همراه تمامی زیر گروه هایش حدف شد.', 350);
+</script>
+@endif
+
 @if(session()->has('UpdateCostStatic'))
 <script>
     minMbox('هزینه ثابت مورد نظر با موفقیت ویرایش شد.', 350);
