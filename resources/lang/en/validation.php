@@ -162,6 +162,7 @@ return [
         'complete_after' => 'زمان تحویل',
         'contract_started' => 'تاریخ شروع قرارداد',
         'completed_at' => 'تاریخ پایان قرارداد',
+        'child' => 'سر گروه',
     ],
 
 ];
