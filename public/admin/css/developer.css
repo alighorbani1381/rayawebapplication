@@ -117,7 +117,7 @@ p {
     position: relative;
 }
 
-.delete-box{
+.delete-box {
     border: 1px solid #ddd;
     color: red;
     text-align: left;
@@ -131,7 +131,7 @@ p {
     font-weight: bold;
     z-index: 99;
 }
-.delete-box:hover{
+.delete-box:hover {
     color: rgb(153, 5, 5);
     cursor: pointer;
 }
@@ -144,24 +144,27 @@ h2#swal2-title {
     width: 40%;
 }
 
-.earning-status-label{
+.earning-status-label {
     padding: 13px;
     margin-top: 10px;
     font-size: 14px;
     display: inline-block;
 }
-.ear-sta-text{
+.ear-sta-text {
     display: inline-block;
     margin-left: 14px;
 }
-.date-show{
+.date-show {
     direction: ltr !important;
 }
-.earning-time{
+.earning-time {
     display: inline-block;
 }
-.earning-box{
+.earning-box {
     border-bottom: 2px solid #64ce76;
-    padding-bottom: 8px;
+    padding-bottom: 15px;
 }
-    
+.earning-box:last-child{
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+}
