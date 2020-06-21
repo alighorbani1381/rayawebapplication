@@ -56,7 +56,7 @@
                         <td class="tac">
                             <a href="{{ route('earnings.show', $earning->id) }}"
                                 class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i
-                                    class="fa fa-eye"></i> </a>
+                                    class="fa fa-file-text-o"></i> </a>
                         </td>
                         <td class="tac">
                             <a href="{{ route('earnings.edit', $earning->id) }}"
