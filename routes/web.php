@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 # Auth Route
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+    Route::resource('costs/static', 'CoststaticController');
     Route::get('dashborad', 'IndexController@index')->name('admin.dashboard');
     Route::get('earnings/pay/{earning?}', 'EarningController@create')->name('earnings.pay');
     Route::resource('earnings', 'EarningController');
