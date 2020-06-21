@@ -375,20 +375,26 @@
                     <i class="zmdi zmdi-more-vert"></i>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">متن یک</a></li>
+                    <li>
+                        <a href="{{ route('earnings.pay', $project['project']->id) }}" ><i class="fa fa-plus"></i> &nbsp;
+                            افزودن</a>
+                    </li>
                 </ul>
             </div>
 
             <h4 class="header-title m-t-0 m-b-30">
                 در آمد های ثبت شده
-                ({{ $project['categories']->count() . "مورد"}})
+                @if( $project['earnings']->count() > 0)
+                    ({{ $project['earnings']->count() . "مورد"}})
+                @endif
             </h4>
 
             <div>
+                @if( $project['earnings']->count() > 0)
                 @foreach($project['earnings'] as $key => $earning)
                 <div class="media m-b-10 earning-box">
                     <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
+                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="{{ $earning->earning_title }}"
                                 src="/admin/images/symbols/rial.png"> </a>
                     </div>
                     <div class="media-body">
@@ -410,6 +416,9 @@
 
                 </div>
                 @endforeach
+                @else
+                هنوز درآمدی برای این پروژه ثبت نشده است.
+                @endif
 
             </div>
         </div>
