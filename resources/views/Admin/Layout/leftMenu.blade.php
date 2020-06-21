@@ -38,8 +38,8 @@
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-dollar"></i> <span>مدیریت هزینه ها</span> <span class="menu-arrow  fa-angle-left"></span></a>
                     <ul class="list-unstyled" style="display: none;">
-                        <li><a href="{{ route('static.index') }}">لیست هزینه</a></li>
-                        <li><a href="{{ route('static.create') }}">ثبت هزینه</a></li>
+                        <li><a href="{{ route('costs.index') }}">لیست هزینه</a></li>
+                        <li><a href="{{ route('costs.create') }}">ثبت هزینه</a></li>
                     </ul>
                 </li>
 
