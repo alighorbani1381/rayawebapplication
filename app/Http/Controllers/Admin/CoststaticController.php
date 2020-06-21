@@ -40,16 +40,20 @@ class CoststaticController extends Controller
    
     public function edit($costStatic)
     {
-        $mainCategories = CostStatic::where('child', '0')->get();
+        CostStatic::findOrFail($costStatic);
+        $mainCategories = CostStatic::where('child', '0')->where('id', '!=', $costStatic)->get();
         $costStatic = CostStatic::findOrFail($costStatic);
         return view('Admin.CostStatic.edit', compact('costStatic', 'mainCategories'));
     }
 
     
      
-    public function update(Request $request, CostStatic $costStatic)
+    public function update(Request $request, $costStatic)
     {
-        //
+        $costStatic = CostStatic::findOrFail($costStatic);
+        $costStatic->update($request->all());
+        session()->flash('UpdateCostStatic');
+        return redirect()->route('static.index');
     }
 
    
