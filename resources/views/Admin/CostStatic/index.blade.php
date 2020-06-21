@@ -34,7 +34,7 @@
                     @foreach ($staticCosts as $row => $cost)
                     <tr>
                         <td><?= $row  + 1 ?></td>
-                        <td class="costStatic">{{ $cost->title }}</td>
+                        <td class="costStatic" child="{{ $cost->child }}" >{{ $cost->title }}</td>
                         @if($cost->description == "" || $cost->description == null )
                         <td>-</td>
                         @else
@@ -51,7 +51,7 @@
                                 @csrf
                                 @method('DELETE')
                                 <button type="button"
-                                    class="delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
+                                    class="delete-cost-static delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
                                         class="fa fa-remove"></i> </button>
                             </form>
                         </td>
@@ -71,9 +71,9 @@
 @endif
 
 
-@if(session()->has('DeleteCategory'))
+@if(session()->has('DeleteCostStatic'))
 <script>
-    minMbox('خدمت مورد نظر با موفقیت حذف شد.', 350);
+    minMbox('هزینه ثابت مورد نظر با موفقیت حذف شد.', 350);
 </script>
 @endif
 
