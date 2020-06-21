@@ -27,7 +27,6 @@ class CoststaticController extends Controller
     {
         $request->validate(['title' => 'required', 'child' => 'required']);
         CostStatic::create($request->all());
-        session()->flash('StaticCreate');
         return redirect()->route('static.index');
     }
 
