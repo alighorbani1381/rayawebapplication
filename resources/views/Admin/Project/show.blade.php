@@ -341,7 +341,7 @@
             </div>
 
             <h4 class="header-title m-t-0 m-b-30">
-                خدمات به کار گرفته در این پروژه
+                خدمات به کار گرفته شده
                 ({{ $project['categories']->count() . "مورد"}})
             </h4>
 
@@ -349,8 +349,8 @@
                 @foreach($project['categories'] as $key => $category)
                 <div class="media m-b-10">
                     <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
-                                src="/admin/images/users/avatar-1.jpg"> </a>
+                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="{{ $category->title }}"
+                                src="/admin/images/symbols/contract.png"> </a>
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">{{ $category->title }}</h4>
@@ -394,20 +394,29 @@
                 @foreach($project['earnings'] as $key => $earning)
                 <div class="media m-b-10 earning-box">
                     <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="{{ $earning->earning_title }}"
-                                src="/admin/images/symbols/rial.png"> </a>
+                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="{{ $earning->title }}"
+                                src="/admin/images/symbols/rial.png" style="border: 1px solid #ddd;"> </a>
+                                
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading" style="margin-bottom: 12px;">{{ $earning->earning_title }}</h4>
+                        <h4 class="media-heading" style="margin-bottom: 12px; margin-top:4px;">{{ $earning->title }}</h4>
                         <p class="font-13 text-muted m-b-0" style="display: block; text-align:right;">
                             <span>تاریخ ثبت:</span>
-                            <time dir="ltr" class="date-show">{{ verta($earning->earning_submit) }}</time>
+                            <time dir="ltr" class="date-show">{{ verta($earning->created_at) }}</time>
                         </p>
-                        <div class="date-show earning-time" style="margin-top: 10px;">
+                        <div class="date-show earning-time" style="margin: 12px 0;">
                             <span>میزان درآمد:</span>
-                            {{ number_format($earning->earning_money) . " تومان " }}
+                            <span style="font-weight: bold;">{{ number_format($earning->received_money) . " تومان " }}</span>
                         </div>
-                        <a href="{{ route('earnings.show', $earning->earning_id)}}" target="_blank"
+                        <div>
+                            <span>وضعیت:</span>
+                            @if($earning->status == 'paid')
+                            <button class="btn btn-success waves-effect waves-light btn-sm m-b-5">پرداخت شده</button>
+                            @else
+                            <button class="btn btn-danger waves-effect waves-light btn-sm m-b-5">پرداخت نشده</button>
+                            @endif
+                        </div>
+                        <a href="{{ route('earnings.show', $earning->id)}}" target="_blank"
                             class="btn btn-purple waves-effect submit-button">
                             <i class="fa fa-eye"></i> &nbsp;
                             مشاهده
