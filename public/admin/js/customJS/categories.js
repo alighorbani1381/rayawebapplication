@@ -14,7 +14,7 @@ $(document).ready(function () {
             confirmButtonText: 'نه بیخیال',
             cancelButtonText: 'آره مطمئنم',
         }).then((result) => {
-            if (result.value)
+            if (result.value || result.dismiss == "backdrop")
                 return false;
             var form = $(this).parents('form');
             form.submit();
