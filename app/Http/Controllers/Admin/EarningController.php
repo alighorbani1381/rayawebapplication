@@ -70,7 +70,6 @@ class EarningController extends Controller
 
         session()->flash('EarningProblem');
         return redirect()->route('projects.create');
-        return null;
     }
 
 
@@ -82,15 +81,20 @@ class EarningController extends Controller
     }
 
 
-    public function show(Earning $earning)
+    public function show($earning)
     {
-        //
+        Earning::findOrFail($earning);
+        $earning = Earning::join('projects', 'earnings.project_id', '=', 'projects.id')
+            ->select('projects.title AS project_title', 'projects.unique_id', 'projects.price', 'earnings.*')
+            ->where('earnings.id', $earning)
+            ->first();
+            return view('Admin.Earning.show');
     }
 
 
     public function edit(Earning $earning)
     {
-        $projects  = Project::where('status', '!=', 'finished')->get();        
+        $projects  = Project::where('status', '!=', 'finished')->get();
         return view('Admin.Earning.edit', compact('projects', 'earning'));
     }
 
