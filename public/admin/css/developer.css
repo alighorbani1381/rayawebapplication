@@ -143,4 +143,18 @@ h2#swal2-title {
 .swal2-popup.swal2-modal.swal2-icon-question.swal2-show {
     width: 40%;
 }
+
+.earning-status-label{
+    padding: 13px;
+    margin-top: 10px;
+    font-size: 14px;
+    display: inline-block;
+}
+.ear-sta-text{
+    display: inline-block;
+    margin-left: 14px;
+}
+.date-show{
+    direction: ltr !important;
+}
     
