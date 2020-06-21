@@ -336,7 +336,9 @@
                     <i class="zmdi zmdi-more-vert"></i>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">متن یک</a></li>
+                    <li><a href="{{ route('categories.create') }}"><i class="fa fa-plus"></i> &nbsp;افزودن خدمت جدید</a></li>
+                        
+                    <li><a href="{{ route('categories.index') }}"><i class="fa fa-list-ul"></i> &nbsp;لیست خدمات</a></li>
                 </ul>
             </div>
 
@@ -416,7 +418,7 @@
                             <button class="btn btn-danger waves-effect waves-light btn-sm m-b-5">پرداخت نشده</button>
                             @endif
                         </div>
-                        <a href="{{ route('earnings.show', $earning->id)}}" target="_blank"
+                        <a href="{{ route('earnings.show', $earning->id)}}" 
                             class="btn btn-purple waves-effect submit-button">
                             <i class="fa fa-eye"></i> &nbsp;
                             مشاهده
