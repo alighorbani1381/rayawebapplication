@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Cost;
+use App\CostStatic;
 use App\Http\Controllers\Controller;
+use App\Project;
 use Illuminate\Http\Request;
 
 class CostController extends Controller
@@ -17,7 +19,9 @@ class CostController extends Controller
 
     public function create()
     {
-        return view('Admin.Cost.create');
+        $types = CostStatic::where('child', '0')->get();
+        $projects = Project::where('status', '!=', 'finished')->get();
+        return view('Admin.Cost.create', compact('projects', 'types'));
     }
 
     public function store(Request $request)
