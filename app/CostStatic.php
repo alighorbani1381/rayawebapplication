@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class CostStatic extends Model
 {
-    public $guarded = [];
-
+    protected $guarded = [];
+    
     public function getSubDescAttribute()
     {
         return mb_substr($this->description, 0, 50) . " ...";
