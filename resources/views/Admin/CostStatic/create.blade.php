@@ -42,6 +42,9 @@
                                     <option value="{{ $category->id }}">{{ $category->title}} </option>
                                     @endforeach
                                 </select>
+                                @error('child')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
