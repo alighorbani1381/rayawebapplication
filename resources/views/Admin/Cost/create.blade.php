@@ -6,16 +6,17 @@
 @endpush --}}
 @section('content')
 <button class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#pay-user-modal">
-    پرداختی به پیمانکاران
+    ثبت هزینه های مربوط به پروژه
 </button>
 
-<button class="btn btn-purple waves-effect waves-light" data-toggle="modal" data-target="#pay-external-modal">  
+<button class="btn btn-purple waves-effect waves-light" data-toggle="modal" data-target="#pay-external-modal">
     پرداخت هزینه های جانبی
 </button>
 
 
 <!-- Modal Pay User Cost Start -->
-<div id="pay-user-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<div id="pay-user-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -27,7 +28,17 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="field-3" class="control-label">عنوان هزینه</label>
-                            <input type="text" class="form-control" id="field-3" placeholder="عنوان هزینه را وارد کنید ...">
+                            <input type="text" class="form-control" name="title" id="field-3"
+                                placeholder="عنوان هزینه را وارد کنید ...">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="field-3" class="control-label">میزان هزینه</label>
+                            <input type="number" class="form-control" name="money_paid" id="field-3"
+                                placeholder="میزان هزینه را وارد کنید ...">
                         </div>
                     </div>
                 </div>
@@ -35,7 +46,34 @@
                     <div class="col-md-12">
                         <div class="form-group no-margin">
                             <label for="field-7" class="control-label">توضیحات هزینه</label>
-                            <textarea class="form-control autogrow" id="field-7" placeholder="توضیحات هزینه را وارد کنید ..." style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                            <textarea class="form-control autogrow" id="field-7" name="description"
+                                placeholder="توضیحات هزینه را وارد کنید ..."
+                                style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group no-margin">
+                            <label for="field-7" class="control-label">نوع هزینه</label>
+                            <select class="form-control" name="type">
+                                @php $count = 0; @endphp
+                                @foreach($types as $type)
+                                    @if($type->sub_cats->count() != 0)
+                                    <optgroup label="{{ $type->title }} ">
+                                        @foreach($type->sub_cats as $subCat)
+                                        <option value="{{ $subCat->id }}">{{ $subCat->title }} </option>
+                                        @endforeach
+                                    </optgroup>
+                                    @php $count += 1; @endphp
+                                    @endif
+                                @endforeach
+
+                                @if($count == 0)
+                                <option disabled value="null">موردی برای نمایش وجود ندارد</option>
+                                @endif
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -44,19 +82,21 @@
                     <div class="col-md-12">
                         <div class="form-group no-margin">
                             <label for="field-7" class="control-label">پروژه</label>
-                            <select class="form-control" name="child">                                
+                            <select class="form-control" name="project_id">
                                 @foreach($projects as $project)
-                                <option value="{{ $project->id }}">{{ $project->title . " - " . $project->unique_id}} </option>
+                                <option value="{{ $project->id }}">{{ $project->title . " - " . $project->unique_id}}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+
+                <div class="row" style="display: none;">
                     <div class="col-md-12">
                         <div class="form-group no-margin">
                             <label for="field-7" class="control-label">پیمانکار</label>
-                            <select class="form-control" name="child">                                
+                            <select class="form-control" name="contractor_id" id="contractors-box">
                                 <option value="">علی</option>
                                 <option value="">حسن</option>
                                 <option value="">رضا</option>
@@ -76,7 +116,8 @@
 
 
 <!-- Modal One Start -->
-<div id="pay-external-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<div id="pay-external-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -130,7 +171,8 @@
                     <div class="col-md-12">
                         <div class="form-group no-margin">
                             <label for="field-7" class="control-label">اطلاعات شخصی</label>
-                            <textarea class="form-control autogrow" id="field-7" placeholder="هر چیزی راجب به خودتان" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                            <textarea class="form-control autogrow" id="field-7" placeholder="هر چیزی راجب به خودتان"
+                                style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
                         </div>
                     </div>
                 </div>
