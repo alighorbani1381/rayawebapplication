@@ -11,7 +11,8 @@ class CoststaticController extends Controller
     
     public function index()
     {
-        //
+        $staticCosts = CostStatic::orderBy('child')->paginate(15);
+        return view('Admin.CostStatic.index', compact('staticCosts'));
     }
 
     
