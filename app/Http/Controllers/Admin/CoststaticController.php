@@ -34,7 +34,7 @@ class CoststaticController extends Controller
     
     public function show(CostStatic $costStatic)
     {
-        //
+        return redirect()->route('static.index');
     }
 
    
