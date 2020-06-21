@@ -162,6 +162,16 @@ class ProjectRepository
             ->get();
     }
 
+    public function getEarnings($projectId)
+    {
+        return DB::table('projects')
+            ->where('projects.id', $projectId)
+            ->join('earnings', 'earnings.project_id', '=', 'projects.id')
+            ->select('earnings.id AS earning_id','earnings.title AS earning_title', 'earnings.received_money AS earning_money', 'earnings.created_at AS earning_submit')
+            ->orderBy('earnings.created_at', 'desc')
+            ->get();
+    }
+
     public function projectCreateFull($request)
     {
         DB::transaction(function () use ($request) {
@@ -178,6 +188,7 @@ class ProjectRepository
         $project['project'] = $this->getProject($id);
         $project['categories'] = $this->getCategories($id);
         $project['contractors'] = $this->getContractors($id);
+        $project['earnings'] = $this->getEarnings($id);
         return $project;
     }
 
