@@ -36,10 +36,18 @@
 
 
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-dollar"></i> <span>مدیریت هزینه های ثابت</span> <span class="menu-arrow  fa-angle-left"></span></a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-dollar"></i> <span>مدیریت هزینه ها</span> <span class="menu-arrow  fa-angle-left"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="{{ route('static.index') }}">لیست هزینه</a></li>
+                        <li><a href="{{ route('static.create') }}">ثبت هزینه</a></li>
+                    </ul>
+                </li>
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-check-square-o"></i> <span>مدیریت هزینه های ثابت</span> <span class="menu-arrow  fa-angle-left"></span></a>
                     <ul class="list-unstyled" style="display: none;">
                         <li><a href="{{ route('static.index') }}">لیست هزینه های ثابت</a></li>
-                        <li><a href="{{ route('static.create') }}">ایجاد هزینه ثابت</a></li>
+                        <li><a href="{{ route('static.create') }}">ثبت هزینه ثابت</a></li>
                     </ul>
                 </li>
 
