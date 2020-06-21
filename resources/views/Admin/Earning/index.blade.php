@@ -27,6 +27,7 @@
                         <th>میزان درآمد (تومان)</th>
                         <th>قیمت پروژه (تومان)</th>
                         <th>وضعیت</th>
+                        <th class="tac">جزئیات</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
                     </tr>
@@ -51,6 +52,11 @@
                                 class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">پرداخت
                                 نشده</button>
                             @endif
+                        </td>
+                        <td class="tac">
+                            <a href="{{ route('earnings.show', $earning->id) }}"
+                                class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i
+                                    class="fa fa-eye"></i> </a>
                         </td>
                         <td class="tac">
                             <a href="{{ route('earnings.edit', $earning->id) }}"
