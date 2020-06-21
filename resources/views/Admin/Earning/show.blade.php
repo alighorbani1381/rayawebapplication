@@ -13,11 +13,14 @@
                     <i class="zmdi zmdi-more-vert"></i>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">متن دو</a></li>
-                    <li><a href="#">متن سه</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">متن پا ورقی</a></li>
+
+                    <li>
+                        <a href="{{ route('earnings.edit', $earning->id) }}"><i class="fa fa-pencil"></i>&nbsp;ویرایش این درآمد</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('earnings.index') }}"><i class="fa fa-repeat"></i>&nbsp;بازگشت به در آمد ها</a>
+                    </li>
                 </ul>
             </div>
             <div class="media m-b-20">
@@ -37,12 +40,18 @@
                 </div>
             </div>
 
-            <h4 class="font-600 m-b-20">{{ $earning->title }}</h4>
+            <h4 class="font-600" style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
+                عنوان:
+            </h4>
+            <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $earning->title }}</h4>
+            <div class="clear-fix"></div>
 
             @php
-            $paragraphs = explode('\n', $earning->descripion);
+            $paragraphs = explode('\n', $earning->description);
             @endphp
-
+            <h4 class="font-600" style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
+                توضیحات:
+            </h4>
             @foreach ($paragraphs as $paragraph)
             <p class="text-muted">
                 {{ $paragraph }}
