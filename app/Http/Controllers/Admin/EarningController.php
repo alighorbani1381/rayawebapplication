@@ -85,10 +85,10 @@ class EarningController extends Controller
     {
         Earning::findOrFail($earning);
         $earning = Earning::join('projects', 'earnings.project_id', '=', 'projects.id')
-            ->select('projects.title AS project_title', 'projects.unique_id', 'projects.price', 'earnings.*')
+            ->select('projects.id AS project_id','projects.title AS project_title', 'projects.unique_id', 'projects.created_at AS project_start' , 'projects.price', 'earnings.*')
             ->where('earnings.id', $earning)
             ->first();
-            return view('Admin.Earning.show');
+            return view('Admin.Earning.show', compact('earning'));
     }
 
 
