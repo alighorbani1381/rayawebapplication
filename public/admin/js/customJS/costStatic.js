@@ -17,9 +17,9 @@ $(document).ready(function () {
             }).then((result) => {                
                 if (result.value || result.dismiss == "backdrop")
                     return false;
-                    alert("form submited !!");
-                //var form = $(this).parents('form');
-                //form.submit();
+                    
+                var form = $(this).parents('form');
+                form.submit();
             });
             return false;
         }
