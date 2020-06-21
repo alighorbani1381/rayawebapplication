@@ -7,7 +7,7 @@ $(document).ready(function () {
         if (child == 0) {
             Swal.fire({
                 title: "گزینه انتخابی شما سرگروه است آیا از حذف آن اطمینان دارید؟",
-                text: "با حدف این هزینه ثابت تمامی اطلاعات مربوط به آن از سیستم پاک خواهد شد.",
+                text: "با حدف این گزینه تمامی زیر گروه ها و اطلاعات مربوط به آن ها از سیستم پاک خواهد شد. در حذف سرگروه ها بسیار دقت کنید.",
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
@@ -25,7 +25,7 @@ $(document).ready(function () {
         var message = "آیا از حذف هزینه ثابت   «" + costStatic + "»" + " مطمئن هستید ؟ ";
         Swal.fire({
             title: message,
-            text: "",
+            text: "در حدف هزینه های ثابت دقت کنید چون با حذف آن ها تمامی اطلاعات و هزینه های ثبت شده به اسم آن ها از سیستم پاک خواهد شد.",
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#d33',
