@@ -157,4 +157,11 @@ h2#swal2-title {
 .date-show{
     direction: ltr !important;
 }
+.earning-time{
+    display: inline-block;
+}
+.earning-box{
+    border-bottom: 2px solid #64ce76;
+    padding-bottom: 8px;
+}
     
