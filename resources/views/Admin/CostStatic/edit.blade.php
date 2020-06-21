@@ -18,7 +18,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">عنوان هزینه ثابت</label>
                             <div class="col-md-10">
-                                <input type="text" name="title" class="form-control" value="{{ costStatic->title }}"
+                                <input type="text" name="title" class="form-control" value="{{ $costStatic->title }}"
                                     placeholder="عنوان هزینه ثابت را وارد کنید ...">
                                 @error('title')
                                 <div class="alert alert-danger">{{ $message }}</div>
