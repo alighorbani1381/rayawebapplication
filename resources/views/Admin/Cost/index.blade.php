@@ -37,9 +37,51 @@
             </ul>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="extra" aria-labelledby="extra-costs">
-                    <p>
-                        هزینه های جانبی پروژه
-                    </p>
+                  
+                 
+                    <table id="datatable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ردیف</th>
+                                <th>عنوان هزینه</th>
+                                <th>توضیحات (خلاصه)</th>
+                                <th>نوع هزینه</th>
+                                <th class="tac">ویرایش</th>
+                                <th class="tac">حذف</th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            @foreach ($costs['extra'] as $row => $cost)
+                            <tr>
+                                <td><?= $row  + 1 ?></td>
+                                <td class="categoryName">{{ $cost->title }}</td>
+                                <td>{{ $cost->sub_desc }}</td>
+                                <td>
+                                    @if($cost->type != null)
+                                        {{ $cost->type }}
+                                    @else
+                                        {{ "ندارد" }}
+                                    @endif
+                                </td>
+                                <td class="tac">
+                                    <a href="{{ route('costs.edit', $cost->id) }}"
+                                        class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
+                                            class="fa fa-pencil"></i> </a>
+                                </td>
+                                <td class="tac">
+                                    <form method="post" action="{{ route('costs.destroy', $cost->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
+                                                class="fa fa-remove"></i> </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+        
+                        </tbody>
+                    </table>
                 </div>
 
                 <div role="tabpanel" class="tab-pane fade" id="dropdown1" aria-labelledby="dropdown1-tab">
