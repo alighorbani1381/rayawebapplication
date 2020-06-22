@@ -28,8 +28,7 @@ class CostRepository
             'status' => 'required',
         ]);
         $type =  ($request->type == 0) ? null : $request->type;
-        return $type;
-        die;
+
         Cost::create([
             'generator' => '1',
             'project_id' => $request->project_id,
@@ -76,6 +75,8 @@ class CostController extends Controller
             return $this->repo->projectStore($request);
         else
             session()->flash('ExtenalStore');
+
+        return redirect()->route('costs.index');
     }
 
     public function show(Cost $cost)
