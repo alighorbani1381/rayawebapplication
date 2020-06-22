@@ -137,4 +137,11 @@
         </div>
     </div>
 </div>
+
+@if(session()->has('cost'))
+<script>
+    var message = "هزینه مورد نظر با موفقیت حذف شد.";
+    minMbox(message, 250);
+</script>
+@endif
 @endsection
