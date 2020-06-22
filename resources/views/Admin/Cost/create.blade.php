@@ -63,6 +63,9 @@
                             <div class="form-group no-margin">
                                 <label for="field-7" class="control-label">نوع هزینه</label>
                                 <select class="form-control" name="type">
+                                    <optgroup label="پیش فرض">
+                                    <option value="0">ندارد</option>
+                                    </optgroup>
                                     @php $count = 0; @endphp
                                     @foreach($types as $type)
                                     @if($type->sub_cats->count() != 0)
