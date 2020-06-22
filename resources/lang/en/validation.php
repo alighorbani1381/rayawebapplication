@@ -163,6 +163,8 @@ return [
         'contract_started' => 'تاریخ شروع قرارداد',
         'completed_at' => 'تاریخ پایان قرارداد',
         'child' => 'سر گروه',
+        'money_paid' => 'میزان هزینه',
+        'status' => 'وضعیت',
     ],
 
 ];
