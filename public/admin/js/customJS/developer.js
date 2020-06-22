@@ -1,3 +1,11 @@
+$(document).ready(function () {
+    // Configuration Ajax Headers (CSRF Token Laravel)
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+});
 function minMbox(message, timeout) {
     $(window).on('load', function () {
         setTimeout(function () {
@@ -23,7 +31,7 @@ function minMbox(message, timeout) {
 }
 
 function maxMbox(titleText, messageText, iconText, btnText, timeout) {
-    $(window).on('load',function () {
+    $(window).on('load', function () {
         setTimeout(function () {
             Swal.fire({
                 icon: iconText,
