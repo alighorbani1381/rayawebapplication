@@ -67,6 +67,15 @@ class CostRepository
         return 'contract pay';
     }
 
+    public function getProjectBaseCosts()
+    {
+        return Cost::join('projects', 'costs.project_id', '=', 'projects.id')
+        ->select('projects.title AS project_title', 'costs.*')
+        ->where('project_id', '!=', null)
+        ->where('contractor_id', null)
+        ->get();
+    }
+
     public function getExtraCosts()
     {
         return Cost::where('project_id', null)
@@ -77,6 +86,7 @@ class CostRepository
     public function getCosts()
     {
         $costs ['extra'] = $this->getExtraCosts();
+        $costs ['project_base'] = $this->getProjectBaseCosts();
         return $costs;
     }
 }
