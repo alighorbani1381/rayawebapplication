@@ -1,9 +1,9 @@
 @extends('Admin.Layout.main')
 @section('title', 'لیست هزینه')
 @section('header', 'لیست هزینه')
-{{-- @push('js')
-
-@endpush --}}
+@push('js')
+<script src="{{ asset('admin/js/customJS/costs.js') }} "></script>
+@endpush
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -53,7 +53,7 @@
                             @foreach ($costs['extra'] as $row => $cost)
                             <tr>
                                 <td><?= $row  + 1 ?></td>
-                                <td class="categoryName">{{ $cost->title }}</td>
+                                <td class="costTitle" type="extra">{{ $cost->title }}</td>
                                 <td>{{ $cost->sub_desc }}</td>
                                 <td>
                                     @if($cost->type != null)
@@ -71,7 +71,7 @@
                                     <form method="post" action="{{ route('costs.destroy', $cost->id) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
+                                        <button type="button" class="delete-cost btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
                                                 class="fa fa-remove"></i> </button>
                                     </form>
                                 </td>
@@ -100,9 +100,9 @@
                             @foreach ($costs['project_base'] as $row => $cost)
                             <tr>
                                 <td><?= $row  + 1 ?></td>
-                                <td class="categoryName">{{ $cost->title }}</td>
+                                <td class="costTitle" type="project_base">{{ $cost->title }}</td>
                                 <td>{{ $cost->sub_desc }}</td>
-                                <td>{{ $cost->project_title }}</td>
+                                <td class="projectName">{{ $cost->project_title }}</td>
                                 <td>
                                     @if($cost->type != null)
                                         {{ $cost->type }}
@@ -119,7 +119,7 @@
                                     <form method="post" action="{{ route('costs.destroy', $cost->id) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
+                                        <button type="button" class="delete-cost btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
                                                 class="fa fa-remove"></i> </button>
                                     </form>
                                 </td>
