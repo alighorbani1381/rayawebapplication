@@ -38,20 +38,28 @@
 <div class="row">
     <div class="col-md-8 col-lg-offset-2">
         <div class="card-box">
-            <button class="btn btn-primary waves-effect waves-light" data-toggle="modal"
-                data-target="#pay-user-modal">
+            <button class="btn btn-primary waves-effect waves-light pay-moeny" data-toggle="modal" data-target="#pay-user-modal">
+                <i class="fa fa-line-chart"></i>&nbsp;
                 ثبت هزینه های مربوط به پروژه
             </button>
-            <p style="margin:20px 0;">رم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
-                گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و
-                سه
-                درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را
-                برای
-                طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان
-                امید
-                داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل
-                حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+            <p style="margin:20px 0;">
+                در این قسمت شما میتونید هزینه های مربوط به پروژه رو ثبت کنید این هزینه ها به دو صورت هستند
+            </p>
+            <p>
+                1-
+                هزینه های مربوط به خود پروژه
+                مثلا (هزینه هاست و دامین)
+            </p>
+
+            <p>
+                2-
+                 هزینه های مربوط به حق الزحمه پیمانکاران
+            </p>
+            <p>
+                <div class="alert alert-info">
+                    <strong>راهنمایی:</strong>
+                    ثبت هر دوی این نوع هزینه ها از همین پنل و تنها با کلیک بر روی دکمه آبی رنگ امکان پذیر است.
+                </div>
             </p>
 
         </div>
@@ -61,9 +69,10 @@
 <div class="row">
     <div class="col-md-8 col-lg-offset-2">
         <div class="card-box">
-            <button class="btn btn-purple waves-effect waves-light" data-toggle="modal"
+            <button class="btn btn-purple waves-effect waves-light pay-moeny" data-toggle="modal"
                 data-target="#pay-external-modal">
-                پرداخت هزینه های جانبی
+                <i class="fa fa-life-ring"></i>&nbsp;
+                ثبت هزینه های جانبی
             </button>
             <p style="margin:20px 0;">رم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
                 گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
@@ -105,7 +114,8 @@
                                 <div class="form-group">
                                     <label for="field-3" class="control-label">عنوان هزینه</label>
                                     <input type="text" class="form-control" name="title" id="field-3"
-                                        placeholder="عنوان هزینه را وارد کنید ..." value="@if(session()->has('ProjectStore')){{ old('title') }}@endif">
+                                        placeholder="عنوان هزینه را وارد کنید ..."
+                                        value="@if(session()->has('ProjectStore')){{ old('title') }}@endif">
                                 </div>
                             </div>
                         </div>
@@ -115,7 +125,8 @@
                                 <div class="form-group">
                                     <label for="field-3" class="control-label">میزان هزینه</label>
                                     <input type="number" class="form-control" name="money_paid" id="field-3"
-                                        placeholder="میزان هزینه را وارد کنید ..." value="@if(session()->has('ProjectStore')){{ old('money_paid') }}@endif">
+                                        placeholder="میزان هزینه را وارد کنید ..."
+                                        value="@if(session()->has('ProjectStore')){{ old('money_paid') }}@endif">
                                 </div>
                             </div>
                         </div>
@@ -124,7 +135,9 @@
                             <div class="col-md-12">
                                 <div class="form-group no-margin">
                                     <label for="field-7" class="control-label">توضیحات هزینه</label>
-                                    <textarea class="form-control autogrow" id="field-7" name="description" placeholder="توضیحات هزینه را وارد کنید ..." style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;">@if(session()->has('ProjectStore')){{ old('description') }}@endif</textarea>
+                                    <textarea class="form-control autogrow" id="field-7" name="description"
+                                        placeholder="توضیحات هزینه را وارد کنید ..."
+                                        style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;">@if(session()->has('ProjectStore')){{ old('description') }}@endif</textarea>
                                 </div>
                             </div>
                         </div>
