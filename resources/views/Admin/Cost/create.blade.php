@@ -105,17 +105,17 @@
                                 <div class="form-group">
                                     <label for="field-3" class="control-label">عنوان هزینه</label>
                                     <input type="text" class="form-control" name="title" id="field-3"
-                                        placeholder="عنوان هزینه را وارد کنید ..." value="{{ old('title') }}">
+                                        placeholder="عنوان هزینه را وارد کنید ..." value="@if(session()->has('ProjectStore')){{ old('title') }}@endif">
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="field-3" class="control-label">میزان هزینه</label>
                                     <input type="number" class="form-control" name="money_paid" id="field-3"
-                                        placeholder="میزان هزینه را وارد کنید ..." value="{{ old('money_paid') }}">
+                                        placeholder="میزان هزینه را وارد کنید ..." value="@if(session()->has('ProjectStore')){{ old('money_paid') }}@endif">
                                 </div>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                             <div class="col-md-12">
                                 <div class="form-group no-margin">
                                     <label for="field-7" class="control-label">توضیحات هزینه</label>
-                                    <textarea class="form-control autogrow" id="field-7" name="description" placeholder="توضیحات هزینه را وارد کنید ..." style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;">{{ old('description') }}</textarea>
+                                    <textarea class="form-control autogrow" id="field-7" name="description" placeholder="توضیحات هزینه را وارد کنید ..." style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;">@if(session()->has('ProjectStore')){{ old('description') }}@endif</textarea>
                                 </div>
                             </div>
                         </div>
