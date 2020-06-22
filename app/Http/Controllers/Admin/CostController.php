@@ -7,7 +7,7 @@ use App\CostStatic;
 use App\Http\Controllers\Controller;
 use App\Project;
 use Illuminate\Http\Request;
-use PhpParser\Builder\Class_;
+
 
 class CostRepository
 {
@@ -19,7 +19,26 @@ class CostRepository
 
     public function projectStorePay($request)
     {
-        return 'without contract pay';
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'money_paid' => 'required|numeric',
+            'project_id' => 'required',
+            'status' => 'required',
+        ]);
+        $type =  ($request->type == 0) ? null : $request->type;
+        return $type;
+        die;
+        Cost::create([
+            'generator' => '1',
+            'project_id' => $request->project_id,
+            'title' => $request->title,
+            'description' => $request->description,
+            'money_paid' => $request->money_paid,
+            'type' => $type,
+            'status' => $request->status,
+
+        ]);
     }
 
     public function projectContractorPay($request)
