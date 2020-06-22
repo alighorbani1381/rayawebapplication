@@ -27,7 +27,7 @@ $(document).ready(function () {
 
             case 'project_base':
                 var projectName = $(this).parents('td').siblings('td.projectName').text();
-                var message = "گزینه مورد نظر شما" + " « " + cost + " » " + "یک هزینه پایه در پروژه" + projectName + "است آیا از حذف آن مطمئن هستید؟";
+                var message = "گزینه مورد نظر شما" + " « " + cost + " » " + "یک هزینه پایه در پروژه" + " « " + projectName + " » " + "است آیا از حذف آن مطمئن هستید؟";
                 Swal.fire({
                     title: message,
                     text: "در صورت حذف هزینه مورد نظر برای این پروژه حذف و از درون سیستم پاک می شود.",
