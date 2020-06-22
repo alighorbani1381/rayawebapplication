@@ -76,6 +76,15 @@ class CostRepository
         ->get();
     }
 
+    /* public function getContractorCosts()
+    {
+        return Cost::join('projects', 'costs.project_id', '=', 'projects.id')
+        ->select('projects.title AS project_title', 'costs.*')
+        ->where('contractor_id', '!=', null)
+        ->where('project_id', '!=', null)
+        ->get();
+    } */
+
     public function getExtraCosts()
     {
         return Cost::where('project_id', null)
@@ -102,7 +111,7 @@ class CostController extends Controller
     {
         
         $costs = $this->repo->getCosts();
-        dd($costs);
+        // dd($costs);
         return view('Admin.Cost.index', compact('costs'));
     }
 
@@ -144,6 +153,8 @@ class CostController extends Controller
 
     public function destroy(Cost $cost)
     {
-        //
+        //$cost->delete();
+        session()->flash('DeleteCost');
+        return back();
     }
 }
