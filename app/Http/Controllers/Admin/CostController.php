@@ -66,6 +66,19 @@ class CostRepository
     {
         return 'contract pay';
     }
+
+    public function getExtraCosts()
+    {
+        return Cost::where('project_id', null)
+        ->where('contractor_id', null)
+        ->get();
+    }
+
+    public function getCosts()
+    {
+        $costs ['extra'] = $this->getExtraCosts();
+        return $costs;
+    }
 }
 class CostController extends Controller
 {
@@ -77,7 +90,10 @@ class CostController extends Controller
 
     public function index()
     {
-        //
+        
+        $costs = $this->repo->getCosts();
+        dd($costs);
+        return view('Admin.Cost.index', compact('costs'));
     }
 
     public function create()
