@@ -6,7 +6,7 @@
 @endpush
 @section('content')
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-10 col-lg-offset-1">
         <div class="card-box">
 
             <ul class="nav nav-tabs nav-justified">
@@ -138,7 +138,7 @@
     </div>
 </div>
 
-@if(session()->has('cost'))
+@if(session()->has('DeleteCost'))
 <script>
     var message = "هزینه مورد نظر با موفقیت حذف شد.";
     minMbox(message, 250);
