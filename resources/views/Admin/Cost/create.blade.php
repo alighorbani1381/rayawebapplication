@@ -1,9 +1,9 @@
 @extends('Admin.Layout.main')
 @section('title', 'ثبت هزینه')
 @section('header', 'ثبت هزینه')
-{{-- @push('js')
-
-@endpush --}}
+@push('js')
+<script src="{{ asset('admin/js/customJS/costs.js') }} "></script>
+@endpush
 @section('content')
 
 @if($errors->any())
@@ -120,7 +120,7 @@
     <div id="pay-user-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true" style="display: none;">
         <div class="modal-dialog" style="width:54em;">
-            <form action="{{ route('costs.store') }}" method="post">
+            <form id="project-form" action="{{ route('costs.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="storeType" value="project">
                 <div class="modal-content">
@@ -195,14 +195,14 @@
                             <div class="col-md-12">
                                 <div class="form-group no-margin">
                                     <label for="field-7" class="control-label">پروژه</label>
-                                    <select class="form-control" name="project_id">
+                                    <select class="form-control" name="project_id" id="project">
                                         @foreach($projects as $project)
                                         <option value="{{ $project->id }}">
                                             {{ $project->title . " - " . $project->unique_id}}
                                         </option>
                                         @endforeach
                                     </select>
-                                    <svg style="width: 48px;position: absolute;height: 48px;margin: 0px auto;left: 6px;  top: 22px;margin: auto; background: none; display: block; shape-rendering: auto;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                                    <svg class="ajax-loading" style="display:none; width: 48px;position: absolute;height: 48px;margin: 0px auto;left: 6px;  top: 22px;margin: auto; background: none; display: block; shape-rendering: auto;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
                                         <circle cx="50" cy="50" r="32" stroke-width="8" stroke="#2c73dd" stroke-dasharray="50.26548245743669 50.26548245743669" fill="none" stroke-linecap="round" transform="rotate(325.951 50 50)">
                                           <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="0.3s" keyTimes="0;1" values="0 50 50;360 50 50"></animateTransform>
                                         </circle>
@@ -217,7 +217,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">پرداخت به پیمانکار</label>
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-paid" type="radio" name="contractor_pay"  value="true">
+                                        <input class="earning-paid" id="active" type="radio" name="contractor_pay"  value="true">
 
                                         <div class="state p-success">
                                             <label>پرداخت</label> &nbsp; &nbsp; &nbsp; &nbsp;
@@ -227,7 +227,7 @@
 
 
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-unpaid" type="radio" name="contractor_pay" checked value="false">
+                                        <input class="earning-unpaid" id="deactive" type="radio" name="contractor_pay" checked value="false">
 
                                         <div class="state p-danger">
                                             <label>عدم پرداخت</label> &nbsp; &nbsp; &nbsp; &nbsp;
