@@ -249,6 +249,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
+                        <button type="reset" class="btn btn-warning waves-effect">پاک کردن</button>
                         <button type="submit" class="btn btn-success waves-effect waves-light">ثبت هزینه</button>
                     </div>
             </form>
