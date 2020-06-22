@@ -14,6 +14,7 @@ class CostRepository
 
     public function projectStore($request)
     {
+        session()->flash('ProjectStore');
         return $pay =  isset($request->contractor_pay) ? $this->projectContractorPay($request) : $this->projectStorePay($request);
     }
 
@@ -73,6 +74,8 @@ class CostController extends Controller
 
         if ($type == 'project')
             return $this->repo->projectStore($request);
+        else
+            session()->flash('ExtenalStore');
     }
 
     public function show(Cost $cost)
