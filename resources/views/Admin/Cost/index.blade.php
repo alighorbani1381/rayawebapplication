@@ -37,8 +37,6 @@
             </ul>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane fade in active" id="extra" aria-labelledby="extra-costs">
-                  
-                 
                     <table id="datatable" class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -85,7 +83,51 @@
                 </div>
 
                 <div role="tabpanel" class="tab-pane fade" id="dropdown1" aria-labelledby="dropdown1-tab">
-                    <p>هزینه های پایه ای پروژه</p>
+                    <table id="datatable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ردیف</th>
+                                <th>عنوان هزینه</th>
+                                <th>توضیحات (خلاصه)</th>
+                                <th>عنوان پروژه</th>
+                                <th>نوع هزینه</th>
+                                <th class="tac">ویرایش</th>
+                                <th class="tac">حذف</th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            @foreach ($costs['project_base'] as $row => $cost)
+                            <tr>
+                                <td><?= $row  + 1 ?></td>
+                                <td class="categoryName">{{ $cost->title }}</td>
+                                <td>{{ $cost->sub_desc }}</td>
+                                <td>{{ $cost->project_title }}</td>
+                                <td>
+                                    @if($cost->type != null)
+                                        {{ $cost->type }}
+                                    @else
+                                        {{ "ندارد" }}
+                                    @endif
+                                </td>
+                                <td class="tac">
+                                    <a href="{{ route('costs.edit', $cost->id) }}"
+                                        class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
+                                            class="fa fa-pencil"></i> </a>
+                                </td>
+                                <td class="tac">
+                                    <form method="post" action="{{ route('costs.destroy', $cost->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
+                                                class="fa fa-remove"></i> </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+        
+                        </tbody>
+                    </table>
                 </div>
 
                 <div role="tabpanel" class="tab-pane fade" id="dropdown2" aria-labelledby="dropdown2-tab">
