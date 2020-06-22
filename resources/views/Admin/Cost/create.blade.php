@@ -119,11 +119,10 @@
     <!-- Modal Pay User Cost Start -->
     <div id="pay-user-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width:54em;">
             <form action="{{ route('costs.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="storeType" value="project">
-                {{-- <input type="hidden" name="contractor_pay" value="true"> --}}
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -207,6 +206,34 @@
                             </div>
                         </div>
 
+                        
+                        <div class="row">
+                            <div class="col-md-12" style="margin: 11px -8px;">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">پرداخت به پیمانکار</label>
+                                    <div class="pretty p-icon p-round p-pulse">
+                                        <input class="earning-paid" type="radio" name="contractor_pay"  value="true">
+
+                                        <div class="state p-success">
+                                            <label>پرداخت</label> &nbsp; &nbsp; &nbsp; &nbsp;
+                                            <i class="icon mdi mdi-check"></i>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="pretty p-icon p-round p-pulse">
+                                        <input class="earning-unpaid" type="radio" name="contractor_pay" checked value="false">
+
+                                        <div class="state p-danger">
+                                            <label>عدم پرداخت</label> &nbsp; &nbsp; &nbsp; &nbsp;
+                                            <i class="icon mdi mdi-check"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="row">
                             <div class="col-md-12" style="margin: 11px -8px;">
                                 <div class="form-group">
@@ -215,7 +242,7 @@
                                         <input class="earning-paid" type="radio" name="status" checked value="paid">
 
                                         <div class="state p-success">
-                                            <label>پرداخت شده</label> &nbsp; &nbsp; &nbsp; &nbsp;
+                                            <label>پرداخت</label> &nbsp; &nbsp; &nbsp; &nbsp;
                                             <i class="icon mdi mdi-check"></i>
                                         </div>
                                     </div>
@@ -225,13 +252,16 @@
                                         <input class="earning-unpaid" type="radio" name="status" value="unpaid">
 
                                         <div class="state p-danger">
-                                            <label>پرداخت نشده</label> &nbsp; &nbsp; &nbsp; &nbsp;
+                                            <label>عدم پرداخت</label> &nbsp; &nbsp; &nbsp; &nbsp;
                                             <i class="icon mdi mdi-check"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        
+                    
 
                         <div class="row" style="display: none;">
                             <div class="col-md-12">
