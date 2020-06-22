@@ -41,6 +41,27 @@ class CostRepository
         ]);
     }
 
+    public function externalStore($request)
+    {
+        session()->flash('ExtenalStore');
+        $request->validate([  
+            'title' => 'required',
+            'description' => 'required',
+            'money_paid' => 'required|numeric',
+            'status' => 'required',
+        ]);
+        $type =  ($request->type == 0) ? null : $request->type;
+        Cost::create([
+            'generator' => '1',
+            'title' => $request->title,
+            'description' => $request->description,
+            'money_paid' => $request->money_paid,
+            'type' => $type,
+            'status' => $request->status,
+
+        ]);
+    }
+
     public function projectContractorPay($request)
     {
         return 'contract pay';
@@ -68,13 +89,14 @@ class CostController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['storeType' => 'required']);
+        $request->validate(['storeType' => 'required'], ['storeType.required' => 'Error in the Form You Must Refresh This Page!']);
         $type = $request->get('storeType');
 
         if ($type == 'project')
             return $this->repo->projectStore($request);
         else
-            session()->flash('ExtenalStore');
+            return $this->repo->externalStore($request);
+
 
         return redirect()->route('costs.index');
     }
