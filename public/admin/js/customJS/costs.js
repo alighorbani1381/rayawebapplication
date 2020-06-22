@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     console.clear();
+
     $('.delete-cost').on('click', function () {
         var cost = $(this).parents('td').siblings('td.costTitle').text();
         var type = $(this).parents('td').siblings('td.costTitle').attr('type');
@@ -55,5 +56,62 @@ $(document).ready(function () {
     });
 
 
+    $(".ajax-loading").hide();
+    //Given Data From Category Id
+    $(document).on('change', '#project', function () {
+        var isNeedContractor = $('input[name=contractor_pay]:checked', '#project-form').val();
+        if (isNeedContractor != 'true'){
+            hideAjaxLoading();
+            return false;
+        }
+
+        var projectId = $(this).val();
+        showAjaxLoading();
+        
+    });
+
+    $('input[type="radio"]#deactive').on('click change', function(e) {
+        hideAjaxLoading();
+    });
+
+    $('input[type="radio"]#active').on('click change', function(e) {
+        setTimeout(function () {
+            Swal.fire({
+                icon: 'success',
+                title: "حالت پرداخت به پیمانکار فعال شد.",
+                text: "الان فقط کافیه پروژه مورد نظرت رو انتخاب کنی تا پیمانکاران اون پروژه رو دریافت کنی",
+                confirmButtonText: "باشه مرسی",
+            });
+        }, 300);
+    });
+
+    function showAjaxLoading() {
+        $('#project').css('width', '92%');
+        setTimeout(function () {
+            $(".ajax-loading").fadeIn();
+        }, 250);
+    }
+
+    function hideAjaxLoading() {
+        $(".ajax-loading").fadeOut();
+        $('#project').css('width', '100%');
+    }
+
+
+    //Send Category id with Ajax and Recive this properties
+    function changeContractorValue(categoryId) {
+        $.ajax({
+            url: '/admin/give/contractor',
+            type: 'get',
+            dataType: 'json',
+            data: {
+                project_id: categoryId
+            },
+            success: function (data) {
+                for (var i = 0; i < data.filters.length; i++)
+                    $("#parent_id").append('<option value=" ' + data.filters[i].id + '" >' + data.filters[i].persian_name + '</option>');
+            }
+        });
+    }
 
 });
