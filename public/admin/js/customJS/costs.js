@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    console.clear();
+    
 
     $('.delete-cost').on('click', function () {
         var cost = $(this).parents('td').siblings('td.costTitle').text();
@@ -59,6 +59,7 @@ $(document).ready(function () {
     $(".ajax-loading").hide();
     //Given Data From Category Id
     $(document).on('change', '#project', function () {
+        console.clear();
         var isNeedContractor = $('input[name=contractor_pay]:checked', '#project-form').val();
         if (isNeedContractor != 'true'){
             hideAjaxLoading();
@@ -67,6 +68,7 @@ $(document).ready(function () {
 
         var projectId = $(this).val();
         showAjaxLoading();
+        changeContractorValue();
         
     });
 
@@ -99,17 +101,19 @@ $(document).ready(function () {
 
 
     //Send Category id with Ajax and Recive this properties
-    function changeContractorValue(categoryId) {
+    function changeContractorValue(id) {
         $.ajax({
             url: '/admin/give/contractor',
             type: 'get',
             dataType: 'json',
             data: {
-                project_id: categoryId
+                project_id: id
             },
             success: function (data) {
-                for (var i = 0; i < data.filters.length; i++)
-                    $("#parent_id").append('<option value=" ' + data.filters[i].id + '" >' + data.filters[i].persian_name + '</option>');
+                // for (var i = 0; i < data.filters.length; i++)
+                //     $("#parent_id").append('<option value=" ' + data.filters[i].id + '" >' + data.filters[i].persian_name + '</option>');
+                alert('successful');
+                console.log(data);
             }
         });
     }
