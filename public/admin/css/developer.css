@@ -173,5 +173,11 @@ h2#swal2-title {
 }
 .pay-moeny{
     padding: 10px;
-    
+}
+
+.costs-button{
+    width: 100%;
+    margin: 0 auto;
+    font-size: large;
+    display: block;
 }
