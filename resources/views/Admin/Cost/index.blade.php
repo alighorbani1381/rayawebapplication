@@ -43,6 +43,7 @@
                         <th>عنوان هزینه</th>
                         <th>توضیحات (خلاصه)</th>
                         <th class="tac">وضعیت</th>
+                        <th class="tac">زمان ثبت</th>
                         <th>نوع هزینه</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
@@ -67,6 +68,8 @@
                            </button>
                            @endif
                         </td>
+                        @php $time = verta($cost->created_at); @endphp
+                        <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
                         <td>
                            @if($cost->type != null)
                            {{ $cost->type }}
@@ -92,6 +95,7 @@
                   </tbody>
                </table>
             </div>
+
             <div role="tabpanel" class="tab-pane fade" id="dropdown1" aria-labelledby="dropdown1-tab">
                <table id="datatable" class="table table-striped table-bordered">
                   <thead>
@@ -101,6 +105,7 @@
                         <th>توضیحات (خلاصه)</th>
                         <th>عنوان پروژه</th>
                         <th class="tac">وضعیت</th>
+                        <th class="tac">زمان ثبت</th>
                         <th>نوع هزینه</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
@@ -124,6 +129,8 @@
                            </button>
                            @endif
                         </td>
+                        @php $time = verta($cost->created_at); @endphp
+                        <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
                         <td>
                            @if($cost->type != null)
                            {{ $cost->cost_type }}
@@ -150,6 +157,7 @@
                   </tbody>
                </table>
             </div>
+
             <div role="tabpanel" class="tab-pane fade" id="dropdown2" aria-labelledby="dropdown2-tab">
                <table id="datatable" class="table table-striped table-bordered">
                   <thead>
@@ -160,6 +168,7 @@
                         <th>توضیحات (خلاصه)</th>
                         <th>عنوان پروژه</th>
                         <th class="tac">وضعیت</th>
+                        <th class="tac">زمان</th>
                         <th>نوع هزینه</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
@@ -186,6 +195,8 @@
                            </button>
                            @endif
                         </td>
+                        @php $time = verta($cost->created_at); @endphp
+                        <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
                         <td>
                            @if($cost->type != null)
                            {{ $cost->cost_type }}
