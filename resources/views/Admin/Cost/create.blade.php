@@ -190,6 +190,40 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12" style="margin: 11px -8px;">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">پرداخت به پیمانکار</label>
+                                    <div class="pretty p-icon p-round p-pulse">
+                                        <input class="earning-paid" id="project-pay" type="radio" name="contractor_pay"  value="true">
+
+                                        <div class="state p-success">
+                                            <label>پرداخت بابت پروژه</label> &nbsp; &nbsp; &nbsp; &nbsp;
+                                            <i class="icon mdi mdi-check"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="pretty p-icon p-round p-pulse">
+                                        <input class="earning-paid" id="normal-pay" type="radio" name="contractor_pay"  value="true">
+
+                                        <div class="state p-success">
+                                            <label>پرداخت غیر از پروژه</label> &nbsp; &nbsp; &nbsp; &nbsp;
+                                            <i class="icon mdi mdi-check"></i>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="pretty p-icon p-round p-pulse">
+                                        <input class="earning-unpaid" id="deactive" type="radio" name="contractor_pay" checked value="false">
+
+                                        <div class="state p-danger">
+                                            <label>عدم پرداخت</label> &nbsp; &nbsp; &nbsp; &nbsp;
+                                            <i class="icon mdi mdi-check"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="row">
                             <div class="col-md-12">
@@ -212,32 +246,7 @@
                         </div>
 
                         
-                        <div class="row">
-                            <div class="col-md-12" style="margin: 11px -8px;">
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label">پرداخت به پیمانکار</label>
-                                    <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-paid" id="active" type="radio" name="contractor_pay"  value="true">
-
-                                        <div class="state p-success">
-                                            <label>پرداخت</label> &nbsp; &nbsp; &nbsp; &nbsp;
-                                            <i class="icon mdi mdi-check"></i>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-unpaid" id="deactive" type="radio" name="contractor_pay" checked value="false">
-
-                                        <div class="state p-danger">
-                                            <label>عدم پرداخت</label> &nbsp; &nbsp; &nbsp; &nbsp;
-                                            <i class="icon mdi mdi-check"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                       
 
                         <div class="row">
                             <div class="col-md-12" style="margin: 11px -8px;">
