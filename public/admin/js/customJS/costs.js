@@ -69,7 +69,7 @@ $(document).ready(function () {
         var projectId = $(this).val();
         showAjaxLoading();
         hideContractorBox();
-        renameContractorLabel('لیست کارمندان');
+        renameContractorLabel('لیست کاربران');
         clearContractorBox();
         getProjectContractors(projectId);
 
@@ -82,6 +82,7 @@ $(document).ready(function () {
         hideAjaxLoading();
         hideContractorBox();
         clearContractorBox();
+        renameProjectSubmit('ثبت هزینه برای پروژه');
     });
 
     $('input[type="radio"]#project-pay').on('click change', function (e) {
@@ -99,6 +100,7 @@ $(document).ready(function () {
         hideContractorBox();
         getProjectContractors(projectId);
         $('#project').prop('selectedIndex',0);
+        renameProjectSubmit('ثبت هزینه برای پیمانکار');
     });
 
     $('input[type="radio"]#normal-pay').on('click change', function (e) {
@@ -114,8 +116,9 @@ $(document).ready(function () {
         deActiveProjectBox();
         hideAjaxLoading();
         clearContractorBox();
-        renameContractorLabel('لیست کارمندان');
+        renameContractorLabel('لیست کاربران');
         getContractors();
+        renameProjectSubmit('ثبت هزینه برای کاربر');
     });
 
     $("#clear-form").on('click', function(){
@@ -225,11 +228,15 @@ $(document).ready(function () {
         $("#contractors-box").html('');
     }
     function activeProjectBox() {
-        $("#project-box").prop('disabeld', true);
+        $("#project").prop('disabled', false);
     }
 
     function deActiveProjectBox() {
-        $("#project-box").prop('disabeld', false);
+        $("#project").prop('disabled', true);
     }
 
+    function renameProjectSubmit(newName) {
+        $('#project-submit').text('');
+        $('#project-submit').text(newName);
+    }
 });
