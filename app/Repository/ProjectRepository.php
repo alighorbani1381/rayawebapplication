@@ -1,6 +1,9 @@
 <?php
 namespace App\Repository;
+
+use App\Category;
 use App\Project;
+use App\User;
 use Illuminate\Support\Facades\DB;
 class ProjectRepository
 {
@@ -112,7 +115,7 @@ class ProjectRepository
             ->get();
     }
 
-    public static function getContractors($projectId)
+    public static function getProjectContractors($projectId)
     {
         return DB::table('project_contractor')
             ->where('project_contractor.project_id', $projectId)
@@ -147,7 +150,7 @@ class ProjectRepository
         Project::findOrFail($id);
         $project['project'] = $this->getProject($id);
         $project['categories'] = $this->getCategories($id);
-        $project['contractors'] = $this->getContractors($id);
+        $project['contractors'] = $this->getProjectContractors($id);
         $project['earnings'] = $this->getEarnings($id);
         return $project;
     }
@@ -234,4 +237,14 @@ class ProjectRepository
             $this->updateProject($project->id, $request);
         });
     }
+
+    public function getMainCategories()
+    {
+        return Category::where('child', '!=', '0')->get();
+    }
+    public function getContractors()
+    {
+        return User::where('type', 'contractor')->get();
+    }
+    
 }
