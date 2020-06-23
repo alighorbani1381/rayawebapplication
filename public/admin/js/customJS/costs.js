@@ -69,6 +69,10 @@ $(document).ready(function () {
 
         var projectId = $(this).val();
         showAjaxLoading();
+        hideContractorBox();
+        renameContractorLabel('لیست کارمندان');
+        clearContractorBox();
+        getProjectContractors(projectId);
 
 
     });
@@ -130,11 +134,6 @@ $(document).ready(function () {
                 type: 'all'
             },
             success: function (data) {
-                console.clear();
-                console.log(data);
-
-                clearContractorBox();
-                renameContractorLabel('لیست کارمندان');
                 if (data.admins.length != 0) {
                     $("#contractors-box").append('<optgroup label="مدیران">');
                     for (var i = 0; i < data.admins.length; i++) {
@@ -158,7 +157,7 @@ $(document).ready(function () {
         });
     }
 
-    function changeContractlue(id) {
+    function getProjectContractors(id) {
         $.ajax({
             url: '/admin/give/contractor',
             type: 'get',
@@ -167,10 +166,22 @@ $(document).ready(function () {
                 project_id: id
             },
             success: function (data) {
-                // for (var i = 0; i < data.filters.length; i++)
-                //     $("#parent_id").append('<option value=" ' + data.filters[i].id + '" >' + data.filters[i].persian_name + '</option>');
-                alert('successful');
+                console.clear();
                 console.log(data);
+
+                renameContractorLabel('کارمندان این پروژه');
+                if (data.contractors.length != 0) {
+                    for (var i = 0; i < data.contractors.length; i++) {
+                        var fullName = data.contractors[i].name + " " + data.contractors[i].lastname;
+                        $("#contractors-box").append('<option value=" ' + data.contractors[i].id + '" >' + fullName + '</option>');
+                    }
+                }
+
+                setTimeout(function() {
+                    hideAjaxLoading();
+                }, 500);
+                
+                showContractorBox();
             }
         });
     }
