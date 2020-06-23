@@ -93,4 +93,14 @@ class UserController extends AdminController
         Session::flash('deleteUser');
         return redirect()->route('users.index');
     }
+
+    public function getContractors(Request $request)
+    {
+        if(! $request->ajax())
+        return null;
+
+        $contractors = User::where('type', 'contractor')->get();
+        $admins = User::where('type', 'admin')->get();
+        return response()->json(['contractors' => $contractors, 'admins' => $admins]);
+    }
 }
