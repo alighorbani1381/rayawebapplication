@@ -83,7 +83,7 @@ $(document).ready(function () {
         setTimeout(function () {
             Swal.fire({
                 icon: 'success',
-                title: "حالت پرداخت به کارمند فعال شد.",
+                title: "حالت پرداخت به کارمند (بابت انجام پروژه) فعال شد.",
                 text: "الان فقط کافیه پروژه مورد نظرت رو انتخاب کنی تا کارمندان اون پروژه رو دریافت کنی",
                 confirmButtonText: "باشه مرسی",
             });
