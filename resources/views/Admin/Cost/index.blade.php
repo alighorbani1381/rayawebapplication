@@ -43,6 +43,7 @@
                                 <th>ردیف</th>
                                 <th>عنوان هزینه</th>
                                 <th>توضیحات (خلاصه)</th>
+                                <th class="tac">وضعیت</th>
                                 <th>نوع هزینه</th>
                                 <th class="tac">ویرایش</th>
                                 <th class="tac">حذف</th>
@@ -55,6 +56,20 @@
                                 <td><?= $row  + 1 ?></td>
                                 <td class="costTitle" type="extra">{{ $cost->title }}</td>
                                 <td>{{ $cost->sub_desc }}</td>
+
+                                <td class="tac">
+                                    @if ($cost->status == 'paid')
+                                    <button type="button"
+                                        class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">
+                                        پرداخت شده
+                                    </button>
+                                    @else
+                                    <button type="button"
+                                        class="tac btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">در
+                                        پرداخت نشده
+                                    </button>
+                                    @endif
+                                </td>
                                 <td>
                                     @if($cost->type != null)
                                     {{ $cost->type }}
@@ -91,6 +106,7 @@
                                 <th>عنوان هزینه</th>
                                 <th>توضیحات (خلاصه)</th>
                                 <th>عنوان پروژه</th>
+                                <th class="tac">وضعیت</th>
                                 <th>نوع هزینه</th>
                                 <th class="tac">ویرایش</th>
                                 <th class="tac">حذف</th>
@@ -104,6 +120,19 @@
                                 <td class="costTitle" type="project_base">{{ $cost->title }}</td>
                                 <td>{{ $cost->sub_desc }}</td>
                                 <td class="projectName">{{ $cost->project_title }}</td>
+                                <td class="tac">
+                                    @if ($cost->status == 'paid')
+                                    <button type="button"
+                                        class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">
+                                        پرداخت شده
+                                    </button>
+                                    @else
+                                    <button type="button"
+                                        class="tac btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">در
+                                        پرداخت نشده
+                                    </button>
+                                    @endif
+                                </td>
                                 <td>
                                     @if($cost->type != null)
                                     {{ $cost->cost_type }}
@@ -141,7 +170,7 @@
                                 <th>پرداخت شده به</th>
                                 <th>توضیحات (خلاصه)</th>
                                 <th>عنوان پروژه</th>
-                                <th>وضعیت</th>
+                                <th class="tac">وضعیت</th>
                                 <th>نوع هزینه</th>
                                 <th class="tac">ویرایش</th>
                                 <th class="tac">حذف</th>
@@ -161,11 +190,11 @@
                                     <button type="button"
                                         class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">
                                         پرداخت شده
-                                        </button>
+                                    </button>
                                     @else
                                     <button type="button"
                                         class="tac btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">در
-                                    پرداخت نشده     
+                                        پرداخت نشده
                                     </button>
                                     @endif
                                 </td>
