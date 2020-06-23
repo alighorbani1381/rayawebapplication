@@ -73,6 +73,7 @@ $(document).ready(function () {
     });
 
     $('input[type="radio"]#deactive').on('click change', function (e) {
+        showProjectBox();
         hideAjaxLoading();
         hideContractorBox();
         clearContractorBox();
@@ -82,8 +83,8 @@ $(document).ready(function () {
         setTimeout(function () {
             Swal.fire({
                 icon: 'success',
-                title: "حالت پرداخت به پیمانکار فعال شد.",
-                text: "الان فقط کافیه پروژه مورد نظرت رو انتخاب کنی تا پیمانکاران اون پروژه رو دریافت کنی",
+                title: "حالت پرداخت به کارمند فعال شد.",
+                text: "الان فقط کافیه پروژه مورد نظرت رو انتخاب کنی تا کارمندان اون پروژه رو دریافت کنی",
                 confirmButtonText: "باشه مرسی",
             });
         }, 300);
@@ -93,13 +94,13 @@ $(document).ready(function () {
         setTimeout(function () {
             Swal.fire({
                 icon: 'success',
-                title: "حالت پرداخت معمولی (غیر پروژه ای) برای پیمانکاران فعال شد.",
+                title: "حالت پرداخت معمولی (غیر پروژه ای) برای کارمندان فعال شد.",
                 text: "از این گزینه برای پرداخت هایی انجام می شود که ارتباطی با پروژه ندارد برای مثال پرداختی های مدیر برای خودش",
                 confirmButtonText: "باشه مرسی",
             });
         }, 300);
-
         getContractors();
+        hideProjectBox();
         hideAjaxLoading();
 
     });
@@ -131,7 +132,7 @@ $(document).ready(function () {
                 console.log(data);
 
                 clearContractorBox();
-                renameContractorLabel('لیست پیمانکاران');
+                renameContractorLabel('لیست کارمندان');
                 if (data.admins.length != 0) {
                     $("#contractors-box").append('<optgroup label="مدیران">');
                     for (var i = 0; i < data.admins.length; i++) {
@@ -142,7 +143,7 @@ $(document).ready(function () {
                 }
 
                 if (data.contractors.length != 0) {
-                    $("#contractors-box").append('<optgroup label="پیمانکاران">');
+                    $("#contractors-box").append('<optgroup label="کارمندان">');
                     for (var i = 0; i < data.contractors.length; i++) {
                         var fullName = data.contractors[i].name + " " + data.contractors[i].lastname;
                         $("#contractors-box").append('<option value=" ' + data.contractors[i].id + '" >' + fullName + '</option>');
@@ -175,9 +176,17 @@ $(document).ready(function () {
     function showContractorBox() {
         $("#contractor-mainbox").fadeIn();
     }
-
+    
     function hideContractorBox() {
         $("#contractor-mainbox").fadeOut();
+    }
+    
+    function showProjectBox() {
+        $("#project-box").fadeIn();
+    }
+
+    function hideProjectBox() {
+        $("#project-box").fadeOut();
     }
     
     function renameContractorLabel(newName) {
