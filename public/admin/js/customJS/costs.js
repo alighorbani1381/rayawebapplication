@@ -94,6 +94,8 @@ $(document).ready(function () {
             });
         }, 300);
         showProjectBox();
+        hideContractorBox();
+        clearContractorBox();
     });
 
     $('input[type="radio"]#normal-pay').on('click change', function (e) {
@@ -105,10 +107,11 @@ $(document).ready(function () {
                 confirmButtonText: "باشه مرسی",
             });
         }, 300);
-        getContractors();
         hideProjectBox();
         hideAjaxLoading();
-
+        clearContractorBox();
+        renameContractorLabel('لیست کارمندان');
+        getContractors();
     });
 
     function showAjaxLoading() {
@@ -120,7 +123,9 @@ $(document).ready(function () {
 
     function hideAjaxLoading() {
         $(".ajax-loading").fadeOut();
-        $('#project').css('width', '100%');
+        $('#project').delay(200).animate({ width: "100%", });
+
+
     }
 
 
@@ -134,6 +139,8 @@ $(document).ready(function () {
                 type: 'all'
             },
             success: function (data) {
+                clearContractorBox();
+
                 if (data.admins.length != 0) {
                     $("#contractors-box").append('<optgroup label="مدیران">');
                     for (var i = 0; i < data.admins.length; i++) {
@@ -168,7 +175,7 @@ $(document).ready(function () {
             success: function (data) {
                 console.clear();
                 console.log(data);
-
+                clearContractorBox();
                 renameContractorLabel('کارمندان این پروژه');
                 if (data.contractors.length != 0) {
                     for (var i = 0; i < data.contractors.length; i++) {
@@ -177,10 +184,8 @@ $(document).ready(function () {
                     }
                 }
 
-                setTimeout(function() {
-                    hideAjaxLoading();
-                }, 500);
-                
+
+                hideAjaxLoading();
                 showContractorBox();
             }
         });
@@ -205,6 +210,7 @@ $(document).ready(function () {
     function renameContractorLabel(newName) {
         $("#contractor-label").text(newName);
     }
+
     function clearContractorBox() {
         $("#contractors-box").html('');
     }
