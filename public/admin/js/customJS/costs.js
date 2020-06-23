@@ -115,6 +115,13 @@ $(document).ready(function () {
         getContractors();
     });
 
+    $("#clear-form").on('click', function(){
+        showProjectBox();
+        hideAjaxLoading();
+        hideContractorBox();
+        clearContractorBox();
+    });
+
     function showAjaxLoading() {
         $('#project').css('width', '92%');
         setTimeout(function () {
