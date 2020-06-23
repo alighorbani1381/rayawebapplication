@@ -38,10 +38,7 @@ class EarningController extends Controller
 
     public function create($earning = null)
     {
-        if ($earning != null)
-            $projects = Project::where('id', $earning)->get();
-        else
-            $projects  = Project::where('status', '!=', 'finished')->get();
+        $projects = $this->repo->getProjectWant();
 
         if ($projects->count() != 0)
             return view('Admin.Earning.create', compact('projects'));

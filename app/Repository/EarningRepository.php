@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Earning;
+use App\Project;
 
 class EarningRepository
 {
@@ -37,5 +38,15 @@ class EarningRepository
             ->select('projects.title AS project_title', 'projects.unique_id', 'projects.price', 'earnings.*')
             ->orderBy('earnings.id', 'desc')
             ->paginate(15);
+    }
+
+    public function getProjectWant($earning)
+    {
+        if ($earning != null)
+            $projects = Project::where('id', $earning)->get();
+        else
+            $projects  = Project::where('status', '!=', 'finished')->get();
+
+            return $projects;
     }
 }
