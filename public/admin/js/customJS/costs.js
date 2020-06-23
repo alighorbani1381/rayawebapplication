@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    $(".ajax-loading").hide();
 
 
     $('.delete-cost').on('click', function () {
@@ -56,8 +56,9 @@ $(document).ready(function () {
     });
 
 
-    $(".ajax-loading").hide();
-    //Given Data From Category Id
+
+
+
     $(document).on('change', '#project', function () {
         console.clear();
         var isNeedContractor = $('input[name=contractor_pay]:checked', '#project-form').val();
@@ -68,7 +69,7 @@ $(document).ready(function () {
 
         var projectId = $(this).val();
         showAjaxLoading();
-        
+
 
     });
 
@@ -88,6 +89,7 @@ $(document).ready(function () {
                 confirmButtonText: "باشه مرسی",
             });
         }, 300);
+        showProjectBox();
     });
 
     $('input[type="radio"]#normal-pay').on('click change', function (e) {
@@ -176,11 +178,11 @@ $(document).ready(function () {
     function showContractorBox() {
         $("#contractor-mainbox").fadeIn();
     }
-    
+
     function hideContractorBox() {
         $("#contractor-mainbox").fadeOut();
     }
-    
+
     function showProjectBox() {
         $("#project-box").fadeIn();
     }
@@ -188,7 +190,7 @@ $(document).ready(function () {
     function hideProjectBox() {
         $("#project-box").fadeOut();
     }
-    
+
     function renameContractorLabel(newName) {
         $("#contractor-label").text(newName);
     }
