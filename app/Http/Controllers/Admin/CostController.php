@@ -177,7 +177,7 @@ class CostController extends Controller
 
     public function destroy(Cost $cost)
     {
-        $cost->delete();
+        //$cost->delete();
         session()->flash('DeleteCost');
         return back();
     }
