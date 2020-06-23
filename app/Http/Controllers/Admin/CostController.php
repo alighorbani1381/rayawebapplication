@@ -11,11 +11,15 @@ use Illuminate\Http\Request;
 
 class CostRepository
 {
+    public function isContractPay($request)
+    {
+        return ($request->project_id != null) && ($request->contractor_id != null);
+    }
 
     public function projectStore($request)
     {
         session()->flash('ProjectStore');
-        return $pay =  isset($request->contractor_pay) ? $this->projectContractorPay($request) : $this->projectStorePay($request);
+        return $pay =  ($this->isContractPay($request)) ? $this->projectContractorPay($request) : $this->projectStorePay($request);
     }
 
     public function projectStorePay($request)
@@ -44,7 +48,7 @@ class CostRepository
     public function externalStore($request)
     {
         session()->flash('ExtenalStore');
-        $request->validate([  
+        $request->validate([
             'title' => 'required',
             'description' => 'required',
             'money_paid' => 'required|numeric',
@@ -64,16 +68,33 @@ class CostRepository
 
     public function projectContractorPay($request)
     {
-        return 'contract pay';
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'money_paid' => 'required|numeric',
+            'status' => 'required',
+        ]);
+        $type =  ($request->type == 0) ? null : $request->type;
+        Cost::create([
+            'generator' => '1',
+            'project_id' => null,
+            'contractor_id' => $request->contractor_id,
+            'title' => $request->title,
+            'description' => $request->description,
+            'money_paid' => $request->money_paid,
+            'type' => $type,
+            'status' => $request->status,
+
+        ]);
     }
 
     public function getProjectBaseCosts()
     {
         return Cost::join('projects', 'costs.project_id', '=', 'projects.id')
-        ->select('projects.title AS project_title', 'costs.*')
-        ->where('project_id', '!=', null)
-        ->where('contractor_id', null)
-        ->get();
+            ->select('projects.title AS project_title', 'costs.*')
+            ->where('project_id', '!=', null)
+            ->where('contractor_id', null)
+            ->get();
     }
 
     /* public function getContractorCosts()
@@ -88,14 +109,14 @@ class CostRepository
     public function getExtraCosts()
     {
         return Cost::where('project_id', null)
-        ->where('contractor_id', null)
-        ->get();
+            ->where('contractor_id', null)
+            ->get();
     }
 
     public function getCosts()
     {
-        $costs ['extra'] = $this->getExtraCosts();
-        $costs ['project_base'] = $this->getProjectBaseCosts();
+        $costs['extra'] = $this->getExtraCosts();
+        $costs['project_base'] = $this->getProjectBaseCosts();
         return $costs;
     }
 }
@@ -109,7 +130,7 @@ class CostController extends Controller
 
     public function index()
     {
-        
+
         $costs = $this->repo->getCosts();
         // dd($costs);
         return view('Admin.Cost.index', compact('costs'));
@@ -125,12 +146,13 @@ class CostController extends Controller
     public function store(Request $request)
     {
         $request->validate(['storeType' => 'required'], ['storeType.required' => 'Error in the Form You Must Refresh This Page!']);
+         //return $request->all();
         $type = $request->get('storeType');
 
         if ($type == 'project')
-            return $this->repo->projectStore($request);
+            $this->repo->projectStore($request);
         else
-            return $this->repo->externalStore($request);
+            $this->repo->externalStore($request);
 
 
         return redirect()->route('costs.index');
@@ -153,7 +175,7 @@ class CostController extends Controller
 
     public function destroy(Cost $cost)
     {
-        //$cost->delete();
+        $cost->delete();
         session()->flash('DeleteCost');
         return back();
     }
