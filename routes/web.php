@@ -27,6 +27,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
     Route::post('projects/contractors/divide', 'ProjectController@percentDivide')->name('projects.divide');
     Route::resource('projects', 'ProjectController');
     Route::resource('users', 'UserController');
+    Route::get('give/contractor', 'UserController@getContractors');
 });
 Route::get('test', function(){
     
