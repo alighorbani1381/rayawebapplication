@@ -60,7 +60,6 @@ $(document).ready(function () {
 
 
     $(document).on('change', '#project', function () {
-        console.clear();
         var isNeedContractor = $('input[name=contractor_pay]:checked', '#project-form').val();
         if (isNeedContractor != 'true') {
             hideAjaxLoading();
@@ -85,7 +84,6 @@ $(document).ready(function () {
     });
 
     $('input[type="radio"]#project-pay').on('click change', function (e) {
-        console.clear();
         var projectId = $("#project option:first").val();       
         setTimeout(function () {
             Swal.fire({
@@ -176,8 +174,6 @@ $(document).ready(function () {
                 project_id: id
             },
             success: function (data) {
-                console.clear();
-                console.log(data);
                 clearContractorBox();
                 renameContractorLabel('کارمندان این پروژه');
                 if (data.contractors.length != 0) {
