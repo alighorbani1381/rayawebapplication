@@ -99,8 +99,8 @@ class UserController extends AdminController
         if(! $request->ajax())
         return null;
 
-        $contractors = User::where('type', 'contractor')->get();
-        $admins = User::where('type', 'admin')->get();
+        $contractors = User::where('type', 'contractor')->select('id', 'name', 'lastname')->get();
+        $admins = User::where('type', 'admin')->select('id', 'name', 'lastname')->get();
         return response()->json(['contractors' => $contractors, 'admins' => $admins]);
     }
 }
