@@ -50,7 +50,7 @@ $(document).ready(function () {
             case 'contractor':
                 var projectName = $(this).parents('td').siblings('td.projectName').text();
                 var userName = $(this).parents('td').siblings('td.userName').text();;
-                var message = "آیا  از حدف" + " « " + cost  + " » " + " برای " + " « " + userName  + " » " + "از پروژه" + " « " + projectName  + " » " + "اطمینان دارید؟"  ;
+                var message = "آیا  از حدف" + " « " + cost + " » " + " برای " + " « " + userName + " » " + "از پروژه" + " « " + projectName + " » " + "اطمینان دارید؟";
                 Swal.fire({
                     title: message,
                     text: "در صورت حذف هزینه مورد نظر برای این پروژه حذف و از درون سیستم پاک می شود.",
@@ -105,7 +105,7 @@ $(document).ready(function () {
     });
 
     $('input[type="radio"]#project-pay').on('click change', function (e) {
-        var projectId = $("#project option:first").val();       
+        var projectId = $("#project option:first").val();
         setTimeout(function () {
             Swal.fire({
                 icon: 'success',
@@ -118,7 +118,7 @@ $(document).ready(function () {
         showProjectBox();
         hideContractorBox();
         getProjectContractors(projectId);
-        $('#project').prop('selectedIndex',0);
+        $('#project').prop('selectedIndex', 0);
         renameProjectSubmit('ثبت هزینه برای پیمانکار');
     });
 
@@ -140,7 +140,7 @@ $(document).ready(function () {
         renameProjectSubmit('ثبت هزینه برای کاربر');
     });
 
-    $("#clear-form").on('click', function(){
+    $("#clear-form").on('click', function () {
         activeProjectBox();
         showProjectBox();
         hideAjaxLoading();
