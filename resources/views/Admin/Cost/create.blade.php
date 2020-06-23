@@ -204,7 +204,7 @@
                                     </div>
 
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-paid" id="normal-pay" type="radio" name="contractor_pay"  value="false">
+                                        <input class="earning-paid" id="normal-pay" type="radio" name="contractor_pay"  value="without-project">
 
                                         <div class="state p-success">
                                             <label>پرداخت غیر از پروژه</label> &nbsp; &nbsp; &nbsp; &nbsp;
@@ -293,7 +293,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
                         <button type="reset" id="clear-form" class="btn btn-warning waves-effect">پاک کردن</button>
-                        <button type="submit" class="btn btn-success waves-effect waves-light">ثبت هزینه برای پروژه</button>
+                        <button type="submit" id="project-submit" class="btn btn-success waves-effect waves-light">ثبت هزینه برای پروژه</button>
                     </div>
             </form>
         </div>
