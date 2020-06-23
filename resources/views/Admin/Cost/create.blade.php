@@ -39,9 +39,9 @@
 <div class="row">
     <div class="col-md-8 col-lg-offset-2">
         <div class="card-box">
-            <button class="btn btn-primary waves-effect waves-light pay-moeny" data-toggle="modal"
+            <button class="costs-button btn btn-primary waves-effect waves-light pay-moeny" data-toggle="modal"
                 data-target="#pay-user-modal">
-                <i class="fa fa-line-chart"></i>&nbsp;
+                <i class="fa fa-line-chart" style="vertical-align: -3px;"></i>&nbsp;
                 ثبت هزینه های مربوط به پروژه و کارمندان
             </button>
             <p style="margin:20px 0;">
@@ -86,9 +86,9 @@
 <div class="row">
     <div class="col-md-8 col-lg-offset-2">
         <div class="card-box">
-            <button class="btn btn-purple waves-effect waves-light pay-moeny" data-toggle="modal"
+            <button class="costs-button btn btn-purple waves-effect waves-light pay-moeny" data-toggle="modal"
                 data-target="#pay-external-modal">
-                <i class="fa fa-life-ring"></i>&nbsp;
+                <i class="fa fa-external-link" style="vertical-align: -3px;"></i>&nbsp;
                 ثبت هزینه های جانبی
             </button>
             <p style="margin:20px 0;">
