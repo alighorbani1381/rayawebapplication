@@ -85,6 +85,8 @@ $(document).ready(function () {
     });
 
     $('input[type="radio"]#project-pay').on('click change', function (e) {
+        console.clear();
+        var projectId = $("#project option:first").val();       
         setTimeout(function () {
             Swal.fire({
                 icon: 'success',
@@ -95,7 +97,8 @@ $(document).ready(function () {
         }, 300);
         showProjectBox();
         hideContractorBox();
-        clearContractorBox();
+        getProjectContractors(projectId);
+        $('#project').prop('selectedIndex',0);
     });
 
     $('input[type="radio"]#normal-pay').on('click change', function (e) {
