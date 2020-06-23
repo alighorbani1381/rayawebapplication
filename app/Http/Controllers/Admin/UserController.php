@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+
 use App\User;
+use App\Http\Controllers\Admin\ProjectController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class UserRequest
@@ -28,8 +31,6 @@ class UserRequest
         ];
         $request->validate($fileds, $messages);
     }
-
-
 }
 
 class UserController extends AdminController
@@ -96,8 +97,20 @@ class UserController extends AdminController
 
     public function getContractors(Request $request)
     {
-        if(! $request->ajax())
-        return null;
+        // if (!$request->ajax())
+        //     return abort(404);
+
+
+        $projectId = $request->get('project_id');
+        if ($projectId != null) {
+            $projectContractors =  DB::table('project_contractor')
+                ->where('project_contractor.project_id', $projectId)
+                ->join('users', 'project_contractor.contractor_id', '=', 'users.id')
+                ->select('users.id', 'users.name', 'users.lastname')
+                ->orderBy('project_contractor.progress', 'desc')
+                ->get();
+            return response()->json(['contractors' => $projectContractors]);
+        }
 
         $contractors = User::where('type', 'contractor')->select('id', 'name', 'lastname')->get();
         $admins = User::where('type', 'admin')->select('id', 'name', 'lastname')->get();
