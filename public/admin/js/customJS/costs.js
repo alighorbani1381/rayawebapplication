@@ -68,7 +68,7 @@ $(document).ready(function () {
 
         var projectId = $(this).val();
         showAjaxLoading();
-        changeContractorValue();
+        
 
     });
 
@@ -98,7 +98,7 @@ $(document).ready(function () {
         }, 300);
 
         getContractors();
-
+        hideAjaxLoading();
 
     });
 
@@ -115,7 +115,7 @@ $(document).ready(function () {
     }
 
 
-    //Send Category id with Ajax and Recive this properties
+    // Get Contractor From Server it's Related to Normal pay
     function getContractors() {
         $.ajax({
             url: '/admin/give/contractor',
@@ -129,6 +129,7 @@ $(document).ready(function () {
                 console.log(data);
 
                 clearContractorBox();
+                renameContractorLabel('لیست پیمانکاران');
                 if (data.admins.length != 0) {
                     $("#contractors-box").append('<optgroup label="مدیران">');
                     for (var i = 0; i < data.admins.length; i++) {
