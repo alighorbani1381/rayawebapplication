@@ -76,12 +76,23 @@ $(document).ready(function () {
         hideAjaxLoading();
     });
 
-    $('input[type="radio"]#active').on('click change', function(e) {
+    $('input[type="radio"]#project-pay').on('click change', function(e) {
         setTimeout(function () {
             Swal.fire({
                 icon: 'success',
                 title: "حالت پرداخت به پیمانکار فعال شد.",
                 text: "الان فقط کافیه پروژه مورد نظرت رو انتخاب کنی تا پیمانکاران اون پروژه رو دریافت کنی",
+                confirmButtonText: "باشه مرسی",
+            });
+        }, 300);
+    });
+
+    $('input[type="radio"]#normal-pay').on('click change', function(e) {
+        setTimeout(function () {
+            Swal.fire({
+                icon: 'success',
+                title: "حالت پرداخت معمولی (غیر پروژه ای) برای پیمانکاران فعال شد.",
+                text: "از این گزینه برای پرداخت هایی انجام می شود که ارتباطی با پروژه ندارد برای مثال پرداختی های مدیر برای خودش",
                 confirmButtonText: "باشه مرسی",
             });
         }, 300);
