@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    
+
 
     $('.delete-cost').on('click', function () {
         var cost = $(this).parents('td').siblings('td.costTitle').text();
@@ -61,7 +61,7 @@ $(document).ready(function () {
     $(document).on('change', '#project', function () {
         console.clear();
         var isNeedContractor = $('input[name=contractor_pay]:checked', '#project-form').val();
-        if (isNeedContractor != 'true'){
+        if (isNeedContractor != 'true') {
             hideAjaxLoading();
             return false;
         }
@@ -69,14 +69,14 @@ $(document).ready(function () {
         var projectId = $(this).val();
         showAjaxLoading();
         changeContractorValue();
-        
+
     });
 
-    $('input[type="radio"]#deactive').on('click change', function(e) {
+    $('input[type="radio"]#deactive').on('click change', function (e) {
         hideAjaxLoading();
     });
 
-    $('input[type="radio"]#project-pay').on('click change', function(e) {
+    $('input[type="radio"]#project-pay').on('click change', function (e) {
         setTimeout(function () {
             Swal.fire({
                 icon: 'success',
@@ -87,7 +87,7 @@ $(document).ready(function () {
         }, 300);
     });
 
-    $('input[type="radio"]#normal-pay').on('click change', function(e) {
+    $('input[type="radio"]#normal-pay').on('click change', function (e) {
         setTimeout(function () {
             Swal.fire({
                 icon: 'success',
@@ -96,6 +96,10 @@ $(document).ready(function () {
                 confirmButtonText: "باشه مرسی",
             });
         }, 300);
+
+        getContractors();
+
+
     });
 
     function showAjaxLoading() {
@@ -112,20 +116,38 @@ $(document).ready(function () {
 
 
     //Send Category id with Ajax and Recive this properties
-    function changeContractorValue() {
+    function getContractors() {
         $.ajax({
             url: '/admin/give/contractor',
             type: 'get',
             dataType: 'json',
             data: {
-        
+                type: 'all'
             },
             success: function (data) {
-                // for (var i = 0; i < data.filters.length; i++)
-                //     $("#parent_id").append('<option value=" ' + data.filters[i].id + '" >' + data.filters[i].persian_name + '</option>');
-                alert('successful');
-                showContractorBox();
+                console.clear();
                 console.log(data);
+
+                clearContractorBox();
+                if (data.admins.length != 0) {
+                    $("#contractors-box").append('<optgroup label="مدیران">');
+                    for (var i = 0; i < data.admins.length; i++) {
+                        var fullName = data.admins[i].name + " " + data.admins[i].lastname;
+                        $("#contractors-box").append('<option value=" ' + data.admins[i].id + '" >' + fullName + '</option>');
+                    }
+                    $("#contractors-box").append('</optgroup>');
+                }
+
+                if (data.contractors.length != 0) {
+                    $("#contractors-box").append('<optgroup label="پیمانکاران">');
+                    for (var i = 0; i < data.contractors.length; i++) {
+                        var fullName = data.contractors[i].name + " " + data.contractors[i].lastname;
+                        $("#contractors-box").append('<option value=" ' + data.contractors[i].id + '" >' + fullName + '</option>');
+                    }
+                    $("#contractors-box").append('</optgroup>');
+                }
+
+                showContractorBox();
             }
         });
     }
@@ -153,6 +175,9 @@ $(document).ready(function () {
 
     function renameContractorLabel(newName) {
         $("#contractor-label").text(newName);
+    }
+    function clearContractorBox() {
+        $("#contractors-box").html('');
     }
 
 });
