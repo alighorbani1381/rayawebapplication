@@ -144,4 +144,11 @@
     minMbox(message, 250);
 </script>
 @endif
+
+@if(session()->has('ProjectStore'))
+<script>
+    var message = "هزینه با موفقیت ثبت شد .";
+    minMbox(message, 250);
+</script>
+@endif
 @endsection
