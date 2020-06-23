@@ -74,6 +74,8 @@ $(document).ready(function () {
 
     $('input[type="radio"]#deactive').on('click change', function (e) {
         hideAjaxLoading();
+        hideContractorBox();
+        clearContractorBox();
     });
 
     $('input[type="radio"]#project-pay').on('click change', function (e) {
@@ -174,6 +176,10 @@ $(document).ready(function () {
         $("#contractor-mainbox").fadeIn();
     }
 
+    function hideContractorBox() {
+        $("#contractor-mainbox").fadeOut();
+    }
+    
     function renameContractorLabel(newName) {
         $("#contractor-label").text(newName);
     }
