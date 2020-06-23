@@ -169,7 +169,7 @@
                      @foreach ($costs['contractor'] as $row => $cost)
                      <tr>
                         <td><?= $row  + 1 ?></td>
-                        <td class="costTitle" type="costName">{{ $cost->title }}</td>
+                        <td class="costTitle" type="contractor">{{ $cost->title }}</td>
                         <td class="userName">{{ $cost->user_name . " " . $cost->user_lastname  }}</td>
                         <td>{{ $cost->sub_desc }}</td>
                         <td class="projectName">{{ $cost->project_title }}</td>
