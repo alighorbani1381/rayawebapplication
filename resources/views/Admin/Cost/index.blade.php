@@ -48,7 +48,7 @@
                                 <th class="tac">حذف</th>
                             </tr>
                         </thead>
-        
+
                         <tbody>
                             @foreach ($costs['extra'] as $row => $cost)
                             <tr>
@@ -57,9 +57,9 @@
                                 <td>{{ $cost->sub_desc }}</td>
                                 <td>
                                     @if($cost->type != null)
-                                        {{ $cost->type }}
+                                    {{ $cost->type }}
                                     @else
-                                        {{ "ندارد" }}
+                                    {{ "ندارد" }}
                                     @endif
                                 </td>
                                 <td class="tac">
@@ -71,13 +71,14 @@
                                     <form method="post" action="{{ route('costs.destroy', $cost->id) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="delete-cost btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
-                                                class="fa fa-remove"></i> </button>
+                                        <button type="button"
+                                            class="delete-cost btn btn-icon waves-effect waves-light btn-danger m-b-5">
+                                            <i class="fa fa-remove"></i> </button>
                                     </form>
                                 </td>
                             </tr>
                             @endforeach
-        
+
                         </tbody>
                     </table>
                 </div>
@@ -95,7 +96,7 @@
                                 <th class="tac">حذف</th>
                             </tr>
                         </thead>
-        
+
                         <tbody>
                             @foreach ($costs['project_base'] as $row => $cost)
                             <tr>
@@ -105,9 +106,9 @@
                                 <td class="projectName">{{ $cost->project_title }}</td>
                                 <td>
                                     @if($cost->type != null)
-                                        {{ $cost->cost_type }}
+                                    {{ $cost->cost_type }}
                                     @else
-                                        {{ "ندارد" }}
+                                    {{ "ندارد" }}
                                     @endif
                                 </td>
                                 <td class="tac">
@@ -119,19 +120,81 @@
                                     <form method="post" action="{{ route('costs.destroy', $cost->id) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="delete-cost btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
-                                                class="fa fa-remove"></i> </button>
+                                        <button type="button"
+                                            class="delete-cost btn btn-icon waves-effect waves-light btn-danger m-b-5">
+                                            <i class="fa fa-remove"></i> </button>
                                     </form>
                                 </td>
                             </tr>
                             @endforeach
-        
+
                         </tbody>
                     </table>
                 </div>
 
                 <div role="tabpanel" class="tab-pane fade" id="dropdown2" aria-labelledby="dropdown2-tab">
-                    <p> پرداختی به پیمانکاران </p>
+                    <table id="datatable" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ردیف</th>
+                                <th>عنوان هزینه</th>
+                                <th>پرداخت شده به</th>
+                                <th>توضیحات (خلاصه)</th>
+                                <th>عنوان پروژه</th>
+                                <th>وضعیت</th>
+                                <th>نوع هزینه</th>
+                                <th class="tac">ویرایش</th>
+                                <th class="tac">حذف</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($costs['contractor'] as $row => $cost)
+                            <tr>
+                                <td><?= $row  + 1 ?></td>
+                                <td class="costTitle" type="costName">{{ $cost->title }}</td>
+                                <td class="userName">{{ $cost->user_name . " " . $cost->user_lastname  }}</td>
+                                <td>{{ $cost->sub_desc }}</td>
+                                <td class="projectName">{{ $cost->project_title }}</td>
+                                <td class="tac">
+                                    @if ($cost->status == 'paid')
+                                    <button type="button"
+                                        class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">
+                                        پرداخت شده
+                                        </button>
+                                    @else
+                                    <button type="button"
+                                        class="tac btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">در
+                                    پرداخت نشده     
+                                    </button>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($cost->type != null)
+                                    {{ $cost->cost_type }}
+                                    @else
+                                    {{ "ندارد" }}
+                                    @endif
+                                </td>
+                                <td class="tac">
+                                    <a href="{{ route('costs.edit', $cost->id) }}"
+                                        class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
+                                            class="fa fa-pencil"></i> </a>
+                                </td>
+                                <td class="tac">
+                                    <form method="post" action="{{ route('costs.destroy', $cost->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button"
+                                            class="delete-cost btn btn-icon waves-effect waves-light btn-danger m-b-5">
+                                            <i class="fa fa-remove"></i> </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
