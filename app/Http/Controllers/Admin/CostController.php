@@ -91,7 +91,8 @@ class CostRepository
     public function getProjectBaseCosts()
     {
         return Cost::join('projects', 'costs.project_id', '=', 'projects.id')
-            ->select('projects.title AS project_title', 'costs.*')
+            ->join('cost_statics', 'cost_statics.id', '=', 'costs.type')
+            ->select('projects.title AS project_title', 'costs.*', 'cost_statics.title AS cost_type')
             ->where('project_id', '!=', null)
             ->where('contractor_id', null)
             ->get();
@@ -132,7 +133,7 @@ class CostController extends Controller
     {
 
         $costs = $this->repo->getCosts();
-        // dd($costs);
+        //  dd($costs);
         return view('Admin.Cost.index', compact('costs'));
     }
 
