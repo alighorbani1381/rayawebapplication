@@ -112,7 +112,25 @@ $(document).ready(function () {
 
 
     //Send Category id with Ajax and Recive this properties
-    function changeContractorValue(id) {
+    function changeContractorValue() {
+        $.ajax({
+            url: '/admin/give/contractor',
+            type: 'get',
+            dataType: 'json',
+            data: {
+        
+            },
+            success: function (data) {
+                // for (var i = 0; i < data.filters.length; i++)
+                //     $("#parent_id").append('<option value=" ' + data.filters[i].id + '" >' + data.filters[i].persian_name + '</option>');
+                alert('successful');
+                showContractorBox();
+                console.log(data);
+            }
+        });
+    }
+
+    function changeContractlue(id) {
         $.ajax({
             url: '/admin/give/contractor',
             type: 'get',
@@ -127,6 +145,14 @@ $(document).ready(function () {
                 console.log(data);
             }
         });
+    }
+
+    function showContractorBox() {
+        $("#contractor-mainbox").fadeIn();
+    }
+
+    function renameContractorLabel(newName) {
+        $("#contractor-label").text(newName);
     }
 
 });
