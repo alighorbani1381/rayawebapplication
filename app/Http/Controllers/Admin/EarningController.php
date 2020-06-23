@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Earning;
 use App\Http\Controllers\Controller;
+use App\Repository\EarningRepository;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -20,40 +21,17 @@ class EarningRequest
     }
 }
 
-class EarningRepository
-{
-
-    public function createEarning($request)
-    {
-        foreach ($request->title as $index => $title) {
-            $fileds = [
-                'generator' => '1',
-                'project_id' => $request->project,
-                'title' => $title,
-                'description' => $request->description[$index],
-                'received_money' => $request->received_money[$index],
-                'status' => $request->status[$index],
-            ];
-            Earning::create($fileds);
-        }
-    }
-}
-
 class EarningController extends Controller
 {
 
     public function __construct()
     {
-        $this->repo = new EarningRepository();
+        $this->repo =  resolve(EarningRepository::class);
     }
 
     public function index()
     {
-        $earnings = Earning::join('projects', 'earnings.project_id', '=', 'projects.id')
-            ->select('projects.title AS project_title', 'projects.unique_id', 'projects.price', 'earnings.*')
-            ->orderBy('earnings.id', 'desc')
-            ->paginate(15);
-
+        $earnings = $this->repo->getEarningsList();
         return view('Admin.Earning.index', compact('earnings'));
     }
 
@@ -83,12 +61,8 @@ class EarningController extends Controller
 
     public function show($earning)
     {
-        Earning::findOrFail($earning);
-        $earning = Earning::join('projects', 'earnings.project_id', '=', 'projects.id')
-            ->select('projects.id AS project_id','projects.title AS project_title', 'projects.unique_id', 'projects.created_at AS project_start' , 'projects.price', 'earnings.*')
-            ->where('earnings.id', $earning)
-            ->first();
-            return view('Admin.Earning.show', compact('earning'));
+        $earning = $this->getEarning($earning);
+        return view('Admin.Earning.show', compact('earning'));
     }
 
 
