@@ -77,6 +77,7 @@ $(document).ready(function () {
     });
 
     $('input[type="radio"]#deactive').on('click change', function (e) {
+        activeProjectBox();
         showProjectBox();
         hideAjaxLoading();
         hideContractorBox();
@@ -93,6 +94,7 @@ $(document).ready(function () {
                 confirmButtonText: "باشه مرسی",
             });
         }, 300);
+        activeProjectBox();
         showProjectBox();
         hideContractorBox();
         getProjectContractors(projectId);
@@ -109,6 +111,7 @@ $(document).ready(function () {
             });
         }, 300);
         hideProjectBox();
+        deActiveProjectBox();
         hideAjaxLoading();
         clearContractorBox();
         renameContractorLabel('لیست کارمندان');
@@ -116,6 +119,7 @@ $(document).ready(function () {
     });
 
     $("#clear-form").on('click', function(){
+        activeProjectBox();
         showProjectBox();
         hideAjaxLoading();
         hideContractorBox();
@@ -219,6 +223,13 @@ $(document).ready(function () {
 
     function clearContractorBox() {
         $("#contractors-box").html('');
+    }
+    function activeProjectBox() {
+        $("#project-box").prop('disabeld', true);
+    }
+
+    function deActiveProjectBox() {
+        $("#project-box").prop('disabeld', false);
     }
 
 });
