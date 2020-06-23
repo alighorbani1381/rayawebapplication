@@ -277,14 +277,11 @@
                         
                     
 
-                        <div class="row" style="display: none;">
+                        <div class="row" id ="contractor-mainbox" style="display: none;">
                             <div class="col-md-12">
                                 <div class="form-group no-margin">
-                                    <label for="field-7" class="control-label">پیمانکار</label>
+                                    <label for="field-7" class="control-label" id="contractor-label">پیمانکار</label>
                                     <select class="form-control" name="contractor_id" id="contractors-box">
-                                        <option value="">علی</option>
-                                        <option value="">حسن</option>
-                                        <option value="">رضا</option>
                                     </select>
                                 </div>
                             </div>
