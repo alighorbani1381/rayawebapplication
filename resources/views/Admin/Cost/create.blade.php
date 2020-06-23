@@ -245,6 +245,17 @@
                             </div>
                         </div>
 
+                        <div class="row" id ="contractor-mainbox" style="display: none;">
+                            <div class="col-md-12">
+                                <div class="form-group no-margin">
+                                    <label for="field-7" class="control-label" id="contractor-label">پیمانکار</label>
+                                    <select class="form-control" name="contractor_id" id="contractors-box">
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
                         
                        
 
@@ -277,16 +288,7 @@
                         
                     
 
-                        <div class="row" id ="contractor-mainbox" style="display: none;">
-                            <div class="col-md-12">
-                                <div class="form-group no-margin">
-                                    <label for="field-7" class="control-label" id="contractor-label">پیمانکار</label>
-                                    <select class="form-control" name="contractor_id" id="contractors-box">
-                                    </select>
-                                </div>
-                            </div>
-
-                        </div>
+ 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
