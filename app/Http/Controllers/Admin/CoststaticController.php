@@ -3,23 +3,29 @@
 namespace App\Http\Controllers\Admin;
 
 use App\CostStatic;
+use App\Repository\CostStaticRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class CoststaticController extends Controller
 {
 
+  
+    public function __construct()
+    {
+        $this->repo = resolve(CostStaticRepository::class);
+    }
+
     public function index()
     {
-        $staticCosts = CostStatic::orderBy('child')->paginate(15);
+        $staticCosts = $this->repo->getStaticCosts();
         return view('Admin.CostStatic.index', compact('staticCosts'));
     }
 
 
     public function create()
     {
-        $mainCategories = CostStatic::where('child', '0')->get();
+        $mainCategories = $this->repo->getMainCostStatic();
         return view('Admin.CostStatic.create', compact('mainCategories'));
     }
 
@@ -38,10 +44,11 @@ class CoststaticController extends Controller
     }
 
 
+
     public function edit($costStatic)
     {
-        $costStatic = CostStatic::findOrFail($costStatic);
-        $mainCategories = ($costStatic->child == 0) ? [] : CostStatic::where('child', '0')->where('id', '!=', $costStatic)->get();
+        $costStatic = $this->repo->getCostStatic($costStatic);
+        $mainCategories = $this->repo->isMain($costStatic)  ? [] : $this->repo->getMainWithoutSelf($costStatic);
         return view('Admin.CostStatic.edit', compact('costStatic', 'mainCategories'));
     }
 
@@ -49,7 +56,7 @@ class CoststaticController extends Controller
 
     public function update(Request $request, $costStatic)
     {
-        $costStatic = CostStatic::findOrFail($costStatic);
+        $costStatic = $this->repo->getCostStatic();
         $costStatic->update($request->all());
         session()->flash('UpdateCostStatic');
         return redirect()->route('static.index');
@@ -58,24 +65,8 @@ class CoststaticController extends Controller
 
     public function destroy($costStatic)
     {
-        $costStatic = CostStatic::findOrFail($costStatic);
-        if ($costStatic->child == 0) {
-            $subStatics = CostStatic::where('child', $costStatic->id)->select('id')->get();
-            foreach ($subStatics as $subStatic) {
-                DB::table('cost_statics')
-                    ->where('cost_statics.id', $subStatic->id)
-                    ->delete();
-            }
-            $costStatic->delete();
-
-            session()->flash('DeleteCostStaticAllMember');
-        } else {
-
-            $costStatic->delete();
-            session()->flash('DeleteCostStatic');
-        }
-
-
+        $costStatic = $this->repo->getCostStatic($costStatic);
+        $this->repo->deleteSubOrSetFlash($costStatic);
         return back();
     }
 }
