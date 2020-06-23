@@ -105,7 +105,7 @@
                                 <td class="projectName">{{ $cost->project_title }}</td>
                                 <td>
                                     @if($cost->type != null)
-                                        {{ $cost->type }}
+                                        {{ $cost->cost_type }}
                                     @else
                                         {{ "ندارد" }}
                                     @endif
