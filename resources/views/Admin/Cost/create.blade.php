@@ -57,7 +57,7 @@
 
             <p>
                 2-
-                هزینه های مربوط به حق الزحمه پیمانکاران
+                هزینه های مربوط به حق الزحمه کارمندان
                 (پرداخت حقوق).
             </p>
             <p>
@@ -193,7 +193,7 @@
                         <div class="row">
                             <div class="col-md-12" style="margin: 11px -8px;">
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label">پرداخت به پیمانکار</label>
+                                    <label class="col-md-2 control-label">پرداخت به کارمند</label>
                                     <div class="pretty p-icon p-round p-pulse">
                                         <input class="earning-paid" id="project-pay" type="radio" name="contractor_pay"  value="true">
 
@@ -204,7 +204,7 @@
                                     </div>
 
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-paid" id="normal-pay" type="radio" name="contractor_pay"  value="true">
+                                        <input class="earning-paid" id="normal-pay" type="radio" name="contractor_pay"  value="false">
 
                                         <div class="state p-success">
                                             <label>پرداخت غیر از پروژه</label> &nbsp; &nbsp; &nbsp; &nbsp;
@@ -225,7 +225,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row" id="project-box">
                             <div class="col-md-12">
                                 <div class="form-group no-margin">
                                     <label for="field-7" class="control-label">پروژه</label>
@@ -248,7 +248,7 @@
                         <div class="row" id ="contractor-mainbox" style="display: none;">
                             <div class="col-md-12">
                                 <div class="form-group no-margin">
-                                    <label for="field-7" class="control-label" id="contractor-label">پیمانکار</label>
+                                    <label for="field-7" class="control-label" id="contractor-label">کارمند</label>
                                     <select class="form-control" name="contractor_id" id="contractors-box">
                                     </select>
                                 </div>
