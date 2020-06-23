@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Category;
 use App\Http\Controllers\Controller;
 use App\Project;
-use App\User;
 use App\Repository\ProjectRepository;
 use Illuminate\Http\Request;
 
@@ -53,15 +51,15 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $projects = ProjectRepository::getProjects();
+        $projects = $this->repo->getProjects();
         return view('Admin.Project.index', compact('projects'));
     }
 
 
     public function create()
     {
-        $categories = Category::where('child', '!=', '0')->get();
-        $contractors = User::where('type', 'contractor')->get();
+        $categories = $this->repo->getMainCategories();
+        $contractors = $this->repo->getContractors();
         return view('Admin.Project.create', compact('categories', 'contractors'));
     }
 
@@ -78,7 +76,6 @@ class ProjectController extends Controller
     {
         $project = $this->repo->getProjectFull($project);
         $allProgress = $this->repo->getProgress($project);
-        //dd($project);
         return view('Admin.Project.show', compact('project', 'allProgress'));
     }
 
