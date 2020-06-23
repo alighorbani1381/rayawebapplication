@@ -13,7 +13,7 @@ class CostRepository
 {
     public function isContractPay($request)
     {
-        return ($request->contractor_pay == 'true') || ($request->contractor_pay == 'without-project');
+        return ($request->contractor_pay == "true") || ($request->contractor_pay == "without-project");
     }
 
     public function projectStore($request)
@@ -77,7 +77,7 @@ class CostRepository
         $type =  ($request->type == 0) ? null : $request->type;
         Cost::create([
             'generator' => '1',
-            'project_id' => null,
+            'project_id' => $request->project_id,
             'contractor_id' => $request->contractor_id,
             'title' => $request->title,
             'description' => $request->description,
@@ -145,8 +145,7 @@ class CostController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['storeType' => 'required', ['contractor_pay' => 'required']], ['storeType.required' => 'Error in the Form You Must Refresh This Page!']);
-         return $request->all();
+        $request->validate(['storeType' => 'required', 'contractor_pay' => 'required'], ['storeType.required' => 'Error in the Form You Must Refresh This Page!']);
         $type = $request->get('storeType');
 
         if ($type == 'project')
