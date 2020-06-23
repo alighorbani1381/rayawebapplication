@@ -35,30 +35,39 @@
 </div>
 @endif
 
+{{-- Start Detail about This Feature --}}
 <div class="row">
     <div class="col-md-8 col-lg-offset-2">
         <div class="card-box">
             <button class="btn btn-primary waves-effect waves-light pay-moeny" data-toggle="modal"
                 data-target="#pay-user-modal">
                 <i class="fa fa-line-chart"></i>&nbsp;
-                ثبت هزینه های مربوط به پروژه
+                ثبت هزینه های مربوط به پروژه و کارمندان
             </button>
             <p style="margin:20px 0;">
-                در این قسمت شما میتونید هزینه های مربوط به پروژه رو ثبت کنید.
+                در این قسمت شما میتونید هزینه های مربوط به پروژه ها و یا کارمندان خود را ثبت کنید.
             </p>
             <p>
-                این هزینه ها به دو صورت هستند.
+                این هزینه ها به سه صورت هستند.
             </p>
             <p>
-                1-
-                هزینه های پایه ای که مربوط به خود پروژه میشن
+                <strong>2-</strong>
+                <strong>هزینه های پایه ای : </strong>
+                این هزینه ها بیشتر مربوط به خود پروژه میشن
                 مثلا (هزینه هاست و دامین و ...).
             </p>
 
             <p>
-                2-
-                هزینه های مربوط به حق الزحمه کارمندان
-                (پرداخت حقوق).
+                <strong>2-</strong>
+                <strong>پرداخت حقوق کارمندان سطح 1 : </strong>
+                (کسانی که در انجام پروژه مشارکت دارند و بابت انجام پروژه حقوق دریافت می کنند)
+            </p>
+            <p>
+                <strong>3-</strong>
+                <strong>پرداخت حقوق کارمندان سطح 2 :</strong>
+
+                (کسانی که ممکنه در انجام پروژه ها مشارکت نکنند برای مثال حقوق منشی و حقوق خود مدیر یا پرداخت تشویقی به
+                کارمندان که ارتباطی به پروژه ندارد.)
             </p>
             <p>
                 <div class="alert alert-info">
@@ -110,6 +119,7 @@
         </div>
     </div>
 </div>
+{{-- End Detail about This Feature --}}
 
 
 {{-- Modals Start --}}
@@ -195,7 +205,8 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">پرداخت به کارمند</label>
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-paid" id="project-pay" type="radio" name="contractor_pay"  value="true">
+                                        <input class="earning-paid" id="project-pay" type="radio" name="contractor_pay"
+                                            value="true">
 
                                         <div class="state p-success">
                                             <label>پرداخت بابت پروژه</label> &nbsp; &nbsp; &nbsp; &nbsp;
@@ -204,7 +215,8 @@
                                     </div>
 
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-paid" id="normal-pay" type="radio" name="contractor_pay"  value="without-project">
+                                        <input class="earning-paid" id="normal-pay" type="radio" name="contractor_pay"
+                                            value="without-project">
 
                                         <div class="state p-success">
                                             <label>پرداخت غیر از پروژه</label> &nbsp; &nbsp; &nbsp; &nbsp;
@@ -214,7 +226,8 @@
 
 
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-unpaid" id="deactive" type="radio" name="contractor_pay" checked value="false">
+                                        <input class="earning-unpaid" id="deactive" type="radio" name="contractor_pay"
+                                            checked value="false">
 
                                         <div class="state p-danger">
                                             <label>عدم پرداخت</label> &nbsp; &nbsp; &nbsp; &nbsp;
@@ -236,16 +249,23 @@
                                         </option>
                                         @endforeach
                                     </select>
-                                    <svg class="ajax-loading" style="display:none; width: 48px;position: absolute;height: 48px;margin: 0px auto;left: 6px;  top: 22px;margin: auto; background: none; display: block; shape-rendering: auto;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-                                        <circle cx="50" cy="50" r="32" stroke-width="8" stroke="#2c73dd" stroke-dasharray="50.26548245743669 50.26548245743669" fill="none" stroke-linecap="round" transform="rotate(325.951 50 50)">
-                                          <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="0.3s" keyTimes="0;1" values="0 50 50;360 50 50"></animateTransform>
+                                    <svg class="ajax-loading"
+                                        style="display:none; width: 48px;position: absolute;height: 48px;margin: 0px auto;left: 6px;  top: 22px;margin: auto; background: none; display: block; shape-rendering: auto;"
+                                        width="200px" height="200px" viewBox="0 0 100 100"
+                                        preserveAspectRatio="xMidYMid">
+                                        <circle cx="50" cy="50" r="32" stroke-width="8" stroke="#2c73dd"
+                                            stroke-dasharray="50.26548245743669 50.26548245743669" fill="none"
+                                            stroke-linecap="round" transform="rotate(325.951 50 50)">
+                                            <animateTransform attributeName="transform" type="rotate"
+                                                repeatCount="indefinite" dur="0.3s" keyTimes="0;1"
+                                                values="0 50 50;360 50 50"></animateTransform>
                                         </circle>
-                                        </svg>
+                                    </svg>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row" id ="contractor-mainbox" style="display: none;">
+                        <div class="row" id="contractor-mainbox" style="display: none;">
                             <div class="col-md-12">
                                 <div class="form-group no-margin">
                                     <label for="field-7" class="control-label" id="contractor-label">کارمند</label>
@@ -256,8 +276,8 @@
 
                         </div>
 
-                        
-                       
+
+
 
                         <div class="row">
                             <div class="col-md-12" style="margin: 11px -8px;">
@@ -285,15 +305,16 @@
                             </div>
                         </div>
 
-                        
-                    
 
- 
+
+
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
                         <button type="reset" id="clear-form" class="btn btn-warning waves-effect">پاک کردن</button>
-                        <button type="submit" id="project-submit" class="btn btn-success waves-effect waves-light">ثبت هزینه برای پروژه</button>
+                        <button type="submit" id="project-submit" class="btn btn-success waves-effect waves-light">ثبت
+                            هزینه برای پروژه</button>
                     </div>
             </form>
         </div>
