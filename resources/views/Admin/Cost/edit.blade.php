@@ -103,7 +103,7 @@ $cost = $cost['content'];
                             </div>
                         </div>
                         @endif
-                        @if($costType == 'contract_pay')
+                        @if($costType == 'contract_pay' || $costType == 'project_base')
 
 
 
