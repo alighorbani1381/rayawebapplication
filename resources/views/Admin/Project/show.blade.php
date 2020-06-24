@@ -532,6 +532,97 @@
     </div>
     <!-- Cost list col End -->
 
+
+      <!-- Contractor Pay List col Start -->
+      <div class="col-md-4">
+        <div class="card-box">
+            <div class="dropdown pull-right">
+                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="{{ route('costs.create') }}" ><i class="fa fa-plus"></i> &nbsp;
+                            ثبت هزینه
+                            </a>
+                    </li>
+                </ul>
+            </div>
+
+            <h4 class="header-title m-t-0 m-b-30">
+            هزینه های انجام پروژه
+                @if( $project['contractor_costs']->count() > 0)
+                    ({{ $project['contractor_costs']->count() . "مورد"}})
+                @endif
+            </h4>
+
+            <div>
+                @if( $project['contractor_costs']->count() > 0)
+                @foreach($project['contractor_costs'] as $key => $cost)
+                <div class="media m-b-10 earning-box">
+                    <div class="media-left">
+                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="{{ $cost->title }}"
+                                src="/admin/images/symbols/rial.png" style="border: 1px solid #ddd;"> </a>
+                                
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading" style="margin-bottom: 12px; margin-top:4px;">{{ $cost->title }}</h4>
+
+                        <div class="date-show earning-time" style="margin: 12px 0;">
+                            <span>پرداخت شده به :</span>
+                            <span style="font-weight: bold;">{{ $cost->name . " " . $cost->lastname }}</span>
+                        </div>
+
+                        <div class="date-show earning-time" style="margin: 12px 0;">
+                            <span>نوع هزینه:</span>
+                            <span style="font-weight: bold;">{{ $cost->type_title}}</span>
+                        </div>
+
+                        <p class="font-13 text-muted m-b-0" style="display: block; text-align:right;">
+                            <span>تاریخ ثبت:</span>
+                            <time dir="ltr" class="date-show">{{ verta($cost->created_at) }}</time>
+                        </p>
+                        <div class="date-show earning-time" style="margin: 12px 0;">
+                            <span>میزان هزینه:</span>
+                            <span style="font-weight: bold;">{{ number_format($cost->money_paid) . " تومان " }}</span>
+                        </div>
+                        
+                        
+                        <div>
+                            <span>وضعیت:</span>
+                            @if($cost->status == 'paid')
+                            <button class="btn btn-success waves-effect waves-light btn-sm m-b-5">پرداخت شده</button>
+                            @else
+                            <button class="btn btn-danger waves-effect waves-light btn-sm m-b-5">پرداخت نشده</button>
+                            @endif
+                        </div>
+                        <a href="{{ route('costs.show', $cost->id)}}" 
+                            class="btn btn-purple waves-effect submit-button">
+                            <i class="fa fa-eye"></i> &nbsp;
+                            مشاهده
+                        </a>
+                    </div>
+
+                </div>
+                @endforeach
+                @else
+                <div class="alert alert-warning">
+                    <i class="fa fa-info-circle"></i>&nbsp;
+                    هنوز هزینه ای بابت انجام پروژه پرداخت نشده است.
+                </div>
+
+                <div class="alert alert-info">
+                    <i class="fa fa-info"></i>&nbsp;
+                    <strong>راهنمایی:</strong>
+                    با استفاده از دکمه افزودن در منوی همین باکس هزینه خود را برای این پروژه ثبت کنید .
+                </div>
+                
+                @endif
+
+            </div>
+        </div>
+    </div>
+    <!-- Contractor Pay  list col End -->
 </div>
 
 @if(session()->has('ActiveProject'))
