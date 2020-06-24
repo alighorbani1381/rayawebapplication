@@ -46,39 +46,7 @@
                 {{-- Home Tab --}}
                 <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
 
-                    <div class="card-box items-box">
-                        <h4 class="header-title">عنوان پروژه :</h4>
-                        <b> {{ $project['project']->title }} </b>
-                    </div>
-
-                    <div class="card-box items-box">
-                        <h4 class="header-title">قیمت : </h4>
-                        <b> {{ number_format($project['project']->price) }} </b>
-                    </div>
-
-                    <div class="card-box items-box">
-                        <h4 class="header-title">شناسه پروژه : </h4>
-                        <b> {{ $project['project']->unique_id }} </b>
-                    </div>
-
-
-
-                    @php
-                    $paragraphs = explode('\n', $project['project']->description);
-                    @endphp
-
-                    <div class="card-box items-box">
-                        <h4 class="header-title">توضیحات پروژه : </h4>
-
-                        @foreach($paragraphs as $paragraph)
-                        <p class="text-muted" style="text-align: justify;">
-                            {{ $paragraph . "."}}
-                        </p>
-                        @endforeach
-                    </div>
-
-                    <div class="m-b-20"></div>
-
+                    
                     @if($project['project']->status == 'ongoing')
                     @php
 
@@ -115,6 +83,39 @@
 
 
                                     <div class="clearfix"></div>
+                    <div class="card-box items-box">
+                        <h4 class="header-title">عنوان پروژه :</h4>
+                        <b> {{ $project['project']->title }} </b>
+                    </div>
+
+                    <div class="card-box items-box">
+                        <h4 class="header-title">قیمت : </h4>
+                        <b> {{ number_format($project['project']->price) }} </b>
+                    </div>
+
+                    <div class="card-box items-box">
+                        <h4 class="header-title">شناسه پروژه : </h4>
+                        <b> {{ $project['project']->unique_id }} </b>
+                    </div>
+
+
+
+                    @php
+                    $paragraphs = explode('\n', $project['project']->description);
+                    @endphp
+
+                    <div class="card-box items-box">
+                        <h4 class="header-title">توضیحات پروژه : </h4>
+
+                        @foreach($paragraphs as $paragraph)
+                        <p class="text-muted" style="text-align: justify;">
+                            {{ $paragraph . "."}}
+                        </p>
+                        @endforeach
+                    </div>
+
+                    <div class="m-b-20"></div>
+
 
 
                 </div>
