@@ -7,6 +7,9 @@
 @section('content')
 
 @if($errors->any())
+@foreach($errors->all() as $error)
+<div class="alert alert-danger">{{ $error }}</div>
+@endforeach
 <div class="row">
     <div class="col-md-8 col-lg-offset-2">
         <div class="card-box">
