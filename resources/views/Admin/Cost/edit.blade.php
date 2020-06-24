@@ -63,7 +63,7 @@ $cost = $cost['content'];
                             <div class="col-md-10">
                                 <select class="form-control" name="type">
                                     <optgroup label="پیش فرض">
-                                        <option value="0" @if($cost->type == null) {{ "selected" }} @endif>ندارد
+                                        <option value="" @if($cost->type == null) {{ "selected" }} @endif>ندارد
                                         </option>
                                     </optgroup>
                                     @php $count = 0; @endphp
