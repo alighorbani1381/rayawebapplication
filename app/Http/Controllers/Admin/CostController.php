@@ -200,7 +200,6 @@ class CostController extends Controller
     public function show(Cost $cost)
     {
         $cost = $this->repo->getCost($cost->id);
-        // dd($cost);
         return view('Admin.Cost.show', compact('cost'));
     }
 
@@ -220,10 +219,10 @@ class CostController extends Controller
         ]);
         $cost->update($request->all());
         session()->flash('UpdateCost');
-        if (session()->has('SendWithProject'))
+        if (session()->has('SendWithProject') || session()->has('SendWithShow'))
             return back();
         else
-            return redirect()->route('costs.index');
+            return redirect()->route('costs.show', $cost->id);
     }
 
     public function destroy(Cost $cost)
