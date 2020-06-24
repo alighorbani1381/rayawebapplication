@@ -154,6 +154,7 @@ class ProjectRepository
         $project['contractors'] = $this->getProjectContractors($id);
         $project['earnings'] = $this->getEarnings($id);
         $project['base_costs'] = $this->getBaseProjectCosts($id);
+        $project['contractor_costs'] = $this->getContractorCosts($id);
         return $project;
     }
 
@@ -161,6 +162,15 @@ class ProjectRepository
     {
         return Cost::where('project_id', $id)
         ->where('contractor_id', null)
+        ->get();
+    }
+
+    public function getContractorCosts($id)
+    {
+        return Cost::join('users', 'costs.contractor_id', '=', 'users.id')
+        ->select('costs.*', 'users.name', 'users.lastname')
+        ->where('project_id', $id)
+        ->where('contractor_id', '!=', null)
         ->get();
     }
 
