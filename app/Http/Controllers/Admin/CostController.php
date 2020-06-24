@@ -215,7 +215,6 @@ class CostController extends Controller
             'title' => 'required',
             'description' => 'required',
             'money_paid' => 'required',
-            'type' => 'required',
         ]);
         $cost->update($request->all());
         session()->flash('UpdateCost');
