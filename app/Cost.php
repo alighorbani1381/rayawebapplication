@@ -12,4 +12,14 @@ class Cost extends Model
     {
         return mb_substr($this->description, 0, 50) . " ...";
     }
+
+    public function getProjectTitleAttribute($key)
+    {
+        if($this->project_id != null)
+        return Project::where('id', $this->project_id)
+        ->frist();
+        else
+        return '-';
+    } 
+    
 }
