@@ -212,11 +212,7 @@ class CostController extends Controller
     public function update(Request $request, Cost $cost)
     {
         $costType = $this->repo->specifyCostType($cost->id);
-        switch($costType)  {
-            case "extra":
-                $cost->update($request->all());
-            break;
-        }
+        $cost->update($request->all());
         return redirect()->route('costs.index');
     }
 
