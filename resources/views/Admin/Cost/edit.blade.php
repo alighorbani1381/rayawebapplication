@@ -16,7 +16,7 @@ $cost = $cost['content'];
 
             <div class="row">
                 <div class="col-lg-11">
-                    <form class="form-horizontal" role="form" action="{{ route('static.update', $cost->id) }}"
+                    <form class="form-horizontal" role="form" action="{{ route('costs.update', $cost->id) }}"
                         method="post">
                         @csrf
                         @method('PATCH')
@@ -34,13 +34,46 @@ $cost = $cost['content'];
                         <div class="form-group">
                             <label class="col-md-2 control-label">میزان هزینه</label>
                             <div class="col-md-10">
-                                <input type="number" name="money_paid" class="form-control" value="{{ $cost->title }}"
-                                    placeholder="میزان هزینه را وارد کنید ...">
-                                @error('title')
+                                <input type="number" name="money_paid" class="form-control"
+                                    value="{{ $cost->money_paid }}" placeholder="میزان هزینه را وارد کنید ...">
+                                @error('money_paid')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
+
+                        @if($costType == 'contract_pay')
+                        @php $user = \App\User::where('id', $cost->contractor_id)->first(); @endphp
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">نام کاربر</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="contractor_id">
+                                    <option value="{{ $user->id}}">{{ $user->full_name}}</option>
+                                </select>
+                                @error('money_paid')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        @php $project = \App\Project::where('id', $cost->project_id)->first(); @endphp
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">پروژه</label>
+                            <div class="col-md-10">
+                                <select class="form-control" name="project_id">
+                                    <option value="{{ $project->id}}">{{ $project->title}}</option>
+                                </select>
+                                @error('project_id')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+
+
+
+                        @endif
 
                         <div class="form-group">
                             <label class="col-md-2 control-label">توضیحات هزینه</label>
