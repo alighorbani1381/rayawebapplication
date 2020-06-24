@@ -15,12 +15,12 @@ class Cost extends Model
 
     public function getProjectTitleAttribute($key)
     {
-        if ($this->project_id != null && $this->project_id != "") {
-            $project = Project::where('id', $this->project_id)
-                ->first();
-            return $project->title;
-        } else
-            return '-';
+        if ($this->project_id != null && $this->project_id != "")
+            $project = Project::where('id', $this->project_id)->first()->title;
+        else
+            $project = '-';
+            
+        return $project;
     }
 
     public function getTypeTitleAttribute()
