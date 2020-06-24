@@ -104,6 +104,7 @@ class CostRepository
         ->select('costs.*', 'users.name as user_name', 'users.lastname as user_lastname')
         ->where('contractor_id', '!=', null)
         ->orderBy('costs.project_id')
+        ->orderBy('costs.created_at')
         ->get();
     } 
 
@@ -136,7 +137,7 @@ class CostController extends Controller
     {
 
         $costs = $this->repo->getCosts();
-          dd($costs);
+        //   dd($costs);
         return view('Admin.Cost.index', compact('costs'));
     }
 
