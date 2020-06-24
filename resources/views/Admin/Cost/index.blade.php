@@ -76,13 +76,7 @@
                         </td>
                         @php $time = verta($cost->created_at); @endphp
                         <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
-                        <td>
-                           @if($cost->type != null)
-                           {{ $cost->type }}
-                           @else
-                           {{ "ندارد" }}
-                           @endif
-                        </td>
+                        <td>{{ $cost->type_title }}</td>
                         <td class="tac">
                            <a href="{{ route('costs.edit', $cost->id) }}"
                               class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
@@ -144,13 +138,7 @@
                         </td>
                         @php $time = verta($cost->created_at); @endphp
                         <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
-                        <td>
-                           @if($cost->type != null)
-                           {{ $cost->cost_type }}
-                           @else
-                           {{ "ندارد" }}
-                           @endif
-                        </td>
+                        <td>{{ $cost->type_title }}</td>
                         <td class="tac">
                            <a href="{{ route('costs.edit', $cost->id) }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5">
                             <i class="fa fa-pencil"></i> 
@@ -217,13 +205,7 @@
                         </td>
                         @php $time = verta($cost->created_at); @endphp
                         <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
-                        <td>
-                           @if($cost->type != null)
-                           {{ $cost->cost_type }}
-                           @else
-                           {{ "ندارد" }}
-                           @endif
-                        </td>
+                        <td>{{ $cost->type_title }}</td>
                         <td class="tac">
                            <a href="{{ route('costs.edit', $cost->id) }}"
                               class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
