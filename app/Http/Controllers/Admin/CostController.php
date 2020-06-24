@@ -123,7 +123,26 @@ class CostRepository
         $costs['project_base'] = $this->getProjectBaseCosts();
         return $costs;
     }
+
+    public function specifyCostType($costId){
+
+        $cost = Cost::findOrFail($costId);
+        $projectId = $cost->project_id;
+        $contractorId = $cost->contractor_id;
+
+        if($projectId == null && $contractorId == null)
+        return 'extra';
+        
+        if($projectId == null &&  $contractorId != null)
+        return 'contract_without_project';
+
+        if($projectId != null && $contractorId != null)
+        return 'contract_pay';
+    }
+    
 }
+
+
 class CostController extends Controller
 {
 
@@ -170,7 +189,8 @@ class CostController extends Controller
 
     public function edit(Cost $cost)
     {
-        //
+        dd($cost);
+        return view('Admin.Cost.edit', compact('cost'));
     }
 
     public function update(Request $request, Cost $cost)
