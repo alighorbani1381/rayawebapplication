@@ -99,15 +99,15 @@ class CostRepository
             ->get();
     }
 
-     public function getContractorCosts()
+    public function getContractorCosts()
     {
         return Cost::join('users', 'costs.contractor_id', '=', 'users.id')
-        ->select('costs.*', 'users.name as user_name', 'users.lastname as user_lastname')
-        ->where('contractor_id', '!=', null)
-        ->orderBy('costs.project_id')
-        ->orderBy('costs.created_at')
-        ->get();
-    } 
+            ->select('costs.*', 'users.name as user_name', 'users.lastname as user_lastname')
+            ->where('contractor_id', '!=', null)
+            ->orderBy('costs.project_id')
+            ->orderBy('costs.created_at')
+            ->get();
+    }
 
     public function getExtraCosts()
     {
@@ -124,22 +124,32 @@ class CostRepository
         return $costs;
     }
 
-    public function specifyCostType($costId){
+    public function specifyCostType($costId)
+    {
 
         $cost = Cost::findOrFail($costId);
         $projectId = $cost->project_id;
         $contractorId = $cost->contractor_id;
 
-        if($projectId == null && $contractorId == null)
-        return 'extra';
-        
-        if($projectId == null &&  $contractorId != null)
-        return 'contract_without_project';
+        if ($projectId == null && $contractorId == null)
+            return 'extra';
 
-        if($projectId != null && $contractorId != null)
-        return 'contract_pay';
+        if ($projectId == null &&  $contractorId != null)
+            return 'contract_without_project';
+
+        if ($projectId != null && $contractorId != null)
+            return 'contract_pay';
+
+        if ($projectId != null && $contractorId == null)
+            return 'project_base';
     }
-    
+
+    public function getCost($costId)
+    {
+        $cost['content'] = Cost::findOrFail($costId);
+        $cost['type'] = $this->specifyCostType($costId);
+        return $cost;
+    }
 }
 
 
@@ -189,7 +199,8 @@ class CostController extends Controller
 
     public function edit(Cost $cost)
     {
-        dd($cost);
+
+        $cost = $this->repo->getCost($cost->id);
         return view('Admin.Cost.edit', compact('cost'));
     }
 
