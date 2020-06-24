@@ -19,6 +19,7 @@ class CostRepository
     public function projectStore($request)
     {
         session()->flash('ProjectStore');
+        $request->validate(['contractor_pay' => 'required']);
         return $pay =  ($this->isContractPay($request)) ? $this->projectContractorPay($request) : $this->projectStorePay($request);
     }
 
@@ -150,7 +151,7 @@ class CostController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['storeType' => 'required', 'contractor_pay' => 'required'], ['storeType.required' => 'Error in the Form You Must Refresh This Page!']);
+        $request->validate(['storeType' => 'required'], ['storeType.required' => 'Error in the Form You Must Refresh This Page!']);
         $type = $request->get('storeType');
 
         if ($type == 'project')
