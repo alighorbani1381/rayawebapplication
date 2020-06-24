@@ -34,8 +34,14 @@
                </ul>
             </li>
          </ul>
+
+         
          <div class="tab-content">
+
+            {{--  Extra Costs Start --}}
             <div role="tabpanel" class="tab-pane fade in active" id="extra" aria-labelledby="extra-costs">
+
+               @if($costs['extra']->count() != 0)
                <table id="datatable" class="table table-striped table-bordered">
                   <thead>
                      <tr>
@@ -94,9 +100,16 @@
                      @endforeach
                   </tbody>
                </table>
-            </div>
+               @else
+               <div class="alert alert-danger">موردی برای نمایش وجود ندارد.</div>
+               @endif
 
+            </div>
+            {{--  Extra Costs End --}}
+
+            {{--  Static Project Costs Start --}}
             <div role="tabpanel" class="tab-pane fade" id="dropdown1" aria-labelledby="dropdown1-tab">
+               @if($costs['project_base']->count() != 0)
                <table id="datatable" class="table table-striped table-bordered">
                   <thead>
                      <tr>
@@ -156,9 +169,16 @@
                      @endforeach
                   </tbody>
                </table>
-            </div>
+               @else
+               <div class="alert alert-danger">موردی برای نمایش وجود ندارد.</div>
+               @endif
 
+            </div>
+            {{--  Static Project Costs End --}}
+
+            {{--  Project Costs Start --}}
             <div role="tabpanel" class="tab-pane fade" id="dropdown2" aria-labelledby="dropdown2-tab">
+               @if($costs['contractor']->count() != 0)
                <table id="datatable" class="table table-striped table-bordered">
                   <thead>
                      <tr>
@@ -222,7 +242,11 @@
                      @endforeach
                   </tbody>
                </table>
+               @else
+               <div class="alert alert-danger">موردی برای نمایش وجود ندارد.</div>
+               @endif
             </div>
+            {{--  Project Costs Start --}}
          </div>
       </div>
    </div>
