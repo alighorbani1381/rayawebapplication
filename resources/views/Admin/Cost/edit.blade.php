@@ -129,7 +129,7 @@ $cost = $cost['content'];
                         <div class="form-group">
                             <label class="col-md-2 control-label">وضعیت</label>
                             <div class="pretty p-icon p-round p-pulse">
-                                <input class="earning-paid" type="radio" name="status" checked value="paid">
+                                <input class="earning-paid" type="radio" name="status" @if($cost->status == 'paid') {{ "checked" }} @endif value="paid">
 
                                 <div class="state p-success">
                                     <label>پرداخت شده</label> &nbsp; &nbsp; &nbsp; &nbsp;
@@ -139,7 +139,7 @@ $cost = $cost['content'];
 
 
                             <div class="pretty p-icon p-round p-pulse">
-                                <input class="earning-unpaid" type="radio" name="status" value="unpaid">
+                                <input class="earning-unpaid" type="radio" name="status" @if($cost->status == 'unpaid') {{ "checked" }} @endif value="unpaid">
 
                                 <div class="state p-danger">
                                     <label>پرداخت نشده</label> &nbsp; &nbsp; &nbsp; &nbsp;
