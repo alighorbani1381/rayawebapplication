@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="row">
-   <div class="col-md-10 col-lg-offset-1">
+   <div class="col-md-12">
       <div class="card-box">
          <ul class="nav nav-tabs nav-justified">
             <li role="presentation" class="active">
@@ -103,7 +103,7 @@
                         <th>ردیف</th>
                         <th>عنوان هزینه</th>
                         <th>توضیحات (خلاصه)</th>
-                        <th>عنوان پروژه</th>
+                        <th class="tac">عنوان پروژه</th>
                         <th class="tac">وضعیت</th>
                         <th class="tac">زمان ثبت</th>
                         <th>نوع هزینه</th>
@@ -117,7 +117,7 @@
                         <td><?= $row  + 1 ?></td>
                         <td class="costTitle" type="project_base">{{ $cost->title }}</td>
                         <td>{{ $cost->sub_desc }}</td>
-                        <td class="projectName">{{ $cost->project_title }}</td>
+                        <td class="tac projectName">{{ $cost->project_title }}</td>
                         <td class="tac">
                            @if ($cost->status == 'paid')
                            <button type="button" class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">
@@ -168,7 +168,7 @@
                         <th>توضیحات (خلاصه)</th>
                         <th>عنوان پروژه</th>
                         <th class="tac">وضعیت</th>
-                        <th class="tac">زمان</th>
+                        <th class="tac">زمان ثبت</th>
                         <th>نوع هزینه</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
