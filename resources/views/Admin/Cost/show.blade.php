@@ -140,5 +140,64 @@ $cost = $cost['content'];
     </div><!-- end col -->
     @endif
 
+    @if($costType == 'contract_pay' ||  $costType =='contract_without_project' )
+    @php $user = \App\User::where('id', $cost->contractor_id)->first(); @endphp
+    <div class="col-md-4">
+        <div class="card-box">
+            <div class="dropdown pull-right">
+                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="{{ route('users.show', $user->id) }}" target="_blank"> <i class="fa fa-eye"></i> &nbsp;&nbsp;
+                            مشاهده کاربر
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+
+            <h4 class="header-title m-t-0 m-b-30">اطلاعات کاربر</h4>
+
+            <div>
+                <div class="media m-b-10">
+                    <div class="media-left">
+                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="عنوان پروژه"
+                                src="/admin/images/users/default.png"> </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">نام کاربر</h4>
+                        <p class="font-13 text-muted m-b-0">
+                            {{ $user->name . " " . $user->lastname }}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="media m-b-10">
+                    <div class="media-left">
+                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="شناسه پروژه"
+                                src="/admin/images/symbols/fingerprint.png"> </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">شماره تماس کاربر</h4>
+                        <p class="font-13 text-muted m-b-0">
+                            {{ $user->phone}}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div><!-- end col -->
+    @endif
+
 </div>
+
+@if(session()->has('UpdateCost'))
+<script>
+   var message = "هزینه مورد نظر با موفقیت بروزرسانی شد.";
+   minMbox(message, 250);
+</script>
+@endif
 @endsection
