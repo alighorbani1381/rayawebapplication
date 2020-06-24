@@ -150,6 +150,11 @@ class CostRepository
         $cost['type'] = $this->specifyCostType($costId);
         return $cost;
     }
+
+    public function getCostTypes()
+    {
+        return CostStatic::where('child', '0')->get();
+    }
 }
 
 
@@ -160,7 +165,7 @@ class CostController extends Controller
 
     public function __construct()
     {
-        $this->repo = new CostRepository();
+        $this->repo =  resolve(CostRepository::class);
     }
 
     public function index()
@@ -173,7 +178,7 @@ class CostController extends Controller
 
     public function create()
     {
-        $types = CostStatic::where('child', '0')->get();
+        $types = $this->repo->getCostTypes();
         $projects = Project::where('status', '!=', 'finished')->get();
         return view('Admin.Cost.create', compact('projects', 'types'));
     }
@@ -199,9 +204,10 @@ class CostController extends Controller
 
     public function edit(Cost $cost)
     {
-
+        $types = $this->repo->getCostTypes();
         $cost = $this->repo->getCost($cost->id);
-        return view('Admin.Cost.edit', compact('cost'));
+        // dd($cost);
+        return view('Admin.Cost.edit', compact('cost', 'types'));
     }
 
     public function update(Request $request, Cost $cost)
