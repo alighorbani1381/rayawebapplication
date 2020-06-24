@@ -90,7 +90,7 @@
 
                     <div class="card-box items-box">
                         <h4 class="header-title">قیمت : </h4>
-                        <b> {{ number_format($project['project']->price) }} </b>
+                        <b> {{ number_format($project['project']->price) . " تومان "}} </b>
                     </div>
 
                     <div class="card-box items-box">
