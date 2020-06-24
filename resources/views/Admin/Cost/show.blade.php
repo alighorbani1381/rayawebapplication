@@ -7,7 +7,7 @@ $costType = $cost['type'];
 $cost = $cost['content'];
 @endphp
 <div class="row">
-    <div class="col-md-8">
+    <div class="@if($costType == 'extra') {{ "col-md-13" }} @else {{ "col-md-8" }} @endif">
         <div class="card-box task-detail">
             <div class="dropdown pull-right">
                 <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
