@@ -24,6 +24,8 @@ class EarningRequest
 class EarningController extends Controller
 {
 
+    private $repo;
+
     public function __construct()
     {
         $this->repo =  resolve(EarningRepository::class);

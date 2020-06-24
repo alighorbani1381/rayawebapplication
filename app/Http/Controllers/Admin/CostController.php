@@ -126,6 +126,7 @@ class CostRepository
 class CostController extends Controller
 {
 
+    private $repo;
     public function __construct()
     {
         $this->repo = new CostRepository();

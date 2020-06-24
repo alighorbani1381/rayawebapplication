@@ -44,6 +44,8 @@ class ProjectRequest
 class ProjectController extends Controller
 {
 
+    private $repo;
+    
     public function __construct()
     {
         $this->repo = resolve(ProjectRepository::class);

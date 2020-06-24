@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class CoststaticController extends Controller
 {
 
+    private $repo;
   
     public function __construct()
     {
