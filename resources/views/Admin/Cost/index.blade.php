@@ -259,6 +259,13 @@
 </script>
 @endif
 
+@if(session()->has('UpdateCost'))
+<script>
+   var message = "هزینه مورد نظر با موفقیت بروزرسانی شد.";
+   minMbox(message, 250);
+</script>
+@endif
+
 @if(session()->has('ProjectStore'))
 <script>
    var message = "هزینه با موفقیت ثبت شد .";
