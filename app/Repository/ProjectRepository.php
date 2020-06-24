@@ -2,6 +2,7 @@
 namespace App\Repository;
 
 use App\Category;
+use App\Cost;
 use App\Project;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -152,7 +153,15 @@ class ProjectRepository
         $project['categories'] = $this->getCategories($id);
         $project['contractors'] = $this->getProjectContractors($id);
         $project['earnings'] = $this->getEarnings($id);
+        $project['base_costs'] = $this->getBaseProjectCosts($id);
         return $project;
+    }
+
+    public function getBaseProjectCosts($id)
+    {
+        return Cost::where('project_id', $id)
+        ->where('contractor_id', null)
+        ->get();
     }
 
     public function dividePercnets($request)
