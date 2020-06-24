@@ -6,6 +6,8 @@
 @endpush
 @section('content')
 <div class="row">
+
+    <!-- Project Information Start !-->
     <div class="col-md-8">
         <div class="card-box">
 
@@ -241,6 +243,7 @@
             </div>
         </div>
     </div>
+    <!-- Project Information End !-->
 
 
     @if($project['project']->status == 'waiting')
@@ -336,9 +339,11 @@
                     <i class="zmdi zmdi-more-vert"></i>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="{{ route('categories.create') }}"><i class="fa fa-plus"></i> &nbsp;افزودن خدمت جدید</a></li>
-                        
-                    <li><a href="{{ route('categories.index') }}"><i class="fa fa-list-ul"></i> &nbsp;لیست خدمات</a></li>
+                    <li><a href="{{ route('categories.create') }}"><i class="fa fa-plus"></i> &nbsp;افزودن خدمت جدید</a>
+                    </li>
+
+                    <li><a href="{{ route('categories.index') }}"><i class="fa fa-list-ul"></i> &nbsp;لیست خدمات</a>
+                    </li>
                 </ul>
             </div>
 
@@ -378,7 +383,7 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li>
-                        <a href="{{ route('earnings.pay', $project['project']->id) }}" ><i class="fa fa-plus"></i> &nbsp;
+                        <a href="{{ route('earnings.pay', $project['project']->id) }}"><i class="fa fa-plus"></i> &nbsp;
                             افزودن</a>
                     </li>
                 </ul>
@@ -387,7 +392,7 @@
             <h4 class="header-title m-t-0 m-b-30">
                 در آمد های ثبت شده
                 @if( $project['earnings']->count() > 0)
-                    ({{ $project['earnings']->count() . "مورد"}})
+                ({{ $project['earnings']->count() . "مورد"}})
                 @endif
             </h4>
 
@@ -398,17 +403,20 @@
                     <div class="media-left">
                         <a href="#"> <img class="media-object img-circle thumb-sm" alt="{{ $earning->title }}"
                                 src="/admin/images/symbols/rial.png" style="border: 1px solid #ddd;"> </a>
-                                
+
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading" style="margin-bottom: 12px; margin-top:4px;">{{ $earning->title }}</h4>
+                        <h4 class="media-heading" style="margin-bottom: 12px; margin-top:4px;">{{ $earning->title }}
+                        </h4>
                         <p class="font-13 text-muted m-b-0" style="display: block; text-align:right;">
                             <span>تاریخ ثبت:</span>
-                            <time dir="ltr" class="date-show">{{ verta($earning->created_at)->format('Y/n/j H:i') }}</time>
+                            <time dir="ltr"
+                                class="date-show">{{ verta($earning->created_at)->format('Y/n/j H:i') }}</time>
                         </p>
                         <div class="date-show earning-time" style="margin: 12px 0;">
                             <span>میزان درآمد:</span>
-                            <span style="font-weight: bold;">{{ number_format($earning->received_money) . " تومان " }}</span>
+                            <span
+                                style="font-weight: bold;">{{ number_format($earning->received_money) . " تومان " }}</span>
                         </div>
                         <div>
                             <span>وضعیت:</span>
@@ -418,7 +426,7 @@
                             <button class="btn btn-danger waves-effect waves-light btn-sm m-b-5">پرداخت نشده</button>
                             @endif
                         </div>
-                        <a href="{{ route('earnings.show', $earning->id)}}" 
+                        <a href="{{ route('earnings.show', $earning->id)}}"
                             class="btn btn-purple waves-effect submit-button">
                             <i class="fa fa-eye"></i> &nbsp;
                             مشاهده
@@ -438,7 +446,7 @@
                     <strong>راهنمایی:</strong>
                     با استفاده از دکمه افزودن در منوی همین باکس درآمد خود را برای این پروژه ثبت کنید .
                 </div>
-                
+
                 @endif
 
             </div>
@@ -446,8 +454,8 @@
     </div>
     <!-- Pay list col End -->
 
-      <!-- Cost List col Start -->
-      <div class="col-md-4">
+    <!-- Cost List col Start -->
+    <div class="col-md-4">
         <div class="card-box">
             <div class="dropdown pull-right">
                 <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
@@ -455,17 +463,17 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li>
-                        <a href="{{ route('costs.create') }}" ><i class="fa fa-plus"></i> &nbsp;
+                        <a href="{{ route('costs.create') }}"><i class="fa fa-plus"></i> &nbsp;
                             ثبت هزینه
-                            </a>
+                        </a>
                     </li>
                 </ul>
             </div>
 
             <h4 class="header-title m-t-0 m-b-30">
-            هزینه های پایه
+                هزینه های پایه
                 @if( $project['base_costs']->count() > 0)
-                    ({{ $project['base_costs']->count() . "مورد"}})
+                ({{ $project['base_costs']->count() . "مورد"}})
                 @endif
             </h4>
 
@@ -476,7 +484,7 @@
                     <div class="media-left">
                         <a href="#"> <img class="media-object img-circle thumb-sm" alt="{{ $cost->title }}"
                                 src="/admin/images/symbols/rial.png" style="border: 1px solid #ddd;"> </a>
-                                
+
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading" style="margin-bottom: 12px; margin-top:4px;">{{ $cost->title }}</h4>
@@ -494,8 +502,8 @@
                             <span>میزان هزینه:</span>
                             <span style="font-weight: bold;">{{ number_format($cost->money_paid) . " تومان " }}</span>
                         </div>
-                        
-                        
+
+
                         <div>
                             <span>وضعیت:</span>
                             @if($cost->status == 'paid')
@@ -504,8 +512,7 @@
                             <button class="btn btn-danger waves-effect waves-light btn-sm m-b-5">پرداخت نشده</button>
                             @endif
                         </div>
-                        <a href="{{ route('costs.show', $cost->id)}}" 
-                            class="btn btn-purple waves-effect submit-button">
+                        <a href="{{ route('costs.show', $cost->id)}}" class="btn btn-purple waves-effect submit-button">
                             <i class="fa fa-eye"></i> &nbsp;
                             مشاهده
                         </a>
@@ -524,7 +531,7 @@
                     <strong>راهنمایی:</strong>
                     با استفاده از دکمه افزودن در منوی همین باکس هزینه خود را برای این پروژه ثبت کنید .
                 </div>
-                
+
                 @endif
 
             </div>
@@ -533,8 +540,8 @@
     <!-- Cost list col End -->
 
 
-      <!-- Contractor Pay List col Start -->
-      <div class="col-md-4">
+    <!-- Contractor Pay List col Start -->
+    <div class="col-md-4">
         <div class="card-box">
             <div class="dropdown pull-right">
                 <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
@@ -542,17 +549,17 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li>
-                        <a href="{{ route('costs.create') }}" ><i class="fa fa-plus"></i> &nbsp;
+                        <a href="{{ route('costs.create') }}"><i class="fa fa-plus"></i> &nbsp;
                             ثبت هزینه
-                            </a>
+                        </a>
                     </li>
                 </ul>
             </div>
 
             <h4 class="header-title m-t-0 m-b-30">
-            هزینه های انجام پروژه
+                هزینه های انجام پروژه
                 @if( $project['contractor_costs']->count() > 0)
-                    ({{ $project['contractor_costs']->count() . "مورد"}})
+                ({{ $project['contractor_costs']->count() . "مورد"}})
                 @endif
             </h4>
 
@@ -563,7 +570,7 @@
                     <div class="media-left">
                         <a href="#"> <img class="media-object img-circle thumb-sm" alt="{{ $cost->title }}"
                                 src="/admin/images/symbols/rial.png" style="border: 1px solid #ddd;"> </a>
-                                
+
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading" style="margin-bottom: 12px; margin-top:4px;">{{ $cost->title }}</h4>
@@ -586,8 +593,8 @@
                             <span>میزان هزینه:</span>
                             <span style="font-weight: bold;">{{ number_format($cost->money_paid) . " تومان " }}</span>
                         </div>
-                        
-                        
+
+
                         <div>
                             <span>وضعیت:</span>
                             @if($cost->status == 'paid')
@@ -596,8 +603,7 @@
                             <button class="btn btn-danger waves-effect waves-light btn-sm m-b-5">پرداخت نشده</button>
                             @endif
                         </div>
-                        <a href="{{ route('costs.show', $cost->id)}}" 
-                            class="btn btn-purple waves-effect submit-button">
+                        <a href="{{ route('costs.show', $cost->id)}}" class="btn btn-purple waves-effect submit-button">
                             <i class="fa fa-eye"></i> &nbsp;
                             مشاهده
                         </a>
@@ -616,7 +622,7 @@
                     <strong>راهنمایی:</strong>
                     با استفاده از دکمه افزودن در منوی همین باکس هزینه خود را برای این پروژه ثبت کنید .
                 </div>
-                
+
                 @endif
 
             </div>
