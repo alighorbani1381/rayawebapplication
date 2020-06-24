@@ -211,7 +211,12 @@ class CostController extends Controller
 
     public function update(Request $request, Cost $cost)
     {
-
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'money_paid' => 'required',
+            'type' => 'required',
+        ]);
         $cost->update($request->all());
         session()->flash('UpdateCost');
         if (session()->has('SendWithProject'))
