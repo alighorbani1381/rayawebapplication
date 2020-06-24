@@ -205,7 +205,7 @@ class CostController extends Controller
     public function edit(Cost $cost)
     {
         $types = $this->repo->getCostTypes();
-        $cost = $this->repo->getCost($cost->id);
+        $cost = $this->repo->getCost($cost->id);        
         return view('Admin.Cost.edit', compact('cost', 'types'));
     }
 
@@ -213,7 +213,8 @@ class CostController extends Controller
     {
         $costType = $this->repo->specifyCostType($cost->id);
         $cost->update($request->all());
-        return redirect()->route('costs.index');
+        session()->flash('UpdateCost');
+        return back();
     }
 
     public function destroy(Cost $cost)
