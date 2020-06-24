@@ -199,7 +199,9 @@ class CostController extends Controller
 
     public function show(Cost $cost)
     {
-        //
+        $cost = $this->repo->getCost($cost->id);
+        // dd($cost);
+        return view('Admin.Cost.show', compact('cost'));
     }
 
     public function edit(Cost $cost)
