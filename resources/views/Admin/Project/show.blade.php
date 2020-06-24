@@ -404,7 +404,7 @@
                         <h4 class="media-heading" style="margin-bottom: 12px; margin-top:4px;">{{ $earning->title }}</h4>
                         <p class="font-13 text-muted m-b-0" style="display: block; text-align:right;">
                             <span>تاریخ ثبت:</span>
-                            <time dir="ltr" class="date-show">{{ verta($earning->created_at) }}</time>
+                            <time dir="ltr" class="date-show">{{ verta($earning->created_at)->format('Y/n/j H:i') }}</time>
                         </p>
                         <div class="date-show earning-time" style="margin: 12px 0;">
                             <span>میزان درآمد:</span>
@@ -488,7 +488,7 @@
 
                         <p class="font-13 text-muted m-b-0" style="display: block; text-align:right;">
                             <span>تاریخ ثبت:</span>
-                            <time dir="ltr" class="date-show">{{ verta($cost->created_at) }}</time>
+                            <time dir="ltr" class="date-show">{{ verta($cost->created_at)->format('Y/n/j H:i') }}</time>
                         </p>
                         <div class="date-show earning-time" style="margin: 12px 0;">
                             <span>میزان هزینه:</span>
@@ -580,7 +580,7 @@
 
                         <p class="font-13 text-muted m-b-0" style="display: block; text-align:right;">
                             <span>تاریخ ثبت:</span>
-                            <time dir="ltr" class="date-show">{{ verta($cost->created_at) }}</time>
+                            <time dir="ltr" class="date-show">{{ verta($cost->created_at)->format('Y/n/j H:i') }}</time>
                         </p>
                         <div class="date-show earning-time" style="margin: 12px 0;">
                             <span>میزان هزینه:</span>
