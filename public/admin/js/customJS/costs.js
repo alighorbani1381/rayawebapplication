@@ -49,8 +49,12 @@ $(document).ready(function () {
 
             case 'contractor':
                 var projectName = $(this).parents('td').siblings('td.projectName').text();
+                var message = "";
                 var userName = $(this).parents('td').siblings('td.userName').text();;
-                var message = "آیا  از حدف" + " « " + cost + " » " + " برای " + " « " + userName + " » " + "از پروژه" + " « " + projectName + " » " + "اطمینان دارید؟";
+                if (projectName != "-")
+                    message = "آیا  از حدف" + " « " + cost + " » " + " برای " + " « " + userName + " » " + "از پروژه" + " « " + projectName + " » " + "اطمینان دارید؟";
+                else
+                    message = "آیا  از حدف" + " « " + cost + " » " + " برای " + " « " + userName + " » " + "اطمینان دارید؟";
                 Swal.fire({
                     title: message,
                     text: "در صورت حذف هزینه مورد نظر برای این پروژه حذف و از درون سیستم پاک می شود.",
