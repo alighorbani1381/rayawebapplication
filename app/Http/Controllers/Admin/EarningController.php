@@ -60,7 +60,7 @@ class EarningController extends Controller
 
     public function show($earning)
     {
-        $earning = $this->getEarning($earning);
+        $earning = $this->repo->getEarning($earning);
         return view('Admin.Earning.show', compact('earning'));
     }
 
