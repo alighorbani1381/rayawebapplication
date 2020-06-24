@@ -51,6 +51,7 @@
                         <th class="tac">وضعیت</th>
                         <th class="tac">زمان ثبت</th>
                         <th>نوع هزینه</th>
+                        <th class="tac">جزئیات</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
                      </tr>
@@ -77,6 +78,11 @@
                         @php $time = verta($cost->created_at); @endphp
                         <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
                         <td>{{ $cost->type_title }}</td>
+                        <td class="tac">
+                           <a href="{{ route('costs.show', $cost->id) }}"
+                               class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i
+                                   class="fa fa-file-text-o"></i> </a>
+                       </td>
                         <td class="tac">
                            <a href="{{ route('costs.edit', $cost->id) }}"
                               class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
@@ -114,6 +120,7 @@
                         <th class="tac">وضعیت</th>
                         <th class="tac">زمان ثبت</th>
                         <th>نوع هزینه</th>
+                        <th class="tac">جزئیات</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
                      </tr>
@@ -139,6 +146,11 @@
                         @php $time = verta($cost->created_at); @endphp
                         <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
                         <td>{{ $cost->type_title }}</td>
+                        <td class="tac">
+                           <a href="{{ route('costs.show', $cost->id) }}" class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> 
+                              <i class="fa fa-file-text-o"></i>
+                            </a>
+                       </td>
                         <td class="tac">
                            <a href="{{ route('costs.edit', $cost->id) }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5">
                             <i class="fa fa-pencil"></i> 
@@ -178,6 +190,7 @@
                         <th class="tac">وضعیت</th>
                         <th class="tac">زمان ثبت</th>
                         <th>نوع هزینه</th>
+                        <th class="tac">جزئیات</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
                      </tr>
@@ -206,6 +219,11 @@
                         @php $time = verta($cost->created_at); @endphp
                         <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
                         <td>{{ $cost->type_title }}</td>
+                        <td class="tac">
+                           <a href="{{ route('costs.show', $cost->id) }}"
+                               class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i
+                                   class="fa fa-file-text-o"></i> </a>
+                       </td>
                         <td class="tac">
                            <a href="{{ route('costs.edit', $cost->id) }}"
                               class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
