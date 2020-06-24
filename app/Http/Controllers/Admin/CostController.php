@@ -205,16 +205,19 @@ class CostController extends Controller
     public function edit(Cost $cost)
     {
         $types = $this->repo->getCostTypes();
-        $cost = $this->repo->getCost($cost->id);        
+        $cost = $this->repo->getCost($cost->id);
         return view('Admin.Cost.edit', compact('cost', 'types'));
     }
 
     public function update(Request $request, Cost $cost)
     {
-        $costType = $this->repo->specifyCostType($cost->id);
+
         $cost->update($request->all());
         session()->flash('UpdateCost');
-        return back();
+        if (session()->has('SendWithProject'))
+            return back();
+        else
+            return redirect()->route('costs.index');
     }
 
     public function destroy(Cost $cost)
