@@ -15,13 +15,20 @@ class Cost extends Model
 
     public function getProjectTitleAttribute($key)
     {
-        if($this->project_id != null && $this->project_id != ""){
+        if ($this->project_id != null && $this->project_id != "") {
             $project = Project::where('id', $this->project_id)
-            ->first();
+                ->first();
             return $project->title;
-        }
+        } else
+            return '-';
+    }
+
+    public function getTypeTitleAttribute()
+    {
+        if ($this->type != null)
+            $type = CostStatic::where('id', $this->type)->first()->title;
         else
-        return '-';
-    } 
-    
+            $type = "ندارد";
+        return $type;
+    }
 }
