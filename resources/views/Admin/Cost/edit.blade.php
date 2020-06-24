@@ -83,7 +83,7 @@ $cost = $cost['content'];
                                     <option disabled value="null">موردی برای نمایش وجود ندارد</option>
                                     @endif
                                 </select>
-                                @error('title')
+                                @error('type')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
