@@ -54,7 +54,8 @@
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <div class="alert alert-danger">
-                                اطلاعات وارد شده صحیح نمی باشد.
+                                <i class="fa fa-warning"></i>
+                                نام کاربری یا رمزعبور شما صحیح نمی باشد.
                             </div>
                         </div>
                     </div>
