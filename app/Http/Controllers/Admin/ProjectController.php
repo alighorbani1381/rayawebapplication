@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Project;
 use App\Repository\ProjectRepository;
 use Illuminate\Http\Request;
@@ -41,7 +40,7 @@ class ProjectRequest
 }
 
 
-class ProjectController extends Controller
+class ProjectController extends AdminController
 {
 
     private $repo;
