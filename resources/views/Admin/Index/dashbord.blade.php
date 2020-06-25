@@ -57,25 +57,32 @@
 <!-- Project Container End !-->
 
 
+
 <!-- Admins Container Start !-->
 <div class="row">
 
+    @foreach($adminsStatistic as $admin)
     <!-- Admin Box Start !-->
     <div class="col-lg-3 col-md-6">
         <div class="card-box widget-user">
             <div>
-                <img src="assets/images/users/avatar-3.jpg" class="img-responsive img-circle" alt="user">
+                <img src="{{ $admin->profile_image }}" class="img-responsive img-circle" alt="user">
                 <div class="wid-u-info">
-                    <h4 class="m-t-0 m-b-5">نام کاربر</h4>
-                    <p class="text-muted m-b-5 font-13"><a href="http://webmasterlabs.ir/cdn-cgi/l/email-protection"
-                            class="__cf_email__"
-                            data-cfemail="b6c2d3c5c2f6d1dbd7dfda98d5d9db">[email&nbsp;protected]</a></p>
-                    <small class="text-warning"><b>ادمین</b></small>
+                    <h4 class="m-t-0 m-b-5">{{ $admin->full_name }}</h4>
+                    <p class="text-muted m-b-5 font-13">
+                        <a href="#">
+                        {{ $admin->phone }}
+                    </a>
+                </p>
+                            
+                            
+                    <small class="text-warning"><b>مدیر</b></small>
                 </div>
             </div>
         </div>
     </div>
     <!-- Admin Box End !-->
+    @endforeach
 </div>
 <!-- Admins Container End !-->
 
