@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Http\Controllers\Admin\ProjectController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -119,6 +120,37 @@ class UserController extends AdminController
 
     public function showLogin()
     {
-        return view('Admin.Auth.login');
+        if (Auth::check())
+            return redirect()->route('admin.dashboard');
+        else
+            return view('Admin.Auth.login');
+    }
+
+    public function checkLogin(Request $request)
+    {
+        $loginInfo = $this->getLoginInfo($request);
+        $this->checkInfo($loginInfo);
+    }
+
+    private function checkInfo($loginInfo)
+    {
+        if (Auth::attempt($loginInfo))
+            return redirect()->route('admin.dashboard');
+        else
+            return redirect('showLogin');
+    }
+
+    private function getLoginInfo($request)
+    {
+        return  [
+            'username' => $request->username,
+            'password' => $request->password
+        ];
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login.show');
     }
 }
