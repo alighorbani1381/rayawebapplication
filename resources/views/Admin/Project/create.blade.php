@@ -1,8 +1,13 @@
 @extends('Admin.Layout.main')
 @section('title', 'افزودن پروژه')
 @section('header', 'ایجاد پروژه')
+@push('css')
+<link href="{{ asset('admin/css/persian-datepicker.css') }}" rel="stylesheet" type="text/css" />
+@endpush
 @push('js')
 <script src="{{ asset('admin/js/customJS/projects.js') }} "></script>
+<script src="{{ asset('admin/js/persian-date.min.js') }} "></script>
+<script src="{{ asset('admin/js/persian-datepicker.js') }} "></script>
 @endpush
 @section('content')
 <div class="row">
@@ -266,7 +271,7 @@
 
 @if(session()->has('EarningProblem'))
 <script>
-var title = "پروژه ای برای افزایش در آمد شما وجود نداره!";
+    var title = "پروژه ای برای افزایش در آمد شما وجود نداره!";
 var message = "برای این که بتوانید در آمد خود را ثبت کنید باید پروژه ای وجود داشته باشه برای این کار از همین صفحه پروژه رو ایجاد کن.";
 var btnText= "متوجه شدم" ;
 maxMbox(title, message, 'warning', btnText, 250);
