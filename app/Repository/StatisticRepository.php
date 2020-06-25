@@ -7,24 +7,32 @@ use App\User;
 
 class StatisticRepository{
 
-    public function getCountProjects()
+    private function getCountProjects()
     {
         return Project::count();
     }
     
-    public function getCountActiveProjects()
+    private function getCountActiveProjects()
     {
         return Project::where('status', '!=', 'finished')->count();
     }
 
-    public function getCountUsers()
+    private function getCountUsers()
     {
         return User::count() - 1;
     }
 
-    public function getCountCategories()
+    private function getCountCategories()
     {
         return Category::where('child', '!=', '0')->count();
+    }
+
+    public function getGlobalStatistic()
+    {
+     $statistic['projects'] = $this->getCountProjects();
+     $statistic['active_projects'] = $this->getCountActiveProjects();
+     $statistic['users'] = $this->getCountUsers();
+     $statistic['categories'] = $this->getCountCategories();
     }
 
 }
