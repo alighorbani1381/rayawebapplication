@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::group(['namespace' => 'Admin'], function(){
     Route::get('login', 'UserController@showLogin')->name('login.show');
     Route::post('login', 'UserController@checkLogin')->name('login.check');
+    Route::get('logout', 'UserController@logout')->name('logout');
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
