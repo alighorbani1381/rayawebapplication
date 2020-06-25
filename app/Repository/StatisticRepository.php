@@ -7,6 +7,11 @@ use App\User;
 
 class StatisticRepository{
 
+    private function getAdminStatistic()
+    {
+        return User::where('type', 'admin')->limit(4)->get();
+    }
+
     private function getCountProjects()
     {
         return Project::count();
