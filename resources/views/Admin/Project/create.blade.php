@@ -8,6 +8,14 @@
 <script src="{{ asset('admin/js/customJS/projects.js') }} "></script>
 <script src="{{ asset('admin/js/persian-date.min.js') }} "></script>
 <script src="{{ asset('admin/js/persian-datepicker.js') }} "></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      $(".persian-date").persianDatepicker({
+        format: 'YYYY-MM-DD',	
+        initialValueType: 'gregorian',
+        });
+    });
+</script>
 @endpush
 @section('content')
 <div class="row">
@@ -93,8 +101,8 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">تاریخ شروع کار </label>
                             <div class="col-md-9">
-                                <input type="date" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="date_start"
-                                    class="form-control" value="{{ old ('date_start') }}">
+                                <input type="text" placeholder="تاریخ شروع کار را وارد کنید ..." name="date_start"
+                                    class="form-control persian-date" value="{{ old ('date_start') }}">
                                 @error('date_start')
                                 <div class="alert alert-danger"> {{ $message }} </div>
                                 @enderror
@@ -224,8 +232,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تاریخ شروع قرارداد </label>
                         <div class="col-md-9">
-                            <input type="date" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="contract_started"
-                                class="form-control" value="{{ old ('contract_started') }}">
+                            <input type="text" placeholder="تاریخ شروع قرارداد را وارد کنید ..." name="contract_started"
+                                class="form-control persian-date" value="{{ old ('contract_started') }}">
                             @error('contract_started')
                             <div class="alert alert-danger"> {{ $message }} </div>
                             @enderror
@@ -235,8 +243,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تاریخ پایان قرارداد </label>
                         <div class="col-md-9">
-                            <input type="date" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="completed_at"
-                                class="form-control" value="{{ old ('completed_at') }}">
+                            <input type="text" placeholder="تاریخ پایان قرارداد را وارد کنید ..." name="completed_at"
+                                class="form-control persian-date" value="{{ old ('completed_at') }}">
                             @error('completed_at')
                             <div class="alert alert-danger"> {{ $message }} </div>
                             @enderror
