@@ -21,8 +21,11 @@
     <link href="/admin/css/pages.css" rel="stylesheet" type="text/css" />
     <link href="/admin/css/menu.css" rel="stylesheet" type="text/css" />
     <link href="/admin/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/css/developer.css') }}" rel="stylesheet" type="text/css" />
     <script src="/admin/js/modernizr.min.js"></script>
-
+    <script src="/admin/js/jquery.min.js"></script>
+    <script src="{{ asset('admin/js/sweetalert.js') }} "></script>
+    <script src="{{ asset('admin/js/customJS/developer.js') }} "></script>
 </head>
 
 <body>
@@ -31,7 +34,7 @@
     <div class="clearfix"></div>
     <div class="wrapper-page">
         <div class="text-center">
-            <a href="index-2.html" class="logo">
+            <a href="{{ route('login.show') }}" class="logo">
                 <span>
                     ورود
                     <span>اعضا</span>
@@ -82,7 +85,6 @@
     </script>
 
     <!-- jQuery  -->
-    <script src="/admin/js/jquery.min.js"></script>
     <script src="/admin/js/bootstrap-rtl.min.js"></script>
     <script src="/admin/js/detect.js"></script>
     <script src="/admin/js/fastclick.js"></script>
@@ -97,6 +99,11 @@
     <script src="/admin/js/jquery.core.js"></script>
     <script src="/admin/js/jquery.app.js"></script>
 
+    @if(session()->has('logoutSuccess'))
+    <script>
+        var message = "با موفقیت از سیستم خارج شدید";
+        minMbox(message, 200);
+    </script>
+    @endif
 </body>
-
 </html>
