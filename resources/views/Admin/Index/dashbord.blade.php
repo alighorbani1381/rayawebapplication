@@ -8,8 +8,11 @@
     <div class="col-lg-3 col-md-6">
         <div class="card-box widget-user">
             <div class="text-center">
-                <h2 class="text-custom" data-plugin="counterup">{{ $globalStatistic['projects'] }}</h2>
-                <h5>تعداد کل پروژه ها</h5>
+                <h2 class="text-custom" data-plugin="counterup">{{ $globalStatistic['projects'] . " عدد " }}</h2>
+                <h5>
+                    <i class="fa fa-laptop"></i>
+                    <span>تعداد کل پروژه ها</span>
+                </h5>
             </div>
         </div>
     </div>
@@ -17,8 +20,11 @@
     <div class="col-lg-3 col-md-6">
         <div class="card-box widget-user">
             <div class="text-center">
-                <h2 class="text-pink" data-plugin="counterup">{{ $globalStatistic['active_projects'] }}</h2>
-                <h5>تعداد پروژه های در دست انجام</h5>
+                <h2 class="text-pink" data-plugin="counterup">{{ $globalStatistic['active_projects'] . " عدد " }}</h2>
+                <h5>
+                    <i class="fa fa-gear"></i>
+                    <span>تعداد پروژه های در دست انجام</span>
+                </h5>
             </div>
         </div>
     </div>
@@ -26,8 +32,11 @@
     <div class="col-lg-3 col-md-6">
         <div class="card-box widget-user">
             <div class="text-center">
-                <h2 class="text-warning" data-plugin="counterup">{{ $globalStatistic['users'] }}</h2>
-                <h5>تعداد کاربران شما</h5>
+                <h2 class="text-warning" data-plugin="counterup">{{ $globalStatistic['users'] . " عدد " }}</h2>
+                <h5>
+                    <i class="fa fa-users"></i>
+                    <span>تعداد کاربران شما</span>
+                </h5>
             </div>
         </div>
     </div>
@@ -35,8 +44,11 @@
     <div class="col-lg-3 col-md-6">
         <div class="card-box widget-user">
             <div class="text-center">
-                <h2 class="text-info" data-plugin="counterup">{{ $globalStatistic['categories'] }}</h2>
-                <h5>تعداد خدمات شما</h5>
+                <h2 class="text-info" data-plugin="counterup">{{ $globalStatistic['categories'] . " عدد " }}</h2>
+                <h5>
+                    <i class="fa fa-support"></i>
+                    <span>تعداد خدمات شما</span>
+                </h5>
             </div>
         </div>
     </div>
@@ -106,11 +118,8 @@
                     <i class="zmdi zmdi-more-vert"></i>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">فعال</a></li>
-                    <li><a href="#">متن اول</a></li>
-                    <li><a href="#">متن دوم</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">متن پاورقی</a></li>
+                    <li><a href="{{ route('projects.index') }}">لیست پروژه ها</a></li>
+                    <li><a href="{{ route('projects.create') }}">افزودن پروژه جدید</a></li>
                 </ul>
             </div>
 
