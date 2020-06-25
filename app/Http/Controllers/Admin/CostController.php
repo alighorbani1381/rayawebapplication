@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Cost;
 use App\CostStatic;
-use App\Http\Controllers\Controller;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -158,7 +157,7 @@ class CostRepository
 }
 
 
-class CostController extends Controller
+class CostController extends AdminController
 {
 
     private $repo;
