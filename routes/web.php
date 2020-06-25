@@ -25,7 +25,7 @@ Route::group(['namespace' => 'Admin'], function(){
     Route::get('logout', 'UserController@logout')->name('logout');
 });
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
+Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin'], 'prefix' => 'admin'], function(){
     Route::resource('costs/static', 'CoststaticController');
     Route::resource('costs', 'CostController');
     Route::get('dashborad', 'IndexController@index')->name('admin.dashboard');
