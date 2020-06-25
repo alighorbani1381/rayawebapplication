@@ -9,5 +9,10 @@ class StatisticRepository{
     {
         return Project::count();
     }
+    
+    public function getCountActiveProjects()
+    {
+        return Project::where('status', '!=', 'finished')->count();
+    }
 
 }
