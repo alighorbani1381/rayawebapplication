@@ -2,6 +2,48 @@
 @section('title', 'رایا مدیر')
 @section('header', 'پنل مدیریتی رایا مدیر')
 @section('content')
+
+<!-- Global Statistic Start !-->
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="card-box widget-user">
+            <div class="text-center">
+                <h2 class="text-custom" data-plugin="counterup">10</h2>
+                <h5>تعداد کل پروژه ها</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card-box widget-user">
+            <div class="text-center">
+                <h2 class="text-pink" data-plugin="counterup">2578</h2>
+                <h5>تعداد پروژه های در دست انجام</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card-box widget-user">
+            <div class="text-center">
+                <h2 class="text-warning" data-plugin="counterup">197</h2>
+                <h5>تعداد کاربران شما</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card-box widget-user">
+            <div class="text-center">
+                <h2 class="text-info" data-plugin="counterup">548</h2>
+                <h5>تعداد خدمات شما</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Global Statistic End !-->
+
+
 <!-- Project Container Start !-->
 <div class="row">
 
@@ -71,11 +113,11 @@
                     <h4 class="m-t-0 m-b-5">{{ $admin->full_name }}</h4>
                     <p class="text-muted m-b-5 font-13">
                         <a href="#">
-                        {{ $admin->phone }}
-                    </a>
-                </p>
-                            
-                            
+                            {{ $admin->phone }}
+                        </a>
+                    </p>
+
+
                     <small class="text-warning"><b>مدیر</b></small>
                 </div>
             </div>
@@ -85,5 +127,6 @@
     @endforeach
 </div>
 <!-- Admins Container End !-->
+
 
 @endsection
