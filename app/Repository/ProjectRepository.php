@@ -99,6 +99,27 @@ class ProjectRepository
             ->paginate(15);
     }
 
+    public static function getActiveProjects()
+    {
+        return DB::table('projects')
+            ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
+            ->where('status', '!=', 'finished')
+            ->orderBy('projects.id', 'desc')
+            ->paginate(8);
+    }
+
+    public function getStatisticProject()
+    {
+        $actives = $this->getActiveProjects();
+        foreach($actives as $active){
+            $project = $this->getProjectFull($active->id);
+            $allProgress = $this->getProgress($project);
+            $results['project'][] = $project;
+            $results['progress'][] = $allProgress;
+        }
+        return $results;
+    }
+
     public static function getProject($id)
     {
         return DB::table('projects')
