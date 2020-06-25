@@ -14,9 +14,6 @@
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="{{ route('projects.index') }}">لیست پروژه ها</a></li>
                     <li><a href="{{ route('projects.create') }}">افزودن پروژه جدید</a></li>
-                    <li><a href="#">متن دوم</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">متن پاورقی</a></li>
                 </ul>
             </div>
             <h4 class="header-title m-t-0 m-b-30">پروژه ها</h4>
