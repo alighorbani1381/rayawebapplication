@@ -6,7 +6,9 @@
 @endpush
 @section('content')
 @if(session()->has('deleteUser'))
-    <script> $(document).ready(function(){showUserDeleteMessage();}); </script>
+<script>
+    $(document).ready(function(){showUserDeleteMessage();}); 
+</script>
 @endif
 
 <div class="row">
@@ -36,7 +38,15 @@
                         <td class="fullname">{{ $user->full_name}}</td>
                         <td>{{ $user->phone}}</td>
                         <td>{{ $user->username}}</td>
-                        <td>{{ $user->password}}</td>
+                        <td>
+                            @if($user->password != "raya-px724")
+                            {{ "Secret" }}
+
+                            <i class="fa fa-lock"></i>
+                            @else
+                            {{ "raya-px724" }}
+                            @endif
+                        </td>
                         <td class="tac">
                             <a href="" class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
                                     class="fa fa-pencil"></i> </a>
