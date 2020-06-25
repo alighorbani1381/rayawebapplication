@@ -34,17 +34,22 @@
     <div class="clearfix"></div>
     <div class="wrapper-page">
         <div class="text-center">
-            <a href="{{ route('login.show') }}" class="logo">
-                <span>
-                    ورود
-                    <span>اعضا</span>
-                </span>
+            <a href="{{ route('login.show') }}">
+                <img class="login-logo" src="/admin/images/logo/rayapro-dark.png" alt="RayaPro">
             </a>
-            <h5 class="text-muted m-t-0 font-600">همین الان وارد شوید !</h5>
         </div>
-        <div class="m-t-40 card-box">
-            <div class="text-center">
-                <h4 class="text-uppercase font-bold m-b-0">ورود</h4>
+
+        <div class="m-t-40 card-box" style="box-shadow: 1px 1px 14px 0px #949494;">
+
+            <div class="text-center welcome-login">
+                <a href="{{ route('login.show') }}" class="logo"><span>Raya User<span>Panel</span></span></a>
+                <h5 style="margin:10px 0;" class="text-muted m-t-0 font-600">
+                    پنل کاربری شرکت رایا پردازش اصفهان
+                </h5>
+            </div>
+
+            <div class="text-center" style="margin-top: 35px;">
+                <h4 class="text-uppercase font-bold m-b-0">همین الان وارد شوید !</h4>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal m-t-20" method="post" action="{{ route('login.check') }}">
@@ -63,13 +68,15 @@
 
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" name="username" required="" placeholder="نام کاربری">
+                            <input class="form-control" type="text" name="username" required=""
+                                placeholder="نام کاربری">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password"  name="password" required="" placeholder="رمزعبور">
+                            <input class="form-control" type="password" name="password" required=""
+                                placeholder="رمزعبور">
                         </div>
                     </div>
 
@@ -118,4 +125,5 @@
     </script>
     @endif
 </body>
+
 </html>
