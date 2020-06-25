@@ -21,8 +21,9 @@ class IndexController extends AdminController
     public function index()
     {
         $projectStatistic = $this->project->getStatisticProject();
+        $latestProject = $this->project->getLatestExecutedProject();
         $adminsStatistic = $this->statistic->getAdminStatistic();
         $globalStatistic = $this->statistic->getGlobalStatistic();
-        return view('Admin.Index.dashbord', compact('projectStatistic', 'adminsStatistic', 'globalStatistic'));
+        return view('Admin.Index.dashbord', compact('projectStatistic', 'adminsStatistic', 'globalStatistic', 'latestProject'));
     }
 }
