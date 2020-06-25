@@ -49,7 +49,7 @@
 
             <!-- LOGO -->
             <div class="topbar-left">
-                <a href="index-2.html" class="logo">
+                <a href="{{ route('admin.dashboard') }}" class="logo">
                     <span>رایا<span> مدیر</span></span>
                     <i class="zmdi zmdi-layers"></i></a>
             </div>
