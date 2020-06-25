@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\CostStatic;
 use App\Repository\CostStaticRepository;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CoststaticController extends Controller
+class CoststaticController extends AdminController
 {
 
     private $repo;
