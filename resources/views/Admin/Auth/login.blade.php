@@ -33,7 +33,7 @@
         <div class="text-center">
             <a href="index-2.html" class="logo">
                 <span>
-                     ورود 
+                    ورود
                     <span>اعضا</span>
                 </span>
             </a>
@@ -44,17 +44,17 @@
                 <h4 class="text-uppercase font-bold m-b-0">ورود</h4>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal m-t-20" action="http://webmasterlabs.ir/Mr-Admin/index.html">
-
+                <form class="form-horizontal m-t-20" method="post" action="{{ route('login.check') }}">
+                    @csrf
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control" type="text" required="" placeholder="نام کاربری">
+                            <input class="form-control" type="text" name="username" required="" placeholder="نام کاربری">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input class="form-control" type="password" required="" placeholder="رمزعبور">
+                            <input class="form-control" type="password"  name="password" required="" placeholder="رمزعبور">
                         </div>
                     </div>
 
