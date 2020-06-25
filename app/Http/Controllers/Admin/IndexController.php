@@ -12,9 +12,10 @@ class IndexController extends AdminController
         $this->project = resolve(ProjectRepository::class);
     }
 
-    
-    public function index(){
-        $projects = $this->project->getStatisticProject();
-        return view('Admin.Index.dashbord');
+
+    public function index()
+    {
+        $projectStatistic = $this->project->getStatisticProject();
+        return view('Admin.Index.dashbord', compact('projectStatistic'));
     }
 }
