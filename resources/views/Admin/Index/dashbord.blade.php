@@ -119,68 +119,47 @@
             <div class="table-responsive">
                 <table class="table">
                     <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>نام پروژه</th>
-                        <th>تاریخ شروع</th>
-                        <th>سررسید</th>
-                        <th>وضعیت</th>
-                        <th>نوع</th>
-                    </tr>
+                        <tr>
+                            <th class="tac">#</th>
+                            <th class="tac">نام پروژه</th>
+                            <th class="tac">شناسه پروژه</th>
+                            <th class="tac">تاریخ شروع قرارداد</th>
+                            <th class="tac">تاریخ شروع کار</th>
+                            <th class="tac">وضعیت</th>
+                        </tr>
                     </thead>
                     <tbody>
+
+                        @foreach($latestProject as $row => $project)
                         <tr>
-                            <td>1</td>
-                            <td>آقای ادمین</td>
-                            <td>01/01/2016</td>
-                            <td>26/04/2016</td>
-                            <td><span class="label label-danger">به اتمام رسید</span></td>
-                            <td>قالب HTML</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>املاک نیاوران</td>
-                            <td>01/01/2016</td>
-                            <td>26/04/2016</td>
-                            <td><span class="label label-success">در حال برسی</span></td>
-                            <td>قالب وردپرس</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>اپ شرط بندی</td>
-                            <td>01/05/2016</td>
-                            <td>10/05/2016</td>
-                            <td><span class="label label-pink">اجرا شده</span></td>
-                            <td>اندروید</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>اپ شرط بندی</td>
-                            <td>01/01/2016</td>
-                            <td>31/05/2016</td>
-                            <td><span class="label label-purple">تست نهایی</span>
+                            <td class="tac">{{ $row + 1}}</td>
+                            <td class="tac">{{ $project->title }}</td>
+                            <td class="tac">{{ $project->unique_id }}</td>
+                            <td class="tac date-show">{{ verta($project->contract_started)->format('Y/n/j H:i') }}</td>
+                            <td class="tac date-show">{{ verta($project->date_start)->format('Y/n/j H:i') }}</td>
+                            <td class="tac">
+                                @php
+                                if($project->status == 'waiting'){
+                                    $status['color'] = "danger";
+                                    $status['text'] = "غیر فعال";
+                                }
+                                
+                                if($project->status == 'ongoing'){
+                                    $status['color'] = "warning";
+                                    $status['text'] = "در حال اجرا";
+                                }
+                                
+                                if($project->status == 'finished'){
+                                    $status['color'] = "success";
+                                    $status['text'] = "پایان یافته";
+                                }
+
+                                @endphp
+
+                                <span class="label label-{{$status['color']}}">{{ $status['text'] }}</span>
                             </td>
-                            <td>آی او اس</td>
                         </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>چت روم ایرانی</td>
-                            <td>01/01/2016</td>
-                            <td>31/05/2016</td>
-                            <td><span class="label label-warning">به زودی</span></td>
-                            <td>لاراول</td>
-                        </tr>
-
-                        <tr>
-                            <td>6</td>
-                            <td>حساب یار</td>
-                            <td>01/01/2016</td>
-                            <td>31/05/2016</td>
-                            <td><span class="label label-primary">به زودی</span></td>
-                            <td>برنامه ویندوزی</td>
-                        </tr>
-
-                        
+                        @endforeach
 
                     </tbody>
                 </table>
