@@ -114,7 +114,7 @@ class ProjectRepository
         foreach($actives as $active){
             $project = $this->getProjectFull($active->id);
             $allProgress = $this->getProgress($project);
-            $results['project'][] = $project;
+            $results['project'][] = $project['project'];
             $results['progress'][] = $allProgress;
         }
         return $results;
