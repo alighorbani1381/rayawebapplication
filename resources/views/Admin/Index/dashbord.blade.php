@@ -22,14 +22,20 @@
             <h4 class="header-title m-t-0 m-b-30">پروژه ها</h4>
 
             @foreach($projectStatistic['project'] as $key => $project)
-            @php $progress = $projectStatistic['progress'][$key]; @endphp
+            <?php
+            $progress = $projectStatistic['progress'][$key]; 
+            if($progress < 25) $color="danger"; 
+            if($progress>= 25 && $progress < 50) $color="warning";                            
+            if($progress>= 50 && $progress < 75) $color="info";
+            if($progress>= 75 && $progress <= 100) $color="success"; 
+            ?>
             <!-- Project Item Start !-->
             <p class="font-600 m-b-5">
                 {{ $project->title}}
-                <span class="text-primary pull-right">{{ $progress }}%</span>
+                <span class="text-{{$color}} pull-right">{{ $progress }}%</span>
             </p>
             <div class="progress progress-bar-primary-alt progress-sm m-b-20">
-                <div class="progress-bar progress-bar-primary progress-animated wow animated animated"
+                <div class="progress-bar progress-bar-{{$color}} progress-animated wow animated animated"
                     role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100"
                     style="width: {{ $progress }}%; visibility: visible; animation-name: animationProgress;">
                 </div>
