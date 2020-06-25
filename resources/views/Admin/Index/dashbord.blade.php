@@ -97,6 +97,97 @@
     </div>
     <!-- Project Widget End !-->
     @endif
+
+    <!-- Last Project  Widget Start !-->
+    <div class="col-lg-8">
+        <div class="card-box">
+            <div class="dropdown pull-right">
+                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">فعال</a></li>
+                    <li><a href="#">متن اول</a></li>
+                    <li><a href="#">متن دوم</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">متن پاورقی</a></li>
+                </ul>
+            </div>
+
+            <h4 class="header-title m-t-0 m-b-30">آخرین پروژه های اجرا شده</h4>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>نام پروژه</th>
+                        <th>تاریخ شروع</th>
+                        <th>سررسید</th>
+                        <th>وضعیت</th>
+                        <th>نوع</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>آقای ادمین</td>
+                            <td>01/01/2016</td>
+                            <td>26/04/2016</td>
+                            <td><span class="label label-danger">به اتمام رسید</span></td>
+                            <td>قالب HTML</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>املاک نیاوران</td>
+                            <td>01/01/2016</td>
+                            <td>26/04/2016</td>
+                            <td><span class="label label-success">در حال برسی</span></td>
+                            <td>قالب وردپرس</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>اپ شرط بندی</td>
+                            <td>01/05/2016</td>
+                            <td>10/05/2016</td>
+                            <td><span class="label label-pink">اجرا شده</span></td>
+                            <td>اندروید</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>اپ شرط بندی</td>
+                            <td>01/01/2016</td>
+                            <td>31/05/2016</td>
+                            <td><span class="label label-purple">تست نهایی</span>
+                            </td>
+                            <td>آی او اس</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>چت روم ایرانی</td>
+                            <td>01/01/2016</td>
+                            <td>31/05/2016</td>
+                            <td><span class="label label-warning">به زودی</span></td>
+                            <td>لاراول</td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>حساب یار</td>
+                            <td>01/01/2016</td>
+                            <td>31/05/2016</td>
+                            <td><span class="label label-primary">به زودی</span></td>
+                            <td>برنامه ویندوزی</td>
+                        </tr>
+
+                        
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Last Project  Widget End !-->
 </div>
 <!-- Project Container End !-->
 
