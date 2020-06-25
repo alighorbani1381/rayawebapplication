@@ -82,6 +82,10 @@
                         <li><a href="{{ route('users.create') }}">افزودن کاربر جدید</a></li>
                     </ul>
                 </li>
+
+                <li>
+                    <a href="{{ route('logout') }}" class="logout-button waves-effect"><i class="fa fa-sign-out"></i> <span> خروج </span> </a>
+                </li>
                 
 
             </ul>
