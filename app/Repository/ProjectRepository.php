@@ -109,6 +109,24 @@ class ProjectRepository
             ->get();
     }
 
+    private function getLatestSixProject()
+    {
+        return DB::table('projects')
+            ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
+            ->orderBy('projects.id', 'desc')
+            ->limit(6)
+            ->get();
+    }
+
+    public function getLatestExecutedProject()
+    {
+        $projects = $this->getLatestSixProject();
+        foreach($projects as $project){
+            $project = $this->getProjectFull($project->id);
+            $result[] = $project['project'];
+        }
+        return $result;
+    }
     public function getStatisticProject()
     {
         $actives = $this->getActiveProjects();
