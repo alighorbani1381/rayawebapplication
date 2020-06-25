@@ -1,4 +1,6 @@
 <?php
+
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +21,7 @@ Route::get('/', function () {
 # Auth Route
 Route::group(['namespace' => 'Admin'], function(){
     Route::get('login', 'UserController@showLogin')->name('login.show');
+    Route::post('login', 'UserController@checkLogin')->name('login.check');
 });
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
@@ -34,6 +37,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
     Route::get('give/contractor', 'UserController@getContractors');
 });
 Route::get('test', function(){
-    
+    return Hash::make('123');
 });
 
