@@ -144,8 +144,8 @@
                             <td class="tac">{{ $row + 1}}</td>
                             <td class="tac">{{ $project->title }}</td>
                             <td class="tac">{{ $project->unique_id }}</td>
-                            <td class="tac date-show">{{ verta($project->contract_started)->format('Y/n/j H:i') }}</td>
-                            <td class="tac date-show">{{ verta($project->date_start)->format('Y/n/j H:i') }}</td>
+                            <td class="tac date-show">{{ verta($project->contract_started)->format('Y/n/j') }}</td>
+                            <td class="tac date-show">{{ verta($project->date_start)->format('Y/n/j') }}</td>
                             <td class="tac">
                                 @php
                                 if($project->status == 'waiting'){
