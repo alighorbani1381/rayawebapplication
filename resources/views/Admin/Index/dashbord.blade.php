@@ -12,15 +12,16 @@
                     <i class="zmdi zmdi-more-vert"></i>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">فعال</a></li>
-                    <li><a href="#">متن اول</a></li>
+                    <li><a href="{{ route('projects.index') }}">لیست پروژه ها</a></li>
+                    <li><a href="{{ route('projects.create') }}">افزودن پروژه جدید</a></li>
                     <li><a href="#">متن دوم</a></li>
                     <li class="divider"></li>
                     <li><a href="#">متن پاورقی</a></li>
                 </ul>
             </div>
             <h4 class="header-title m-t-0 m-b-30">پروژه ها</h4>
-
+            
+            @if(count($projectStatistic['project']) != 0 )
             @foreach($projectStatistic['project'] as $key => $project)
             <?php
             $progress = $projectStatistic['progress'][$key]; 
@@ -47,7 +48,13 @@
 
         </div>
     </div>
+    @else
+    <div class="alert-alert info">
+        <i class="fa fa-info-cirlce"></i> &nbsp;
+        پروژه فعالی در سیستم وجود ندارد.
+    </div>
     <!-- Project Widget End !-->
+    @endif
 </div>
 
 @endsection
