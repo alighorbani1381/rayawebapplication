@@ -49,6 +49,17 @@
             <div class="panel-body">
                 <form class="form-horizontal m-t-20" method="post" action="{{ route('login.check') }}">
                     @csrf
+
+                    @if(session()->has('LoginFail'))
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <div class="alert alert-danger">
+                                اطلاعات وارد شده صحیح نمی باشد.
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
                     <div class="form-group ">
                         <div class="col-xs-12">
                             <input class="form-control" type="text" name="username" required="" placeholder="نام کاربری">
