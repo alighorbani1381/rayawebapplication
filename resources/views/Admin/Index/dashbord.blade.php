@@ -48,7 +48,7 @@
 <div class="row">
 
     <!-- Project Widget Start !-->
-    <div class="col-lg-3 col-md-6">
+    <div class="col-lg-4 col-md-6">
         <div class="card-box">
             <div class="dropdown pull-right">
                 <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
