@@ -105,7 +105,8 @@ class ProjectRepository
             ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
             ->where('status', '!=', 'finished')
             ->orderBy('projects.id', 'desc')
-            ->paginate(8);
+            ->limit(6)
+            ->get();
     }
 
     public function getStatisticProject()
