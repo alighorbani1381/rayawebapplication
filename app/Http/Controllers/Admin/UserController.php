@@ -134,11 +134,13 @@ class UserController extends AdminController
 
     private function checkInfo($loginInfo)
     {
-        if (Auth::attempt($loginInfo))
+        if (Auth::attempt($loginInfo)) {
             return redirect()->route('admin.dashboard');
-        
-            
-            return redirect()->route('login.show');
+            return null;
+        }
+
+        session()->flash('LoginFail');
+        return redirect()->route('login.show');
     }
 
     private function getLoginInfo($request)
