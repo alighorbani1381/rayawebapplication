@@ -129,15 +129,16 @@ class UserController extends AdminController
     public function checkLogin(Request $request)
     {
         $loginInfo = $this->getLoginInfo($request);
-        $this->checkInfo($loginInfo);
+        return $this->checkInfo($loginInfo);
     }
 
     private function checkInfo($loginInfo)
     {
         if (Auth::attempt($loginInfo))
             return redirect()->route('admin.dashboard');
-        else
-            return redirect('showLogin');
+        
+            
+            return redirect()->route('login.show');
     }
 
     private function getLoginInfo($request)
@@ -151,6 +152,7 @@ class UserController extends AdminController
     public function logout()
     {
         Auth::logout();
+        Session::flash('logoutSuccess');
         return redirect()->route('login.show');
     }
 }
