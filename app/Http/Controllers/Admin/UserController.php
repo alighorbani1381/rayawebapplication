@@ -116,4 +116,9 @@ class UserController extends AdminController
         $admins = User::where('type', 'admin')->select('id', 'name', 'lastname')->get();
         return response()->json(['contractors' => $contractors, 'admins' => $admins]);
     }
+
+    public function showLogin()
+    {
+        return view('Admin.Auth.login');
+    }
 }
