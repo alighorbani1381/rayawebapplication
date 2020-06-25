@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Repository\ProjectRepository;
 use App\Repository\StatisticRepository;
 
-use App\User;
-
 class IndexController extends AdminController
 {
 
