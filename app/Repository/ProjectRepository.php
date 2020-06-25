@@ -1,11 +1,14 @@
 <?php
+
 namespace App\Repository;
 
 use App\Category;
 use App\Cost;
 use App\Project;
 use App\User;
+use Hekmatinasser\Verta\Facades\Verta;
 use Illuminate\Support\Facades\DB;
+
 class ProjectRepository
 {
 
@@ -50,10 +53,54 @@ class ProjectRepository
             ->delete();
     }
 
-
-    public static function createProject($request, $taskmaster)
+    public function convertToEnglishAlphabet($string)
     {
-        $dateTime = date('Y:m:d h:m:s');
+        return strtr($string, array('۰' => '0', '۱' => '1', '۲' => '2', '۳' => '3', '۴' => '4', '۵' => '5', '۶' => '6', '۷' => '7', '۸' => '8', '۹' => '9', '٠' => '0', '١' => '1', '٢' => '2', '٣' => '3', '٤' => '4', '٥' => '5', '٦' => '6', '٧' => '7', '٨' => '8', '٩' => '9'));
+    }
+
+    public function explodeDate($orderdate)
+    {
+        $explodeDate = explode('-', $orderdate);
+        $date[0]   = $explodeDate[0];
+        $date[1] = $explodeDate[1];
+        $date[2]  = $explodeDate[2];
+        return $date;
+    }
+
+    public function convertToInt($date)
+    {
+        foreach ($date as $dateParam) {
+            $englishCharacters[] = $this->convertToEnglishAlphabet($dateParam);
+        }
+
+        foreach($englishCharacters as $englishChar){
+            $numberDate[] = (int) $englishChar;
+        }
+
+        return $numberDate;
+    }
+
+    public function getGregorianFormat($arrayDate)
+    {
+        return implode('-', $arrayDate);
+    }
+
+    public function convertToGregorian($jalaliDate)
+    {
+        $date = $this->explodeDate($jalaliDate);
+        $numberDate = $this->convertToInt($date);
+        $newDate = Verta::getGregorian($numberDate[0], $numberDate[1], $numberDate[2]);        
+        $gregorian = $this->getGregorianFormat($newDate);
+        return $gregorian;
+    }
+
+    public function createProject($request, $taskmaster)
+    {
+        $dateStart = $this->convertToGregorian($request->date_start);
+        $completedAt = $this->convertToGregorian($request->completed_at);
+        $contractStarted = $this->convertToGregorian($request->contract_started);
+
+        $dateTime = date('Y:m:d h:m');
         $uniqueId =  'rayaweb' . '-' . uniqid() . '-' . $request->phone;
         return DB::table('projects')->insertGetId([
             'project_creator' => '1',
@@ -63,10 +110,10 @@ class ProjectRepository
             'description' => $request->description,
             'price' => $request->price,
             'contract_image' => 'Default',
-            'contract_started' => $request->contract_started,
-            'contract_ended' => $request->completed_at,
+            'contract_started' => $contractStarted,
+            'contract_ended' => $completedAt,
             'status' => 'waiting',
-            'date_start' => $request->date_start,
+            'date_start' => $dateStart,
             'complete_after' => $request->complete_after,
             'created_at' => $dateTime,
             'updated_at' => $dateTime,
@@ -121,7 +168,7 @@ class ProjectRepository
     public function getLatestExecutedProject()
     {
         $projects = $this->getLatestSixProject();
-        foreach($projects as $project){
+        foreach ($projects as $project) {
             $project = $this->getProjectFull($project->id);
             $result[] = $project['project'];
         }
@@ -130,7 +177,7 @@ class ProjectRepository
     public function getStatisticProject()
     {
         $actives = $this->getActiveProjects();
-        foreach($actives as $active){
+        foreach ($actives as $active) {
             $project = $this->getProjectFull($active->id);
             $allProgress = $this->getProgress($project);
             $results['project'][] = $project['project'];
@@ -201,17 +248,17 @@ class ProjectRepository
     public function getBaseProjectCosts($id)
     {
         return Cost::where('project_id', $id)
-        ->where('contractor_id', null)
-        ->get();
+            ->where('contractor_id', null)
+            ->get();
     }
 
     public function getContractorCosts($id)
     {
         return Cost::join('users', 'costs.contractor_id', '=', 'users.id')
-        ->select('costs.*', 'users.name', 'users.lastname')
-        ->where('project_id', $id)
-        ->where('contractor_id', '!=', null)
-        ->get();
+            ->select('costs.*', 'users.name', 'users.lastname')
+            ->where('project_id', $id)
+            ->where('contractor_id', '!=', null)
+            ->get();
     }
 
     public function dividePercnets($request)
@@ -305,5 +352,4 @@ class ProjectRepository
     {
         return User::where('type', 'contractor')->get();
     }
-    
 }
