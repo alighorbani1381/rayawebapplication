@@ -29,13 +29,19 @@
 </head>
 
 <body>
-
+    @php $num = rand(1,5); @endphp
+    <style>
+        .account-pages{
+            background: url("/admin/images/background/background{{ $num }}.jpg") center;
+            background-size: cover;
+        }
+    </style>
     <div class="account-pages"></div>
     <div class="clearfix"></div>
     <div class="wrapper-page">
         <div class="text-center">
             <a href="{{ route('login.show') }}">
-                <img class="login-logo" src="/admin/images/logo/rayapro-dark.png" alt="RayaPro">
+            <img class="login-logo" src="/admin/images/logo/rayapro-@if($num == 3 || $num == 4){{"light"}}@else{{"dark"}}@endif.png" alt="RayaPro">
             </a>
         </div>
 
