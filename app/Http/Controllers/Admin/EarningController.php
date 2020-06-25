@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Earning;
-use App\Http\Controllers\Controller;
 use App\Repository\EarningRepository;
 use App\Project;
 use Illuminate\Http\Request;
@@ -21,7 +20,7 @@ class EarningRequest
     }
 }
 
-class EarningController extends Controller
+class EarningController extends AdminController
 {
 
     private $repo;
