@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -20,7 +19,7 @@ class CategoryRequest
     }
 }
 
-class CategoryController extends Controller
+class CategoryController extends AdminController
 {
 
     public function index()
