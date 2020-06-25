@@ -38,6 +38,7 @@ class StatisticRepository{
      $statistic['active_projects'] = $this->getCountActiveProjects();
      $statistic['users'] = $this->getCountUsers();
      $statistic['categories'] = $this->getCountCategories();
+     return $statistic;
     }
 
 }
