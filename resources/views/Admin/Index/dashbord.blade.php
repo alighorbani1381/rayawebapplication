@@ -21,13 +21,21 @@
             </div>
             <h4 class="header-title m-t-0 m-b-30">پروژه ها</h4>
 
-            <p class="font-600 m-b-5">سایت املاک <span class="text-primary pull-right">80%</span></p>
+            @foreach($projectStatistic['project'] as $key => $project)
+            @php $progress = $projectStatistic['progress'][$key]; @endphp
+            <!-- Project Item Start !-->
+            <p class="font-600 m-b-5">
+                {{ $project->title}}
+                <span class="text-primary pull-right">{{ $progress }}%</span>
+            </p>
             <div class="progress progress-bar-primary-alt progress-sm m-b-20">
                 <div class="progress-bar progress-bar-primary progress-animated wow animated animated"
-                    role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
-                    style="width: 80%; visibility: visible; animation-name: animationProgress;">
+                    role="progressbar" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100"
+                    style="width: {{ $progress }}%; visibility: visible; animation-name: animationProgress;">
                 </div>
             </div>
+            <!-- Project Item End !-->
+            @endforeach
 
 
 
