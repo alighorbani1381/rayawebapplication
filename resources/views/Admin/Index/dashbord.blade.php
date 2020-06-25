@@ -4,6 +4,7 @@
 @section('content')
 <div class="row">
 
+    <!-- Project Widget Start !-->
     <div class="col-lg-3 col-md-6">
         <div class="card-box">
             <div class="dropdown pull-right">
@@ -32,7 +33,7 @@
 
         </div>
     </div>
-
+    <!-- Project Widget End !-->
 </div>
 
 @endsection
