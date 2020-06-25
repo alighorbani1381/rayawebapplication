@@ -59,7 +59,9 @@
                     <li><a href="{{ route('projects.create') }}">افزودن پروژه جدید</a></li>
                 </ul>
             </div>
-            <h4 class="header-title m-t-0 m-b-30">پروژه ها</h4>
+            <h4 class="header-title m-t-0 m-b-30">
+                وضعیت پیشرفت پروژه های در دست انجام
+            </h4>
 
             @if(count($projectStatistic['project']) != 0 )
             @foreach($projectStatistic['project'] as $key => $project)
