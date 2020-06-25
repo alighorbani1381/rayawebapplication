@@ -17,6 +17,10 @@ Route::get('/', function () {
 });
 
 # Auth Route
+Route::group(['namespace' => 'Admin'], function(){
+    Route::get('login', 'UserController@showLogin')->name('login.show');
+});
+
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
     Route::resource('costs/static', 'CoststaticController');
     Route::resource('costs', 'CostController');
