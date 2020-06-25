@@ -8,7 +8,7 @@
     <div class="col-lg-3 col-md-6">
         <div class="card-box widget-user">
             <div class="text-center">
-                <h2 class="text-custom" data-plugin="counterup">10</h2>
+                <h2 class="text-custom" data-plugin="counterup">{{ $globalStatistic['projects'] }}</h2>
                 <h5>تعداد کل پروژه ها</h5>
             </div>
         </div>
@@ -17,7 +17,7 @@
     <div class="col-lg-3 col-md-6">
         <div class="card-box widget-user">
             <div class="text-center">
-                <h2 class="text-pink" data-plugin="counterup">2578</h2>
+                <h2 class="text-pink" data-plugin="counterup">{{ $globalStatistic['active_projects'] }}</h2>
                 <h5>تعداد پروژه های در دست انجام</h5>
             </div>
         </div>
@@ -26,7 +26,7 @@
     <div class="col-lg-3 col-md-6">
         <div class="card-box widget-user">
             <div class="text-center">
-                <h2 class="text-warning" data-plugin="counterup">197</h2>
+                <h2 class="text-warning" data-plugin="counterup">{{ $globalStatistic['users'] }}</h2>
                 <h5>تعداد کاربران شما</h5>
             </div>
         </div>
@@ -35,7 +35,7 @@
     <div class="col-lg-3 col-md-6">
         <div class="card-box widget-user">
             <div class="text-center">
-                <h2 class="text-info" data-plugin="counterup">548</h2>
+                <h2 class="text-info" data-plugin="counterup">{{ $globalStatistic['categories'] }}</h2>
                 <h5>تعداد خدمات شما</h5>
             </div>
         </div>
