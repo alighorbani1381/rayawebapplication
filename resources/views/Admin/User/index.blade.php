@@ -21,7 +21,8 @@
                 <thead>
                     <tr>
                         <th>ردیف</th>
-                        <th>مشخصات کارمند</th>
+                        <th>مشخصات کاربر</th>
+                        <th>نوع کاربر</th>
                         <th>شماره تماس</th>
                         <th>نام کاربری</th>
                         <th>رمزعبور</th>
@@ -36,12 +37,18 @@
                     <tr>
                         <td>{{ $row + 1 }}</td>
                         <td class="fullname">{{ $user->full_name}}</td>
+                        <td>
+                            @if($user->type == "admin")
+                            {{ "مدیر" }}
+                            @else
+                            {{ "کارمند" }}
+                            @endif
+                        </td>
                         <td>{{ $user->phone}}</td>
                         <td>{{ $user->username}}</td>
                         <td>
                             @if($user->password != "raya-px724")
                             {{ "Secret" }}
-
                             <i class="fa fa-lock"></i>
                             @else
                             {{ "raya-px724" }}
