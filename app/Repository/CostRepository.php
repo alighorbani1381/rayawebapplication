@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repository;
 
 use App\CostStatic;
@@ -11,14 +12,14 @@ class CostRepository
         return ($request->contractor_pay == "true") || ($request->contractor_pay == "without-project");
     }
 
-    public function projectStore($request)
+    public function projectStore($request, $userId)
     {
         session()->flash('ProjectStore');
         $request->validate(['contractor_pay' => 'required']);
-        return $pay =  ($this->isContractPay($request)) ? $this->projectContractorPay($request) : $this->projectStorePay($request);
+        return $pay =  ($this->isContractPay($request)) ? $this->projectContractorPay($request, $userId) : $this->projectStorePay($request, $userId);
     }
 
-    public function projectStorePay($request)
+    public function projectStorePay($request, $userId)
     {
         $request->validate([
             'title' => 'required',
@@ -30,14 +31,13 @@ class CostRepository
         $type =  ($request->type == 0) ? null : $request->type;
 
         Cost::create([
-            'generator' => '1',
+            'generator' => $userId,
             'project_id' => $request->project_id,
             'title' => $request->title,
             'description' => $request->description,
             'money_paid' => $request->money_paid,
             'type' => $type,
             'status' => $request->status,
-
         ]);
     }
 
@@ -62,7 +62,7 @@ class CostRepository
         ]);
     }
 
-    public function projectContractorPay($request)
+    public function projectContractorPay($request, $userId)
     {
         $request->validate([
             'title' => 'required',
@@ -72,7 +72,7 @@ class CostRepository
         ]);
         $type =  ($request->type == 0) ? null : $request->type;
         Cost::create([
-            'generator' => '1',
+            'generator' => $userId,
             'project_id' => $request->project_id,
             'contractor_id' => $request->contractor_id,
             'title' => $request->title,
