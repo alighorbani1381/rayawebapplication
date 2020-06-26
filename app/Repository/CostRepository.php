@@ -41,7 +41,7 @@ class CostRepository
         ]);
     }
 
-    public function externalStore($request)
+    public function externalStore($request, $userId)
     {
         session()->flash('ExtenalStore');
         $request->validate([
@@ -52,7 +52,7 @@ class CostRepository
         ]);
         $type =  ($request->type == 0) ? null : $request->type;
         Cost::create([
-            'generator' => '1',
+            'generator' => $userId,
             'title' => $request->title,
             'description' => $request->description,
             'money_paid' => $request->money_paid,
