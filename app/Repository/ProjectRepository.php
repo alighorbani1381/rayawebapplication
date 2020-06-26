@@ -17,7 +17,7 @@ class ProjectRepository
         return DB::table('project_contractor')
         ->join('projects', 'project_contractor.project_id', '=', 'projects.id')        
         ->where('contractor_id', $userId)
-        ->get();
+        ->paginate(15);
     }
 
     public static function createTaskMaster($request)
