@@ -37,9 +37,9 @@ class CostController extends AdminController
     {
         $request->validate(['storeType' => 'required'], ['storeType.required' => 'Error in the Form You Must Refresh This Page!']);
         $type = $request->get('storeType');
-
+        $userId = auth()->user()->id;
         if ($type == 'project')
-            $this->repo->projectStore($request);
+            $this->repo->projectStore($request, $userId);
         else
             $this->repo->externalStore($request);
 
