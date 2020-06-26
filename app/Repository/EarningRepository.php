@@ -8,11 +8,11 @@ use App\Project;
 class EarningRepository
 {
 
-    public function createEarning($request)
+    public function createEarning($request, $userId)
     {
         foreach ($request->title as $index => $title) {
             $fileds = [
-                'generator' => '1',
+                'generator' => $userId,
                 'project_id' => $request->project,
                 'title' => $title,
                 'description' => $request->description[$index],
