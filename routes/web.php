@@ -19,13 +19,13 @@ Route::get('/', function () {
 });
 
 # Auth Route
-Route::group(['namespace' => 'Admin'], function(){
+Route::group(['namespace' => 'Admin'], function () {
     Route::get('login', 'UserController@showLogin')->name('login.show');
     Route::post('login', 'UserController@checkLogin')->name('login.check');
     Route::get('logout', 'UserController@logout')->name('logout');
 });
 
-Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin'], 'prefix' => 'admin'], function(){
+Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin', 'isAdmin'], 'prefix' => 'admin'], function () {
     Route::resource('costs/static', 'CoststaticController');
     Route::resource('costs', 'CostController');
     Route::get('dashborad', 'IndexController@index')->name('admin.dashboard');
@@ -37,7 +37,11 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin'], 'prefix' => '
     Route::resource('users', 'UserController');
     Route::get('give/contractor', 'UserController@getContractors');
 });
-Route::get('test', function(){
-    return Hash::make('123');
+
+Route::group(['namespace' => 'Contractor', 'middleware' => ['isLogin']], function () {
+    Route::get('dashborad', 'IndexController@index')->name('contractor.dashbord');
 });
 
+Route::get('test', function () {
+    return Hash::make('123');
+});
