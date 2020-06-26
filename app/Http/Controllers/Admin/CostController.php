@@ -36,14 +36,9 @@ class CostController extends AdminController
     public function store(Request $request)
     {
         $request->validate(['storeType' => 'required']);
-        $type = $request->get('storeType');
         $userId = auth()->user()->id;
-        if ($type == 'project')
-            $this->repo->projectStore($request, $userId);
-        else
-            $this->repo->externalStore($request, $userId);
-
-
+        $type = $request->get('storeType');
+        $this->repo->costStore($type, $request, $userId);
         return redirect()->route('costs.index');
     }
 
