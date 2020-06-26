@@ -18,13 +18,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-# Auth Route
+# Authentication Routes
 Route::group(['namespace' => 'Admin'], function () {
     Route::get('login', 'UserController@showLogin')->name('login.show');
     Route::post('login', 'UserController@checkLogin')->name('login.check');
     Route::get('logout', 'UserController@logout')->name('logout');
 });
 
+# Administrator Routes
 Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin', 'isAdmin'], 'prefix' => 'admin'], function () {
     Route::resource('costs/static', 'CoststaticController');
     Route::resource('costs', 'CostController');
@@ -38,10 +39,13 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin', 'isAdmin'], 'p
     Route::get('give/contractor', 'UserController@getContractors');
 });
 
+# Contractors (Users) Routes
 Route::group(['namespace' => 'Contractor', 'middleware' => ['isLogin']], function () {
     Route::get('dashborad', 'IndexController@index')->name('contractor.dashbord');
+    Route::get('projects', 'ProjectController@inex')->name('projects.index');
 });
 
+# Debug or Test Rotue
 Route::get('test', function () {
     return Hash::make('123');
 });
