@@ -21,7 +21,7 @@ class ProjectController extends Controller
     {
         $userId = auth()->user()->id;
         $projects = $this->repo->getContractorProject($userId);
-        return view('Contractor.Project.index');
+        return view('Contractor.Project.index', compact('projects'));
     }
 
    
