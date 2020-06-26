@@ -149,8 +149,10 @@
                         <b class="date-show">
                             <?php $dateStart = verta($project['project']->date_start)?>
                             این پروژه
-                            {{ $dateStart->formatDifference() . " "}}
-                            شروع می شود.
+                            <span style="font-size:large; color:#e01c1c;">
+                                {{ $dateStart->formatDifference() . " "}}
+                            </span>
+                            برای شما فعال می شود.
 
                         </b>
 
