@@ -42,7 +42,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin', 'isAdmin'], 'p
 # Contractors (Users) Routes
 Route::group(['namespace' => 'Contractor', 'middleware' => ['isLogin']], function () {
     Route::get('dashborad', 'IndexController@index')->name('contractor.dashbord');
-    Route::get('projects', 'ProjectController@inex')->name('projects.index');
+    Route::get('projects', 'ProjectController@index')->name('projects.index');
 });
 
 # Debug or Test Rotue
