@@ -15,61 +15,66 @@
                     <tr>
                         <th>ردیف</th>
                         <th>عنوان پروژه</th>
-                        <th>کارفرما</th>
                         <th>شناسه پروژه</th>
                         <th class="tac">وضعیت</th>
-                        <th class="tac">نمایش / فعالسازی</th>
-                        <th class="tac">پرداختی بابت پروژه</th>
-                        <th class="tac">ویرایش درصد پیشرفت</th>
                         <th class="tac">جزئیات</th>
+                        <th class="tac">انجام پروژه</th>
+                        <th class="tac">درآمد</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($projects as $row => $project)
+                    @forelse ($projects as $row => $project)
                     <tr>
                         <td><?= $row  + 1 ?></td>
                         <td class="projectName">{{ $project->title }}</td>
-                        <td>{{ $project->name . " " . $project->lastname }}</td>
                         <td>{{ $project->unique_id }}</td>
-                       
-                            <td class="tac">
-                                @if ($project->status == 'waiting')
-                                    <button type="button" class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">غیر فعال</button>
-                                @endif
-
-                                @if ($project->status == 'ongoing')
-                                    <button type="button" class="tac btn btn-warning btn-rounded w-md waves-effect waves-light m-b-5">در حال اجرا</button>
-                                @endif
-
-                                @if ($project->status == 'finished')
-                                    <button type="button" class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">پایان یافته</button>
-                                @endif
-                            </td>
-                            
-                      
 
                         <td class="tac">
-                            <a href="{{ route('projects.show', $project->id) }}"class="btn btn-icon waves-effect waves-light btn-success m-b-5"> <i class="fa fa-eye"></i> </a>
+                            @if ($project->status == 'waiting')
+                            <button type="button"
+                                class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">غیر فعال</button>
+                            @endif
+
+                            @if ($project->status == 'ongoing')
+                            <button type="button"
+                                class="tac btn btn-warning btn-rounded w-md waves-effect waves-light m-b-5">در حال
+                                اجرا</button>
+                            @endif
+
+                            @if ($project->status == 'finished')
+                            <button type="button"
+                                class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">پایان
+                                یافته</button>
+                            @endif
                         </td>
 
                         <td class="tac">
-                            <a href="{{ route('earnings.pay', $project->id) }}"class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i class="fa fa-money"></i> </a>
+                            <a href="{{ route('costs.show', $project->id) }}"
+                                class="btn btn-icon waves-effect waves-light btn-primary m-b-5">
+                                <i class="fa fa-file-text-o"></i>
+                            </a>
                         </td>
 
-                        <td class="tac">
-                            <a href="{{ route('projects.edit', $project->id) }}"class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i class="fa fa-pencil"></i> </a>
-                        </td>
 
                         <td class="tac">
-                            <form method="post" action="{{ route('projects.destroy', $project->id) }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" id="delete-project" class="delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i class="fa fa-remove"></i> </button>
-                            </form>
+                            <a href="{{ route('projects.edit', $project->id) }}"
+                                class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
+                                    class="fa fa-pencil"></i> </a>
                         </td>
+                        <td class="tac">
+                            <a href="{{ route('earnings.pay', $project->id) }}"
+                                class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i
+                                    class="fa fa-money"></i> </a>
+                        </td>
+
                     </tr>
-                    @endforeach
+                    @empty
+                    <div class="alert alert-danger">
+                        <i class="fa fa-warning"></i> 
+                        <span>برای شما تا کنون پروژه ای ثبت نشده است.</span>
+                    </div>
+                    @endforelse
 
                 </tbody>
             </table>
