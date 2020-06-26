@@ -8,8 +8,6 @@ use App\Request\CostRequest;
 use Illuminate\Http\Request;
 
 
-
-
 class CostController extends AdminController
 {
 
@@ -26,7 +24,6 @@ class CostController extends AdminController
     {
 
         $costs = $this->repo->getCosts();
-        //   dd($costs);
         return view('Admin.Cost.index', compact('costs'));
     }
 
@@ -68,7 +65,7 @@ class CostController extends AdminController
 
     public function destroy(Cost $cost)
     {
-        //$cost->delete();
+        $cost->delete();
         session()->flash('DeleteCost');
         return back();
     }
