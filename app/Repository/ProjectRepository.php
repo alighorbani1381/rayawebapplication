@@ -317,15 +317,18 @@ class ProjectRepository
 
     public function updateProject($projectId, $request)
     {
+        $dateStart = $this->convertToGregorian($request->date_start);
+        $completedAt = $this->convertToGregorian($request->completed_at);
+        $contractStarted = $this->convertToGregorian($request->contract_started);
         $dateTime = date('Y:m:d h:m:s');
         $fileds = [
             'title' => $request->title,
             'description' => $request->description,
             'price' => $request->price,
             'contract_image' => 'Default',
-            'contract_started' => $request->contract_started,
-            'contract_ended' => $request->completed_at,
-            'date_start' => $request->date_start,
+            'contract_started' => $contractStarted,
+            'contract_ended' => $completedAt,
+            'date_start' => $dateStart,
             'complete_after' => $request->complete_after,
             'updated_at' => $dateTime,
         ];
