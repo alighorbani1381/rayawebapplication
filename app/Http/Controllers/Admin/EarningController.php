@@ -52,7 +52,8 @@ class EarningController extends AdminController
     public function store(Request $request)
     {
         EarningRequest::storeValidate($request);
-        $this->repo->createEarning($request);
+        $generator = auth()->user()->id;
+        $this->repo->createEarning($request, $generator);
         return redirect()->route('earnings.index');
     }
 
