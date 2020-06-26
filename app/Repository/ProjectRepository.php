@@ -73,7 +73,7 @@ class ProjectRepository
             $englishCharacters[] = $this->convertToEnglishAlphabet($dateParam);
         }
 
-        foreach($englishCharacters as $englishChar){
+        foreach ($englishCharacters as $englishChar) {
             $numberDate[] = (int) $englishChar;
         }
 
@@ -89,9 +89,29 @@ class ProjectRepository
     {
         $date = $this->explodeDate($jalaliDate);
         $numberDate = $this->convertToInt($date);
-        $newDate = Verta::getGregorian($numberDate[0], $numberDate[1], $numberDate[2]);        
+        $newDate = Verta::getGregorian($numberDate[0], $numberDate[1], $numberDate[2]);
         $gregorian = $this->getGregorianFormat($newDate);
         return $gregorian;
+    }
+
+    public function generateUniqueId()
+    {
+
+        while (true) {
+            $uniqueId =  'raya' . '-' . substr(uniqid(), 4, 8);
+            if (!$this->isExistsId($uniqueId))
+                break;
+        }
+
+        return $uniqueId;
+    }
+    public function isExistsId($id)
+    {
+        $exists = Project::where('unique_id', $id)->count();
+        if ($exists != 0)
+            return true;
+        else
+            return false;
     }
 
     public function createProject($request, $taskmaster)
@@ -101,7 +121,7 @@ class ProjectRepository
         $contractStarted = $this->convertToGregorian($request->contract_started);
 
         $dateTime = date('Y:m:d h:m');
-        $uniqueId =  'rayaweb' . '-' . uniqid() . '-' . $request->phone;
+        $uniqueId = $this->generateUniqueId();
         return DB::table('projects')->insertGetId([
             'project_creator' => '1',
             'taskmaster' => $taskmaster,
