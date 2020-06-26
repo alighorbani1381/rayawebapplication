@@ -133,8 +133,8 @@
                 @endif
 
 
-                <div class="card-box items-box">
-                    @if($percentLeft < 100) <span class="header-title">روز های باقی مانده بر حسب درصد</span>
+                @if($percentLeft < 100) <span class="header-title">روز های باقی مانده بر حسب درصد</span>
+                    <div class="card-box items-box">
                         <span class="text-{{$color}} pull-right">{{ $percentLeft }}%</span></p>
                         <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
                             <div class="progress-bar progress-bar-{{$color}} progress-bar-striped progress-animated wow animated animated "
@@ -144,80 +144,82 @@
                             </div>
                         </div>
                         @else
-                        <span class="header-title" style="display:inline-block; margin-bottom:10px;">نکته مهم:</span>
+                        <div class="card-box items-box" style="background: #ffc800;color: black;">
+                            <span class="header-title" style="display:inline-block; margin-bottom:10px;">نکته
+                                مهم:</span>
 
-                        <b class="date-show">
-                            <?php $dateStart = verta($project['project']->date_start)?>
-                            این پروژه
-                            <span style="font-size:large; color:#e01c1c;">
-                                {{ $dateStart->formatDifference() . " "}}
-                            </span>
-                            برای شما فعال می شود.
+                            <b class="date-show">
+                                <?php $dateStart = verta($project['project']->date_start)?>
+                                این پروژه
+                                <span style="font-size:large; color:#e01c1c;">
+                                    {{ $dateStart->formatDifference() . " "}}
+                                </span>
+                                برای شما فعال می شود.
 
-                        </b>
+                            </b>
 
 
-                </div>
-                @endif
+                        </div>
+                        @endif
+
+                    </div>
+
+
+                    @if($project['project']->status != 'waiting')
+                    <div role="tabpanel" class="tab-pane fade" id="contractors" aria-labelledby="contractors-tab">
+                        تب پیمانکاران
+                    </div>
+                    @endif
+
 
             </div>
-
-
-            @if($project['project']->status != 'waiting')
-            <div role="tabpanel" class="tab-pane fade" id="contractors" aria-labelledby="contractors-tab">
-                تب پیمانکاران
-            </div>
-            @endif
-
-
         </div>
     </div>
-</div>
-<!-- Project Information End !-->
+    <!-- Project Information End !-->
 
 
-<!-- Category col Start -->
-<div class="col-md-4">
-    <div class="card-box">
-        <div class="dropdown pull-right">
-            <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                <i class="zmdi zmdi-more-vert"></i>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="{{ route('categories.create') }}"><i class="fa fa-plus"></i> &nbsp;افزودن خدمت جدید</a>
-                </li>
+    <!-- Category col Start -->
+    <div class="col-md-4">
+        <div class="card-box">
+            <div class="dropdown pull-right">
+                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{ route('categories.create') }}"><i class="fa fa-plus"></i> &nbsp;افزودن خدمت جدید</a>
+                    </li>
 
-                <li><a href="{{ route('categories.index') }}"><i class="fa fa-list-ul"></i> &nbsp;لیست خدمات</a>
-                </li>
-            </ul>
-        </div>
+                    <li><a href="{{ route('categories.index') }}"><i class="fa fa-list-ul"></i> &nbsp;لیست خدمات</a>
+                    </li>
+                </ul>
+            </div>
 
-        <h4 class="header-title m-t-0 m-b-30">
-            خدمات به کار گرفته شده
-            ({{ $project['categories']->count() . "مورد"}})
-        </h4>
+            <h4 class="header-title m-t-0 m-b-30">
+                خدمات به کار گرفته شده
+                ({{ $project['categories']->count() . "مورد"}})
+            </h4>
 
-        <div>
-            @foreach($project['categories'] as $key => $category)
-            <div class="media m-b-10">
-                <div class="media-left">
-                    <a href="#"> <img class="media-object img-circle thumb-sm" alt="{{ $category->title }}"
-                            src="/admin/images/symbols/contract.png"> </a>
+            <div>
+                @foreach($project['categories'] as $key => $category)
+                <div class="media m-b-10">
+                    <div class="media-left">
+                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="{{ $category->title }}"
+                                src="/admin/images/symbols/contract.png"> </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{ $category->title }}</h4>
+                        <p class="font-13 text-muted m-b-0">
+                            {{ $category->title }}
+                        </p>
+                    </div>
+
                 </div>
-                <div class="media-body">
-                    <h4 class="media-heading">{{ $category->title }}</h4>
-                    <p class="font-13 text-muted m-b-0">
-                        {{ $category->title }}
-                    </p>
-                </div>
+                @endforeach
 
             </div>
-            @endforeach
-
         </div>
     </div>
-</div>
-<!-- Category col End -->
+    <!-- Category col End -->
 
 </div>
 
