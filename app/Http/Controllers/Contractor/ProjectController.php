@@ -28,8 +28,7 @@ class ProjectController extends Controller
     public function show($project)
     {
       $project = $this->repo->getProjectFull($project);
-      dd($project);
-      return view('Contractor.Project.index', compact('projects'));
+      return view('Contractor.Project.show', compact('project'));
     }
 
     public function edit($project)

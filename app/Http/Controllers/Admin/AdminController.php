@@ -8,6 +8,6 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        auth()->loginUsingId(1);
+        // auth()->loginUsingId(1);
     }
 }
