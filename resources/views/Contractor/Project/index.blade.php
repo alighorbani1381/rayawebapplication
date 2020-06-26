@@ -15,11 +15,12 @@
                     <tr>
                         <th>ردیف</th>
                         <th>عنوان پروژه</th>
+                        <th>توضیحات پروژه (خلاصه)</th>
                         <th>شناسه پروژه</th>
                         <th class="tac">وضعیت</th>
-                        <th class="tac">جزئیات</th>
-                        <th class="tac">انجام پروژه</th>
-                        <th class="tac">درآمد</th>
+                        <th class="tac">مشاهده جزئیات</th>
+                        <th class="tac">ویرایش درصد پیشرفت</th>
+                        <th class="tac">میزان درآمد شما</th>
                     </tr>
                 </thead>
 
@@ -28,6 +29,7 @@
                     <tr>
                         <td><?= $row  + 1 ?></td>
                         <td class="projectName">{{ $project->title }}</td>
+                        <td>{{ mb_substr($project->description,0 , 80) . "..." }}</td>
                         <td>{{ $project->unique_id }}</td>
 
                         <td class="tac">
@@ -64,7 +66,7 @@
                         </td>
                         <td class="tac">
                             <a href="{{ route('earnings.pay', $project->id) }}"
-                                class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i
+                                class="btn btn-icon waves-effect waves-light btn-success m-b-5"> <i
                                     class="fa fa-money"></i> </a>
                         </td>
 
