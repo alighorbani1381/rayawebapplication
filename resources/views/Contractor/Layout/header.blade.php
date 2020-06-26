@@ -49,7 +49,7 @@
 
             <!-- LOGO -->
             <div class="topbar-left">
-                <a href="{{ route('.dashboard') }}" class="logo">
+                <a href="{{ route('contractor.dashbord') }}" class="logo">
                     <span>پنل کاربری<span> شما</span></span>
                     <i class="zmdi zmdi-layers"></i></a>
             </div>

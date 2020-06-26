@@ -12,7 +12,7 @@
                 <div class="user-status online"><i class="zmdi zmdi-dot-circle"></i></div>
             </div>
             <h5>
-                <a href="{{ route('contractor.dashboard') }}">
+                <a href="{{ route('contractor.dashbord') }}">
                     {{ $fullName }}
                 </a> 
             </h5>
@@ -30,7 +30,7 @@
         <div id="sidebar-menu">
             <ul>
                 <li>
-                    <a href="{{ route('contractor.dashboard') }}" class="waves-effect active"><i class="fa fa-dashboard"></i> <span> داشبورد </span> </a>
+                    <a href="{{ route('contractor.dashbord') }}" class="waves-effect active"><i class="fa fa-dashboard"></i> <span> داشبورد </span> </a>
                 </li>
 
               

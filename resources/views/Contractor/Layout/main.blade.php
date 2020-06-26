@@ -1,9 +1,9 @@
-@include('Admin.Layout.header')
+@include('Contractor.Layout.header')
 
-@include('Admin.Layout.leftMenu')
+@include('Contractor.Layout.leftMenu')
 
-@include('Admin.Layout.content')
+@include('Contractor.Layout.content')
 
-@include('Admin.Layout.rightMenu')
+@include('Contractor.Layout.rightMenu')
 
-@include('Admin.Layout.footer')
+@include('Contractor.Layout.footer')
