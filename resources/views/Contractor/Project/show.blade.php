@@ -72,13 +72,13 @@
 
                     <div class="card-box items-box">
                         <h4 class="header-title">تاریخ شروع قرارداد :</h4>
-                        <b class="date-show"> {{ verta($project['project']->contract_started)->format('Y/n/j') }}
+                        <b class="date-show"> {{ verta($project['project']->contract_started)->formatJalaliDate() }}
                         </b>
                     </div>
 
                     <div class="card-box items-box">
                         <h4 class="header-title">تاریخ شروع کار :</h4>
-                        <b class="date-show"> {{ verta($project['project']->date_start)->format('Y/n/j') }}
+                        <b class="date-show"> {{ verta($project['project']->date_start)->formatJalaliDate() }}
                         </b>
                     </div>
 
@@ -94,7 +94,7 @@
                         $daysAfter = $project['project']->complete_after;
                         $dateFinish = verta($project['project']->date_start)->addDays($daysAfter);
                         @endphp
-                        <b class="date-show"> {{ $dateFinish->format('Y/n/j') }}
+                        <b class="date-show"> {{ $dateFinish->formatJalaliDate() }}
                         </b>
                     </div>
 
@@ -111,7 +111,7 @@
                     
                     ?>
 
-                    @if($percentLeft <= 100) <div class="card-box items-box">
+                    @if($percentLeft < 100) <div class="card-box items-box">
                         <h4 class="header-title">تعداد روز های باقی مانده تا تحویل :</h4>
 
                         @if($dayLefts <= 0) <b class="date-show">
@@ -134,7 +134,7 @@
 
 
                 <div class="card-box items-box">
-                    @if($percentLeft <= 100) <span class="header-title">روز های باقی مانده بر حسب درصد</span>
+                    @if($percentLeft < 100) <span class="header-title">روز های باقی مانده بر حسب درصد</span>
                         <span class="text-{{$color}} pull-right">{{ $percentLeft }}%</span></p>
                         <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
                             <div class="progress-bar progress-bar-{{$color}} progress-bar-striped progress-animated wow animated animated "
