@@ -9,6 +9,6 @@ class IndexController extends Controller
 {
     public function index()
     {
-        return 'Contractor Panel';
+        return view('Contractor.Index.dashbord');
     }
 }
