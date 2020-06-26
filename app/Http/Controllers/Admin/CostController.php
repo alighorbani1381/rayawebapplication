@@ -3,19 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Cost;
-use App\CostStatic;
 use App\Project;
+use App\Request\CostRequest;
 use Illuminate\Http\Request;
+
+
 
 
 class CostController extends AdminController
 {
 
     private $repo;
+    private $requ;
 
     public function __construct()
     {
         $this->repo =  resolve(CostRepository::class);
+        $this->requ =  resolve(CostRequest::class);
     }
 
     public function index()
@@ -57,17 +61,9 @@ class CostController extends AdminController
 
     public function update(Request $request, Cost $cost)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'money_paid' => 'required',
-        ]);
+        $this->requ->update($request);
         $cost->update($request->all());
-        session()->flash('UpdateCost');
-        if (session()->has('SendWithProject') || session()->has('SendWithShow'))
-            return back();
-        else
-            return redirect()->route('costs.show', $cost->id);
+        return $this->requ->redirectUpdate($cost);
     }
 
     public function destroy(Cost $cost)
