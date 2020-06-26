@@ -5,20 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Earning;
 use App\Repository\EarningRepository;
 use App\Project;
+use App\Request\EarningRequest;
 use Illuminate\Http\Request;
 
-class EarningRequest
-{
-
-    public static function storeValidate($request)
-    {
-        $request->validate([
-            'title.*' => 'required',
-            'received_money.*' => 'required|numeric|min:1',
-            'status.*' => 'required',
-        ]);
-    }
-}
 
 class EarningController extends AdminController
 {
