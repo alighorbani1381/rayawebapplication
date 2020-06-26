@@ -52,7 +52,7 @@
                         </td>
 
                         <td class="tac">
-                            <a href="{{ route('costs.show', $project->id) }}"
+                            <a href="{{ route('contractor.projects.show', $project->id) }}"
                                 class="btn btn-icon waves-effect waves-light btn-primary m-b-5">
                                 <i class="fa fa-file-text-o"></i>
                             </a>
