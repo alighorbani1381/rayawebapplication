@@ -226,10 +226,10 @@ class ProjectRepository
     public function projectCreateFull($request)
     {
         DB::transaction(function () use ($request) {
-            $taskmaster = ProjectRepository::createTaskMaster($request);
-            $project = ProjectRepository::createProject($request, $taskmaster);
-            ProjectRepository::setContractors($project, $request->contractors);
-            ProjectRepository::setCategories($project, $request->categories);
+            $taskmaster = $this->createTaskMaster($request);
+            $project = $this->createProject($request, $taskmaster);
+            $this->setContractors($project, $request->contractors);
+            $this->setCategories($project, $request->categories);
         });
     }
 
@@ -292,10 +292,10 @@ class ProjectRepository
     public function deleteFullProject($projectId)
     {
         DB::transaction(function () use ($projectId) {
-            ProjectRepository::deleteTaskMaster($projectId);
-            ProjectRepository::deleteContractors($projectId);
-            ProjectRepository::deleteCategories($projectId);
-            ProjectRepository::deleteProject($projectId);
+            $this->deleteTaskMaster($projectId);
+            $this->deleteContractors($projectId);
+            $this->deleteCategories($projectId);
+            $this->deleteProject($projectId);
         });
     }
 
