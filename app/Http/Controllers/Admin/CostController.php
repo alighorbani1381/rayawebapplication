@@ -41,7 +41,7 @@ class CostController extends AdminController
         if ($type == 'project')
             $this->repo->projectStore($request, $userId);
         else
-            $this->repo->externalStore($request);
+            $this->repo->externalStore($request, $userId);
 
 
         return redirect()->route('costs.index');
