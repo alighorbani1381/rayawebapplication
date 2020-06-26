@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\DB;
 class ProjectRepository
 {
 
+    public function getContractorProject($userId)
+    {
+        return DB::table('project_contractor')
+        ->where('contractor_id', $userId)
+        ->get();
+    }
+
     public static function createTaskMaster($request)
     {
         return  DB::table('project_taskmaster')
