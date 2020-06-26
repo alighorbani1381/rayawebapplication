@@ -37,7 +37,7 @@
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-laptop"></i> <span>پروژه های شما</span> <span class="menu-arrow  fa-angle-left"></span></a>
                     <ul class="list-unstyled" style="display: none;">
-                        <li><a href="{{ route('projects.index') }}">لیست پروژه ها</a></li>
+                        <li><a href="{{ route('contractor.projects.index') }}">لیست پروژه ها</a></li>
                         <li><a href="{{ route('projects.create') }}">پروژه های در دست اجرا</a></li>
                         <li><a href="{{ route('projects.create') }}">پروژه های پایان یافته</a></li>
                     </ul>
