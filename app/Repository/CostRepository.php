@@ -150,4 +150,12 @@ class CostRepository
     {
         return CostStatic::where('child', '0')->get();
     }
+
+    public function costStore($type, $request, $userId)
+    {
+        if ($type == 'project')
+            $this->repo->projectStore($request, $userId);
+        else
+            $this->repo->externalStore($request, $userId);
+    }
 }
