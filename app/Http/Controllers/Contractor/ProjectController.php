@@ -24,13 +24,15 @@ class ProjectController extends Controller
         return view('Contractor.Project.index', compact('projects'));
     }
 
-   
-    public function show(Project $project)
+
+    public function show($project)
     {
-        //
+      $project = $this->repo->getProjectFull($project);
+      dd($project);
+      return view('Contractor.Project.index', compact('projects'));
     }
 
-    public function edit(Project $project)
+    public function edit($project)
     {
         //
     }
@@ -41,8 +43,4 @@ class ProjectController extends Controller
         //
     }
 
-    public function destroy(Project $project)
-    {
-        //
-    }
 }
