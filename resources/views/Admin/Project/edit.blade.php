@@ -1,9 +1,6 @@
 @extends('Admin.Layout.main')
 @section('title', 'ویرایش پروژه')
 @section('header', 'ویرایش پروژه')
-@push('js')
-<script src="{{ asset('admin/js/customJS/projects.js') }} "></script>
-@endpush
 @section('content')
 <div class="row">
     <div class="col-sm-10 col-lg-offset-1">
@@ -63,8 +60,8 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">تاریخ شروع کار </label>
                             <div class="col-md-9">
-                                <input type="date" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="date_start"
-                                    class="form-control" value="{{ $project['project']->date_start }}">
+                                <input type="text" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="date_start"
+                                    class="persian-date form-control" value="{{ $project['project']->date_start }}">
                                 @error('date_start')
                                 <div class="alert alert-danger"> {{ $message }} </div>
                                 @enderror
@@ -194,8 +191,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تاریخ شروع قرارداد </label>
                         <div class="col-md-9">
-                            <input type="date" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="contract_started"
-                                class="form-control" value="{{ $project['project']->contract_started }}">
+                            <input type="text" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="contract_started"
+                                class="persian-date form-control" value="{{ $project['project']->contract_started }}">
                             @error('contract_started')
                             <div class="alert alert-danger"> {{ $message }} </div>
                             @enderror
@@ -205,8 +202,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تاریخ پایان قرارداد </label>
                         <div class="col-md-9">
-                            <input type="date" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="completed_at"
-                                class="form-control" value="{{ $project['project']->contract_ended }}">
+                            <input type="text" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="completed_at"
+                                class="persian-date form-control" value="{{ $project['project']->contract_ended }}">
                             @error('completed_at')
                             <div class="alert alert-danger"> {{ $message }} </div>
                             @enderror
@@ -238,3 +235,20 @@
 </div>
 
 @endsection
+
+@push('css')
+<link href="{{ asset('admin/css/persian-datepicker.css') }}" rel="stylesheet" type="text/css" />
+@endpush
+@push('js')
+<script src="{{ asset('admin/js/customJS/projects.js') }} "></script>
+<script src="{{ asset('admin/js/persian-date.min.js') }} "></script>
+<script src="{{ asset('admin/js/persian-datepicker.js') }} "></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+      $(".persian-date").persianDatepicker({
+        format: 'YYYY-MM-DD',	
+        initialValueType: 'gregorian',
+        });
+    });
+</script>
+@endpush
