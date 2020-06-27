@@ -207,3 +207,8 @@ h2#swal2-title {
 .notfound-header h3{
     color:white !important;
 }
+
+.change-pass{
+    border:1px solid #ddd;
+    margin-left: 20px;
+}
