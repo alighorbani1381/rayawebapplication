@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Contractor;
 
 use App\Http\Controllers\Controller;
 use App\Repository\ProjectRepository;
-
+use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
@@ -34,6 +34,11 @@ class ProjectController extends Controller
     {
         // dd($project);
         return view('Contractor.Project.progress');
+    }
+
+    public function storeProgress(Request $request)
+    {
+        return $request->all();
     }
 
 
