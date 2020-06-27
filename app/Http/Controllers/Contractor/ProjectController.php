@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Contractor;
 
 use App\Http\Controllers\Controller;
-use App\Project;
 use App\Repository\ProjectRepository;
-use Illuminate\Http\Request;
+
 
 class ProjectController extends Controller
 {
@@ -31,15 +30,11 @@ class ProjectController extends Controller
       return view('Contractor.Project.show', compact('project'));
     }
 
-    public function edit($project)
+    public function showProgress($project)
     {
-        //
+        // dd($project);
+        return view('Contractor.Project.progress');
     }
 
-  
-    public function update(Request $request, Project $project)
-    {
-        //
-    }
 
 }
