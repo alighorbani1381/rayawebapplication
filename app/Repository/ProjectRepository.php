@@ -406,6 +406,8 @@ class ProjectRepository
     public function getContractorProgress($projectId, $userId)
     {
         return DB::table('project_contractor')
+            ->select('project_contractor.*', 'projects.title')
+            ->join('projects', 'project_contractor.project_id', '=', 'projects.id')
             ->where('project_id', $projectId)
             ->where('contractor_id', $userId)
             ->first();
@@ -421,7 +423,7 @@ class ProjectRepository
     public function updateProgress($id, $progress)
     {
         return DB::table('project_contractor')
-        ->where('id', $id)
-        ->update(['progress' => $progress]);
+            ->where('id', $id)
+            ->update(['progress' => $progress]);
     }
 }
