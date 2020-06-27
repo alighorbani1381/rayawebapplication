@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Project;
-use App\Repository\ProjectRepository;
+use App\Repositories\ProjectRepository;
 use Illuminate\Http\Request;
 
 class ProjectRequest
