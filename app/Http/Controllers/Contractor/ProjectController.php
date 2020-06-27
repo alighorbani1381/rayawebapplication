@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-   
+
     private $repo;
 
     public function __construct()
     {
-        $this->repo = resolve(ProjectRepository::class);
+        $this->repo = resolve(ProjectRepository::class);        
     }
 
     public function index()
@@ -26,8 +26,10 @@ class ProjectController extends Controller
 
     public function show($project)
     {
-      $project = $this->repo->getProjectFull($project);
-      return view('Contractor.Project.show', compact('project'));
+        $userId = auth()->user()->id;
+        $this->repo->contractorGate($project, $userId);
+        $project = $this->repo->getProjectFull($project);
+        return view('Contractor.Project.show', compact('project'));
     }
 
     public function showProgress($project)
@@ -40,6 +42,5 @@ class ProjectController extends Controller
     {
         return $request->all();
     }
-
-
+    
 }
