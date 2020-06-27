@@ -60,7 +60,7 @@
 
 
                         <td class="tac">
-                            <a href="{{ route('projects.edit', $project->id) }}"
+                            <a href="{{ route('contractor.projects.show.progress', $project->id) }}"
                                 class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
                                     class="fa fa-pencil"></i> </a>
                         </td>
