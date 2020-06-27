@@ -417,4 +417,11 @@ class ProjectRepository
         $progressInfo = $this->getContractorProgress($project, $userId);
         return $progressInfo;
     }
+
+    public function updateProgress($id, $progress)
+    {
+        return DB::table('project_contractor')
+        ->where('id', $id)
+        ->update(['progress' => $progress]);
+    }
 }
