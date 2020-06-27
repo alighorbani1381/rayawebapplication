@@ -37,12 +37,11 @@ $fullName = auth()->user()->name . " " . auth()->user()->lastname;
                 </li>
                 
 
-                <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-user"></i> <span>حساب کاربری</span> <span class="menu-arrow  fa-angle-left"></span></a>
-                    <ul class="list-unstyled" style="display: none;">
-                        <li><a href="{{ route('contractor.profile.index') }}">پروفایل کاربری</a></li>
-                        <li><a href="{{ route('projects.create') }}">ویرایش پروفایل</a></li>
-                    </ul>
+                <li>
+                    <a href="{{ route('contractor.profile.index') }}" class="waves-effect">
+                        <i class="fa fa-user"></i>
+                        <span> حساب کاربری</span>
+                    </a>
                 </li>
 
 
