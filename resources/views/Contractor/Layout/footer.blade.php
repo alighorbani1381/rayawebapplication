@@ -6,14 +6,12 @@
 <script src="{{ asset('admin/js/bootstrap-rtl.min.js') }}"></script>
 <script src="{{ asset('admin/js/fastclick.js') }} "></script>
 
-{{-- <script src="{{ asset('admin/js/detect.js') }}"></script>
+<script src="{{ asset('admin/js/detect.js') }}"></script>
 <script src="{{ asset('admin/js/jquery.blockUI.js') }}"></script>
- --}}
-{{-- <script src="{{ asset('admin/js/waves.js') }}"></script> --}}
-{{-- 
+<script src="{{ asset('admin/js/waves.js') }}"></script>
 <script src="{{ asset('admin/js/jquery.nicescroll.js') }}"></script>
 <script src="{{ asset('admin/js/jquery.slimscroll.js') }}"></script>
-<script src="{{ asset('admin/js/jquery.scrollTo.min.js') }}"></script> --}}
+<script src="{{ asset('admin/js/jquery.scrollTo.min.js') }}"></script>
 
 
 <script type="text/javascript" src="admin/plugins/jquery-knob/excanvas.js"></script>
