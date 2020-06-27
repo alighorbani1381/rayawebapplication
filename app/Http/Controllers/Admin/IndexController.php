@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Repository\ProjectRepository;
-use App\Repository\StatisticRepository;
+use App\Repositories\ProjectRepository;
+use App\Repositories\StatisticRepository;
 
 class IndexController extends AdminController
 {
+
+    private $project;
+
+    private $statistic;
 
     public function __construct()
     {
         $this->project = resolve(ProjectRepository::class);
         $this->statistic = resolve(StatisticRepository::class);
     }
-
-    
 
     public function index()
     {
