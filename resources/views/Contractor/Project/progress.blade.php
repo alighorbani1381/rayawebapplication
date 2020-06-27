@@ -19,7 +19,7 @@
 
             <h4 class="header-title m-t-0 m-b-30">
                 تغییر درصد پیشرفت پروژه
-
+                <span style="color:#da7a03;">{{ " « " . $progressInfo->title . " » "}}</span>
             </h4>
 
             <p class="text-muted m-b-30 font-13">
