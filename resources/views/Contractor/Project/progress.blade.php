@@ -20,18 +20,31 @@
                 </ul>
             </div>
 
-            <h4 class="header-title m-t-0 m-b-30">نمونه های نوار تغیرات</h4>
+            <h4 class="header-title m-t-0 m-b-30">
+                تغییر درصد پیشرفت پروژه
+
+            </h4>
 
             <p class="text-muted m-b-30 font-13">
-                انواع نوار های لغزنده تغیرات در این صفحه
+                با استفاده از ریبون درصد پیشرفت پروژه را تغییر دهید.
             </p>
 
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="post" action="{{ route('contractor.projects.store.progress') }}">
+                @csrf
                 <div class="form-group">
-                    <label for="range_01" class="col-sm-2 control-label">نمونه 1<span class="font-normal text-muted clearfix">شروع بدون هیچ پارامتری</span></label>
+                    <label for="range_01" class="col-sm-2 control-label">
+                        پیشرفت تغییرات
+                        <span class="font-normal text-muted clearfix">شروع از مقدار قبلی</span>
+                    </label>
                     <div class="col-sm-10">
-                        <input type="text" id="progress">
+                        <input type="text" id="progress" name="progress">
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit"  class="btn btn-success waves-effect waves-light submit-button">
+                        ذخیره تغییرات
+                    </button>
                 </div>
 
 
@@ -44,21 +57,20 @@
         $("#progress").ionRangeSlider({
         min: 0,
         max: 100,
-        from: 20
+        from: 20,
     });
     });
 </script>
 @endsection
 
 @push('css')
-   <!-- UI Range css -->
-<link href="" rel="stylesheet" type="text/css">
-        <!-- ION Slider -->
-        <link href="{{ asset('admin/plugins/ion-rangeslider/ion.rangeSlider.css') }}" rel="stylesheet" type="text/css"/>
-        <link href="{{ asset('admin/plugins/ion-rangeslider/ion.rangeSlider.skinFlat.css') }}" rel="stylesheet" type="text/css"/>
+<!-- ION Slider -->
+<link href="{{ asset('admin/plugins/ion-rangeslider/ion.rangeSlider.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('admin/plugins/ion-rangeslider/ion.rangeSlider.skinFlat.css') }}" rel="stylesheet"
+    type="text/css" />
 @endpush
 
 @push('js')
-   <!-- UI Range Javascript -->
-   <script src="{{ asset('admin/plugins/ion-rangeslider/ion.rangeSlider.min.js') }} "></script>
+<!-- UI Range Javascript -->
+<script src="{{ asset('admin/plugins/ion-rangeslider/ion.rangeSlider.min.js') }} "></script>
 @endpush
