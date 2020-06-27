@@ -15,10 +15,10 @@ class ProjectRepository
     public function getContractorProject($userId)
     {
         return DB::table('project_contractor')
-        ->join('projects', 'project_contractor.project_id', '=', 'projects.id')        
-        ->where('contractor_id', $userId)
-        ->orderBy('projects.id', 'desc')
-        ->paginate(15);
+            ->join('projects', 'project_contractor.project_id', '=', 'projects.id')
+            ->where('contractor_id', $userId)
+            ->orderBy('projects.id', 'desc')
+            ->paginate(15);
     }
 
     public static function createTaskMaster($request)
@@ -380,8 +380,18 @@ class ProjectRepository
     {
         return Category::where('child', '!=', '0')->get();
     }
+
     public function getContractors()
     {
         return User::where('type', 'contractor')->get();
     }
+
+    private function isAccessToProject($projectId, $userId)
+    {
+        return DB::table('project_contractor')
+        ->where('project_id', $projectId)
+        ->where('contractor_id', $userId)
+        ->exists();
+    }
+
 }
