@@ -5,7 +5,7 @@
 <div class="row">
 
     <!-- Project Information Start !-->
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="card-box">
 
             <ul class="nav nav-tabs nav-justified">
@@ -18,15 +18,6 @@
                     <a href="#contract" role="tab" id="contract-tab" data-toggle="tab" aria-controls="contract"
                         aria-expanded="false">اطلاعات مربوط به زمان انجام پروژه</a>
                 </li>
-
-
-                @php
-                if($project['project']->status != 'waiting')
-                $taskDivide = "true";
-                else
-                $taskDivide = "false";
-                @endphp
-
             </ul>
 
             <div class="tab-content">
