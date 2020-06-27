@@ -41,7 +41,9 @@ class ProjectController extends Controller
 
     public function storeProgress(Request $request)
     {
-        return $request->all();
+        $this->repo->updateProgress($request->id, $request->progress);
+        session()->flash('ProgressChange');
+        return redirect()->route('contractor.projects.index');
     }
 
 }
