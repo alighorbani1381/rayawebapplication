@@ -406,6 +406,16 @@ class ProjectRepository
             ->paginate(15);
     }
 
+    public function getContractorFinishedProject($userId)
+    {
+        return DB::table('project_contractor')
+            ->join('projects', 'project_contractor.project_id', '=', 'projects.id')
+            ->where('contractor_id', $userId)
+            ->where('status', 'finished')
+            ->orderBy('projects.id', 'desc')
+            ->paginate(15);
+    }
+
     public function isAccessToProject($projectId, $userId)
     {
         return DB::table('project_contractor')
