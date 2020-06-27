@@ -6,36 +6,45 @@ use App\Http\Controllers\Controller;
 use App\Repositories\ProjectRepository;
 use Illuminate\Http\Request;
 
+
 class ProjectController extends Controller
 {
 
     private $repo;
 
+    private $user;
+
     public function __construct()
     {
         $this->repo = resolve(ProjectRepository::class);        
+
+        $this->middleware(function ($request, $next) {
+            $this->user = auth()->user();
+            return $next($request);
+        });        
     }
 
     public function index()
     {
-        $userId = auth()->user()->id;
-        $projects = $this->repo->getContractorProject($userId);
+        $projects = $this->repo->getContractorProject($this->user->id);
         return view('Contractor.Project.index', compact('projects'));
     }
 
+    public function ongoing()
+    {
+
+    }
 
     public function show($project)
     {
-        $userId = auth()->user()->id;
-        $this->repo->contractorGate($project, $userId);
+        $this->repo->contractorGate($project, $this->user->id);
         $project = $this->repo->getProjectFull($project);
         return view('Contractor.Project.show', compact('project'));
     }
     
     public function showProgress($project)
     {
-        $userId = auth()->user()->id;
-        $progressInfo = $this->repo->getProgressInfo($project, $userId);
+        $progressInfo = $this->repo->getProgressInfo($project, $this->user->id);
         return view('Contractor.Project.progress', compact('progressInfo'));
     }
 
