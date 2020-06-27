@@ -12,11 +12,8 @@
                     <i class="zmdi zmdi-more-vert"></i>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">فعال</a></li>
-                    <li><a href="#">متن اول</a></li>
-                    <li><a href="#">متن دوم</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">متن پاورقی</a></li>
+                    <li><a href="{{ route('contractor.projects.show', $progressInfo->project_id) }}">نمایش جزئیات پروژه</a></li>
+                    <li><a href="{{ route('contractor.projects.index') }}">لیست پروژه ها</a></li>
                 </ul>
             </div>
 
