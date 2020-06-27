@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\CostStatic;
-use App\Repository\CostStaticRepository;
+use App\Repositories\CostStaticRepository;
 use Illuminate\Http\Request;
 
 class CoststaticController extends AdminController
