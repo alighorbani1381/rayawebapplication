@@ -34,7 +34,7 @@
     <script src="{{ asset('admin/js/sweetalert.js') }} "></script>
     <script src="{{ asset('admin/js/customJS/developer.js') }} "></script>
     @stack('css')
-    @stack('js')
+    
 
 </head>
 
