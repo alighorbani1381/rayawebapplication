@@ -71,7 +71,7 @@
                     </ul>
 
                     <!-- Right(Notification and Searchbox -->
-                    <ul class="nav navbar-nav navbar-right">
+                    {{-- <ul class="nav navbar-nav navbar-right">
                         <li>
                             <!-- Notification -->
                             <div class="notification-box">
@@ -95,7 +95,7 @@
                                 <a href="#"><i class="fa fa-search"></i></a>
                             </form>
                         </li>
-                    </ul>
+                    </ul> --}}
 
                 </div><!-- end container -->
             </div><!-- end navbar -->
