@@ -31,6 +31,7 @@
 
             <form class="form-horizontal" method="post" action="{{ route('contractor.projects.store.progress') }}">
                 @csrf
+                <input type="hidden" name="id" value="{{ $progressInfo->id }}">
                 <div class="form-group">
                     <label for="range_01" class="col-sm-2 control-label">
                         پیشرفت تغییرات
@@ -57,7 +58,7 @@
         $("#progress").ionRangeSlider({
         min: 0,
         max: 100,
-        from: 20,
+        from: {{ $progressInfo->progress }},
     });
     });
 </script>
