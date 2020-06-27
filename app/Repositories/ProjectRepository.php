@@ -13,46 +13,7 @@ class ProjectRepository
 {
 
 
-    public static function createTaskMaster($request)
-    {
-        return  DB::table('project_taskmaster')
-            ->insertGetId([
-                'name' => $request->name,
-                'lastname' => $request->lastname,
-                'father_name' => $request->father_name,
-                'meli_code' => $request->meli_code,
-                'meli_image' => 'none',
-                'phone' => $request->phone,
-                'address' => $request->address,
-            ]);
-    }
-
-    public static function deleteTaskMaster($taskmasterId)
-    {
-        return  DB::table('project_taskmaster')
-            ->where('project_id', $taskmasterId)
-            ->delete();
-    }
-
-    public static function deleteContractors($projectId)
-    {
-        DB::table('project_contractor')
-            ->where('project_id', $projectId)
-            ->delete();
-    }
-    public static function deleteCategories($projectId)
-    {
-        DB::table('project_category')
-            ->where('project_id', $projectId)
-            ->delete();
-    }
-
-    public static function deleteProject($projectId)
-    {
-        DB::table('projects')
-            ->where('project_id', $projectId)
-            ->delete();
-    }
+    /************************ Helper Function to Convert Persian date to Gregorian  ** ********************* */
 
     public function convertToEnglishAlphabet($string)
     {
@@ -93,6 +54,51 @@ class ProjectRepository
         $newDate = Verta::getGregorian($numberDate[0], $numberDate[1], $numberDate[2]);
         $gregorian = $this->getGregorianFormat($newDate);
         return $gregorian;
+    }
+
+
+    /************************ Projects Functions  ** ********************* */
+
+
+    public static function createTaskMaster($request)
+    {
+        return  DB::table('project_taskmaster')
+            ->insertGetId([
+                'name' => $request->name,
+                'lastname' => $request->lastname,
+                'father_name' => $request->father_name,
+                'meli_code' => $request->meli_code,
+                'meli_image' => 'none',
+                'phone' => $request->phone,
+                'address' => $request->address,
+            ]);
+    }
+
+    public static function deleteTaskMaster($taskmasterId)
+    {
+        return  DB::table('project_taskmaster')
+            ->where('project_id', $taskmasterId)
+            ->delete();
+    }
+
+    public static function deleteContractors($projectId)
+    {
+        DB::table('project_contractor')
+            ->where('project_id', $projectId)
+            ->delete();
+    }
+    public static function deleteCategories($projectId)
+    {
+        DB::table('project_category')
+            ->where('project_id', $projectId)
+            ->delete();
+    }
+
+    public static function deleteProject($projectId)
+    {
+        DB::table('projects')
+            ->where('project_id', $projectId)
+            ->delete();
     }
 
     public function generateUniqueId()
