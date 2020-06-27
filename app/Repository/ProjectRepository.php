@@ -386,12 +386,18 @@ class ProjectRepository
         return User::where('type', 'contractor')->get();
     }
 
-    private function isAccessToProject($projectId, $userId)
+    public function isAccessToProject($projectId, $userId)
     {
         return DB::table('project_contractor')
-        ->where('project_id', $projectId)
-        ->where('contractor_id', $userId)
-        ->exists();
+            ->where('project_id', $projectId)
+            ->where('contractor_id', $userId)
+            ->exists();
     }
 
+    public function contractorGate($projectId, $userId)
+    {
+        $isAccess = $this->isAccessToProject($projectId, $userId);
+        if (!$isAccess)
+            abort('404');
+    }
 }
