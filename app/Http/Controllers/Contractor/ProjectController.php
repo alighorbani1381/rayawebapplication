@@ -32,7 +32,8 @@ class ProjectController extends Controller
 
     public function ongoing()
     {
-
+        $projects = $this->repo->getContractorOngoingProject($this->user->id);
+        return view('Contractor.Project.ongoing', compact('projects'));
     }
 
     public function show($project)
