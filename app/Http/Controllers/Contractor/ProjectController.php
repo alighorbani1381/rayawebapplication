@@ -36,6 +36,12 @@ class ProjectController extends Controller
         return view('Contractor.Project.ongoing', compact('projects'));
     }
 
+    public function finished()
+    {
+        $projects = $this->repo->getContractorFinishedProject($this->user->id);
+        return view('Contractor.Project.finished', compact('projects'));
+    }
+
     public function show($project)
     {
         $this->repo->contractorGate($project, $this->user->id);
