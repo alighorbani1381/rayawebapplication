@@ -12,14 +12,6 @@ use Illuminate\Support\Facades\DB;
 class ProjectRepository
 {
 
-    public function getContractorProject($userId)
-    {
-        return DB::table('project_contractor')
-            ->join('projects', 'project_contractor.project_id', '=', 'projects.id')
-            ->where('contractor_id', $userId)
-            ->orderBy('projects.id', 'desc')
-            ->paginate(15);
-    }
 
     public static function createTaskMaster($request)
     {
@@ -384,6 +376,28 @@ class ProjectRepository
     public function getContractors()
     {
         return User::where('type', 'contractor')->get();
+    }
+
+
+    /************************ Contractor Panel Use This Methods ** ********************* */
+
+    public function getContractorProject($userId)
+    {
+        return DB::table('project_contractor')
+            ->join('projects', 'project_contractor.project_id', '=', 'projects.id')
+            ->where('contractor_id', $userId)
+            ->orderBy('projects.id', 'desc')
+            ->paginate(15);
+    }
+
+    public function getContractorOngoingProject($userId)
+    {
+        return DB::table('project_contractor')
+            ->join('projects', 'project_contractor.project_id', '=', 'projects.id')
+            ->where('contractor_id', $userId)
+            ->where('status', 'ongoing')
+            ->orderBy('projects.id', 'desc')
+            ->paginate(15);
     }
 
     public function isAccessToProject($projectId, $userId)
