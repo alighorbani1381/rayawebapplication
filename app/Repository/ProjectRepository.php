@@ -397,7 +397,24 @@ class ProjectRepository
     public function contractorGate($projectId, $userId)
     {
         $isAccess = $this->isAccessToProject($projectId, $userId);
-        if (!$isAccess)
+        if (!$isAccess) {
             abort('404');
+            return null;
+        }
+    }
+
+    public function getContractorProgress($projectId, $userId)
+    {
+        return DB::table('project_contractor')
+            ->where('project_id', $projectId)
+            ->where('contractor_id', $userId)
+            ->first();
+    }
+
+    public function getProgressInfo($project, $userId)
+    {
+        $this->contractorGate($project, $userId);
+        $progressInfo = $this->getContractorProgress($project, $userId);
+        return $progressInfo;
     }
 }
