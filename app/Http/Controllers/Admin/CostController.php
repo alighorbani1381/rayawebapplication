@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Cost;
 use App\Project;
-use App\Repository\CostRepository;
+use App\Repositories\CostRepository;
 use App\Request\CostRequest;
 use Illuminate\Http\Request;
 
