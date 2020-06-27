@@ -19,7 +19,6 @@
                         <th>شناسه پروژه</th>
                         <th class="tac">وضعیت</th>
                         <th class="tac">مشاهده جزئیات</th>
-                        <th class="tac">ویرایش درصد پیشرفت</th>
                         <th class="tac">میزان درآمد شما</th>
                     </tr>
                 </thead>
@@ -56,13 +55,6 @@
                                 class="btn btn-icon waves-effect waves-light btn-primary m-b-5">
                                 <i class="fa fa-file-text-o"></i>
                             </a>
-                        </td>
-
-
-                        <td class="tac">
-                            <a href="{{ route('contractor.projects.show.progress', $project->id) }}"
-                                class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
-                                    class="fa fa-pencil"></i> </a>
                         </td>
                         <td class="tac">
                             <a href="{{ route('earnings.pay', $project->id) }}"
