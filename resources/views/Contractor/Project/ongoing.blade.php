@@ -5,7 +5,8 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card-box table-responsive">
-
+            
+            @if(hasMember($projects))
             <h4 class="header-title m-t-0 m-b-30 inb">
                 لیست پروژه های در دست اجرا
             </h4>
@@ -24,7 +25,7 @@
                 </thead>
 
                 <tbody>
-                    @forelse ($projects as $row => $project)
+                    @foreach ($projects as $row => $project)
                     <tr>
                         <td><?= $row  + 1 ?></td>
                         <td class="projectName">{{ $project->title }}</td>
@@ -50,15 +51,14 @@
                         </td>
 
                     </tr>
-                    @empty
-                    <div class="alert alert-danger">
-                        <i class="fa fa-warning"></i> 
-                        <span>برای شما تا کنون پروژه ای ثبت نشده است.</span>
-                    </div>
-                    @endforelse
+  
+                    @endforeach
 
                 </tbody>
             </table>
+            @else
+            {!! recordMessage('پروژه ی در حال اجرایی وجود ندارد.') !!}
+            @endif
             {{ $projects->links() }}
         </div>
     </div><!-- end col -->
