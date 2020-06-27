@@ -35,8 +35,7 @@ class ProjectController extends Controller
     public function showProgress($project)
     {
         $userId = auth()->user()->id;
-        $this->repo->contractorGate($project, $userId);
-        $progressInfo = $this->repo->getContractorProgress($project, $userId);
+        $progressInfo = $this->repo->getProgressInfo($project, $userId);
         return view('Contractor.Project.progress', compact('progressInfo'));
     }
 
