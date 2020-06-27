@@ -31,16 +31,18 @@ class ProjectController extends Controller
         $project = $this->repo->getProjectFull($project);
         return view('Contractor.Project.show', compact('project'));
     }
-
+    
     public function showProgress($project)
     {
-        // dd($project);
-        return view('Contractor.Project.progress');
+        $userId = auth()->user()->id;
+        $this->repo->contractorGate($project, $userId);
+        $progressInfo = $this->repo->getContractorProgress($project, $userId);
+        return view('Contractor.Project.progress', compact('progressInfo'));
     }
 
     public function storeProgress(Request $request)
     {
         return $request->all();
     }
-    
+
 }
