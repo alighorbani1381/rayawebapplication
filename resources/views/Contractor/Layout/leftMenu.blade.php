@@ -35,6 +35,16 @@ $fullName = auth()->user()->name . " " . auth()->user()->lastname;
                     <a href="{{ route('contractor.dashbord') }}" class="waves-effect active"><i
                             class="fa fa-dashboard"></i> <span> داشبورد </span> </a>
                 </li>
+                
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-user"></i> <span>حساب کاربری</span> <span class="menu-arrow  fa-angle-left"></span></a>
+                    <ul class="list-unstyled" style="display: none;">
+                        <li><a href="{{ route('projects.index') }}">پروفایل کاربری</a></li>
+                        <li><a href="{{ route('projects.create') }}">ویرایش پروفایل</a></li>
+                    </ul>
+                </li>
+
 
                 <li class="text-muted menu-title">بخش کاری</li>
                 <li>
@@ -67,7 +77,7 @@ $fullName = auth()->user()->name . " " . auth()->user()->lastname;
                 <li>
                     <a href="{{ route('projects.create') }}" class="waves-effect">
                         <i class="fa fa-money"></i>
-                        <span class="label label-pink pull-right">7</span>
+                        <span class="label label-primary pull-right">7</span>
                         <span> لیست پرداختی ها </span>
                     </a>
                 </li>
@@ -79,12 +89,6 @@ $fullName = auth()->user()->name . " " . auth()->user()->lastname;
                         <span> لیست بستانکاری ها </span>
                     </a>
                 </li>
-
-
-          
-
-
-          
 
             </ul>
             <div class="clearfix"></div>
