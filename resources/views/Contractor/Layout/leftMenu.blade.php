@@ -56,7 +56,7 @@ $fullName = auth()->user()->name . " " . auth()->user()->lastname;
                 </li>
 
                 <li>
-                    <a href="{{ route('projects.create') }}" class="waves-effect">
+                    <a href="{{ route('contractor.projects.ongoing') }}" class="waves-effect">
                         <i class="fa fa-codepen"></i>
                         <span class="label label-warning pull-right">7</span>
                         <span> پروژه های در دست اجرا </span>
