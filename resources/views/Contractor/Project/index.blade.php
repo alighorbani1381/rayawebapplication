@@ -86,16 +86,12 @@
 </div>
 
 
-@if(session()->has('ProjectDelete'))
-<script>
-    minMbox('پروژه مورد نظر به طور کامل حدف شد.', 350);
+@if(session()->has('ProgressChange'))
+<script id="test">
+    var message = "درصد پیشرفت پروژه با موفقیت بروزرسانی شد.";
+    minMbox(message, 350);
 </script>
-@endif
-
-@if(session()->has('ProjectUpdate'))
-<script>
-    minMbox("اطلاعات پروژه بروز رسانی شد.", 300);
-</script>
+    <?php session()->forget('ProgressChange'); ?>
 @endif
 
 
