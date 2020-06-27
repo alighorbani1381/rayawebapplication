@@ -45,6 +45,7 @@ Route::group(['namespace' => 'Contractor', 'middleware' => ['isLogin']], functio
     Route::get('projects', 'ProjectController@index')->name('contractor.projects.index');
     Route::get('projects/{project}', 'ProjectController@show')->name('contractor.projects.show');
     Route::get('projects/{project}/progress', 'ProjectController@showProgress')->name('contractor.projects.show.progress');
+    Route::post('projects/progress', 'ProjectController@storeProgress')->name('contractor.projects.store.progress');
 });
 
 # Debug or Test Rotue
