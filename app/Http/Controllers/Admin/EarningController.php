@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Earning;
-use App\Repository\EarningRepository;
+use App\Repositories\EarningRepository;
 use App\Project;
 use App\Request\EarningRequest;
 use Illuminate\Http\Request;
