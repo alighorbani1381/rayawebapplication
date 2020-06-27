@@ -59,7 +59,7 @@ class ProjectController extends Controller
     {
         $this->repo->updateProgress($request->id, $request->progress);
         session()->flash('ProgressChange');
-        return redirect()->route('contractor.projects.index');
+        return redirect()->route('contractor.projects.ongoing');
     }
 
 }
