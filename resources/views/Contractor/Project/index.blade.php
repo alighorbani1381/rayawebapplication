@@ -6,6 +6,7 @@
     <div class="col-sm-12">
         <div class="card-box table-responsive">
 
+            @if(hasMember($projects))
             <h4 class="header-title m-t-0 m-b-30 inb">
                 لیست پروژه ها
             </h4>
@@ -19,12 +20,11 @@
                         <th>شناسه پروژه</th>
                         <th class="tac">وضعیت</th>
                         <th class="tac">مشاهده جزئیات</th>
-                        <th class="tac">میزان درآمد شما</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @forelse ($projects as $row => $project)
+                    @foreach ($projects as $row => $project)
                     <tr>
                         <td><?= $row  + 1 ?></td>
                         <td class="projectName">{{ $project->title }}</td>
@@ -56,35 +56,29 @@
                                 <i class="fa fa-file-text-o"></i>
                             </a>
                         </td>
-                        <td class="tac">
-                            <a href="{{ route('earnings.pay', $project->id) }}"
-                                class="btn btn-icon waves-effect waves-light btn-success m-b-5"> <i
-                                    class="fa fa-money"></i> </a>
-                        </td>
 
                     </tr>
-                    @empty
-                    <div class="alert alert-danger">
-                        <i class="fa fa-warning"></i> 
-                        <span>برای شما تا کنون پروژه ای ثبت نشده است.</span>
-                    </div>
-                    @endforelse
+ 
+                    @endforeach
 
                 </tbody>
             </table>
+            @else
+            {!! recordMessage('برای شما تا کنون پروژه ای ثبت نشده است.') !!}
+            @endif
             {{ $projects->links() }}
         </div>
     </div><!-- end col -->
 </div>
 
 
-@if(session()->has('ProgressChange'))
+@if(Session::has('ProgressChange'))
 <script id="test">
     var message = "درصد پیشرفت پروژه با موفقیت بروزرسانی شد.";
     minMbox(message, 350);
 </script>
-    <?php session()->forget('ProgressChange'); ?>
 @endif
+<?php Session::forget('ProgressChange'); ?>
 
 
 @endsection
