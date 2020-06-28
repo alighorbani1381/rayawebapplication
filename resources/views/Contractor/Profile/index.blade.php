@@ -8,26 +8,27 @@
     <div class="col-md-8">
         <div class="card-box task-detail">
             <h4 class="header-title m-t-0 m-b-30">اطلاعات کاربری شما</h4>
-            @if($user->is_default_password)
-            <div class="alert alert-danger">
-                رمز عبور شما به صورت پیشفرض روی 
-                <span>raya-px724</span>
-                قرار دارد برای حفاظت از اطلاعت خود در همین صفحه از قسمت تغییر رمز عبور ، اقدام به تغییر رمز عبور خود کنید.
-            </div>
-            @endif
             <div class="media m-b-20">
                 <div class="media-left">
                     <a href="#"> <img class="media-object img-circle" alt="هزینه" src="{{ $user->profile_image }}"
                             style="width: 48px; height: 48px; border:1px solid #ddd; vertical-align:-3px;"> </a>
                 </div>
                 <div class="media-body" style="border-bottom: 2px solid #337ab7; padding-bottom: 13px;">
+                
 
 
                     <h4 class="media-heading m-b-0 ear-sta-text">نام کاربری شما</h4>
                     <span class="label label-primary earning-status-label">{{ $user->username }}</span>
                 </div>
             </div>
-
+ @if($user->is_default_password)
+            <div class="alert alert-danger">
+                <i class="fa fa-warning"></i>
+                رمز عبور شما به صورت پیشفرض روی 
+                <span style="color:black; font-weight:bold;">raya-px724</span>
+                قرار دارد برای حفاظت از اطلاعت خود در همین صفحه از قسمت تغییر رمز عبور ، اقدام به تغییر رمز عبور خود کنید.
+            </div>
+            @endif
             <div class="clear-fix"></div>
             <h4 class="font-600" style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
                 نام شما :
@@ -79,7 +80,9 @@
         <div class="card-box">
             <h4 class="header-title m-t-0 m-b-30">تغییر رمز عبور</h4>
             <div>
-                <form action="" method="post">
+                <form action="{{ route('contractor.profile.change.password') }}" method="post">
+                @csrf
+                @method('PATCH')
                     <div class="media m-b-10">
                         <div class="media-left">
                             <a href="#"> <img class="change-pass media-object img-circle thumb-sm" alt="عنوان پروژه"
@@ -100,7 +103,7 @@
                         <div class="media-body">
                             <h4 class="media-heading">رمز عبور جدید</h4>
                             <input class="form-control input-sm" placeholder="رمز عبور جدید را وارد کنید ..."
-                                type="password" name="old_password" value="">
+                                type="password" name="new_password" value="">
                         </div>
                     </div>
 
@@ -112,7 +115,7 @@
                         <div class="media-body">
                             <h4 class="media-heading">تکرار رمز عبور جدید</h4>
                             <input class="form-control input-sm" placeholder="تکرار رمز عبور جدید را وارد کنید ..."
-                                type="password" name="old_password" value="">
+                                type="password" name="repeat_password" value="">
                         </div>
                     </div>
 
@@ -128,3 +131,7 @@
     <!-- Reset Password Panel End!-->
 </div>
 @endsection
+
+@push('css')
+<script src="{{ asset('user/js/profile.js') }}" type="text/javascript"></script>
+@endpush
