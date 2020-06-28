@@ -165,6 +165,9 @@ return [
         'child' => 'سر گروه',
         'money_paid' => 'میزان هزینه',
         'status' => 'وضعیت',
+        'old_password' => 'رمز عبور فعلی',
+        'new_password' => 'رمز عبور جدید',
+        'repeat_password' => 'تکرار رمز عبور',
     ],
 
 ];
