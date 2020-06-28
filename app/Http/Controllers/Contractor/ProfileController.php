@@ -25,22 +25,32 @@ class ProfileController extends Controller
         return view('Contractor.Profile.index', compact('user'));
     }
 
+
     public function changePassword(Request $request)
     {
-        $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required',
-            'repeat_password' => 'required'
-        ]);
+      
+            $request->validate([
+                'old_password' => 'required',
+                'new_password' => 'required',
+                'repeat_password' => 'required'
+            ]);
 
-        die;
-        $check = $this->checkCurrentPassword($request->old_password);
-        if($check)
+            $isValidCurrentPass = false;
+            if(Hash::check($request->old_password, $this->password)){
+                $isValidCurrentPass = true;
+
+        if($isValidCurrentPass)
+            return 'ok';
+        else
+        return back();
+        // $this->checkNewPassword($request->new_password, $request->repeat_password);
     }
 
-    private function checkCurrentPassword($old)
+   
+
+    private function checkNewPassword($newPass, $repeatPass)
     {
-        if(Hash::check($old, $this->password))
+        if($newPass == $repeatPass)
             return true;
         else
             return false;
