@@ -1,6 +1,9 @@
 @extends('Contractor.Layout.main')
 @section('title', 'پروفایل کاربری')
 @section('header', 'مشخصات کاربری شما')
+@push('css')
+<script src="{{ asset('user/js/profile.js') }}" type="text/javascript"></script>
+@endpush
 @section('content')
 <div class="row">
 
@@ -21,7 +24,8 @@
                     <span class="label label-primary earning-status-label">{{ $user->username }}</span>
                 </div>
             </div>
- @if($user->is_default_password)
+
+            @if($user->is_default_password)
             <div class="alert alert-danger">
                 <i class="fa fa-warning"></i>
                 رمز عبور شما به صورت پیشفرض روی 
@@ -29,6 +33,7 @@
                 قرار دارد برای حفاظت از اطلاعت خود در همین صفحه از قسمت تغییر رمز عبور ، اقدام به تغییر رمز عبور خود کنید.
             </div>
             @endif
+
             <div class="clear-fix"></div>
             <h4 class="font-600" style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
                 نام شما :
@@ -54,35 +59,13 @@
     </div>
     <!-- Profile Panel End !-->
 
-
-    {{-- <form method="post" action="{{ route('projects.divide') }}">
-    @csrf
-    <input type="hidden" name="project_id" value="{{ $project['project']->id }}">
-    @foreach($project['contractors'] as $key => $contractor)
-    <div class="media m-b-10">
-        <div class="media-left">
-            <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
-                    src="/admin/images/users/avatar-1.jpg"> </a>
-        </div>
-        <div class="media-body">
-            <h4 class="media-heading">{{ $contractor->name . " " . $contractor->lastname }}</h4>
-            <p class="font-13 text-muted m-b-0">
-                <input type="hidden" value="{{ $contractor->contract_id }}" name="access[{{ $key }}]">
-
-            </p>
-        </div>
-
-    </div>
-    @endforeach --}}
-
     <!-- Reset Password Panel Start!-->
     <div class="col-md-4">
         <div class="card-box">
             <h4 class="header-title m-t-0 m-b-30">تغییر رمز عبور</h4>
             <div>
-                <form action="{{ route('contractor.profile.change.password') }}" method="post">
+                <form action="{{ route('profile.change.password') }}" method="post">
                 @csrf
-                @method('PATCH')
                     <div class="media m-b-10">
                         <div class="media-left">
                             <a href="#"> <img class="change-pass media-object img-circle thumb-sm" alt="عنوان پروژه"
@@ -91,7 +74,17 @@
                         <div class="media-body">
                             <h4 class="media-heading">رمز عبور فعلی</h4>
                             <input class="form-control input-sm" placeholder="رمز عبور فعلی را وارد کنید ..."
-                                type="password" name="old_password" value="">
+                                type="password" name="old_password">
+
+                                @error('old_password')
+                                <div class="alert alert-danger"> {{ $message }} </div>
+                                @enderror
+
+                                @if(session()->has('currentWrong'))
+                                <div class="alert alert-danger">
+                                رمز عبور فعلی اشتباه است
+                                </div>
+                                @endif
                         </div>
                     </div>
 
@@ -103,7 +96,11 @@
                         <div class="media-body">
                             <h4 class="media-heading">رمز عبور جدید</h4>
                             <input class="form-control input-sm" placeholder="رمز عبور جدید را وارد کنید ..."
-                                type="password" name="new_password" value="">
+                                type="password" name="new_password">
+                                  @error('new_password')
+                                <div class="alert alert-danger"> {{ $message }} </div>
+                                
+                                @enderror
                         </div>
                     </div>
 
@@ -115,7 +112,10 @@
                         <div class="media-body">
                             <h4 class="media-heading">تکرار رمز عبور جدید</h4>
                             <input class="form-control input-sm" placeholder="تکرار رمز عبور جدید را وارد کنید ..."
-                                type="password" name="repeat_password" value="">
+                                type="password" name="repeat_password">
+                                      @error('repeat_password')
+                                <div class="alert alert-danger"> {{ $message }} </div>
+                                @enderror
                         </div>
                     </div>
 
@@ -131,7 +131,3 @@
     <!-- Reset Password Panel End!-->
 </div>
 @endsection
-
-@push('css')
-<script src="{{ asset('user/js/profile.js') }}" type="text/javascript"></script>
-@endpush
