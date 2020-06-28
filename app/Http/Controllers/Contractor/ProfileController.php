@@ -5,18 +5,22 @@ namespace App\Http\Controllers\Contractor;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
 
     private $user;
 
+    private $password;
+
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
             $this->user = auth()->user();
+            $this->password = $this->user->password;
             return $next($request);
-        });        
+        });
     }
 
     public function info()
@@ -25,34 +29,38 @@ class ProfileController extends Controller
         return view('Contractor.Profile.index', compact('user'));
     }
 
-
     public function changePassword(Request $request)
     {
-      
-            $request->validate([
-                'old_password' => 'required',
-                'new_password' => 'required',
-                'repeat_password' => 'required'
-            ]);
 
-            $isValidCurrentPass = false;
-            if(Hash::check($request->old_password, $this->password)){
-                $isValidCurrentPass = true;
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required',
+            'repeat_password' => 'required',
+        ]);
 
-        if($isValidCurrentPass)
-            return 'ok';
-        else
-        return back();
-        // $this->checkNewPassword($request->new_password, $request->repeat_password);
+        if (!$this->isValidPassword($request->old_password, $this->password)) {
+            return back();
+            return null;
+        }
+
+        return $this->isValidNewPassword($request->new_password, $request->repeat_password);
     }
 
-   
-
-    private function checkNewPassword($newPass, $repeatPass)
+    public function isValidNewPassword($newPass, $repeatPass)
     {
-        if($newPass == $repeatPass)
-            return true;
-        else
-            return false;
+        $isValid =  ($newPass == $repeatPass) ? true : false;
+        if(! $isValid)
+        session()->flash('newpassWrong');
+        return back();
+    }
+
+    public function isValidPassword($oldPass, $currentPass)
+    {
+        $isValid = false;
+
+        if (Hash::check($oldPass, $currentPass))
+            $isValid = true;
+
+        return $isValid;
     }
 }
