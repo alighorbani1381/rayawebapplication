@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -27,5 +28,14 @@ class User extends Authenticatable
         else
             $profile = $this->profile;
         return $profile;
+    }
+
+    public function getIsDefaultPasswordAttribute()
+    {
+        if (Hash::check('raya-px724', $this->password))
+            $status = true;
+        else
+            $status = false;
+        return $status;
     }
 }
