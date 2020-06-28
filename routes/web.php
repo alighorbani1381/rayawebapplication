@@ -49,9 +49,10 @@ Route::group(['namespace' => 'Contractor', 'middleware' => ['isLogin']], functio
     Route::get('projects/{project}/progress', 'ProjectController@showProgress')->name('contractor.projects.show.progress');
     Route::post('projects/progress', 'ProjectController@storeProgress')->name('contractor.projects.store.progress');
     Route::get('profile', 'ProfileController@info')->name('contractor.profile.index');
+    Route::post('profile/change/password', 'ProfileController@changePassword')->name('profile.change.password');
 });
 
 # Debug or Test Rotue
 Route::get('test', function () {
-    return Hash::make('123');
+    return Hash::make('raya-px724');
 });
