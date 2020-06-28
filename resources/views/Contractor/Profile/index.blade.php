@@ -8,6 +8,13 @@
     <div class="col-md-8">
         <div class="card-box task-detail">
             <h4 class="header-title m-t-0 m-b-30">اطلاعات کاربری شما</h4>
+            @if($user->is_default_password)
+            <div class="alert alert-danger">
+                رمز عبور شما به صورت پیشفرض روی 
+                <span>raya-px724</span>
+                قرار دارد برای حفاظت از اطلاعت خود در همین صفحه از قسمت تغییر رمز عبور ، اقدام به تغییر رمز عبور خود کنید.
+            </div>
+            @endif
             <div class="media m-b-20">
                 <div class="media-left">
                     <a href="#"> <img class="media-object img-circle" alt="هزینه" src="{{ $user->profile_image }}"
@@ -113,7 +120,6 @@
                         <button type="button" id="change-password" class="btn btn-primary waves-effect submit-button">
                             تغییر رمز عبور
                         </button>
-
                     </div>
                 </form>
             </div>
