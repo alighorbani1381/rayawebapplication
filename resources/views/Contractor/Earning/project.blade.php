@@ -1,6 +1,6 @@
 @extends('Contractor.Layout.main')
-@section('title', 'لیست در آمد ها')
-@section('header', 'لیست درآمد های شما')
+@section('title', $project->title)
+@section('header', 'لیست درآمد های ' . " « " . $project->title . " » ")
 @section('content')
 <div class="row">
     <div class="col-sm-12">
@@ -57,7 +57,7 @@
                 </tbody>
             </table>
             @else
-            {!! recordMessage(" تاکنون در آمدی برای پروژه " . $project->title . " ثبت نشده است. ") !!}
+            {!! recordMessage(" تاکنون در آمدی برای پروژه " . $project->title . " ثبت نشده است ") !!}
             @endif
 
             {{ $earnings->links() }}
