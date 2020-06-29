@@ -45,7 +45,7 @@
                                     class="fa fa-pencil"></i> </a>
                         </td>
                         <td class="tac">
-                            <a href="{{ route('earnings.pay', $project->id) }}"
+                            <a href="{{ route('contractor.earning.project', $project->id) }}"
                                 class="btn btn-icon waves-effect waves-light btn-success m-b-5"> <i
                                     class="fa fa-money"></i> </a>
                         </td>
