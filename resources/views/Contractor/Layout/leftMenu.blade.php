@@ -1,5 +1,6 @@
 @php
 $fullName = auth()->user()->name . " " . auth()->user()->lastname;
+$image = auth()->user()->profile;
 @endphp
 <!-- ========== Left Sidebar Start ========== -->
 <div class="left side-menu">
@@ -8,7 +9,7 @@ $fullName = auth()->user()->name . " " . auth()->user()->lastname;
         <!-- User -->
         <div class="user-box">
             <div class="user-img">
-                <img src="/admin/images/users/default.png" alt="{{ $fullName }}" title="{{ $fullName }}"
+                <img src="{{ showPicture('user.profile', $image) }}" alt="{{ $fullName }}" title="{{ $fullName }}"
                     class="img-circle img-thumbnail img-responsive">
                 <div class="user-status online"><i class="zmdi zmdi-dot-circle"></i></div>
             </div>
