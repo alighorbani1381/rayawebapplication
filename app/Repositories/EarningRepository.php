@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Cost;
 use App\Earning;
 use App\Project;
 
@@ -49,4 +50,17 @@ class EarningRepository
 
             return $projects;
     }
+
+
+    /*************** Earning Method For Contractor ************ */
+
+    public function getContractorEarning($userId)
+    {
+        return Cost::where('contractor_id', $userId)
+        ->where('status', 'paid')
+        ->paginate(15);
+    }
+
+
+
 }
