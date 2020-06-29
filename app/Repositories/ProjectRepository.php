@@ -461,7 +461,10 @@ class ProjectRepository
 
     public function isAccessChangeProgress($project)
     {
-        return $isFuture = verta($project->date_start)->isFuture();                   
+        $date = verta($project->date_start);
+        $result['isFuture'] = $date->isFuture();                   
+        $result['diff'] = $date->formatDifference();
+        return $result;
     }
 
 }
