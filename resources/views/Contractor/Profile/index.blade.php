@@ -70,8 +70,13 @@
 
 
                 <div class="user-img" style="margin: 0 auto; width:50%;">
+                    @if($user->profile != 'default')
                     <img src="{{ showPicture('user.profile', $user->profile) }}" alt="شما" title="شما"
                         class="img-circle img-thumbnail img-responsive">
+                        @else
+                        <img src="{{ showPicture('', $user->profile) }}" alt="شما" title="شما"
+                        class="img-circle img-thumbnail img-responsive">
+                        @endif
                 </div>
 
                 <form action="{{ route('profile.change.image') }}" method="post" enctype="multipart/form-data">
