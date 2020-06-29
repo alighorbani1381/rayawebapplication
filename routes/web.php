@@ -40,7 +40,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin', 'isAdmin'], 'p
 });
 
 # Contractors (Users) Routes
-Route::group(['namespace' => 'Contractor', 'middleware' => ['isLogin']], function () {
+Route::group(['namespace' => 'Contractor', 'middleware' => ['isLogin'], 'prefix' => 'panel'], function () {
     Route::get('dashborad', 'IndexController@index')->name('contractor.dashbord');
     Route::get('projects', 'ProjectController@index')->name('contractor.projects.index');
     Route::get('projects/ongoing', 'ProjectController@ongoing')->name('contractor.projects.ongoing');
