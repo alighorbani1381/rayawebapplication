@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Contractor;
 
+use App\Project;
 use App\Repositories\ProjectRepository;
 use Illuminate\Http\Request;
 
@@ -15,12 +16,12 @@ class ProjectController extends MainController
 
     public function __construct()
     {
-        $this->repo = resolve(ProjectRepository::class);        
+        $this->repo = resolve(ProjectRepository::class);
 
         $this->middleware(function ($request, $next) {
             $this->user = auth()->user();
             return $next($request);
-        });        
+        });
     }
 
     public function index()
@@ -47,10 +48,15 @@ class ProjectController extends MainController
         $project = $this->repo->getProjectFull($project);
         return view('Contractor.Project.show', compact('project'));
     }
-    
-    public function showProgress($project)
+
+    public function showProgress(Project $project)
     {
-        $progressInfo = $this->repo->getProgressInfo($project, $this->user->id);
+        $isValid = $this->repo->isAccessChangeProgress($project);
+        if($isValid){
+            session()->flash('dont-start');
+            return redirect()->route('contractor.projects.show', $project->id);
+        }
+        $progressInfo = $this->repo->getProgressInfo($project->id, $this->user->id);
         return view('Contractor.Project.progress', compact('progressInfo'));
     }
 
@@ -60,5 +66,4 @@ class ProjectController extends MainController
         session()->flash('ProgressChange');
         return redirect()->route('contractor.projects.ongoing');
     }
-
 }
