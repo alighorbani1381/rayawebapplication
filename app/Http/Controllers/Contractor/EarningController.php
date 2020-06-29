@@ -25,6 +25,6 @@ class EarningController extends Controller
     public function index()
     {
         $earnings = $this->repo->getContractorEarning($this->user->id);
-        dd($earnings);
+        return view('Contractor.Earning.index', compact('earnings'));
     }
 }
