@@ -44,7 +44,7 @@
 </head>
 
 <body class="fixed-left">
-    <div class="preloader"></div>
+    {{-- <div class="preloader"></div> --}}
 
     <!-- Begin page -->
     <div id="wrapper">
