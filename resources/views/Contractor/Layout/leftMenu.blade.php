@@ -9,7 +9,7 @@ $image = auth()->user()->profile;
         <!-- User -->
         <div class="user-box">
             <div class="user-img">
-                <img src="{{ showPicture('user.profile', $image) }}" alt="{{ $fullName }}" title="{{ $fullName }}"
+                <img src="{{ showPicture('user.profile', $image) }}" alt="شما" title="شما"
                     class="img-circle img-thumbnail img-responsive">
                 <div class="user-status online"><i class="zmdi zmdi-dot-circle"></i></div>
             </div>
