@@ -101,7 +101,7 @@
                   </tbody>
                </table>
                @else
-               <div class="alert alert-danger">موردی برای نمایش وجود ندارد.</div>
+               {!! recordMessage() !!}
                @endif
 
             </div>
@@ -170,7 +170,7 @@
                   </tbody>
                </table>
                @else
-               <div class="alert alert-danger">موردی برای نمایش وجود ندارد.</div>
+               {!! recordMessage() !!}
                @endif
 
             </div>
@@ -243,7 +243,7 @@
                   </tbody>
                </table>
                @else
-               <div class="alert alert-danger">موردی برای نمایش وجود ندارد.</div>
+               {!! recordMessage() !!}
                @endif
             </div>
             {{--  Project Costs Start --}}
