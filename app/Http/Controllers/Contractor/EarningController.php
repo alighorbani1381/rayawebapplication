@@ -33,4 +33,10 @@ class EarningController extends Controller
         $earning = $this->repo->getContractorEarning($earning);   
         return view('Contractor.Earning.show', compact('earning'));
     }
+
+    public function credit()
+    {
+        $credits = $this->repo->getContractorCredits($this->user->id);   
+        return view('Contractor.Earning.credit', compact('credits'));
+    }
 }
