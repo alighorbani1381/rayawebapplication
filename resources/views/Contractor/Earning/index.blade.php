@@ -8,7 +8,7 @@
 
             <h4 class="header-title m-t-0 m-b-30 inb">
                 لیست درآمد های شما</h4>
-
+            @if(hasMember($earnings))
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -45,7 +45,9 @@
 
                 </tbody>
             </table>
-
+            @else
+            {!! recordMessage("برای شما تا کنون پروژه ای ثبت نشده است") !!}
+            @endif
             {{ $earnings->links() }}
         </div>
     </div>
