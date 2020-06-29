@@ -212,3 +212,18 @@ h2#swal2-title {
     border:1px solid #ddd;
     margin-left: 20px;
 }
+
+.cont-dash{
+    vertical-align: 3px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+#contractor-username{
+    transition: 0.3s;
+}
+
+#contractor-username:hover{
+    cursor: text;
+    background:#3d4aa7;
+}
