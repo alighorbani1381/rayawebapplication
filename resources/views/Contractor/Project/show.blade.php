@@ -161,9 +161,18 @@
 
 </div>
 
-@if(session()->has('ActiveProject'))
+
+
+@if(session()->has('dont-start'))
+<style>
+.swal2-popup{width:40%;}
+</style>
+
 <script>
-    maxMbox("پروژه فعال شد☕ ", "الان میتونید کار رو به پیمانکارانتون بسپارید و از همین پنل قسمت وضعیت انجام پروژه علمکرد آن ها را مدیریت کنید. .", "success", "ممنون", 500);
+    var title = "زمان شروع کار برای این پروژه هنوز نرسیده" + " « " +  "{{ Session::get('dont-start') }}" + " » " ;
+    var message = "در همین صفحه از قسمت اطلاعات مربوط به انجام پروژه اطلاعات دقیق راجب زمان شروع پروژه به دست میارید";
+    var btn = "آها گرفتم";
+    maxMbox(title, message, "warning", btn, 100);
 </script>
 @endif
 @endsection
