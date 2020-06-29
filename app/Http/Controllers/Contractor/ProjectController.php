@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Contractor;
 
-use App\Http\Controllers\Controller;
 use App\Repositories\ProjectRepository;
 use Illuminate\Http\Request;
 
 
-class ProjectController extends Controller
+class ProjectController extends MainController
 {
 
     private $repo;

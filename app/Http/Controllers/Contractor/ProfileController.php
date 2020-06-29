@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Contractor;
 
-use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class ProfileController extends Controller
+class ProfileController extends MainController
 {
 
     private $user;
