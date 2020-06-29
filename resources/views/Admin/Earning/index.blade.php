@@ -16,7 +16,7 @@
                 class="cbfl btn btn-info btn-bordred waves-effect waves-dark m-b-5"> <i class="fa fa-plus-circle"></i>
                 <span>افزودن جدید </span> </a>
 
-
+            @if(hasMember($earnings))
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -77,6 +77,9 @@
 
                 </tbody>
             </table>
+            @else
+            {!! recordMessage("شما تا کنون در آمدی ثبت نکرده اید") !!}
+            @endif
 
             {{ $earnings->links() }}
         </div>
