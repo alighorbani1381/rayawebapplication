@@ -31,7 +31,7 @@ class EarningController extends Controller
 
     public function show($earning)
     {
-        $earning = $this->repo->getContractorEarning($earning);
+        $earning = $this->repo->getContractorEarning($earning, $this->user->id);
         return view('Contractor.Earning.show', compact('earning'));
     }
 
