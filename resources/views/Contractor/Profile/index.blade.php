@@ -13,7 +13,8 @@
             <h4 class="header-title m-t-0 m-b-30">اطلاعات کاربری شما</h4>
             <div class="media m-b-20">
                 <div class="media-left">
-                    <a href="#"> <img class="media-object img-circle" alt="هزینه" src="{{ $user->profile_image }}"
+                    <a href="#"> <img class="media-object img-circle" alt="هزینه"
+                            src="{{ showPicture('user.profile', $user->profile) }}"
                             style="width: 48px; height: 48px; border:1px solid #ddd; vertical-align:-3px;"> </a>
                 </div>
                 <div class="media-body" style="border-bottom: 2px solid #337ab7; padding-bottom: 13px;">
@@ -58,6 +59,50 @@
         </div>
     </div>
     <!-- Profile Panel End !-->
+
+
+    <!-- Reset Profile Panel Start!-->
+    <div class="col-md-4">
+        <div class="card-box">
+            <h4 class="header-title m-t-0 m-b-30">تغییر پروفایل کاربری</h4>
+            <div>
+
+
+                <div class="user-img" style="text-align: center;">
+                    <img src="{{ showPicture('user.profile', $user->profile) }}" alt="علی قربانی" title="علی قربانی"
+                        class="img-circle img-thumbnail img-responsive">
+                </div>
+
+                <form action="{{ route('profile.change.image') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="media m-b-10">
+                        <div class="media-left">
+                            <input type="file" name="profile">
+                        </div>
+                    </div>
+                    @error('profile')
+                    <div class="alert alert-danger"> {{ $message }} </div>
+                    @enderror
+
+
+                    <div class="media m-b-10">
+                        <button type="submit" class="btn btn-success waves-effect submit-button">
+                            تغییر پروفایل کاربری
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Reset Profile Panel End!-->
+
+
+
+    <!-- Empty col Start !-->
+    <div class="col-md-8">
+    </div>
+    <!-- Empty col End !-->
+
 
     <!-- Reset Password Panel Start!-->
     <div class="col-md-4">
@@ -135,39 +180,8 @@
             </div>
         </div>
     </div>
-
-
     <!-- Reset Password Panel End!-->
-    <div class="col-md-8">
-    </div>
 
-    <!-- Reset Profile Panel Start!-->
-    <div class="col-md-4">
-        <div class="card-box">
-            <h4 class="header-title m-t-0 m-b-30">تغییر پروفایل کاربری</h4>
-            <div>
-                <form action="{{ route('profile.change.image') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="media m-b-10">
-                        <div class="media-left">
-                            <input type="file" name="profile">
-                        </div>
-                    </div>
-                    @error('profile')
-                    <div class="alert alert-danger"> {{ $message }} </div>
-                    @enderror
-
-
-                    <div class="media m-b-10">
-                        <button type="submit" class="btn btn-success waves-effect submit-button">
-                            تغییر پروفایل کاربری
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- Reset Profile Panel End!-->
 
 
 </div>
