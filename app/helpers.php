@@ -17,11 +17,15 @@ function recordMessage($message = 'موردی جهت نمایش یافت نشد.
 function showPicture($type, $name)
 {
     $type = strtolower($type);
-    
+
     switch ($type) {
         case 'user.profile':
-            $path = public_path('profiles\users\\');
+            $path = asset('profiles/users') . '/' . $name;
             return $path;
+            break;
+
+        default:
+            return asset("admin/images/users/default.png");
             break;
     }
 }
