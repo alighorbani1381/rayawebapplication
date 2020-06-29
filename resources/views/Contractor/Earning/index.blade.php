@@ -32,7 +32,7 @@
                         <td>{{ $earning->unique_id }}</td>
                         <td>{{ number_format($earning->money_paid) }}</td>
                         <td class="tac">
-                            <a href="{{ route('earnings.show', $earning->id) }}"
+                            <a href="{{ route('contractor.earning.show', $earning->id) }}"
                                 class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i
                                     class="fa fa-file-text-o"></i> </a>
                         </td>
