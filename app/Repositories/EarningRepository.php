@@ -94,7 +94,7 @@ class EarningRepository
         ->select('costs.*', 'users.name', 'users.lastname')
         ->where('costs.contractor_id', $userId)
         ->where('costs.project_id', $projectId)
-        ->get();
+        ->paginate(15);
     }
 
     
