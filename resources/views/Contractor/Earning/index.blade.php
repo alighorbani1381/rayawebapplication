@@ -46,7 +46,7 @@
                 </tbody>
             </table>
             @else
-            {!! recordMessage("برای شما تا کنون پروژه ای ثبت نشده است") !!}
+            {!! recordMessage("برای شما تا کنون درآمدی ثبت نشده است") !!}
             @endif
             {{ $earnings->links() }}
         </div>
