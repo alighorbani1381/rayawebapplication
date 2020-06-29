@@ -36,7 +36,7 @@ $image = auth()->user()->profile;
                     <a href="{{ route('contractor.dashbord') }}" class="waves-effect active"><i
                             class="fa fa-dashboard"></i> <span> داشبورد </span> </a>
                 </li>
-                
+
 
                 <li>
                     <a href="{{ route('contractor.profile.index') }}" class="waves-effect">
@@ -50,7 +50,9 @@ $image = auth()->user()->profile;
                 <li>
                     <a href="{{ route('contractor.projects.index') }}" class="waves-effect">
                         <i class="fa fa-laptop"></i>
-                        <span class="label label-purple pull-right">7</span>
+                        @if($allProjects != 0)
+                        <span class="label label-purple pull-right">{{ $allProjects }}</span>
+                        @endif
                         <span> لیست پروژه ها </span>
                     </a>
                 </li>
@@ -58,7 +60,9 @@ $image = auth()->user()->profile;
                 <li>
                     <a href="{{ route('contractor.projects.ongoing') }}" class="waves-effect">
                         <i class="fa fa-codepen"></i>
-                        <span class="label label-warning pull-right">7</span>
+                        @if($ongoingProjects != 0)
+                        <span class="label label-warning pull-right">{{ $ongoingProjects }}</span>
+                        @endif
                         <span> پروژه های در دست اجرا </span>
                     </a>
                 </li>
@@ -66,7 +70,9 @@ $image = auth()->user()->profile;
                 <li>
                     <a href="{{ route('contractor.projects.finished') }}" class="waves-effect">
                         <i class="fa fa-tags"></i>
-                        <span class="label label-success pull-right">7</span>
+                        @if($finishedProjects != 0)
+                        <span class="label label-success pull-right">{{ $finishedProjects }}</span>
+                        @endif
                         <span> پروژه های پایان یافته </span>
                     </a>
                 </li>
@@ -77,7 +83,9 @@ $image = auth()->user()->profile;
                 <li>
                     <a href="{{ route('contractor.earning.index') }}" class="waves-effect">
                         <i class="fa fa-money"></i>
-                        <span class="label label-primary pull-right">7</span>
+                        @if($earning != 0)
+                        <span class="label label-primary pull-right">{{ $earning }}</span>
+                        @endif
                         <span> لیست پرداختی ها </span>
                     </a>
                 </li>
@@ -85,7 +93,9 @@ $image = auth()->user()->profile;
                 <li>
                     <a href="{{ route('contractor.earning.credit') }}" class="waves-effect">
                         <i class="fa fa-dollar"></i>
-                        <span class="label label-danger pull-right">7</span>
+                        @if($credit != 0)
+                        <span class="label label-danger pull-right">{{ $credit }}</span>
+                        @endif
                         <span> لیست بستانکاری ها </span>
                     </a>
                 </li>
