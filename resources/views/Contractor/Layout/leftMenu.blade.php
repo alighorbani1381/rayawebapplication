@@ -75,7 +75,7 @@ $image = auth()->user()->profile;
                 <li class="text-muted menu-title">بخش حسابداری</li>
 
                 <li>
-                    <a href="{{ route('projects.create') }}" class="waves-effect">
+                    <a href="{{ route('contractor.earning.index') }}" class="waves-effect">
                         <i class="fa fa-money"></i>
                         <span class="label label-primary pull-right">7</span>
                         <span> لیست پرداختی ها </span>
