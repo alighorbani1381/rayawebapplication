@@ -5,10 +5,11 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card-box table-responsive">
-         
+            @if(hasMember($earnings))
             <h4 class="header-title m-t-0 m-b-30 inb">
                 لیست در آمد های شما برای پروژه
-                <a href="{{ route('contractor.projects.show', $project->id) }}" style="font-weight: bold; color:rgb(3, 109, 196);">{{ " « ". $project->title  ." » " }}</a>
+                <a href="{{ route('contractor.projects.show', $project->id) }}"
+                    style="font-weight: bold; color:rgb(3, 109, 196);">{{ " « ". $project->title  ." » " }}</a>
             </h4>
 
             <table id="datatable" class="table table-striped table-bordered">
@@ -35,9 +36,12 @@
                         <td class="tac date-show">{{ verta($earning->created_at)->format('h:m') }}</td>
                         <td class="tac">
                             @if ($earning->status == 'paid')
-                            <button type="button" class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">پرداخت شده</button>
+                            <button type="button"
+                                class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">پرداخت
+                                شده</button>
                             @else
-                            <button type="button" class="tac btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">بستانکاری</button>
+                            <button type="button"
+                                class="tac btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">بستانکاری</button>
                             @endif
                         </td>
 
@@ -52,6 +56,9 @@
 
                 </tbody>
             </table>
+            @else
+            {!! recordMessage(" تاکنون در آمدی برای پروژه " . $project->title . " ثبت نشده است. ") !!}
+            @endif
 
             {{ $earnings->links() }}
         </div>
