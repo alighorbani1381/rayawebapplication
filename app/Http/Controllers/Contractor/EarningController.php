@@ -44,7 +44,6 @@ class EarningController extends Controller
     public function project(Project $project)
     {
         $earnings = $this->repo->getContractorProjectEarnings($project->id, $this->user->id);
-        dd($earnings);
-        return view('Contractor.Earning.projects', compact('project', 'earnings'));
+        return view('Contractor.Earning.project', compact('project', 'earnings'));
     }
 }
