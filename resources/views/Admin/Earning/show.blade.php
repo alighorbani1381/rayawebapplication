@@ -84,7 +84,7 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li>
-                        <a href="{{ route('projects.show', $earning->project_id) }}" target="_blank"> <i class="fa fa-eye"></i> &nbsp;&nbsp;
+                        <a href="{{ route('contractor.projects.show', $earning->project_id) }}" target="_blank"> <i class="fa fa-eye"></i> &nbsp;&nbsp;
                             مشاهده</a>
 
                     </li>
