@@ -51,6 +51,7 @@ Route::group(['namespace' => 'Contractor', 'middleware' => ['isLogin'], 'prefix'
     Route::post('profile/change/password', 'ProfileController@changePassword')->name('profile.change.password');
     Route::get('profile', 'ProfileController@info')->name('contractor.profile.index');
     Route::post('profile/change/image', 'ProfileController@changeImage')->name('profile.change.image');
+    Route::get('earnings', 'EarningController@index')->name('contractor.earning.index');
 
 });
 
