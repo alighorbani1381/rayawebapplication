@@ -146,14 +146,14 @@
         <div class="card-box">
             <h4 class="header-title m-t-0 m-b-30">تغییر پروفایل کاربری</h4>
             <div>
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{ route('profile.change.image') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="media m-b-10">
                         <div class="media-left">
                             <input type="file" name="profile">
                         </div>
                     </div>
-                    @error('repeat_password')
+                    @error('profile')
                     <div class="alert alert-danger"> {{ $message }} </div>
                     @enderror
 
