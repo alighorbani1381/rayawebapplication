@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Cost;
 use App\Earning;
 use App\Project;
+use Illuminate\Support\Facades\DB;
 
 class EarningRepository
 {
@@ -48,7 +49,7 @@ class EarningRepository
         else
             $projects  = Project::where('status', '!=', 'finished')->get();
 
-            return $projects;
+        return $projects;
     }
 
 
@@ -57,47 +58,49 @@ class EarningRepository
     public function getContractorEarnings($userId)
     {
         return Cost::join('users', 'costs.generator', '=', 'users.id')
-        ->join('projects', 'costs.project_id', '=', 'projects.id')
-        ->select('costs.*', 'projects.title AS project_title', 'projects.unique_id', 'projects.created_at AS project_start', 'users.name', 'users.lastname')
-        ->where('costs.contractor_id', $userId)
-        ->where('costs.status', 'paid')
-        ->where('costs.project_id', '!=', null)
-        ->orderBy('id', 'desc')
-        ->paginate(15);
+            ->join('projects', 'costs.project_id', '=', 'projects.id')
+            ->select('costs.*', 'projects.title AS project_title', 'projects.unique_id', 'projects.created_at AS project_start', 'users.name', 'users.lastname')
+            ->where('costs.contractor_id', $userId)
+            ->where('costs.status', 'paid')
+            ->where('costs.project_id', '!=', null)
+            ->orderBy('id', 'desc')
+            ->paginate(15);
     }
 
-    public function getContractorEarning($earningId)
+    public function getContractorEarning($earningId, $userId)
     {
         Cost::findOrFail($earningId);
-        return Cost::join('users', 'costs.generator', '=', 'users.id')
-        ->join('projects', 'costs.project_id', '=', 'projects.id')
-        ->select('costs.*', 'projects.title AS project_title', 'projects.unique_id', 'projects.created_at AS project_start', 'users.name', 'users.lastname')
-        ->where('costs.id', $earningId)
-        ->first();
+
+
+        $contractorEarning = Cost::join('users', 'costs.generator', '=', 'users.id')
+            ->join('projects', 'costs.project_id', '=', 'projects.id')
+            ->select('costs.*', 'projects.title AS project_title', 'projects.unique_id', 'projects.created_at AS project_start', 'users.name', 'users.lastname')
+            ->where('costs.id', $earningId)
+            ->where('costs.contractor_id', $userId)
+            ->first();
+        if ($contractorEarning == null)
+            return abort('404');
+        return $contractorEarning;
     }
 
     public function getContractorCredits($userId)
     {
         return Cost::join('users', 'costs.generator', '=', 'users.id')
-        ->join('projects', 'costs.project_id', '=', 'projects.id')
-        ->select('costs.*', 'projects.title AS project_title', 'projects.unique_id', 'projects.created_at AS project_start', 'users.name', 'users.lastname')
-        ->where('costs.contractor_id', $userId)
-        ->where('costs.status', 'unpaid')
-        ->where('costs.project_id', '!=', null)
-        ->orderBy('id', 'desc')
-        ->paginate(15);
+            ->join('projects', 'costs.project_id', '=', 'projects.id')
+            ->select('costs.*', 'projects.title AS project_title', 'projects.unique_id', 'projects.created_at AS project_start', 'users.name', 'users.lastname')
+            ->where('costs.contractor_id', $userId)
+            ->where('costs.status', 'unpaid')
+            ->where('costs.project_id', '!=', null)
+            ->orderBy('id', 'desc')
+            ->paginate(15);
     }
 
     public function getContractorProjectEarnings($projectId, $userId)
     {
         return Cost::join('users', 'costs.generator', '=', 'users.id')
-        ->select('costs.*', 'users.name', 'users.lastname')
-        ->where('costs.contractor_id', $userId)
-        ->where('costs.project_id', $projectId)
-        ->paginate(15);
+            ->select('costs.*', 'users.name', 'users.lastname')
+            ->where('costs.contractor_id', $userId)
+            ->where('costs.project_id', $projectId)
+            ->paginate(15);
     }
-
-    
-
-
 }
