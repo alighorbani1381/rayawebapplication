@@ -52,8 +52,8 @@ class ProjectController extends MainController
     public function showProgress(Project $project)
     {
         $isValid = $this->repo->isAccessChangeProgress($project);
-        if($isValid){
-            session()->flash('dont-start');
+        if($isValid['isFuture']){
+            session()->flash('dont-start', $isValid['diff']);
             return redirect()->route('contractor.projects.show', $project->id);
         }
         $progressInfo = $this->repo->getProgressInfo($project->id, $this->user->id);
