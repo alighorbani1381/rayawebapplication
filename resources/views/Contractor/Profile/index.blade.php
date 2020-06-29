@@ -17,7 +17,7 @@
                             style="width: 48px; height: 48px; border:1px solid #ddd; vertical-align:-3px;"> </a>
                 </div>
                 <div class="media-body" style="border-bottom: 2px solid #337ab7; padding-bottom: 13px;">
-                
+
 
 
                     <h4 class="media-heading m-b-0 ear-sta-text">نام کاربری شما</h4>
@@ -28,9 +28,10 @@
             @if($user->is_default_password)
             <div class="alert alert-danger">
                 <i class="fa fa-warning"></i>
-                رمز عبور شما به صورت پیشفرض روی 
+                رمز عبور شما به صورت پیشفرض روی
                 <span style="color:black; font-weight:bold;">raya-px724</span>
-                قرار دارد برای حفاظت از اطلاعت خود در همین صفحه از قسمت تغییر رمز عبور ، اقدام به تغییر رمز عبور خود کنید.
+                قرار دارد برای حفاظت از اطلاعت خود در همین صفحه از قسمت تغییر رمز عبور ، اقدام به تغییر رمز عبور خود
+                کنید.
             </div>
             @endif
 
@@ -65,7 +66,7 @@
             <h4 class="header-title m-t-0 m-b-30">تغییر رمز عبور</h4>
             <div>
                 <form action="{{ route('profile.change.password') }}" method="post">
-                @csrf
+                    @csrf
                     <div class="media m-b-10">
                         <div class="media-left">
                             <a href="#"> <img class="change-pass media-object img-circle thumb-sm" alt="عنوان پروژه"
@@ -74,17 +75,18 @@
                         <div class="media-body">
                             <h4 class="media-heading">رمز عبور فعلی</h4>
                             <input class="form-control input-sm" placeholder="رمز عبور فعلی را وارد کنید ..."
-                                type="password" name="old_password">
+                                type="password" name="old_password"
+                                value="@if(session()->has('newpass-Wrong')){{Session::get('newpass-Wrong')}}@endif">
 
-                                @error('old_password')
-                                <div class="alert alert-danger"> {{ $message }} </div>
-                                @enderror
+                            @error('old_password')
+                            <div class="alert alert-danger"> {{ $message }} </div>
+                            @enderror
 
-                                @if(session()->has('currentWrong'))
-                                <div class="alert alert-danger">
+                            @if(session()->has('currentWrong'))
+                            <div class="alert alert-danger">
                                 رمز عبور فعلی اشتباه است
-                                </div>
-                                @endif
+                            </div>
+                            @endif
                         </div>
                     </div>
 
@@ -97,10 +99,10 @@
                             <h4 class="media-heading">رمز عبور جدید</h4>
                             <input class="form-control input-sm" placeholder="رمز عبور جدید را وارد کنید ..."
                                 type="password" name="new_password">
-                                  @error('new_password')
-                                <div class="alert alert-danger"> {{ $message }} </div>
-                                
-                                @enderror
+                            @error('new_password')
+                            <div class="alert alert-danger"> {{ $message }} </div>
+
+                            @enderror
                         </div>
                     </div>
 
@@ -113,11 +115,17 @@
                             <h4 class="media-heading">تکرار رمز عبور جدید</h4>
                             <input class="form-control input-sm" placeholder="تکرار رمز عبور جدید را وارد کنید ..."
                                 type="password" name="repeat_password">
-                                      @error('repeat_password')
-                                <div class="alert alert-danger"> {{ $message }} </div>
-                                @enderror
+                            @error('repeat_password')
+                            <div class="alert alert-danger"> {{ $message }} </div>
+                            @enderror
                         </div>
                     </div>
+
+                    @if(session()->has('newpass-Wrong'))
+                    <div class="media m-b-10">
+                        <div class="alert alert-danger">تکرار رمز عبور اشتباه است</div>
+                    </div>
+                    @endif
 
                     <div class="media m-b-10">
                         <button type="button" id="change-password" class="btn btn-primary waves-effect submit-button">
@@ -130,4 +138,11 @@
     </div>
     <!-- Reset Password Panel End!-->
 </div>
+
+@if(session()->flash('changed-password'))
+<script>
+    var message = "نام کاربری شما با موفقیت تغییر یافت";
+    minMbox(message, 250);
+</script>
+@endif
 @endsection
