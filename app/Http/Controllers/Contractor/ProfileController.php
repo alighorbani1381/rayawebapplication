@@ -31,6 +31,7 @@ class ProfileController extends Controller
 
     public function changePassword(Request $request)
     {
+        // return $request->all();
 
         $request->validate([
             'old_password' => 'required',
@@ -40,26 +41,33 @@ class ProfileController extends Controller
 
         if (!$this->isValidPassword($request->old_password, $this->password)) {
             return back();
-            return null;
         }
 
-        return $this->isValidNewPassword($request->new_password, $request->repeat_password);
+        return $this->isValidNewPassword($request->old_password, $request->new_password, $request->repeat_password);
     }
 
-    public function isValidNewPassword($newPass, $repeatPass)
+    public function isValidNewPassword($oldPass, $newPass, $repeatPass)
     {
         $isValid =  ($newPass == $repeatPass) ? true : false;
-        if(! $isValid)
-        session()->flash('newpassWrong');
-        return back();
+        if (! $isValid){
+            session()->flash('newpass-Wrong', $oldPass);
+            return back();    
+        }
+        User::where('id', $this->user->id)
+            ->update(['password' =>  Hash::make($newPass)]);
+            session()->flash('changed-password');
+            return redirect()->route('contractor.dashbord');
     }
 
     public function isValidPassword($oldPass, $currentPass)
     {
-        $isValid = false;
+        
+        $isValid = true;
 
-        if (Hash::check($oldPass, $currentPass))
-            $isValid = true;
+        if (! Hash::check($oldPass, $currentPass)){
+            session()->flash('currentWrong');
+            $isValid = false;
+        }
 
         return $isValid;
     }
