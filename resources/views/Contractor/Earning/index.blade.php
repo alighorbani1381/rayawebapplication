@@ -15,6 +15,8 @@
                         <th>ردیف</th>
                         <th>عنوان درآمد</th>
                         <th>ثبت کننده این درآمد</th>
+                        <th class="tac">تاریخ ثبت درآمد</th>
+                        <th class="tac">زمان ثبت درآمد</th>
                         <th>عنوان پروژه</th>
                         <th>شناسه پروژه</th>
                         <th>میزان درآمد (تومان)</th>
@@ -28,6 +30,8 @@
                         <td><?= $row  + 1 ?></td>
                         <td>{{ $earning->title }}</td>
                         <td>{{ $earning->name . " " . $earning->lastname  }}</td>
+                        <td class="tac date-show">{{ verta($earning->created_at)->formatJalaliDate() }}</td>
+                        <td class="tac date-show">{{ verta($earning->created_at)->format('h:m') }}</td>
                         <td>{{ $earning->project_title }}</td>
                         <td>{{ $earning->unique_id }}</td>
                         <td>{{ number_format($earning->money_paid) }}</td>
