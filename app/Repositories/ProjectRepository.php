@@ -384,6 +384,8 @@ class ProjectRepository
         return User::where('type', 'contractor')->get();
     }
 
+   
+
 
     /************************ Contractor Panel Use This Methods ** ********************* */
 
@@ -456,4 +458,10 @@ class ProjectRepository
             ->where('id', $id)
             ->update(['progress' => $progress]);
     }
+
+    public function isAccessChangeProgress($project)
+    {
+        return $isFuture = verta($project->date_start)->isFuture();                   
+    }
+
 }
