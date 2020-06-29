@@ -26,12 +26,21 @@
     <script src="/admin/js/jquery.min.js"></script>
     <script src="{{ asset('admin/js/sweetalert.js') }} "></script>
     <script src="{{ asset('admin/js/customJS/developer.js') }} "></script>
+    <script>
+        $(window).load(function(){
+            setTimeout(function(){
+                $('.preloader').fadeOut('slow');  
+            }, 1000);
+        });
+    </script>
 </head>
 
 <body>
+    <div class="preloader"></div>
+
     @php $num = rand(1,5); @endphp
     <style>
-        .account-pages{
+        .account-pages {
             background: url("/admin/images/background/background{{ $num }}.jpg") center;
             background-size: cover;
         }
@@ -41,7 +50,9 @@
     <div class="wrapper-page">
         <div class="text-center">
             <a href="{{ route('login.show') }}">
-            <img class="login-logo" src="/admin/images/logo/rayapro-@if($num == 3 || $num == 4){{"light"}}@else{{"dark"}}@endif.png" alt="RayaPro">
+                <img class="login-logo"
+                    src="/admin/images/logo/rayapro-@if($num == 3 || $num == 4){{"light"}}@else{{"dark"}}@endif.png"
+                    alt="RayaPro">
             </a>
         </div>
 
