@@ -154,8 +154,8 @@ class CostRepository
     public function costStore($type, $request, $userId)
     {
         if ($type == 'project')
-            $this->repo->projectStore($request, $userId);
+            $this->projectStore($request, $userId);
         else
-            $this->repo->externalStore($request, $userId);
+            $this->externalStore($request, $userId);
     }
 }
