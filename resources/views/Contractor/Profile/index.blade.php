@@ -10,19 +10,17 @@
     <!-- Profile Panel Start !-->
     <div class="col-md-8">
         <div class="card-box task-detail">
-            <h4 class="header-title m-t-0 m-b-30">اطلاعات کاربری شما</h4>
+            <h4 class="header-title m-t-0 m-b-30">
+                <i class="fa fa-info-circle"></i>
+                <span class="cont-dash">اطلاعات کاربری شما</span>
+            </h4>
             <div class="media m-b-20">
-                <div class="media-left">
-                    <a href="#"> <img class="media-object img-circle" alt="هزینه"
-                            src="{{ showPicture('user.profile', $user->profile) }}"
-                            style="width: 48px; height: 48px; border:1px solid #ddd; vertical-align:-3px;"> </a>
-                </div>
-                <div class="media-body" style="border-bottom: 2px solid #337ab7; padding-bottom: 13px;">
+                <div class="media-body" style="border-bottom: 2px solid #0499d4; padding-bottom: 13px;">
 
 
 
-                    <h4 class="media-heading m-b-0 ear-sta-text">نام کاربری شما</h4>
-                    <span class="label label-primary earning-status-label">{{ $user->username }}</span>
+                    <h4 class="media-heading m-b-0 ear-sta-text">نام کاربری شما در سیستم رایا : </h4>
+                    <span id="contractor-username" class="label label-purple earning-status-label">{{ $user->username }}</span>
                 </div>
             </div>
 
@@ -64,11 +62,14 @@
     <!-- Reset Profile Panel Start!-->
     <div class="col-md-4">
         <div class="card-box">
-            <h4 class="header-title m-t-0 m-b-30">تغییر پروفایل کاربری</h4>
+            <h4 class="header-title m-t-0 m-b-30">
+                <i class="fa fa-image"></i>
+                <span class="cont-dash">پروفایل کاربری</span>
+            </h4>
             <div>
 
 
-                <div class="user-img" style="text-align: center;">
+                <div class="user-img" style="margin: 0 auto; width:50%;">
                     <img src="{{ showPicture('user.profile', $user->profile) }}" alt="علی قربانی" title="علی قربانی"
                         class="img-circle img-thumbnail img-responsive">
                 </div>
@@ -107,7 +108,10 @@
     <!-- Reset Password Panel Start!-->
     <div class="col-md-4">
         <div class="card-box">
-            <h4 class="header-title m-t-0 m-b-30">تغییر رمز عبور</h4>
+            <h4 class="header-title m-t-0 m-b-30">
+                <i class="fa fa-lock"></i>                
+            <span class="cont-dash">تغییر رمز عبور</span>
+        </h4>
             <div>
                 <form action="{{ route('profile.change.password') }}" method="post">
                     @csrf
