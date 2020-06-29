@@ -12,6 +12,19 @@ class EarningController extends Controller
 
     public function __construct()
     {
+        # Encapsulation Repository
         $this->repo = resolve(EarningRepository::class);
+
+        # Encapsulation User
+        $this->middleware(function($request, $next){
+            $this->user = auth()->user();
+            return $next($request);
+        });
+    }
+
+    public function index()
+    {
+        $earnings = $this->repo->getContractorEarning($this->user->id);
+        dd($earnings);
     }
 }
