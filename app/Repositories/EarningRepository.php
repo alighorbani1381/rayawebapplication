@@ -88,6 +88,15 @@ class EarningRepository
         ->paginate(15);
     }
 
+    public function getContractorProjectEarnings($projectId, $userId)
+    {
+        return Cost::join('users', 'costs.generator', '=', 'users.id')
+        ->select('costs.*', 'users.name', 'users.lastname')
+        ->where('costs.contractor_id', $userId)
+        ->where('costs.project_id', $projectId)
+        ->get();
+    }
+
     
 
 
