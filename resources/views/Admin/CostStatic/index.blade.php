@@ -17,7 +17,7 @@
                 <i class="fa fa-plus-circle"></i>
                 <span>افزودن جدید </span> </a>
 
-
+            @if(hasMember($staticCosts))
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -60,6 +60,9 @@
 
                 </tbody>
             </table>
+            @else
+            {!! recordMessage("شما تاکنون هزینه ثابتی را ثبت نکرده اید") !!}
+            @endif
             {{ $staticCosts->links() }}
         </div>
     </div><!-- end col -->
