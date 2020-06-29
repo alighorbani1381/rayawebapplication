@@ -227,3 +227,8 @@ h2#swal2-title {
     cursor: text;
     background:#3d4aa7;
 }
+
+.i-fix{
+    vertical-align: -1px;
+    margin-left: 3px;
+}
