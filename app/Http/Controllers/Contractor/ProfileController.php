@@ -6,8 +6,12 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+
+
 class ProfileController extends MainController
 {
+
+    const USERS_PROFILE_FOLDER = 'profiles\users\\';
 
     private $user;
 
@@ -69,5 +73,18 @@ class ProfileController extends MainController
         }
 
         return $isValid;
+    }
+
+    public function changeImage(Request $request)
+    {
+        $request->validate(['profile' => 'required|image']);
+
+        if($this->user->profile != 'default')
+        parent::imageDelete(self::USERS_PROFILE_FOLDER . $this->user->profile);
+
+        $image = parent::imageUploade($request->profile, self::USERS_PROFILE_FOLDER);
+        
+        User::where('id', $this->user->id)
+        ->update(['profile' => $image]);
     }
 }
