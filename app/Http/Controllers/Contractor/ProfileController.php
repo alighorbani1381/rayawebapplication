@@ -87,7 +87,7 @@ class ProfileController extends MainController
         User::where('id', $this->user->id)
         ->update(['profile' => $image]);
 
-        session()->flahs('profile-changed');
+        session()->flash('profile-changed');
         return redirect()->route('contractor.dashbord');
     }
 }
