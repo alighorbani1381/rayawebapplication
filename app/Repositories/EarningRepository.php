@@ -56,8 +56,12 @@ class EarningRepository
 
     public function getContractorEarning($userId)
     {
-        return Cost::where('contractor_id', $userId)
-        ->where('status', 'paid')
+        return Cost::join('users', 'costs.generator', '=', 'users.id')
+        ->join('projects', 'costs.project_id', '=', 'projects.id')
+        ->select('costs.*', 'projects.title AS project_title', 'users.name', 'users.lastname')
+        ->where('costs.contractor_id', $userId)
+        ->where('costs.status', 'paid')
+        ->where('costs.project_id', '!=', null)
         ->paginate(15);
     }
 
