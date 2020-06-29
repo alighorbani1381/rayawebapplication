@@ -56,7 +56,7 @@ return [
         'string' => 'The :attribute must be greater than or equal :value characters.',
         'array' => 'The :attribute must have :value items or more.',
     ],
-    'image' => 'The :attribute must be an image.',
+    'image' => 'فیلد :attribute باید از نوع تصویری باشد.',
     'in' => 'The selected :attribute is invalid.',
     'in_array' => 'The :attribute field does not exist in :other.',
     'integer' => 'The :attribute must be an integer.',
@@ -114,7 +114,7 @@ return [
     'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid zone.',
     'unique' => 'The :attribute has already been taken.',
-    'uploaded' => 'The :attribute failed to upload.',
+    'uploaded' => 'آپلود :attribute با شکست مواجه شد.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
@@ -168,6 +168,7 @@ return [
         'old_password' => 'رمز عبور فعلی',
         'new_password' => 'رمز عبور جدید',
         'repeat_password' => 'تکرار رمز عبور',
+        'profile' => 'تصویر پروفایل',
     ],
 
 ];
