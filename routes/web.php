@@ -52,6 +52,7 @@ Route::group(['namespace' => 'Contractor', 'middleware' => ['isLogin'], 'prefix'
     Route::get('profile', 'ProfileController@info')->name('contractor.profile.index');
     Route::post('profile/change/image', 'ProfileController@changeImage')->name('profile.change.image');
     Route::get('earnings', 'EarningController@index')->name('contractor.earning.index');
+    Route::get('earnings/credit', 'EarningController@credit')->name('contractor.earning.credit');
     Route::get('earnings/{earnings}', 'EarningController@show')->name('contractor.earning.show');
 
 });
