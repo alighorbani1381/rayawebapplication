@@ -58,7 +58,7 @@ class EarningRepository
     {
         return Cost::join('users', 'costs.generator', '=', 'users.id')
         ->join('projects', 'costs.project_id', '=', 'projects.id')
-        ->select('costs.*', 'projects.title AS project_title', 'projects.unique_id', 'users.name', 'users.lastname')
+        ->select('costs.*', 'projects.title AS project_title', 'projects.unique_id', 'projects.createdAT AS project_start', 'users.name', 'users.lastname')
         ->where('costs.contractor_id', $userId)
         ->where('costs.status', 'paid')
         ->where('costs.project_id', '!=', null)
