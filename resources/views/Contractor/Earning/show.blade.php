@@ -12,14 +12,23 @@
                             style="width: 48px; height: 48px; border:1px solid #ddd; vertical-align:-3px;"> </a>
                 </div>
                 <div class="media-body" style="border-bottom: 2px solid #337ab7; padding-bottom: 13px;">
-                    
-            <h4 class="font-600" style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
-                عنوان:
-            </h4>
-            <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $earning->title }}</h4>
+
+                    <h4 class="font-600"
+                        style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
+                        عنوان:
+                    </h4>
+                    <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $earning->title }}</h4>
+                    @if ($earning->status == 'unpaid')
+                    <button type="button"  style="display:inline-block;margin-right:10px;" class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">
+                        بستانکاری
+                    </button>
+                    @endif
                 </div>
+               
+    
             </div>
 
+           
             <div class="clear-fix"></div>
 
             @php
@@ -37,11 +46,11 @@
 
 
             <ul class="list-inline task-dates m-b-0 m-t-20">
-                
+
 
                 <li>
                     <h5 class="font-600 m-b-5">
-                        <i class="i-fix fa fa-money"></i>    
+                        <i class="i-fix fa fa-money"></i>
                         میزان درآمد
                     </h5>
                     <p>{{ number_format($earning->money_paid) . " تومان " }}</p>
@@ -49,15 +58,15 @@
 
                 <li>
                     <h5 class="font-600 m-b-5">
-                        <i class="i-fix fa fa-calendar"></i>    
+                        <i class="i-fix fa fa-calendar"></i>
                         تاریخ ثبت درآمد
                     </h5>
                     <p class="date-show">{{ verta($earning->created_at)->formatJalaliDate() }}</p>
                 </li>
-             
-               
+
+
                 <li>
-                    <h5 class="font-600 m-b-5"><i class="i-fix fa fa-calendar-check-o"></i>    تاریخ ثبت پروژه</h5>
+                    <h5 class="font-600 m-b-5"><i class="i-fix fa fa-calendar-check-o"></i> تاریخ ثبت پروژه</h5>
                     <p class="date-show">{{ verta($earning->project_start)->formatJalaliDate() }}</p>
                 </li>
 
@@ -71,7 +80,7 @@
 
             </ul>
             <div class="clearfix"></div>
-            
+
         </div>
     </div><!-- end col -->
 
@@ -83,7 +92,8 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li>
-                        <a href="{{ route('contractor.projects.show', $earning->project_id) }}" target="_blank"> <i class="fa fa-eye"></i> &nbsp;&nbsp;
+                        <a href="{{ route('contractor.projects.show', $earning->project_id) }}" target="_blank"> <i
+                                class="fa fa-eye"></i> &nbsp;&nbsp;
                             مشاهده</a>
 
                     </li>
