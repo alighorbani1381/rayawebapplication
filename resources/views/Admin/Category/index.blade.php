@@ -16,7 +16,7 @@
                 class="cbfl btn btn-info btn-bordred waves-effect waves-dark m-b-5"> <i class="fa fa-plus-circle"></i>
                 <span>افزودن جدید </span> </a>
 
-
+            @if(hasMemeber($categories))
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -45,7 +45,8 @@
                             <form method="post" action="{{ route('categories.destroy', $category->id) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
+                                <button type="button"
+                                    class="delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
                                         class="fa fa-remove"></i> </button>
                             </form>
                         </td>
@@ -54,19 +55,28 @@
 
                 </tbody>
             </table>
+            @else
+            {!! recordMessage('دسته بندی برای نمایش وجود ندارد') !!}
+            @endif
         </div>
     </div><!-- end col -->
 </div>
 @if(session()->has('DeleteCategoryFail'))
-    <script>maxMbox("حذف این مورد با شکست مواجه شد!", "این خدمت دارای زیر گروه است و نمی توان آن را حذف کرد", "error", "آها",350 );</script>
+<script>
+    maxMbox("حذف این مورد با شکست مواجه شد!", "این خدمت دارای زیر گروه است و نمی توان آن را حذف کرد", "error", "آها",350 );
+</script>
 @endif
 
 
 @if(session()->has('DeleteCategory'))
-    <script>minMbox('خدمت مورد نظر با موفقیت حذف شد.', 350);</script>
+<script>
+    minMbox('خدمت مورد نظر با موفقیت حذف شد.', 350);
+</script>
 @endif
 
 @if(session()->has('CategoryUpdate'))
-    <script>minMbox('خدمت مورد نظر با موفقیت ویرایش شد.', 350);</script>
+<script>
+    minMbox('خدمت مورد نظر با موفقیت ویرایش شد.', 350);
+</script>
 @endif
 @endsection
