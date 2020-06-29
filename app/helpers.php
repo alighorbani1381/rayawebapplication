@@ -1,6 +1,7 @@
 <?php
 
-function hasMember($collection){
+function hasMember($collection)
+{
     return is_countable($collection) && count($collection) != 0;
 }
 
@@ -11,4 +12,16 @@ function recordMessage($message = 'موردی جهت نمایش یافت نشد.
     $part3 = '</div><div class="notfound-body"></div></div></div>';
     $finalMessage = $part1 . $part2 . $part3;
     return $finalMessage;
+}
+
+function showPicture($type, $name)
+{
+    $type = strtolower($type);
+    
+    switch ($type) {
+        case 'user.profile':
+            $path = public_path('profiles\users\\');
+            return $path;
+            break;
+    }
 }
