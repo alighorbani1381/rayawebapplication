@@ -54,7 +54,6 @@
             </h4>
             <h4 class="font-600 m-b-20" style="display: inline-block;">
                 {{ verta($user->created_at)->formatDifference() }}</h4>
-
             <div class="clear-fix"></div>
         </div>
     </div>
@@ -136,7 +135,41 @@
             </div>
         </div>
     </div>
+
+
     <!-- Reset Password Panel End!-->
+    <div class="col-md-8">
+    </div>
+
+    <!-- Reset Profile Panel Start!-->
+    <div class="col-md-4">
+        <div class="card-box">
+            <h4 class="header-title m-t-0 m-b-30">تغییر پروفایل کاربری</h4>
+            <div>
+                <form action="" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="media m-b-10">
+                        <div class="media-left">
+                            <input type="file" name="profile">
+                        </div>
+                    </div>
+                    @error('repeat_password')
+                    <div class="alert alert-danger"> {{ $message }} </div>
+                    @enderror
+
+
+                    <div class="media m-b-10">
+                        <button type="submit" class="btn btn-success waves-effect submit-button">
+                            تغییر پروفایل کاربری
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Reset Profile Panel End!-->
+
+
 </div>
 
 @if(session()->flash('changed-password'))
