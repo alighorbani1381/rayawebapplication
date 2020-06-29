@@ -83,7 +83,7 @@ $image = auth()->user()->profile;
                 </li>
 
                 <li>
-                    <a href="{{ route('projects.create') }}" class="waves-effect">
+                    <a href="{{ route('contractor.earning.credit') }}" class="waves-effect">
                         <i class="fa fa-dollar"></i>
                         <span class="label label-danger pull-right">7</span>
                         <span> لیست بستانکاری ها </span>
