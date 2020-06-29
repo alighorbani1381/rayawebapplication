@@ -70,7 +70,7 @@
 
 
                 <div class="user-img" style="margin: 0 auto; width:50%;">
-                    <img src="{{ showPicture('user.profile', $user->profile) }}" alt="علی قربانی" title="علی قربانی"
+                    <img src="{{ showPicture('user.profile', $user->profile) }}" alt="شما" title="شما"
                         class="img-circle img-thumbnail img-responsive">
                 </div>
 
