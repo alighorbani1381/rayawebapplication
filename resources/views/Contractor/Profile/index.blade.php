@@ -78,7 +78,7 @@
                     @csrf
                     <div class="media m-b-10">
                         <div class="media-left">
-                            <input type="file" name="profile">
+                            <input type="file" name="profile" accept="image/x-png,image/gif,image/jpeg">
                         </div>
                     </div>
                     @error('profile')
