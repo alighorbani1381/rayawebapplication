@@ -35,12 +35,18 @@
     <script src="{{ asset('admin/js/customJS/developer.js') }} "></script>
     @stack('css')
     @stack('js')
+    <script>
+        $(window).load(function(){
+        $('.preloader').fadeOut('slow');  
+        });
+      </script>
 
 </head>
 
 
 <body class="fixed-left">
 
+    <div class="preloader"></div>
     <!-- Begin page -->
     <div id="wrapper">
 
