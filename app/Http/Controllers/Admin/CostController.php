@@ -31,7 +31,7 @@ class CostController extends AdminController
     public function create()
     {
         $types = $this->repo->getCostTypes();
-        $projects = Project::where('status', '!=', 'finished')->get();
+        $projects = Project::where('status', '!=', 'finished')->orderBy('id', 'desc')->get();
         return view('Admin.Cost.create', compact('projects', 'types'));
     }
 
