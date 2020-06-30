@@ -47,7 +47,7 @@
                         <td>{{ $user->phone}}</td>
                         <td>{{ $user->username}}</td>
                         <td>
-                            @if($user->password != "raya-px724")
+                            @if(! Hash::check("raya-px724", $user->password))
                             {{ "Secret" }}
                             <i class="fa fa-lock"></i>
                             @else
