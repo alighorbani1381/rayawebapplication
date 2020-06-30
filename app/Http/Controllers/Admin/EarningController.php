@@ -28,8 +28,7 @@ class EarningController extends AdminController
 
     public function create($earning = null)
     {
-        $projects = $this->repo->getProjectWant($earning);
-
+        $projects = $this->repo->getProjectWant($earning);  
         if ($projects->count() != 0)
             return view('Admin.Earning.create', compact('projects'));
 
