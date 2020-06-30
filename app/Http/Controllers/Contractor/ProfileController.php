@@ -66,7 +66,6 @@ class ProfileController extends MainController
             return redirect()->route('contractor.dashbord');
     }
 
-   
 
     public function changeImage(Request $request)
     {
