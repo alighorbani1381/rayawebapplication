@@ -2,7 +2,9 @@
 
 namespace App\Repositories;
 
-class CategoryRepository{
- 
-    
+use Illuminate\Support\Facades\Session;
+
+class CategoryRepository
+{
+
 }

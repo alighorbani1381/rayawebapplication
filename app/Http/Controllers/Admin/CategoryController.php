@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -19,8 +20,17 @@ class CategoryRequest
     }
 }
 
+
+
 class CategoryController extends AdminController
 {
+
+    private $repo;
+
+    public function __construct()
+    {
+        $this->repo = resolve(CategoryRepository::class);
+    }
 
     public function index()
     {
@@ -58,11 +68,11 @@ class CategoryController extends AdminController
 
     public function update(Request $request, Category $category)
     {
-        CategoryRequest::store($request);        
+        CategoryRequest::store($request);
         $subCatsCount = count($category->sub_cats);
 
-        if($subCatsCount != 0 && $request->child != 0){
-            Session::flash('CategoryUpdateFail');    
+        if ($subCatsCount != 0 && $request->child != 0) {
+            Session::flash('CategoryUpdateFail');
             return back();
             return null;
         }
@@ -75,13 +85,15 @@ class CategoryController extends AdminController
 
     public function destroy(Category $category)
     {
-        $subCatsCount = count($category->sub_cats);
-        if ($subCatsCount != 0) {
-            Session::flash('DeleteCategoryFail');
+        if ($category->hasSubCategory()){
+            Session::flash('Delete-Sub', $category->getCountSub());
             return redirect()->route('categories.index');
-            return null;
         }
-        $category->delete();
+
+
+    
+
+        // $category->delete();
         Session::flash('DeleteCategory');
         return redirect()->route('categories.index');
     }
