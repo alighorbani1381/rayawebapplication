@@ -149,18 +149,18 @@
                             <td class="tac">
                                 @php
                                 if($project->status == 'waiting'){
-                                    $status['color'] = "danger";
-                                    $status['text'] = "غیر فعال";
+                                $status['color'] = "danger";
+                                $status['text'] = "غیر فعال";
                                 }
-                                
+
                                 if($project->status == 'ongoing'){
-                                    $status['color'] = "warning";
-                                    $status['text'] = "در حال اجرا";
+                                $status['color'] = "warning";
+                                $status['text'] = "در حال اجرا";
                                 }
-                                
+
                                 if($project->status == 'finished'){
-                                    $status['color'] = "success";
-                                    $status['text'] = "پایان یافته";
+                                $status['color'] = "success";
+                                $status['text'] = "پایان یافته";
                                 }
 
                                 @endphp
@@ -189,9 +189,20 @@
     <div class="col-lg-3 col-md-6">
         <div class="card-box widget-user">
             <div>
+                @if($admin->profile != 'default')
+                <img src="{{ showPicture('admin.profile', $admin->profile) }}" class="img-responsive img-circle"
+                    alt="user">
+                @else
                 <img src="{{ $admin->profile_image }}" class="img-responsive img-circle" alt="user">
+                @endif
                 <div class="wid-u-info">
-                    <h4 class="m-t-0 m-b-5">{{ $admin->full_name }}</h4>
+                    <h4 class="m-t-0 m-b-5">
+                        @if($admin->id == auth()->user()->id)
+                        {{ "شما" }}
+                        @else
+                        {{ $admin->full_name }}
+                        @endif
+                    </h4>
                     <p class="text-muted m-b-5 font-13">
                         <a href="#">
                             {{ $admin->phone }}
