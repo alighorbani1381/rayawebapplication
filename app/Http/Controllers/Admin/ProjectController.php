@@ -99,7 +99,7 @@ class ProjectController extends AdminController
     public function destroy($project)
     {
         Project::findOrFail($project);
-        // $this->repo->deleteFullProject($project);
+        $this->repo->deleteFullProject($project);
         session()->flash('ProjectDelete');
         return back();
     }
