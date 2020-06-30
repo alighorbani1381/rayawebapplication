@@ -34,6 +34,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin', 'isAdmin'], 'p
     Route::resource('earnings', 'EarningController');
     Route::resource('categories', 'CategoryController');
     Route::post('profile/change/password', 'ProfileController@changePassword')->name('admin.password.change');
+    Route::post('profile/change/image', 'ProfileController@changeImage')->name('admin.image.change');
     Route::get('profile', 'ProfileController@index')->name('admin.profile.index');
     Route::post('projects/contractors/divide', 'ProjectController@percentDivide')->name('projects.divide');
     Route::resource('projects', 'ProjectController');
