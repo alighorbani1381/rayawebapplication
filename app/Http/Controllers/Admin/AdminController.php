@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
 {
@@ -19,21 +20,30 @@ class AdminController extends Controller
 
     public function imageDelete($path)
     {
+        $path = public_path($path);
+
         if (file_exists($path))
             $delete = unlink($path);
-        else
-            $delete = false;
-
-        return $delete;
     }
 
     public function imageUploade($file, $pubpath = null)
     {
+        if ($pubpath == null)
+            return null;
+
         $filename = time() . "-" . rand(2, 512) . "." . $file->getClientOriginalExtension();
-        $path = public_path('Uploads/' . $pubpath);
+        $path = public_path($pubpath);
         $files = $file->move($path, $filename);
-        return '/Uploads/' . $pubpath . $filename;
+
+        $img = Image::make($files->getRealPath());
+        $img->resize("512", "512");
+        $img->save($path . "/Profile-" . $filename);
+
+        unlink($files->getRealPath());
+
+        return "/Profile-" . $filename;
     }
+
 
 
     public function search($class = User::class, $field, $data, $pagin = 10)
