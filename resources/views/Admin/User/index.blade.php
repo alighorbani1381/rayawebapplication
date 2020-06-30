@@ -23,6 +23,7 @@
                         <th>ردیف</th>
                         <th>مشخصات کاربر</th>
                         <th>نوع کاربر</th>
+                        <th class="tac">پروفایل کاربر</th>
                         <th>شماره تماس</th>
                         <th>نام کاربری</th>
                         <th>رمزعبور</th>
@@ -42,6 +43,13 @@
                             {{ "مدیر" }}
                             @else
                             {{ "کارمند" }}
+                            @endif
+                        </td>
+                        <td class="tac">
+                            @if($user->profile != 'default')
+                            <img class="tumb-pic-index" src="{{ showPicture('user.profile', $user->profile) }}" alt="{{ $user->full_name}}" title="{{ $user->full_name}}">
+                            @else
+                            <img class="tumb-pic-index" src="{{ showPicture(null, $user->profile) }}" alt="{{ $user->full_name}}" title="{{ $user->full_name}}">
                             @endif
                         </td>
                         <td>{{ $user->phone}}</td>
