@@ -124,12 +124,12 @@
                 <div role="tabpanel" class="tab-pane fade" id="contract" aria-labelledby="contract-tab">
                     <div class="card-box items-box">
                         <h4 class="header-title">تاریخ شروع قرارداد :</h4>
-                        <b class="date-show"> {{ verta($project['project']->contract_started)->format('Y/n/j H:i') }} </b>
+                        <b class="date-show"> {{ verta($project['project']->contract_started)->formatJalaliDate() }} </b>
                     </div>
 
                     <div class="card-box items-box">
                         <h4 class="header-title">تاریخ پایان قرارداد :</h4>
-                        <b class="date-show"> {{ verta($project['project']->contract_ended)->format('Y/n/j H:i') }} </b>
+                        <b class="date-show"> {{ verta($project['project']->contract_ended)->formatJalaliDate() }} </b>
                     </div>
 
                     <div class="card-box items-box">
