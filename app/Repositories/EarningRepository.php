@@ -21,7 +21,7 @@ class EarningRepository
                 'received_money' => $request->received_money[$index],
                 'status' => $request->status[$index],
             ];
-            return Earning::create($fileds);
+            Earning::create($fileds);
         }
     }
 
@@ -45,9 +45,13 @@ class EarningRepository
     public function getProjectWant($earning)
     {
         if ($earning != null)
-            $projects = Project::where('id', $earning)->get();
+            $projects = Project::where('id', $earning)
+                ->orderBy('id', 'desc')
+                ->get();
         else
-            $projects  = Project::where('status', '!=', 'finished')->get();
+            $projects  = Project::where('status', '!=', 'finished')
+                ->orderBy('id', 'desc')
+                ->get();
 
         return $projects;
     }
