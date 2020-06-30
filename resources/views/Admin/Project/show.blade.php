@@ -202,7 +202,7 @@
                                 @if($contractor->profile != 'default')
                                 <img class="media-object img-circle thumb-sm"
                                     style="display:inline-block; margin-left:8px;" alt="{{ $fullName }}"
-                                    src="{{ $contractor->profile }}"></a>
+                                    src="{{ showPicture('user.profile', $contractor->profile) }}"></a>
                             @else
                             <img class="media-object img-circle thumb-sm" style="display:inline-block; margin-left:8px;"
                                 alt="{{ $fullName }}" src="{{ asset('admin/images/users/default.png') }}"></a>
