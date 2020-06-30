@@ -148,7 +148,7 @@
 
                     <div class="card-box items-box">
                         <h4 class="header-title">تصویر قرار داد :</h4>
-                        @if($project['project']->contract_image != 'default')
+                        @if(strtolower($project['project']->contract_image) != 'default')
                         <a href="{{ $project['project']->contract_image }}" target="_blank">
                             <img class="contract-image" src="{{ $project['project']->contract_image }}" alt="">
                         </a>
@@ -299,13 +299,19 @@
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $project['project']->id }}">
                         @foreach($project['contractors'] as $key => $contractor)
+                        <?php $contractorFullName = $contractor->name . " " . $contractor->lastname;?>
                         <div class="media m-b-10">
                             <div class="media-left">
-                                <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
-                                        src="/admin/images/users/avatar-1.jpg"> </a>
+                                <a href="#"> 
+                                    @if($contractor->profile != 'default')                                    
+                                    <img class="media-object img-circle thumb-sm" alt="{{ $contractorFullName }}" src="{{ showPicture('user.profile', $contractor->profile) }}"> 
+                                    @else
+                                    <img class="media-object img-circle thumb-sm" alt="{{ $contractorFullName }}" src="/admin/images/users/default.png"> 
+                                    @endif
+                                    </a>
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading">{{ $contractor->name . " " . $contractor->lastname }}</h4>
+                                <h4 class="media-heading">{{ $contractorFullName }}</h4>
                                 <p class="font-13 text-muted m-b-0">
                                     <input type="hidden" value="{{ $contractor->contract_id }}"
                                         name="access[{{ $key }}]">
@@ -321,7 +327,7 @@
                         <div class="media m-b-10">
                             <div class="media-left">
                                 <a href="#"> <img class="media-object img-circle thumb-sm" alt="64x64"
-                                        src="/admin/images/users/avatar-1.jpg"> </a>
+                                        src="/admin/images/symbols/percent.jpg"> </a>
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">مجموع درصد همکاری</h4>
