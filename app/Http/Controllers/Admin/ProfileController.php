@@ -55,17 +55,15 @@ class ProfileController extends AdminController
     {
         $request->validate(['profile' => 'required|image']);
 
-        if($this->user->profile != 'default')
-        parent::imageDelete(self::ADMIN_PROFILE_FOLDER . $this->user->profile);
+        if ($this->user->profile != 'default')
+            parent::imageDelete(self::ADMIN_PROFILE_FOLDER . $this->user->profile);
 
         $image = parent::imageUploade($request->profile, self::ADMIN_PROFILE_FOLDER);
-        
+
         User::where('id', $this->user->id)
-        ->update(['profile' => $image]);
+            ->update(['profile' => $image]);
 
         session()->flash('profile-changed');
         return redirect()->route('contractor.dashbord');
     }
-
-   
 }
