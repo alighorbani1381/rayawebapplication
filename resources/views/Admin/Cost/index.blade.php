@@ -211,7 +211,7 @@
                            </button>
                            @else
                            <button type="button"
-                              class="tac btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">در
+                              class="tac btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">
                            پرداخت نشده
                            </button>
                            @endif
