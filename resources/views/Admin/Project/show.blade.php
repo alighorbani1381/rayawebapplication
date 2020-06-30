@@ -14,18 +14,29 @@
             <ul class="nav nav-tabs nav-justified">
                 <li role="presentation" class="active">
                     <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home"
-                        aria-expanded="true">اطلاعات کلی پروژه</a>
-                </li>
-
-                <li role="presentation" class="">
-                    <a href="#contract" role="tab" id="contract-tab" data-toggle="tab" aria-controls="contract"
-                        aria-expanded="false">اطلاعات قرارداد</a>
+                        aria-expanded="true">
+                        <i class="fa fa-laptop i-fix"></i>
+                        <span>اطلاعات کلی پروژه</span>
+                    </a>
                 </li>
 
                 <li role="presentation" class="">
                     <a href="#taskmaster" role="tab" id="taskmaster-tab" data-toggle="tab" aria-controls="taskmaster"
-                        aria-expanded="false">اطلاعات کارفرما</a>
+                        aria-expanded="false">
+                        <i class="fa fa-user i-fix"></i>
+                        <span>اطلاعات کارفرما</span>
+                    </a>
                 </li>
+
+                <li role="presentation" class="">
+                    <a href="#contract" role="tab" id="contract-tab" data-toggle="tab" aria-controls="contract"
+                        aria-expanded="false">
+                        <i class="fa fa-newspaper-o i-fix"></i>
+                        <span>اطلاعات قرارداد</span>
+                    </a>
+                </li>
+
+                
 
                 @php
                 if($project['project']->status != 'waiting')
@@ -36,7 +47,10 @@
 
                 <li role="presentation" class="">
                     <a href="#contractors" role="tab" id="contractors-tab" data-toggle="tab" aria-controls="contractors"
-                        aria-expanded="false" taskdivide="{{ $taskDivide }}">وضعیت انجام پروژه</a>
+                        aria-expanded="false" taskdivide="{{ $taskDivide }}">
+                        <i class="fa fa-bar-chart-o i-fix"></i>
+                        <span>وضعیت انجام پروژه</span>
+                    </a>
                 </li>
 
             </ul>
