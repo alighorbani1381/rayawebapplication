@@ -11,9 +11,7 @@
 
                     </div> <!-- container -->
 
-                </div> <!-- content -->
-
-                <footer class="footer"><a href="https://mihanwebmaster.com/" title="میهن وبمستر">میهن وبمستر</a></footer>
+                </div> <!-- content -->                
 
             </div>
 
