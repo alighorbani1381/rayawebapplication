@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Repositories\ProfileRepository;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends AdminController
 {
+
+    const ADMIN_PROFILE_FOLDER = 'profiles\admins\\';
+
     private $user;
 
     private $repo;
@@ -47,6 +49,22 @@ class ProfileController extends AdminController
         $newPass = $request->new_password;
         $reaptPass = $request->repeat_password;
         return $this->repo->isValidNewPassword($oldPass, $newPass, $reaptPass, $this->user->id);
+    }
+
+    public function changeImage(Request $request, $path)
+    {
+        $request->validate(['profile' => 'required|image']);
+
+        if($this->user->profile != 'default')
+        parent::imageDelete(self::ADMIN_PROFILE_FOLDER . $this->user->profile);
+
+        $image = parent::imageUploade($request->profile, self::ADMIN_PROFILE_FOLDER);
+        
+        User::where('id', $this->user->id)
+        ->update(['profile' => $image]);
+
+        session()->flash('profile-changed');
+        return redirect()->route('contractor.dashbord');
     }
 
    
