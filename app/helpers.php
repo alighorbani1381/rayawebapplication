@@ -24,6 +24,11 @@ function showPicture($type, $name)
             return $path;
             break;
 
+            case 'admin.profile':
+                $path = asset('profiles/admins') . '/' . $name;
+                return $path;
+            break;
+            
         default:
             return asset("admin/images/users/default.png");
             break;
