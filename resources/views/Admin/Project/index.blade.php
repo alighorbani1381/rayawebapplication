@@ -25,6 +25,7 @@
                         <th>عنوان پروژه</th>
                         <th>کارفرما</th>
                         <th>شناسه پروژه</th>
+                        <th class="tac">ایجاد شده توسط</th>
                         <th class="tac">وضعیت</th>
                         <th class="tac">نمایش / فعالسازی</th>
                         <th class="tac">پرداخت</th>
@@ -38,9 +39,17 @@
                     <tr>
                         <td><?= $row  + 1 ?></td>
                         <td class="projectName">{{ $project->title }}</td>
+                        
                         <td>{{ $project->name . " " . $project->lastname }}</td>
                         <td>{{ $project->unique_id }}</td>
                        
+                        <td class="tac">
+                            @if($project->creator_id != auth()->user()->id)
+                             {{ $project->creator_name . " " . $project->creator_lastname }}
+                            @else
+                            {{ "شما" }}
+                            @endif
+                        </td>
                             <td class="tac">
                                 @if ($project->status == 'waiting')
                                     <button type="button" class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">غیر فعال</button>
