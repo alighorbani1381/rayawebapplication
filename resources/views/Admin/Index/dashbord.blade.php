@@ -221,4 +221,11 @@
 <!-- Admins Container End !-->
 
 
+@if(session()->has('profile-changed'))
+<script>
+    var message = "پروفایل شما با موفقیت تغییر کرد";
+    minMbox(message, 250);
+</script>
+@endif
+
 @endsection
