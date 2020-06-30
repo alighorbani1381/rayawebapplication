@@ -26,7 +26,7 @@
                         <th>شناسه پروژه</th>
                         <th>میزان درآمد (تومان)</th>
                         <th>قیمت پروژه (تومان)</th>
-                        <th>وضعیت</th>
+                        <th class="tac">وضعیت</th>
                         <th class="tac">جزئیات</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
@@ -42,7 +42,7 @@
                         <td>{{ $earning->unique_id }}</td>
                         <td>{{ number_format($earning->received_money) }}</td>
                         <td>{{ number_format($earning->price) }}</td>
-                        <td>
+                        <td class="tac">
                             @if($earning->status == 'paid')
                             <button type="button"
                                 class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">پرداخت
