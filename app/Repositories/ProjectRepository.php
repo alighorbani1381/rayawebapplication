@@ -150,7 +150,7 @@ class ProjectRepository
             'title' => $request->title,
             'description' => $request->description,
             'price' => $request->price,
-            'contract_image' => 'Default',
+            'contract_image' => 'default',
             'contract_started' => $contractStarted,
             'contract_ended' => $completedAt,
             'status' => 'waiting',
@@ -182,8 +182,10 @@ class ProjectRepository
     public static function getProjects()
     {
         return DB::table('projects')
+            ->join('users', 'projects.project_creator', '=', 'users.id')
             ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
             ->orderBy('projects.id', 'desc')
+            ->select('projects.*', 'project_taskmaster.*', 'users.name AS creator_name', 'users.lastname AS creator_lastname', 'users.id AS creator_id')
             ->paginate(15);
     }
 
@@ -368,7 +370,7 @@ class ProjectRepository
             'title' => $request->title,
             'description' => $request->description,
             'price' => $request->price,
-            'contract_image' => 'Default',
+            'contract_image' => 'default',
             'contract_started' => $contractStarted,
             'contract_ended' => $completedAt,
             'date_start' => $dateStart,
@@ -400,7 +402,7 @@ class ProjectRepository
         return User::where('type', 'contractor')->get();
     }
 
-   
+
 
 
     /************************ Contractor Panel Use This Methods ** ********************* */
@@ -478,9 +480,8 @@ class ProjectRepository
     public function isAccessChangeProgress($project)
     {
         $date = verta($project->date_start);
-        $result['isFuture'] = $date->isFuture();                   
+        $result['isFuture'] = $date->isFuture();
         $result['diff'] = $date->formatDifference();
         return $result;
     }
-
 }
