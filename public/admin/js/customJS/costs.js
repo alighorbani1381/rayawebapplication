@@ -117,7 +117,7 @@ $(document).ready(function () {
                 text: "الان فقط کافیه پروژه مورد نظرت رو انتخاب کنی تا کارمندان اون پروژه رو دریافت کنی",
                 confirmButtonText: "باشه مرسی",
             });
-        }, 300);
+        }, 150);
         activeProjectBox();
         showProjectBox();
         hideContractorBox();
@@ -134,7 +134,7 @@ $(document).ready(function () {
                 text: "از این گزینه برای پرداخت هایی انجام می شود که ارتباطی با پروژه ندارد برای مثال پرداختی های مدیر برای خودش",
                 confirmButtonText: "باشه مرسی",
             });
-        }, 300);
+        }, 150);
         hideProjectBox();
         deActiveProjectBox();
         hideAjaxLoading();
@@ -232,15 +232,15 @@ $(document).ready(function () {
     }
 
     function hideContractorBox() {
-        $("#contractor-mainbox").fadeOut();
+        $("#contractor-mainbox").fadeOut('slow');
     }
 
     function showProjectBox() {
-        $("#project-box").fadeIn();
+        $("#project-box").fadeIn('fast');
     }
 
     function hideProjectBox() {
-        $("#project-box").fadeOut();
+        $("#project-box").fadeOut('slow');
     }
 
     function renameContractorLabel(newName) {
