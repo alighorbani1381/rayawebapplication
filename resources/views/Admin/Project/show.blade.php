@@ -153,8 +153,8 @@
                             <img class="contract-image" src="{{ $project['project']->contract_image }}" alt="">
                         </a>
                         @else
-                        <a href="{{ asset('admin/images/users/default.png') }}" target="_blank">
-                            <img class="contract-image" src="{{ asset('admin/images/users/default.png') }}" alt="">
+                        <a href="{{ asset('admin/images/symbols/contract-image.png') }}" target="_blank">
+                            <img class="contract-image" src="{{ asset('admin/images/symbols/contract-image.png') }}" alt="تصویر قرارداد">
                         </a>
                         @endif
                     </div>
