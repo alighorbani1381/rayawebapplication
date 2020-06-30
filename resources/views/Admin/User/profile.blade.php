@@ -72,10 +72,10 @@
 
                 <div class="user-img" style="margin: 0 auto; width:50%;">
                     @if($user->profile != 'default')
-                    <img src="{{ showPicture('user.profile', $user->profile) }}" alt="شما" title="شما"
+                    <img src="{{ showPicture('admin.profile', $user->profile) }}" alt="شما" title="شما"
                         class="img-circle img-thumbnail img-responsive">
                     @else
-                    <img src="{{ showPicture('', $user->profile) }}" alt="شما" title="شما"
+                    <img src="{{ showPicture(null, $user->profile) }}" alt="شما" title="شما"
                         class="img-circle img-thumbnail img-responsive">
                     @endif
                 </div>
