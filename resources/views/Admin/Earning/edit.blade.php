@@ -20,7 +20,7 @@
                             <div class="col-sm-10">
                                 <select class="form-control" name="project_id">
                                     @foreach($projects as $project)
-                                    <option price="{{ $project->price }}" value="{{ $project->id }}" @if($project->id == $earning->project_id) @endif>
+                                        <option price="{{ $project->price }}" value="{{ $project->id }}" @if($project->id == $earning->project_id){{ "selected" }}@endif>
                                         {{ $project->title . "  " . '(' . $project->unique_id . ')'}} </option>
                                     @endforeach
                                 </select>
