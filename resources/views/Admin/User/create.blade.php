@@ -13,7 +13,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">نام کاربر</label>
                             <div class="col-md-10">
-                                <input type="text" name="name" value="{{ old('name') }}" class="form-control"
+                                <input type="text" name="name" required value="{{ old('name') }}" class="form-control"
                                     placeholder="نام کاربر را وارد کنید ...">
                                 @error('name')
                                 <div class="alert alert-danger">وارد کردن نام کاربر الزامی است.</div>
@@ -26,8 +26,8 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">نام خانوادگی کاربر</label>
                             <div class="col-md-10">
-                                <input type="text" name="lastname" value="{{ old('lastname') }}" class="form-control"
-                                    placeholder="نام خانوادگی کاربر را وارد کنید ...">
+                                <input type="text" name="lastname" required value="{{ old('lastname') }}"
+                                    class="form-control" placeholder="نام خانوادگی کاربر را وارد کنید ...">
                                 @error('lastname')
                                 <div class="alert alert-danger">وارد کردن نام خانوادگی کاربر الزامی است.</div>
                                 @enderror
@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">شماره تماس</label>
                             <div class="col-md-10">
-                                <input type="text" name="phone" value="{{ old('phone') }}" class="form-control"
+                                <input type="text" name="phone" required value="{{ old('phone') }}" class="form-control"
                                     placeholder="شماره تماس کاربر را وارد کنید ...">
                                 @error('phone')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -48,8 +48,8 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">آدرس</label>
                             <div class="col-md-10">
-                                <textarea class="form-control txt-custom"
-                                    placeholder="آدرس را وارد کنید ..." name="address" rows="5">{{ old('address') }}</textarea>
+                                <textarea class="form-control txt-custom" required placeholder="آدرس را وارد کنید ..."
+                                    name="address" rows="5">{{ old('address') }}</textarea>
                                 @error('address')
                                 <div class="alert alert-danger">وارد کردن آدرس الزامی است.</div>
                                 @enderror
@@ -70,8 +70,8 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">نام کاربری</label>
                             <div class="col-md-10">
-                                <input type="text" name="username" value="{{ old('username') }}" class="form-control"
-                                    placeholder="نام کاربری را وارد کنید ...">
+                                <input type="text" name="username" required value="{{ old('username') }}"
+                                    class="form-control" placeholder="نام کاربری را وارد کنید ...">
                                 @error('username')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -81,21 +81,21 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">رمزعبور</label>
                             <div class="col-md-10">
-                                <input type="text"  readonly class="form-control" value="raya-px724">
+                                <input type="text" readonly class="form-control" value="raya-px724">
                             </div>
                         </div>
 
-                       
+
 
                         <div class="form-group">
                             <button type="submit" class="btn btn-success waves-effect waves-light submit-button">افزودن
                                 کاربر</button>
                         </div>
                     </form>
-                </div><!-- end col -->
+                </div>
 
-            </div><!-- end row -->
+            </div>
         </div>
-    </div><!-- end col -->
+    </div>
 </div>
 @endsection

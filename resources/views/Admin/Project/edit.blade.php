@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">عنوان پروژه</label>
                             <div class="col-md-9">
-                                <input type="text" name="title" class="form-control" value="{{ $project['project']->title }}"
+                                <input type="text" required name="title" class="form-control" value="{{ $project['project']->title }}"
                                     placeholder="عنوان پروژه را وارد کنید ...">
                                 @error('title')
                                 <div class="alert alert-danger"> {{ $message }} </div>
@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">قیمت (تومان)</label>
                             <div class="col-md-9">
-                                <input type="number" placeholder="قیمت این پروژه را وارد کنید ..." name="price"
+                                <input type="number" required placeholder="قیمت این پروژه را وارد کنید ..." name="price"
                                     class="form-control" value="{{ $project['project']->price }}" id="price">
 
                                 @error('price')
@@ -60,7 +60,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">تاریخ شروع کار </label>
                             <div class="col-md-9">
-                                <input type="text" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="date_start"
+                                <input type="text" required placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="date_start"
                                     class="persian-date form-control" value="{{ $project['project']->date_start }}">
                                 @error('date_start')
                                 <div class="alert alert-danger"> {{ $message }} </div>
@@ -71,7 +71,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">زمان تحویل پروژه (روز)</label>
                             <div class="col-md-9">
-                                <input type="number" placeholder="زمان تحویل پروژه بر حسب روز را وارد کنید ..."
+                                <input type="number" required placeholder="زمان تحویل پروژه بر حسب روز را وارد کنید ..."
                                     name="complete_after" class="form-control" value="{{ $project['project']->complete_after }}">
                                 @error('complete_after')
                                 <div class="alert alert-danger"> {{ $message }} </div>
@@ -99,7 +99,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">نام</label>
                         <div class="col-md-9">
-                            <input type="text" name="name" class="form-control" value="{{ $project['project']->name }}"
+                            <input type="text" required name="name" class="form-control" value="{{ $project['project']->name }}"
                                 placeholder="نام کارفرما را وارد کنید ...">
                             @error('name')
                             <div class="alert alert-danger"> {{ $message }} </div>
@@ -110,7 +110,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">نام خانوادگی</label>
                         <div class="col-md-9">
-                            <input type="text" name="lastname" class="form-control" value="{{ $project['project']->lastname }}"
+                            <input type="text" required name="lastname" class="form-control" value="{{ $project['project']->lastname }}"
                                 placeholder="نام خانوادگی کارفرما را وارد کنید ...">
                             @error('lastname')
                             <div class="alert alert-danger"> {{ $message }} </div>
@@ -121,7 +121,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">نام پدر</label>
                         <div class="col-md-9">
-                            <input type="text" name="father_name" class="form-control" value="{{ $project['project']->father_name }}"
+                            <input type="text" required name="father_name" class="form-control" value="{{ $project['project']->father_name }}"
                                 placeholder="نام پدر کارفرما را وارد کنید ...">
                             @error('father_name')
                             <div class="alert alert-danger"> {{ $message }} </div>
@@ -132,7 +132,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">شماره تماس کارفرما</label>
                         <div class="col-md-9">
-                            <input type="text" name="phone" class="form-control" value="{{ $project['project']->phone }}"
+                            <input type="text" required name="phone" class="form-control" value="{{ $project['project']->phone }}"
                                 placeholder="شماره تماس کارفرما را وارد کنید ...">
                             @error('phone')
                             <div class="alert alert-danger"> {{ $message }} </div>
@@ -145,7 +145,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">آدرس دقیق کارفرما</label>
                         <div class="col-md-9">
-                            <textarea class="form-control txt-custom"
+                            <textarea class="form-control txt-custom" required
                                 placeholder="آدرس کارفرما را به صورت دقیق وارد کنید ..." name="address"
                                 rows="6">{{ $project['project']->address }}</textarea>
                             @error('address')
@@ -157,7 +157,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">کد ملی</label>
                         <div class="col-md-9">
-                            <input type="text" name="meli_code" class="form-control" value="{{ $project['project']->meli_code }}"
+                            <input type="text" required name="meli_code" class="form-control" value="{{ $project['project']->meli_code }}"
                                 placeholder="کد ملی کارفرما را وارد کنید ...">
                             @error('meli_code')
                             <div class="alert alert-danger"> {{ $message }} </div>
@@ -168,7 +168,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تصویر کد ملی</label>
                         <div class="col-md-9">
-                            <input type="file" name="meli_image">
+                            <input type="file" required name="meli_image">
                             @error('meli_image')
                             <div class="alert alert-danger"> {{ $message }} </div>
                             @enderror
@@ -191,7 +191,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تاریخ شروع قرارداد </label>
                         <div class="col-md-9">
-                            <input type="text" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="contract_started"
+                            <input type="text" required placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="contract_started"
                                 class="persian-date form-control" value="{{ $project['project']->contract_started }}">
                             @error('contract_started')
                             <div class="alert alert-danger"> {{ $message }} </div>
@@ -202,7 +202,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تاریخ پایان قرارداد </label>
                         <div class="col-md-9">
-                            <input type="text" placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="completed_at"
+                            <input type="text" required placeholder="تاریخ اتمام پروژه را وارد کنید ..." name="completed_at"
                                 class="persian-date form-control" value="{{ $project['project']->contract_ended }}">
                             @error('completed_at')
                             <div class="alert alert-danger"> {{ $message }} </div>
@@ -213,7 +213,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تصویر قرارداد</label>
                         <div class="col-md-9">
-                            <input type="file" name="contract_image">
+                            <input type="file" required name="contract_image">
                             @error('contract_image')
                             <div class="alert alert-danger"> {{ $message }} </div>
                             @enderror

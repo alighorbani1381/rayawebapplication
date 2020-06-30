@@ -135,7 +135,7 @@
         <div class="modal-dialog" style="width:54em;">
             <form id="project-form" action="{{ route('costs.store') }}" method="post">
                 @csrf
-                <input type="hidden" name="storeType" value="project">
+                <input type="hidden" name="storeType" value="project" required>
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -147,7 +147,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="field-3" class="control-label">عنوان هزینه</label>
-                                    <input type="text" class="form-control" name="title" id="field-3"
+                                    <input type="text" class="form-control" name="title" id="field-3" required
                                         placeholder="عنوان هزینه را وارد کنید ..."
                                         value="@if(session()->has('ProjectStore')){{ old('title') }}@endif">
                                 </div>
@@ -158,7 +158,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="field-3" class="control-label">میزان هزینه</label>
-                                    <input type="number" class="form-control" name="money_paid" id="field-3"
+                                    <input type="number" class="form-control" name="money_paid" id="field-3" required
                                         placeholder="میزان هزینه را وارد کنید ..."
                                         value="@if(session()->has('ProjectStore')){{ old('money_paid') }}@endif">
                                 </div>
@@ -169,7 +169,7 @@
                             <div class="col-md-12">
                                 <div class="form-group no-margin">
                                     <label for="field-7" class="control-label">توضیحات هزینه</label>
-                                    <textarea class="form-control autogrow" id="field-7" name="description"
+                                    <textarea class="form-control autogrow" id="field-7" name="description" required
                                         placeholder="توضیحات هزینه را وارد کنید ..."
                                         style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;">@if(session()->has('ProjectStore')){{ old('description') }}@endif</textarea>
                                 </div>
@@ -208,7 +208,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">پرداخت به کارمند</label>
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-paid" id="project-pay" type="radio" name="contractor_pay"
+                                        <input class="earning-paid" id="project-pay" type="radio" name="contractor_pay" required
                                             value="true">
 
                                         <div class="state p-success">
@@ -218,7 +218,7 @@
                                     </div>
 
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-paid" id="normal-pay" type="radio" name="contractor_pay"
+                                        <input class="earning-paid" id="normal-pay" type="radio" name="contractor_pay" required
                                             value="without-project">
 
                                         <div class="state p-success">
@@ -229,7 +229,7 @@
 
 
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-unpaid" id="deactive" type="radio" name="contractor_pay"
+                                        <input class="earning-unpaid" id="deactive" type="radio" name="contractor_pay" required
                                             checked value="false">
 
                                         <div class="state p-danger">
@@ -345,7 +345,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="field-3" class="control-label">عنوان هزینه</label>
-                                <input type="text" class="form-control" name="title" id="field-3"
+                                <input type="text" class="form-control" name="title" id="field-3" required
                                     placeholder="عنوان هزینه را وارد کنید ..."
                                     value="@if(session()->has('ExtenalStore')){{ old('title') }}@endif">
                             </div>
@@ -356,7 +356,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="field-3" class="control-label">میزان هزینه</label>
-                                <input type="number" class="form-control" name="money_paid" id="field-3"
+                                <input type="number" class="form-control" name="money_paid" id="field-3" required
                                     placeholder="میزان هزینه را وارد کنید ..."
                                     value="@if(session()->has('ExtenalStore')){{ old('money_paid') }}@endif">
                             </div>
@@ -367,7 +367,7 @@
                         <div class="col-md-12">
                             <div class="form-group no-margin">
                                 <label for="field-7" class="control-label">توضیحات هزینه</label>
-                                <textarea class="form-control autogrow" id="field-7" name="description"
+                                <textarea class="form-control autogrow" id="field-7" name="description" required
                                     placeholder="توضیحات هزینه را وارد کنید ..."
                                     style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;">@if(session()->has('ExtenalStore')){{ old('description') }}@endif</textarea>
                             </div>

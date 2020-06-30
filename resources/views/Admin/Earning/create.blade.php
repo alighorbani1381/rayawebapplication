@@ -79,7 +79,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">عنوان درآمد</label>
                                     <div class="col-md-10">
-                                        <input type="text" name="title[0]" class="form-control earning-title"
+                                        <input type="text" required name="title[0]" class="form-control earning-title"
                                             placeholder="عنوان در آمد را وارد کنید ...">
 
                                     </div>
@@ -88,7 +88,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">میزان درآمد</label>
                                     <div class="col-md-10">
-                                        <input type="number" name="received_money[0]" class="form-control earning-moeny"
+                                        <input type="number" required name="received_money[0]" class="form-control earning-moeny"
                                             placeholder="میزان در آمد را وارد کنید ...">
 
                                     </div>
@@ -97,7 +97,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">توضیحات</label>
                                     <div class="col-md-10">
-                                        <textarea class="form-control txt-custom earning-description"
+                                        <textarea class="form-control txt-custom earning-description" required
                                             placeholder="توضیحات در آمد را وارد کنید ..." name="description[0]"
                                             rows="3"></textarea>
 
@@ -137,13 +137,13 @@
                             </button>
                         </div>
                     </form>
-                </div><!-- end col -->
+                </div>
 
 
 
 
-            </div><!-- end row -->
+            </div>
         </div>
-    </div><!-- end col -->
+    </div>
 </div>
 @endsection

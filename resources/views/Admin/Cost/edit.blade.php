@@ -26,7 +26,7 @@ $cost = $cost['content'];
                         <div class="form-group">
                             <label class="col-md-2 control-label">عنوان هزینه</label>
                             <div class="col-md-10">
-                                <input type="text" name="title" class="form-control" value="{{ $cost->title }}"
+                                <input type="text" name="title" class="form-control" value="{{ $cost->title }}"  required
                                     placeholder="عنوان هزینه را وارد کنید ...">
                                 @error('title')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -37,7 +37,7 @@ $cost = $cost['content'];
                         <div class="form-group">
                             <label class="col-md-2 control-label">میزان هزینه</label>
                             <div class="col-md-10">
-                                <input type="number" name="money_paid" class="form-control"
+                                <input type="number" name="money_paid" class="form-control" required
                                     value="{{ $cost->money_paid }}" placeholder="میزان هزینه را وارد کنید ...">
                                 @error('money_paid')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -49,7 +49,7 @@ $cost = $cost['content'];
                         <div class="form-group">
                             <label class="col-md-2 control-label">توضیحات هزینه</label>
                             <div class="col-md-10">
-                                <textarea class="form-control txt-custom"
+                                <textarea class="form-control txt-custom" required
                                     placeholder="توضیحات هزینه ثابت را وارد کنید ..." name="description"
                                     rows="5">{{ $cost->description }}</textarea>
                                 @error('description')
@@ -126,7 +126,7 @@ $cost = $cost['content'];
                         <div class="form-group">
                             <label class="col-md-2 control-label">وضعیت</label>
                             <div class="pretty p-icon p-round p-pulse">
-                                <input class="earning-paid" type="radio" name="status" @if($cost->status == 'paid') {{ "checked" }} @endif value="paid">
+                                <input class="earning-paid" type="radio"  name="status" @if($cost->status == 'paid') {{ "checked" }} @endif value="paid">
 
                                 <div class="state p-success">
                                     <label>پرداخت شده</label> &nbsp; &nbsp; &nbsp; &nbsp;

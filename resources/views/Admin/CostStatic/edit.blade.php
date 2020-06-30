@@ -18,7 +18,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">عنوان هزینه ثابت</label>
                             <div class="col-md-10">
-                                <input type="text" name="title" class="form-control" value="{{ $costStatic->title }}"
+                                <input type="text" name="title" required class="form-control" value="{{ $costStatic->title }}"
                                     placeholder="عنوان هزینه ثابت را وارد کنید ...">
                                 @error('title')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">توضیحات ثابت</label>
                             <div class="col-md-10">
-                                <textarea class="form-control txt-custom"
+                                <textarea class="form-control txt-custom" required
                                     placeholder="توضیحات هزینه ثابت را وارد کنید ..." name="description"
                                     rows="5">{{ $costStatic->description }}</textarea>
                                 @error('description')

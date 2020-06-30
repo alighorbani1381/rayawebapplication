@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">عنوان درآمد</label>
                                     <div class="col-md-10">
-                                        <input type="text" name="title" class="form-control earning-title"
+                                        <input type="text" name="title" class="form-control earning-title" required
                                             placeholder="عنوان در آمد را وارد کنید ..." value="{{ $earning->title }}">
 
                                     </div>
@@ -44,7 +44,7 @@
                                 <div class="form-group">
                                     <label class="col-md-2 control-label">میزان درآمد</label>
                                     <div class="col-md-10">
-                                        <input type="number" name="received_money" class="form-control earning-moeny"
+                                        <input type="number" required name="received_money" class="form-control earning-moeny"
                                             placeholder="میزان در آمد را وارد کنید ..." value="{{ $earning->received_money }}">
 
                                     </div>

@@ -13,7 +13,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">عنوان خدمات</label>
                             <div class="col-md-10">
-                                <input type="text" name="title" class="form-control" value="{{ old('title') }}"
+                                <input type="text" name="title" required class="form-control" value="{{ old('title') }}"
                                     placeholder="عنوان خدمت را وارد کنید ...">
                                 @error('title')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">توضیحات</label>
                             <div class="col-md-10">
-                                <textarea class="form-control txt-custom" placeholder="توضیحات خدمت را وارد کنید ..."
+                                <textarea class="form-control txt-custom" required placeholder="توضیحات خدمت را وارد کنید ..."
                                     name="description" rows="5">{{ old('description') }}</textarea>
                                 @error('description')
                                   <div class="alert alert-danger">{{ $message }}</div>
@@ -36,7 +36,7 @@
                         <div class="form-group">
                             <label class="col-md-2 control-label">سرگروه</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="child">
+                                <select class="form-control" name="child" required>
                                     <option value="0" selected>ندارد</option>
                                     @foreach($mainCategories as $category)
                                     <option value="{{ $category->id }}">{{ $category->title}} </option>
@@ -53,10 +53,10 @@
                                 خدمت</button>
                         </div>
                     </form>
-                </div><!-- end col -->
+                </div>
 
-            </div><!-- end row -->
+            </div>
         </div>
-    </div><!-- end col -->
+    </div>
 </div>
 @endsection
