@@ -61,9 +61,15 @@
         </div>
     </div><!-- end col -->
 </div>
-@if(session()->has('DeleteCategoryFail'))
+@if(session()->has('Delete-Sub'))
 <script>
-    maxMbox("حذف این مورد با شکست مواجه شد!", "این خدمت دارای زیر گروه است و نمی توان آن را حذف کرد", "error", "آها",350 );
+    var title ="حذف این مورد با شکست مواجه شد!";
+    var part1 = "این خدمت دارای" + " {{Session::get('Delete-Sub')}} " + "زیر";
+    var part2 ="گروه است و نمی توان آن را حذف کرد";
+    var message = part1 + part2;
+    var btn = "آها";
+
+    maxMbox(title, message, "error", btn, 350 );
 </script>
 @endif
 
