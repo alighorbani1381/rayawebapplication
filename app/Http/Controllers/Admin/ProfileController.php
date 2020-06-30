@@ -64,6 +64,6 @@ class ProfileController extends AdminController
             ->update(['profile' => $image]);
 
         session()->flash('profile-changed');
-        return redirect()->route('contractor.dashbord');
+        return redirect()->route('admin.dashbord');
     }
 }
