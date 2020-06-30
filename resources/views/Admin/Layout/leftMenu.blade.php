@@ -100,7 +100,7 @@ $user = auth()->user();
                 <li>
                     <a href="{{ route('admin.profile.index') }}" class="waves-effect">
                         <i class="fa fa-user"></i>
-                        <span> حساب کاربری</span>
+                        <span>پروفایل</span>
                     </a>
                 </li>
 
