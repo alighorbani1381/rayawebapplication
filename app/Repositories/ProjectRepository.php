@@ -74,44 +74,45 @@ class ProjectRepository
             ]);
     }
 
-    public static function deleteTaskMaster($taskmasterId)
+    private function deleteTaskMaster($taskmasterId)
     {
         return  DB::table('project_taskmaster')
-            ->where('project_id', $taskmasterId)
+            ->where('project_taskmaster.id', $taskmasterId)
             ->delete();
     }
 
-    public static function deleteContractors($projectId)
+    private function deleteContractors($projectId)
     {
-        DB::table('project_contractor')
-            ->where('project_id', $projectId)
-            ->delete();
-    }
-    public static function deleteCategories($projectId)
-    {
-        DB::table('project_category')
-            ->where('project_id', $projectId)
+       return DB::table('project_contractor')
+            ->where('project_contractor.project_id', $projectId)
             ->delete();
     }
 
-    public static function deleteProject($projectId)
+    private function deleteCategories($projectId)
     {
-        DB::table('projects')
-            ->where('project_id', $projectId)
+       return DB::table('project_category')
+            ->where('project_category.project_id', $projectId)
             ->delete();
     }
 
-    public function deleteEarning($projectId)
+    private function deleteProject($projectId)
     {
-        DB::table('earnings')
-            ->where('project_id', $projectId)
+       return DB::table('projects')
+            ->where('projects.id', $projectId)
             ->delete();
     }
 
-    public function deleteCosts($projectId)
+    private function deleteEarning($projectId)
     {
-        DB::table('costs')
-            ->where('project_id', $projectId)
+       return DB::table('earnings')
+            ->where('earnings.project_id', $projectId)
+            ->delete();
+    }
+
+    private function deleteCosts($projectId)
+    {
+       return DB::table('costs')
+            ->where('costs.project_id', $projectId)
             ->delete();
     }
 
