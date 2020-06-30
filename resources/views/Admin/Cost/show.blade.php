@@ -16,7 +16,8 @@ $cost = $cost['content'];
                 <ul class="dropdown-menu" role="menu">
 
                     <li>
-                        <a href="{{ route('costs.edit', $cost->id) }}"><i class="fa fa-pencil"></i>&nbsp;&nbsp;ویرایش</a>
+                        <a href="{{ route('costs.edit', $cost->id) }}"><i
+                                class="fa fa-pencil"></i>&nbsp;&nbsp;ویرایش</a>
                     </li>
 
                     <li>
@@ -44,25 +45,25 @@ $cost = $cost['content'];
 
             <div class="clear-fix"></div>
             <h4 class="font-600" style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
-                نوع هزینه : 
+                نوع هزینه :
             </h4>
             <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $cost->type_title }}</h4>
             <div class="clear-fix"></div>
 
             <h4 class="font-600" style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
-                عنوان هزینه : 
+                عنوان هزینه :
             </h4>
             <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $cost->title }}</h4>
 
             <div class="clear-fix"></div>
 
-           
+
 
             @php
             $paragraphs = explode('\n', $cost->description);
             @endphp
             <h4 class="font-600" style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
-                توضیحات : 
+                توضیحات :
             </h4>
             @foreach ($paragraphs as $paragraph)
             <p class="text-muted">
@@ -99,7 +100,8 @@ $cost = $cost['content'];
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li>
-                        <a href="{{ route('projects.show', $project->id) }}" target="_blank"> <i class="fa fa-eye"></i> &nbsp;&nbsp;
+                        <a href="{{ route('projects.show', $project->id) }}" target="_blank"> <i class="fa fa-eye"></i>
+                            &nbsp;&nbsp;
                             مشاهده</a>
 
                     </li>
@@ -140,7 +142,7 @@ $cost = $cost['content'];
     </div><!-- end col -->
     @endif
 
-    @if($costType == 'contract_pay' ||  $costType =='contract_without_project' )
+    @if($costType == 'contract_pay' || $costType =='contract_without_project' )
     @php $user = \App\User::where('id', $cost->contractor_id)->first(); @endphp
     <div class="col-md-4">
         <div class="card-box">
@@ -150,7 +152,8 @@ $cost = $cost['content'];
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li>
-                        <a href="{{ route('users.show', $user->id) }}" target="_blank"> <i class="fa fa-eye"></i> &nbsp;&nbsp;
+                        <a href="{{ route('users.show', $user->id) }}" target="_blank"> <i class="fa fa-eye"></i>
+                            &nbsp;&nbsp;
                             مشاهده کاربر
                         </a>
 
@@ -163,8 +166,16 @@ $cost = $cost['content'];
             <div>
                 <div class="media m-b-10">
                     <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="عنوان پروژه"
-                                src="/admin/images/users/default.png"> </a>
+                        <a href="#">
+                            @if($user->profile != 'default')
+                            <img class="media-object img-circle thumb-sm" alt="عنوان پروژه"
+                                src="{{ showPicture('user.profile', $user->profile)}}">
+                        </a>
+                        @else
+                        <img class="media-object img-circle thumb-sm" alt="عنوان پروژه"
+                            src="/admin/images/users/default.png">
+                        </a>
+                        @endif
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">نام کاربر</h4>
@@ -177,7 +188,7 @@ $cost = $cost['content'];
                 <div class="media m-b-10">
                     <div class="media-left">
                         <a href="#"> <img class="media-object img-circle thumb-sm" alt="شناسه پروژه"
-                                src="/admin/images/symbols/fingerprint.png"> </a>
+                                src="/admin/images/symbols/Phone-Icon.png"> </a>
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">شماره تماس کاربر</h4>
@@ -196,7 +207,7 @@ $cost = $cost['content'];
 
 @if(session()->has('UpdateCost'))
 <script>
-   var message = "هزینه مورد نظر با موفقیت بروزرسانی شد.";
+    var message = "هزینه مورد نظر با موفقیت بروزرسانی شد.";
    minMbox(message, 250);
 </script>
 @endif
