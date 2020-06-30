@@ -51,7 +51,7 @@ class ProfileController extends AdminController
         return $this->repo->isValidNewPassword($oldPass, $newPass, $reaptPass, $this->user->id);
     }
 
-    public function changeImage(Request $request, $path)
+    public function changeImage(Request $request)
     {
         $request->validate(['profile' => 'required|image']);
 
@@ -64,6 +64,6 @@ class ProfileController extends AdminController
             ->update(['profile' => $image]);
 
         session()->flash('profile-changed');
-        return redirect()->route('admin.dashbord');
+        return redirect()->route('admin.dashboard');
     }
 }
