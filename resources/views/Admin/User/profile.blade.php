@@ -20,7 +20,8 @@
 
 
                     <h4 class="media-heading m-b-0 ear-sta-text">نام کاربری شما در سیستم رایا : </h4>
-                    <span id="contractor-username" class="label label-purple earning-status-label">{{ $user->username }}</span>
+                    <span id="contractor-username"
+                        class="label label-purple earning-status-label">{{ $user->username }}</span>
                 </div>
             </div>
 
@@ -73,13 +74,13 @@
                     @if($user->profile != 'default')
                     <img src="{{ showPicture('user.profile', $user->profile) }}" alt="شما" title="شما"
                         class="img-circle img-thumbnail img-responsive">
-                        @else
-                        <img src="{{ showPicture('', $user->profile) }}" alt="شما" title="شما"
+                    @else
+                    <img src="{{ showPicture('', $user->profile) }}" alt="شما" title="شما"
                         class="img-circle img-thumbnail img-responsive">
-                        @endif
+                    @endif
                 </div>
 
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.image.change') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="media m-b-10">
                         <div class="media-left">
@@ -114,9 +115,9 @@
     <div class="col-md-4">
         <div class="card-box">
             <h4 class="header-title m-t-0 m-b-30">
-                <i class="fa fa-lock"></i>                
-            <span class="cont-dash">تغییر رمز عبور</span>
-        </h4>
+                <i class="fa fa-lock"></i>
+                <span class="cont-dash">تغییر رمز عبور</span>
+            </h4>
             <div>
                 <form action="{{ route('admin.password.change') }}" method="post">
                     @csrf
