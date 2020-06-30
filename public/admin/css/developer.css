@@ -10,6 +10,11 @@
     color: #df1c1c !important;
 }
 
+.logout-button:hover {
+    color: #df1c1c !important;
+    transition: none;
+}
+
 .txt-custom {
     height: 34px;
     resize: vertical;
