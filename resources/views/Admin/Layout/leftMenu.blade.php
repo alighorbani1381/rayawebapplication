@@ -98,6 +98,13 @@ $user = auth()->user();
                 </li>
 
                 <li>
+                    <a href="{{ route('admin.profile.index') }}" class="waves-effect">
+                        <i class="fa fa-user"></i>
+                        <span> حساب کاربری</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="{{ route('logout') }}" class="logout-button waves-effect"><i class="fa fa-sign-out"></i>
                         <span> خروج </span> </a>
                 </li>
