@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Contractor;
 
+use App\Repositories\ProfileRepository;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -17,6 +18,8 @@ class ProfileController extends MainController
 
     private $password;
 
+    private $repo;
+
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -24,6 +27,7 @@ class ProfileController extends MainController
             $this->password = $this->user->password;
             return $next($request);
         });
+        $this->repo = resolve(ProfileRepository::class);
     }
 
     public function info()
@@ -42,11 +46,11 @@ class ProfileController extends MainController
             'repeat_password' => 'required',
         ]);
 
-        if (!$this->isValidPassword($request->old_password, $this->password)) {
+        if (!$this->repo->isValidPassword($request->old_password, $this->password)) {
             return back();
         }
 
-        return $this->isValidNewPassword($request->old_password, $request->new_password, $request->repeat_password);
+        return $this->repo->isValidNewPassword($request->old_password, $request->new_password, $request->repeat_password);
     }
 
     public function isValidNewPassword($oldPass, $newPass, $repeatPass)
@@ -62,18 +66,7 @@ class ProfileController extends MainController
             return redirect()->route('contractor.dashbord');
     }
 
-    public function isValidPassword($oldPass, $currentPass)
-    {
-        
-        $isValid = true;
-
-        if (! Hash::check($oldPass, $currentPass)){
-            session()->flash('currentWrong');
-            $isValid = false;
-        }
-
-        return $isValid;
-    }
+   
 
     public function changeImage(Request $request)
     {
