@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 
 use App\User;
-use App\Http\Controllers\Admin\ProjectController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -37,9 +36,22 @@ class UserRequest
 class UserController extends AdminController
 {
 
+    private $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->user = auth()->user();
+            return $next($request);
+        });
+    }
+
     public function index()
     {
-        $users = User::orderBy('type', 'asc')->orderBy('id', 'desc')->paginate(15);
+        $users = User::where('id', "!=", $this->user->id)
+            ->orderBy('type', 'asc')
+            ->orderBy('id', 'desc')
+            ->paginate(15);
         return view('Admin.User.index', compact('users'));
     }
 
