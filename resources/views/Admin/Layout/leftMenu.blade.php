@@ -25,7 +25,7 @@ $user = auth()->user();
             </h5>
             <ul class="list-inline">
                 <li>
-                    <a href="{{ route('logout') }}" title="خروج" class="text-custom">
+                    <a href="{{ route('logout') }}" title="خروج" class="logout-button text-custom">
                         <i class="zmdi zmdi-power"></i>
                     </a>
                 </li>
@@ -105,7 +105,7 @@ $user = auth()->user();
                 </li>
 
                 <li>
-                    <a href="{{ route('logout') }}" class="logout-button waves-effect"><i class="fa fa-sign-out"></i>
+                    <a href="{{ route('logout') }}" class="logout-button waves-effect" title="خروج"><i class="fa fa-sign-out"></i>
                         <span> خروج </span> </a>
                 </li>
 
