@@ -118,7 +118,7 @@
             <span class="cont-dash">تغییر رمز عبور</span>
         </h4>
             <div>
-                <form action="{{ route('profile.change.password') }}" method="post">
+                <form action="{{ route('admin.password.change') }}" method="post">
                     @csrf
                     <div class="media m-b-10">
                         <div class="media-left">
