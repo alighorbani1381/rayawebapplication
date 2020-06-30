@@ -33,6 +33,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin', 'isAdmin'], 'p
     Route::get('earnings/pay/{earning?}', 'EarningController@create')->name('earnings.pay');
     Route::resource('earnings', 'EarningController');
     Route::resource('categories', 'CategoryController');
+    Route::post('profile/change/password', 'ProfileController@changePassword')->name('admin.password.change');
     Route::get('profile', 'ProfileController@index')->name('admin.profile.index');
     Route::post('projects/contractors/divide', 'ProjectController@percentDivide')->name('projects.divide');
     Route::resource('projects', 'ProjectController');
