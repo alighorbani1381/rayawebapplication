@@ -96,14 +96,21 @@ class ProjectRepository
 
     public static function deleteProject($projectId)
     {
-        DB::table('earnings')
+        DB::table('projects')
             ->where('project_id', $projectId)
             ->delete();
     }
 
     public function deleteEarning($projectId)
     {
-        DB::table('projects')
+        DB::table('earnings')
+            ->where('project_id', $projectId)
+            ->delete();
+    }
+
+    public function deleteCosts($projectId)
+    {
+        DB::table('costs')
             ->where('project_id', $projectId)
             ->delete();
     }
@@ -330,6 +337,7 @@ class ProjectRepository
             $this->deleteContractors($projectId);
             $this->deleteCategories($projectId);
             $this->deleteEarning($projectId);
+            $this->deleteCosts($projectId);
             $this->deleteProject($projectId);
         });
     }
