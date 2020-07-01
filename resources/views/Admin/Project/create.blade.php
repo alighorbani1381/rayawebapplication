@@ -35,20 +35,27 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">عنوان پروژه</label>
                             <div class="col-md-9">
-                                <input type="text" name="title" required class="form-control" value="{{ old ('title') }}"
-                                    placeholder="عنوان پروژه را وارد کنید ...">
+                                <input type="text" name="title" required class="form-control"
+                                    value="{{ old ('title') }}" placeholder="عنوان پروژه را وارد کنید ...">
                                 @error('title')
                                 <div class="alert alert-danger"> {{ $message }} </div>
                                 @enderror
                             </div>
                         </div>
+                        <?php //dd($mainCategories);?>
 
                         <div class="form-group">
                             <label class="col-md-3 control-label">مربوطه به خدمات</label>
                             <div class="col-sm-9">
                                 <select class="form-control" name="categories[]" multiple>
-                                    @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                    @foreach($mainCategories as $mainCategory)
+                                    @if($mainCategory->hasSubCategory())
+                                    <optgroup label="{{ $mainCategory->title }}" style="margin:8px 0;">
+                                        @foreach($mainCategory->sub_cats as $category)
+                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                        @endforeach
+                                    </optgroup>
+                                    @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -61,7 +68,7 @@
                             <div class="col-md-9">
                                 <textarea class="form-control txt-custom"
                                     placeholder="توضیحات مربوط به پروژه را وارد کنید ..." name="description"
-                                    rows="3">{{ old('description') }}</textarea>
+                                    rows="5">{{ old('description') }}</textarea>
                                 @error('description')
                                 <div class="alert alert-danger"> {{ $message }} </div>
                                 @enderror
@@ -70,7 +77,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">قیمت (تومان)</label>
                             <div class="col-md-9">
-                                <input type="number" required  placeholder="قیمت این پروژه را وارد کنید ..." name="price"
+                                <input type="number" required placeholder="قیمت این پروژه را وارد کنید ..." name="price"
                                     class="form-control" value="{{ old ('price') }}" id="price">
 
                                 @error('price')
@@ -91,9 +98,11 @@
                             <label class="col-md-3 control-label">انجام می شود توسط:</label>
                             <div class="col-sm-9">
                                 <select class="form-control" name="contractors[]" multiple>
+                                    <optgroup label="کارمندان" style="margin:8px 0;">
                                     @foreach($contractors as $contractor)
                                     <option value="{{ $contractor->id }}">{{ $contractor->full_name }}</option>
                                     @endforeach
+                                    </optgroup>
                                 </select>
                             </div>
                         </div>
@@ -101,8 +110,9 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">تاریخ شروع کار </label>
                             <div class="col-md-9">
-                                <input type="text" required placeholder="تاریخ شروع کار را وارد کنید ..." name="date_start"
-                                    class="form-control persian-date" value="{{ old ('date_start') }}">
+                                <input type="text" required placeholder="تاریخ شروع کار را وارد کنید ..."
+                                    name="date_start" class="form-control persian-date"
+                                    value="{{ old ('date_start') }}">
                                 @error('date_start')
                                 <div class="alert alert-danger"> {{ $message }} </div>
                                 @enderror
@@ -140,7 +150,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">نام</label>
                         <div class="col-md-9">
-                            <input type="text" required  name="name" class="form-control" value="{{ old ('name') }}"
+                            <input type="text" required name="name" class="form-control" value="{{ old ('name') }}"
                                 placeholder="نام کارفرما را وارد کنید ...">
                             @error('name')
                             <div class="alert alert-danger"> {{ $message }} </div>
@@ -151,8 +161,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">نام خانوادگی</label>
                         <div class="col-md-9">
-                            <input type="text" required  name="lastname" class="form-control" value="{{ old ('lastname') }}"
-                                placeholder="نام خانوادگی کارفرما را وارد کنید ...">
+                            <input type="text" required name="lastname" class="form-control"
+                                value="{{ old ('lastname') }}" placeholder="نام خانوادگی کارفرما را وارد کنید ...">
                             @error('lastname')
                             <div class="alert alert-danger"> {{ $message }} </div>
                             @enderror
@@ -162,8 +172,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">نام پدر</label>
                         <div class="col-md-9">
-                            <input type="text" required name="father_name" class="form-control" value="{{ old ('father_name') }}"
-                                placeholder="نام پدر کارفرما را وارد کنید ...">
+                            <input type="text" required name="father_name" class="form-control"
+                                value="{{ old ('father_name') }}" placeholder="نام پدر کارفرما را وارد کنید ...">
                             @error('father_name')
                             <div class="alert alert-danger"> {{ $message }} </div>
                             @enderror
@@ -198,8 +208,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">کد ملی</label>
                         <div class="col-md-9">
-                            <input type="text" required name="meli_code" class="form-control" value="{{ old ('address') }}"
-                                placeholder="کد ملی کارفرما را وارد کنید ...">
+                            <input type="text" required name="meli_code" class="form-control"
+                                value="{{ old ('address') }}" placeholder="کد ملی کارفرما را وارد کنید ...">
                             @error('meli_code')
                             <div class="alert alert-danger"> {{ $message }} </div>
                             @enderror
@@ -232,8 +242,9 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تاریخ شروع قرارداد </label>
                         <div class="col-md-9">
-                            <input type="text"  required placeholder="تاریخ شروع قرارداد را وارد کنید ..." name="contract_started"
-                                class="form-control persian-date" value="{{ old ('contract_started') }}">
+                            <input type="text" required placeholder="تاریخ شروع قرارداد را وارد کنید ..."
+                                name="contract_started" class="form-control persian-date"
+                                value="{{ old ('contract_started') }}">
                             @error('contract_started')
                             <div class="alert alert-danger"> {{ $message }} </div>
                             @enderror
@@ -243,8 +254,9 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">تاریخ پایان قرارداد </label>
                         <div class="col-md-9">
-                            <input type="text" required placeholder="تاریخ پایان قرارداد را وارد کنید ..." name="completed_at"
-                                class="form-control persian-date" value="{{ old ('completed_at') }}">
+                            <input type="text" required placeholder="تاریخ پایان قرارداد را وارد کنید ..."
+                                name="completed_at" class="form-control persian-date"
+                                value="{{ old ('completed_at') }}">
                             @error('completed_at')
                             <div class="alert alert-danger"> {{ $message }} </div>
                             @enderror
