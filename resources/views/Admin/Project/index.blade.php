@@ -111,5 +111,17 @@
 </script>
 @endif
 
+@if(session()->has('Error-Project'))
+<script>
+    var title ="حذف این مورد با شکست مواجه شد!";
+    var part1 = "این خدمت دارای" + " « {{Session::get('Error-Project')}} » " + "تعداد";
+    var part2 ="پروژه است و نمی توان آن را حذف کرد" + " برای حدف این خدمت باید تمامی پروژه های مربوط به آن را حذف کنید ";
+    var message = part1 + part2;
+    var btn = "آها";
+
+    maxMbox(title, message, "error", btn, 350);
+</script>
+@endif
+
 
 @endsection
