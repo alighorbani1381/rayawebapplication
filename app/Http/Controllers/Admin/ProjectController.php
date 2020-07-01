@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Project;
-use App\Repositories\ProjectRepository;
-use App\Request\ProjectRequest;
 use Illuminate\Http\Request;
-
-
+use App\Request\ProjectRequest;
+use App\Repositories\ProjectRepository;
 
 
 class ProjectController extends AdminController
@@ -15,9 +13,12 @@ class ProjectController extends AdminController
 
     private $repo;
 
+    private $request;
+
     public function __construct()
     {
         $this->repo = resolve(ProjectRepository::class);
+        $this->request = resolve(ProjectRequest::class);
     }
 
     public function index()
@@ -37,7 +38,7 @@ class ProjectController extends AdminController
 
     public function store(Request $request)
     {
-        ProjectRequest::projectValidate($request);
+        $this->request->projectValidate($request);
         $this->repo->projectCreateFull($request);
         return redirect()->route('projects.index');
     }
@@ -76,7 +77,7 @@ class ProjectController extends AdminController
 
     public function percentDivide(Request $request)
     {
-        ProjectRequest::percentValidate($request);
+        $this->request->percentValidate($request);
         $this->repo->dividePercnets($request);
         session()->flash('ActiveProject');
         return back();
