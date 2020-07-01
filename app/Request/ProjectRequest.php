@@ -4,19 +4,6 @@ namespace App\Request;
 
 class ProjectRequest
 {
-
-    public function checkDateFormat($date)
-    {
-        $params = explode('/', $date);
-        $isValid = (count($params) < 3) ? true : false;
-        if (!$isValid)
-            return false;
-
-        foreach ($params as $param)
-            if (is_numeric($param))
-                return false;
-    }
-
     public static function projectValidate($request)
     {
         $fileds = [
@@ -38,7 +25,6 @@ class ProjectRequest
         ];
 
         $request->validate($fileds);
-        dd($request->contract_started);
     }
 
     public static function percentValidate($request)
