@@ -15,7 +15,6 @@
         format: 'YYYY/MM/DD',	
         initialValueType: 'persian',
         autoClose: true,
-        viewMode: 'month',
         });
     });
 </script>
