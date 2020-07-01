@@ -86,9 +86,16 @@ class CategoryController extends AdminController
     public function destroy(Category $category)
     {
         if ($category->hasSubCategory()){
-            Session::flash('Delete-Sub', $category->getCountSub());
+            Session::flash('Error-Sub', $category->getCountSub());
             return redirect()->route('categories.index');
         }
+
+        if($category->hasProjects()){
+            Session::flash('Error-Project', $category->getCountSub());
+            return redirect()->route('projects.index');
+        }
+
+        return $category->getProjectCount();
 
 
     
