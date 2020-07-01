@@ -158,7 +158,7 @@ return [
         'father_name' => 'نام پدر',
         'address' => 'آدرس',
         'meli_code' => 'کد ملی',
-        'date_start' => 'تاریخ شروع',
+        'date_start' => 'تاریخ شروع کار',
         'complete_after' => 'زمان تحویل',
         'contract_started' => 'تاریخ شروع قرارداد',
         'completed_at' => 'تاریخ پایان قرارداد',
