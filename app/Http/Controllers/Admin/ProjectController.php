@@ -12,21 +12,21 @@ class ProjectRequest
     public static function projectValidate($request)
     {
         $fileds = [
-            'name' => 'required',
-            'lastname' => 'required',
-            'father_name' => 'required',
-            'meli_code' => 'required',
-            'meli_image' => 'default',
-            'phone' => 'required',
-            'address' => 'required',
-            'title' => 'required',
-            'description' => 'required',
-            'price' => 'required',
-            'contract_image' => 'default',
-            'contract_started' => 'required',
-            'completed_at' => 'required',
-            'date_start' => 'required',
-            'complete_after' => 'required',
+            'name'             => 'required',
+            'lastname'         => 'required',
+            'father_name'      => 'required',
+            'meli_code'        => 'required',
+            'meli_image'       => 'default',
+            'phone'            => 'required',
+            'address'          => 'required',
+            'title'            => 'required',
+            'description'      => 'required',
+            'price'            => 'required',
+            'contract_image'   => 'default',
+            'contract_started' => 'required|before:' . $request->completed_at,
+            'completed_at'     => 'required|after:' . $request->contract_started,
+            'date_start'       => 'required',
+            'complete_after'   => 'required|numeric|min:1',
         ];
 
         $request->validate($fileds);
@@ -44,7 +44,7 @@ class ProjectController extends AdminController
 {
 
     private $repo;
-    
+
     public function __construct()
     {
         $this->repo = resolve(ProjectRepository::class);
@@ -59,9 +59,9 @@ class ProjectController extends AdminController
 
     public function create()
     {
-        $categories = $this->repo->getMainCategories();
+        $mainCategories = $this->repo->getMainCategories();
         $contractors = $this->repo->getContractors();
-        return view('Admin.Project.create', compact('categories', 'contractors'));
+        return view('Admin.Project.create', compact('mainCategories', 'contractors'));
     }
 
 
