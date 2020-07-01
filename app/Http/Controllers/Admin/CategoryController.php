@@ -91,16 +91,12 @@ class CategoryController extends AdminController
         }
 
         if($category->hasProjects()){
-            Session::flash('Error-Project', $category->getCountSub());
+            Session::flash('Error-Project', $category->getProjectCount());
             return redirect()->route('projects.index');
-        }
-
-        return $category->getProjectCount();
+        }        
 
 
-    
-
-        // $category->delete();
+        $category->delete();
         Session::flash('DeleteCategory');
         return redirect()->route('categories.index');
     }
