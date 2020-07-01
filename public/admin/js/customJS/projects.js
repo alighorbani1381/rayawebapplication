@@ -169,9 +169,10 @@ $(document).ready(function () {
     $('#delete-project').click(function () {
         var projectName = $(this).parents('td').siblings('td.projectName').text();
         var message = "آیا از حذف پروژه «" + projectName + "»" + "مطمئن هستید ؟";
+        var textMessage = "با حدف این پروژه تمامی اطلاعات مربوط به آن از سیستم پاک خواهد شد " + "این اطلاعات شامل هزینه ها، درآمد ها، اطلاعات قرارداد و حذف از سیستم کارمندان می باشد."
         Swal.fire({
             title: message,
-            text: "با حدف این پروژه تمامی اطلاعات مربوط به آن از سیستم پاک خواهد شد.",
+            text: textMessage,
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#d33',
