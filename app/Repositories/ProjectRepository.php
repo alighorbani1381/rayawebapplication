@@ -395,7 +395,7 @@ class ProjectRepository
 
     public function getMainCategories()
     {
-        return Category::where('child', '!=', '0')->get();
+        return Category::where('child', '0')->get();
     }
 
     public function getContractors()
