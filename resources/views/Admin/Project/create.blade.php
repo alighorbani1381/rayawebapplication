@@ -11,8 +11,11 @@
 <script type="text/javascript">
     $(document).ready(function() {
       $(".persian-date").persianDatepicker({
-        format: 'YYYY-MM-DD',	
-        initialValueType: 'gregorian',
+        minDate: new persianDate().unix(),
+        format: 'YYYY/MM/DD',	
+        initialValueType: 'persian',
+        autoClose: true,
+        viewMode: 'month',
         });
     });
 </script>
@@ -99,9 +102,9 @@
                             <div class="col-sm-9">
                                 <select class="form-control" name="contractors[]" multiple>
                                     <optgroup label="کارمندان" style="margin:8px 0;">
-                                    @foreach($contractors as $contractor)
-                                    <option value="{{ $contractor->id }}">{{ $contractor->full_name }}</option>
-                                    @endforeach
+                                        @foreach($contractors as $contractor)
+                                        <option value="{{ $contractor->id }}">{{ $contractor->full_name }}</option>
+                                        @endforeach
                                     </optgroup>
                                 </select>
                             </div>
