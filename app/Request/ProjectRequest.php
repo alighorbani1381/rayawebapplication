@@ -2,11 +2,22 @@
 
 namespace App\Request;
 
+use Illuminate\Support\Facades\Validator;
+
 class ProjectRequest
 {
-    public static function projectValidate($request)
+
+    private $request;
+
+    # Get All Request to use in class method
+    private  function setRequest($request)
     {
-        $fileds = [
+        $this->$request = $request;
+    }
+
+    private function getRules()
+    {
+        return [
             'name'             => 'required',
             'lastname'         => 'required',
             'father_name'      => 'required',
@@ -23,13 +34,25 @@ class ProjectRequest
             'date_start'       => 'required',
             'complete_after'   => 'required|numeric|min:1',
         ];
-
-        $request->validate($fileds);
     }
 
+
+    # Percent Divide Between Contractors
     public static function percentValidate($request)
     {
         $fileds = ['progress.*' => 'required|numeric|min:1|max:100'];
         $request->validate($fileds);
+    }
+
+    private  function getInputs()
+    {
+        # code...
+    }
+    public function validate($request)
+    {
+        $this->setRequest($request);
+        $inputs = $this->getInputs();
+        $rules = $this->getRules();
+        return Validator::make($inputs, $rules);
     }
 }
