@@ -2,73 +2,159 @@
 
 namespace App\Request;
 
+use Illuminate\Http\Request;
+use Hekmatinasser\Verta\Facades\Verta;
 use Illuminate\Support\Facades\Validator;
+
 
 class ProjectRequest
 {
 
-    private $request;
+    const validString = ['۰' => '0', '۱' => '1', '۲' => '2', '۳' => '3', '۴' => '4', '۵' => '5', '۶' => '6', '۷' => '7', '۸' => '8', '۹' => '9', '٠' => '0', '١' => '1', '٢' => '2', '٣' => '3', '٤' => '4', '٥' => '5', '٦' => '6', '٧' => '7', '٨' => '8', '٩' => '9'];
 
-    private $contractStart;
+    public $contractStart;
 
-    private $completedAt;
+    public $completedAt;
 
-    private $dateStart;
+    public $dateStart;
 
-    # Get All Request to use in class method
-    private  function setRequest($request)
+    public function setProperies($array)
     {
-        $this->$request = $request;
+        foreach ($array as $key => $value) {
+            if (!property_exists($this, $key)) {
+                $this->$key = $value;
+            }
+        }
     }
 
-    private  function getInputs()
+
+    # Get All Request to use in class method
+    public  function setRequest(Request $request)
+    {
+        $this->setProperies($request->all());
+    }
+
+    # Set Date into class
+    public function setDate($dateStart, $contractStart, $completedAt)
+    {
+        $this->dateStart = $dateStart;
+        $this->contractStart = $contractStart;
+        $this->completedAt = $completedAt;
+    }
+
+
+    # Explode Parmeter to work with date 
+    public function explodeDate($orderdate)
+    {
+        $explodeDate = explode('/', $orderdate);
+        if (count($explodeDate) != 3)
+            return false;
+
+        $date[0]   = $explodeDate[0];
+        $date[1] = $explodeDate[1];
+        $date[2]  = $explodeDate[2];
+        return $date;
+    }
+
+    # Convert Persian string to english string
+    public function convertToEnglish($string)
+    {
+        return strtr($string, self::validString);
+    }
+
+    # Convert English String to (INT)
+    public function convertToInt($date)
+    {
+        foreach ($date as $dateParam) {
+            $englishCharacters[] = $this->convertToEnglish($dateParam);
+        }
+
+        foreach ($englishCharacters as $englishChar) {
+            $numberDate[] = (int) $englishChar;
+        }
+
+        return $numberDate;
+    }
+
+    # Convert To Gregorian Form to Insert DB
+    public function getGregorianFormat($arrayDate)
+    {
+        return implode('-', $arrayDate);
+    }
+
+    public function convertToGregorian($jalaliDate)
+    {
+        $date = $this->explodeDate($jalaliDate);
+        if ($date == false)
+            return 'false';
+
+        $numberDate = $this->convertToInt($date);
+        $newDate = Verta::getGregorian($numberDate[0], $numberDate[1], $numberDate[2]);
+        $gregorian = $this->getGregorianFormat($newDate);
+        return $gregorian;
+    }
+
+    # N
+    public function normalizeDate()
+    {
+        $dateStart = $this->convertToGregorian($this->date_start);
+        $contractStart = $this->convertToGregorian($this->contract_started);
+        $completedAt = $this->convertToGregorian($this->completed_at);
+        $this->setDate($dateStart, $contractStart, $completedAt);
+    }
+
+    # Get All Request & Get Date
+    public  function getInputs()
     {
         return [
-            'name'             => $this->request->name,
-            'lastname'         => $this->request->lastname,
-            'father_name'      => $this->request->father_name,
-            'meli_code'        => $this->request->meli_code,
-            'meli_image'       => $this->request->name,
-            'phone'            => $this->request->phone,
-            'address'          => $this->request->address,
-            'title'            => $this->request->title,
-            'description'      => $this->request->description,
-            'price'            => $this->request->price,
-            'contract_image'   => $this->request->contract_image,
+            'name'             => $this->name ?? null,
+            'lastname'         => $this->lastname,
+            'father_name'      => $this->father_name,
+            'meli_code'        => $this->meli_code,
+            'meli_image'       => $this->name,
+            'phone'            => $this->phone,
+            'address'          => $this->address,
+            'title'            => $this->title,
+            'description'      => $this->description,
+            'price'            => $this->price,
+            'contract_image'   => 'default',
             'contract_started' => $this->contractStart,
             'completed_at'     => $this->completedAt,
             'date_start'       => $this->dateStart,
-            'complete_after'   => $this->request->complete_after,
+            'complete_after'   => $this->complete_after,
         ];
     }
 
-    private function getRules()
+    # Get Validation Rules
+    public function getRules()
     {
         return [
             'name'             => 'required',
             'lastname'         => 'required',
             'father_name'      => 'required',
             'meli_code'        => 'required',
-            'meli_image'       => 'default',
+            //'meli_image'       => 'default',
             'phone'            => 'required',
             'address'          => 'required',
             'title'            => 'required',
             'description'      => 'required',
             'price'            => 'required',
-            'contract_image'   => 'default',
-            'contract_started' => 'required',
-            'completed_at'     => 'required',
-            'date_start'       => 'required',
+            //'contract_image'   => 'default',
+            'contract_started' => 'required|date|date_format:Y-m-d',
+            'completed_at'     => 'required|date|date_format:Y-m-d',
+            'date_start'       => 'required|date|date_format:Y-m-d',
             'complete_after'   => 'required|numeric|min:1',
         ];
     }
 
-    public function validate($request)
+    # Main method to validate param
+    public function validate(Request $request)
     {
         $this->setRequest($request);
+        $this->normalizeDate();
         $inputs = $this->getInputs();
         $rules = $this->getRules();
-        return Validator::make($inputs, $rules);
+        return Validator::make($inputs, $rules)->validate();
     }
 
 
