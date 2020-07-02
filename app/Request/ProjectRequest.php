@@ -159,6 +159,10 @@ class ProjectRequest
             'title'            => 'required',
             'description'      => 'required',
             'price'            => 'required',
+            'contractors'      => 'required|array',
+            'categories'      => 'required|array',
+            'categories.*'      => 'required|distinct|min:0|integer',
+            'contractors.*'      => 'required|distinct|min:0|integer',
             //'contract_image'   => 'default',
             'contract_started' => 'required|date',
             'completed_at'     => 'required|date',
@@ -174,7 +178,7 @@ class ProjectRequest
         $this->normalizeDate();
         $inputs = $this->getInputs();
         $rules = $this->getRules();
-    
+
         return Validator::make($inputs, $rules)->validate();
     }
 
