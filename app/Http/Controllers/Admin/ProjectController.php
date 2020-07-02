@@ -38,8 +38,10 @@ class ProjectController extends AdminController
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $this->request->validate($request);
-        $this->repo->projectCreateFull($request);
+        return 'OK';
+        //$this->repo->projectCreateFull($request);
         return redirect()->route('projects.index');
     }
 
