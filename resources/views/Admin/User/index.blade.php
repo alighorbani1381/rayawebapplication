@@ -27,6 +27,7 @@
                         <th>شماره تماس</th>
                         <th>نام کاربری</th>
                         <th>رمزعبور</th>
+                        <th class="tac">جزیات</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
                     </tr>
@@ -62,6 +63,11 @@
                             {{ "raya-px724" }}
                             @endif
                         </td>
+                        
+                        <td class="tac">
+                            <a href="{{ route('users.show', $user->id) }}"class="btn btn-icon waves-effect waves-light btn-success m-b-5"> <i class="fa fa-eye"></i> </a>
+                        </td>
+
                         <td class="tac">
                             <a href="" class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
                                     class="fa fa-pencil"></i> </a>
