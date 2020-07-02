@@ -169,6 +169,8 @@ return [
         'new_password' => 'رمز عبور جدید',
         'repeat_password' => 'تکرار رمز عبور',
         'profile' => 'تصویر پروفایل',
+        'meli_image' => 'تصویر کد ملی',
+        'contract_image' => 'تصویر قرارداد',
     ],
 
 ];
