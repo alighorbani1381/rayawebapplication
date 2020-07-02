@@ -85,7 +85,8 @@ class UserController extends AdminController
 
     public function show(User $user)
     {
-        //
+        // dd($user);
+        return view('Admin.User.show', compact('user'));
     }
 
 
