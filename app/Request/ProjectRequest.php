@@ -171,15 +171,21 @@ class ProjectRequest
         ];
     }
 
+    # Get Validation Custom Messages
+    public function getMessages()
+    {
+        return ['categories.required' => 'انتخاب کردن خدمات مربوطه به پروژه الزامی است', 'contractors.required' => 'انتخاب پیمانکار جهت انجام پروژه الزامی است'];
+    }
+
     # Main method to validate param
     public function validate(Request $request)
     {
         $this->setRequest($request);
         $this->normalizeDate();
-        $inputs = $this->getInputs();
-        $rules = $this->getRules();
-
-        return Validator::make($inputs, $rules)->validate();
+        $inputs  = $this->getInputs();
+        $rules   = $this->getRules();
+        $message = $this->getMessages();
+        return Validator::make($inputs, $rules, $message)->validate();
     }
 
 
