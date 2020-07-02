@@ -12,16 +12,35 @@ class ProjectRequest
 
     const validString = ['۰' => '0', '۱' => '1', '۲' => '2', '۳' => '3', '۴' => '4', '۵' => '5', '۶' => '6', '۷' => '7', '۸' => '8', '۹' => '9', '٠' => '0', '١' => '1', '٢' => '2', '٣' => '3', '٤' => '4', '٥' => '5', '٦' => '6', '٧' => '7', '٨' => '8', '٩' => '9'];
 
-    public $contractStart;
+    const properties = ['name', 'lastname', 'father_name', 'meli_code', 'meli_image', 'phone', 'address', 'title', 'description', 'price', 'contract_image', 'contract_started', 'completed_at', 'date_start', 'complete_after'];
 
-    public $completedAt;
+    public $contractStart = null;
 
-    public $dateStart;
+    public $completedAt = null;
 
+    public $dateStart = null;
+
+
+
+    # Config Properties
+    public function __construct()
+    {
+        $this->createProperies(self::properties);
+    }
+
+    # Create All Properties
+    public function createProperies($array)
+    {
+        foreach ($array as $number => $key) {
+            $this->$key = null;
+        }
+    }
+
+    # Set Properties give from Request
     public function setProperies($array)
     {
         foreach ($array as $key => $value) {
-            if (!property_exists($this, $key)) {
+            if (property_exists($this, $key)) {
                 $this->$key = $value;
             }
         }
@@ -82,6 +101,7 @@ class ProjectRequest
         return implode('-', $arrayDate);
     }
 
+    # Compactable Method Change persian datepiceker string to gregorian date
     public function convertToGregorian($jalaliDate)
     {
         $date = $this->explodeDate($jalaliDate);
@@ -94,7 +114,7 @@ class ProjectRequest
         return $gregorian;
     }
 
-    # N
+    # Normalize Date convret to Gregorian 
     public function normalizeDate()
     {
         $dateStart = $this->convertToGregorian($this->date_start);
@@ -107,7 +127,7 @@ class ProjectRequest
     public  function getInputs()
     {
         return [
-            'name'             => $this->name ?? null,
+            'name'             => $this->name,
             'lastname'         => $this->lastname,
             'father_name'      => $this->father_name,
             'meli_code'        => $this->meli_code,
@@ -140,9 +160,9 @@ class ProjectRequest
             'description'      => 'required',
             'price'            => 'required',
             //'contract_image'   => 'default',
-            'contract_started' => 'required|date|date_format:Y-m-d',
-            'completed_at'     => 'required|date|date_format:Y-m-d',
-            'date_start'       => 'required|date|date_format:Y-m-d',
+            'contract_started' => 'required|date',
+            'completed_at'     => 'required|date',
+            'date_start'       => 'required|date',
             'complete_after'   => 'required|numeric|min:1',
         ];
     }
@@ -154,6 +174,7 @@ class ProjectRequest
         $this->normalizeDate();
         $inputs = $this->getInputs();
         $rules = $this->getRules();
+    
         return Validator::make($inputs, $rules)->validate();
     }
 
