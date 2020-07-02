@@ -229,7 +229,7 @@
                         <div class="col-md-9">
                             <input type="file" name="meli_image">
                             @error('meli_image')
-                            <div class="alert alert-danger"> {{ $message }} </div>
+                            <div class="alert alert-danger" style="margin: 8px 0;"> {{ $message }} </div>
                             @enderror
                         </div>
                     </div>
@@ -276,7 +276,7 @@
                         <div class="col-md-9">
                             <input type="file" name="contract_image">
                             @error('contract_image')
-                            <div class="alert alert-danger"> {{ $message }} </div>
+                            <div class="alert alert-danger"  style="margin: 8px 0;"> {{ $message }} </div>
                             @enderror
                         </div>
                     </div>
