@@ -153,7 +153,8 @@ class ProjectRequest
             'lastname'         => 'required',
             'father_name'      => 'required',
             'meli_code'        => 'required',
-            //'meli_image'       => 'default',
+            // 'meli_image'       => 'required|image',
+            // 'contract_image'   => 'required|image',
             'phone'            => 'required',
             'address'          => 'required',
             'title'            => 'required',
@@ -163,9 +164,12 @@ class ProjectRequest
             // 'categories'      => 'required|array|distinct',
             'categories.*'      => 'integer|min:0',
             'contractors.*'      => 'integer|min:0',
-            //'contract_image'   => 'default',
-            'contract_started' => 'required|date',
-            'completed_at'     => 'required|date',
+
+            // Contract Info
+            'contract_started' => 'required|date|before:' . $this->completedAt,
+            'completed_at'     => 'required|date|after:' . $this->contractStart,
+
+            // Contractor Info
             'date_start'       => 'required|date',
             'complete_after'   => 'required|numeric|min:1',
         ];
@@ -174,7 +178,12 @@ class ProjectRequest
     # Get Validation Custom Messages
     public function getMessages()
     {
-        return ['categories.required' => 'انتخاب کردن خدمات مربوطه به پروژه الزامی است', 'contractors.required' => 'انتخاب پیمانکار جهت انجام پروژه الزامی است'];
+        return [
+            'categories.required' => 'انتخاب کردن خدمات مربوطه به پروژه الزامی است',
+            'contractors.required' => 'انتخاب پیمانکار جهت انجام پروژه الزامی است',
+            'contract_started.before' => 'تاریخ شروع قرارداد باید قبل از تاریخ پایان قرارداد باشد',
+            'completed_at.after' => 'تاریخ پایان قرارداد باید بعد از تاریخ شروع قرار داد باشد',
+        ];
     }
 
     # Main method to validate param
