@@ -49,7 +49,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">مربوطه به خدمات</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="categories[]" multiple>
+                                <select multiple class="form-control" name="categories[]" required>
                                     @foreach($mainCategories as $mainCategory)
                                     @if($mainCategory->hasSubCategory())
                                     <optgroup label="{{ $mainCategory->title }}" style="margin:8px 0;">
@@ -60,6 +60,9 @@
                                     @endif
                                     @endforeach
                                 </select>
+                                  @error('categories')
+                                <div class="alert alert-danger"> {{ $message }} </div>
+                                @enderror
                             </div>
                         </div>
 
@@ -99,13 +102,16 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">انجام می شود توسط:</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="contractors[]" multiple>
+                                <select multiple  class="form-control" name="contractors[]" required>
                                     <optgroup label="کارمندان" style="margin:8px 0;">
                                         @foreach($contractors as $contractor)
                                         <option value="{{ $contractor->id }}">{{ $contractor->full_name }}</option>
                                         @endforeach
                                     </optgroup>
                                 </select>
+                                @error('contractors')
+                                <div class="alert alert-danger"> {{ $message }} </div>
+                                @enderror
                             </div>
                         </div>
 
