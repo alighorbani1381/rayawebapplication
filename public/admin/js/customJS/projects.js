@@ -123,6 +123,26 @@ $(document).ready(function () {
 
     });
 
+    // Ask Finished
+    $('#finish-project').on('click', function () {
+        Swal.fire({
+            title: "آیا از اتمام (لاگ کردن) این پروژه مطمئن هستید؟!",
+            text: "در صورت تایید، اطلاعات این پروژه به صورت لاگ برای شما ذخیره می شود و در قسمت لیست پروژه ها آن را مشاهده نخواهید کرد. ",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'نه',
+            cancelButtonText: 'آره',
+        }).then((result) => {
+            if (result.value || result.dismiss == "backdrop")
+                return false;
+            
+            var form = $(this).parents('form');
+            form.submit();
+        });
+    });
+    
     // Check Percent Between Contractor
     $('#divide-contractor').on('click', function () {
         var allPercent = parseInt($('#All-Percent').val());
