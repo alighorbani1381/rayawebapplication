@@ -2,34 +2,80 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class UserRequest
 {
 
-    public static function userValidation(Request $request)
+    private $request;
+
+    public function getRuleMessage()
     {
-
-        $fileds = [
-            'name' => 'required|max:20',
-            'lastname' => 'required|max:30',
-            'phone' => 'required|unique:App\User,phone|numeric|min:11',
-            'address' => 'required',
-            'username' => 'required|unique:App\User,username|regex:/^[a-zA-Z]+$/u|min:8',
-        ];
-
-        $messages = [
+        return [
             'username.regex' => 'نام کاربری تنها می تواند دارای حروف انگلیسی باشد.',
             'username.unique' => 'این نام کاربری تکراری است یک نام کاربری دیگر انتخاب کنید .',
             'phone.numeric' => 'فرمت شماره موبایل وارد شده نا معتبر است.',
             'phone.unique' => 'این شماره موبایل در سامانه ثبت شده است از شماره دیگری استفاده کنید.',
         ];
-        $request->validate($fileds, $messages);
+    }
+    public function setRequest($request)
+    {
+        $this->request = $request->all();
+    }
+
+    public function setRule($filed)
+    {
+        return [$filed => 'unique:App\User,' . $filed];
+    }
+
+    public function makeUniqueValidator($filed)
+    {
+        return Validator::make($this->request, $this->setRule($filed), $this->getRuleMessage())->validate();
+    }
+
+    public function checkUniqueItem(User $user, $request)
+    {
+        $this->setRequest($request);
+
+        $userPhone = User::where('phone', $request->phone);
+        $userUsername = User::where('username', $request->username);
+
+        if ($userPhone->exists() && $userPhone->first()->id != $user->id)
+            return $this->makeUniqueValidator('phone');
+
+        if ($userUsername->exists() && $userUsername->first()->id != $user->id)
+            return $this->makeUniqueValidator('username');
+    }
+
+    public function userValidation(Request $request, $username = null)
+    {
+
+        if ($username == null)
+            $fileds = [
+                'name' => 'required|max:20',
+                'lastname' => 'required|max:30',
+                'phone' => 'required|unique:App\User,phone|numeric|min:11',
+                'address' => 'required',
+                'username' => 'required|unique:App\User,username|regex:/^[a-zA-Z]+$/u|min:8',
+            ];
+        else
+            $fileds = [
+                'name' => 'required|max:20',
+                'lastname' => 'required|max:30',
+                'phone' => 'required|numeric|min:11',
+                'address' => 'required',
+                'username' => 'required|regex:/^[a-zA-Z]+$/u|min:8',
+            ];
+
+
+        $request->validate($fileds, $this->getRuleMessage());
     }
 }
 
@@ -38,35 +84,39 @@ class UserController extends AdminController
 
     private $user;
 
+    private $requ;
+
+    private $repo;
+
     public function __construct()
     {
+        # Connect Repository
+        $this->repo = resolve(UserRepository::class);
+
+        # Connect Request Handler
+        $this->requ = resolve(UserRequest::class);
+
+        # Encapsulation User in this Controller
         $this->middleware(function ($request, $next) {
             $this->user = auth()->user();
             return $next($request);
         });
     }
 
+    # Show List of Users
     public function index()
     {
-        $users = User::where('id', "!=", $this->user->id)
-            ->orderBy('type', 'asc')
-            ->orderBy('id', 'desc')
-            ->paginate(15);
+        $users = $this->repo->getUsers($this->user->id);
         return view('Admin.User.index', compact('users'));
     }
 
-    public function login(Request $request)
-    {
-        return $request->all();
-    }
-
-
+    # User Create View
     public function create()
     {
         return view('Admin.User.create');
     }
 
-
+    # User Store Data & Validate
     public function store(Request $request)
     {
         UserRequest::userValidation($request);
@@ -82,39 +132,46 @@ class UserController extends AdminController
         return redirect()->route('users.index');
     }
 
-
+    # Show User Detail
     public function show(User $user)
     {
         return view('Admin.User.show', compact('user'));
     }
 
-
+    # User Edit View
     public function edit(User $user)
     {
         return view('Admin.User.edit', compact('user'));
     }
 
-
+    # User Update Method
     public function update(Request $request, User $user)
     {
-        //
+        $this->requ->userValidation($request, 'updateValidation');
+        $this->requ->checkUniqueItem($user, $request);
+        $this->repo->userUpdate($request, $user);
+
+        session()->flash('UserUpdate');
+        return redirect()->route('users.index');
     }
 
 
+    # Remove User From System
     public function destroy(User $user)
     {
-        $user->delete();
+        //$user->delete();
         Session::flash('deleteUser');
         return redirect()->route('users.index');
     }
 
+    # Get Contractors from Ajax Request
     public function getContractors(Request $request)
     {
-        // if (!$request->ajax())
-        //     return abort(404);
-
+        if (!$request->ajax())
+            return abort(404);
 
         $projectId = $request->get('project_id');
+
         if ($projectId != null) {
             $projectContractors =  DB::table('project_contractor')
                 ->where('project_contractor.project_id', $projectId)
@@ -138,23 +195,26 @@ class UserController extends AdminController
             return view('Admin.Auth.login');
     }
 
+    # is Valid date to Login
     public function checkLogin(Request $request)
     {
         $loginInfo = $this->getLoginInfo($request);
         return $this->checkInfo($loginInfo);
     }
 
+    # Check User info access to Login or No
     private function checkInfo($loginInfo)
     {
         if (Auth::attempt($loginInfo)) {
             return redirect()->route('admin.dashboard');
-            return null;
         }
 
         session()->flash('LoginFail');
+
         return redirect()->route('login.show');
     }
 
+    # Get User Info from Request
     private function getLoginInfo($request)
     {
         return  [
@@ -163,6 +223,7 @@ class UserController extends AdminController
         ];
     }
 
+    # Logout User
     public function logout()
     {
         Auth::logout();
