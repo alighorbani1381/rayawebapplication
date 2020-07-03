@@ -149,8 +149,8 @@
                     <div class="card-box items-box">
                         <h4 class="header-title">تصویر قرار داد :</h4>
                         @if(strtolower($project['project']->contract_image) != 'default')
-                        <a href="{{ $project['project']->contract_image }}" target="_blank">
-                            <img class="contract-image" src="{{ $project['project']->contract_image }}" alt="">
+                        <a href="{{ showPicture('contract.image', $project['project']->contract_image) }}" target="_blank">
+                            <img class="contract-image" src="{{ showPicture('contract.image', $project['project']->contract_image) }}" alt="تصویر قرارداد">
                         </a>
                         @else
                         <a href="{{ asset('admin/images/symbols/contract-image.png') }}" target="_blank">
