@@ -63,7 +63,7 @@
                 <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
 
 
-                    @if($project['project']->status == 'ongoing')
+                    @if($project['project']->status == 'ongoing' && $allProgress != 100)
                     @php
 
                     if($allProgress < 25) $color="danger" ; if($allProgress>= 25 && $allProgress < 50 ) $color="warning"
@@ -78,7 +78,9 @@
                                             style="width: {{ $allProgress }}%; visibility: visible; animation-name: animationProgress;">
                                         </div>
                                     </div>
-                                    @else
+                                    @endif
+
+                                    @if($project['project']->status != 'finished')
                                     <div class="alert alert-danger war">
                                         <b>
                                             <i class="fa fa-warning"></i>&nbsp;
@@ -95,7 +97,7 @@
                                     </div>
                                     @endif
 
-                                    @if($allProgress == 100)
+                                    @if($allProgress == 100 && $project['project']->status != 'finished')
                                     <div class="alert alert-info" style="margin: 15px 0;">
                                         <i class="fa fa-info-circle"></i>
                                         <h5 style="display: inline-block; margin-right:8px;">پروژه شما به اتمام رسیده
@@ -227,7 +229,16 @@
 
                 <!-- Contractor Progress Panel Start   -->
                 <div role="tabpanel" class="tab-pane fade" id="contractors" aria-labelledby="contractors-tab">
-                    @if($allProgress == 100)
+
+
+                    @if($allProgress == 100 && $project['project']->status != 'finished')
+                    <div class="alert alert-success">
+                        <i class="fa fa-info-circle"></i>
+                        این پروژه به اتمام رسیده و به صورت لاگ ذخیره شده.
+                    </div>
+                    @endif
+
+                    @if($allProgress == 100 && $project['project']->status != 'finished')
                     <div class="alert alert-info">
                         <i class="fa fa-info-circle"></i>
                         اگر کار شما با قسمت حسابداری این پروژه به اتمام رسیده روی گزینه زیر کلیک کنید تا این پروژه به
