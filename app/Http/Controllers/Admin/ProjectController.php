@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Project;
 use Illuminate\Http\Request;
 use App\Request\ProjectRequest;
 use App\Repositories\ProjectRepository;
@@ -80,4 +81,13 @@ class ProjectController extends AdminController
         session()->flash('ActiveProject');
         return back();
     }
+
+    public function complete(Request $request)
+    {
+        $request->validate(['finished' => 'required|integer']);
+        $project = Project::findOrFail($request->finished);
+        $project->update(['status' => 'finished']);
+        return redirect()->route('projects.index');
+    }
+
 }
