@@ -98,7 +98,9 @@
                                     @if($allProgress == 100)
                                     <div class="alert alert-info" style="margin: 15px 0;">
                                         <i class="fa fa-info-circle"></i>
-                                        <h5  style="display: inline-block; margin-right:8px;" >پروژه شما به اتمام رسیده است شما میتوانید از قسمت وضعیت انجام پروژه این پروژه را به حالت تکمیل یافته تغییر دهید.</h5>
+                                        <h5 style="display: inline-block; margin-right:8px;">پروژه شما به اتمام رسیده
+                                            است شما میتوانید از قسمت وضعیت انجام پروژه این پروژه را به حالت تکمیل یافته
+                                            تغییر دهید.</h5>
                                     </div>
                                     @endif
                                     <div class="clearfix"></div>
@@ -203,18 +205,18 @@
 
                     <div class="card-box items-box">
                         <h4 class="header-title">تصویر کد ملی:</h4>
-                        
-                            @if($project['project']->meli_image != 'default')
-                            <a href="{{ showPicture('meli.image', $project['project']->meli_image) }}">
+
+                        @if($project['project']->meli_image != 'default')
+                        <a href="{{ showPicture('meli.image', $project['project']->meli_image) }}">
                             <img class="contract-image"
                                 src="{{ showPicture('meli.image', $project['project']->meli_image) }}"
                                 alt="{{ $project['project']->name . " " . $project['project']->lastname }}">
-                            </a>
-                            @else
-                            <img class="contract-image" src="{{ asset('admin/images/users/default.png') }}"
-                                alt="{{ $project['project']->name . " " . $project['project']->lastname }}">
-                            @endif
-                            </b>
+                        </a>
+                        @else
+                        <img class="contract-image" src="{{ asset('admin/images/users/default.png') }}"
+                            alt="{{ $project['project']->name . " " . $project['project']->lastname }}">
+                        @endif
+                        </b>
                     </div>
 
 
@@ -231,9 +233,14 @@
                         اگر کار شما با قسمت حسابداری این پروژه به اتمام رسیده روی گزینه زیر کلیک کنید تا این پروژه به
                         حالت پایان یافته تغییر حالت دهد.
                     </div>
-                    <button type="button" id="finish-project" class="btn btn-primary btn-bordred waves-effect w-md waves-dark m-b-10" style="float:left;">
-                        اتمام پروژه
-                    </button>
+                    <form action="{{ route('projects.complete') }}" method="post">
+                        @csrf
+                        <input type="hidden" value="{{ $project['project']->id }}" name="finished">
+                        <button type="button" id="finish-project"
+                            class="btn btn-primary btn-bordred waves-effect w-md waves-dark m-b-10" style="float:left;">
+                            اتمام پروژه
+                        </button>
+                    </form>
                     @endif
                     @foreach($project['contractors'] as $contractor)
                     @php
