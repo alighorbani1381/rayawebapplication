@@ -372,7 +372,7 @@ class ProjectRepository extends AdminController
             $this->deleteProject($projectId);
         });
     }
-    
+
     public function updateTaskMaster($taskmasterId, $request)
     {
         $fileds = [
@@ -412,13 +412,61 @@ class ProjectRepository extends AdminController
             ->update($fileds);
     }
 
+    public function getOldMeliPicture($image)
+    {
+        return self::MELI_IMAGE_PATH . '/' . $image;
+    }
+
+    public function reUplodeImage($request, $project)
+    {
+
+        $result['meli_image'] =  ($project->meli_image  != null)     ?  $project->meli_image     : 'default';
+        $result['contract']   =  ($project->contract_image != null) ?  $project->contract_image : 'default';
+
+        // dd($request->all());
+        // dd($result);
+
+        if ($request->has('meli_image')) {
+            $oldImage = $this->getOldMeliPicture($project->meli_image);
+            $result['meli_image'] = $this->uplodeImage($request->meli_image, self::MELI_IMAGE_PATH, 'meliCode');
+            $this->imageDelete($oldImage);
+        }
+
+        if ($request->has('contract_image')) {
+            $oldImage = self::CONTRACT_IMAGE_PATH . '/' . $project->contract_image;
+            $result['contract'] =  $this->uplodeImage($request->contract_image, self::CONTRACT_IMAGE_PATH, 'Contract');
+            $this->imageDelete($oldImage);
+        }
+
+        return $result;
+    }
+
+    public function updateImages($request, $project)
+    {
+        $images = $this->reUplodeImage($request, $project);
+
+        DB::table('projects')
+            ->where('projects.id', $project->id)
+            ->update([
+                'contract_image' => $images['contract']
+            ]);
+
+        DB::table('project_taskmaster')
+            ->where('project_taskmaster.id', $project->taskmaster)
+            ->update([
+                'meli_image' => $images['meli_image']
+            ]);
+    }
+
     public function updateProjectFull($projectId, $request)
     {
-        DB::transaction(function () use ($projectId, $request) {
-            $project = Project::findorFail($projectId);
-            $this->updateTaskMaster($project->taskmaster, $request);
-            $this->updateProject($project->id, $request);
-        });
+        $project = $this->getProjectFull($projectId)['project'];
+        $this->updateImages($request, $project);
+
+        // DB::transaction(function () use ($project, $request) {
+        //     $this->updateTaskMaster($project->taskmaster, $request);
+        //     $this->updateProject($project->id, $request);
+        // });
     }
 
     public function getMainCategories()
