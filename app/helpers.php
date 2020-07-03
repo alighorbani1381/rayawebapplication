@@ -33,6 +33,11 @@ function showPicture($type, $name)
                 $path = asset('admin/images/projects/contracts') . '/' . $name;
                 return $path;
             break;
+
+            case 'meli.image':
+                $path = asset('admin/images/projects/meli_code') . '/' . $name;
+                return $path;
+            break;
             
         default:
             return asset("admin/images/users/default.png");
