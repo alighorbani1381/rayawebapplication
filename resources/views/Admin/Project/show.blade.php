@@ -8,7 +8,7 @@
 <div class="row">
 
     <!-- Project Information Start !-->
-    <div class="col-md-8">
+    <div class="col-md-12">
         <div class="card-box">
 
             <ul class="nav nav-tabs nav-justified">
@@ -191,7 +191,7 @@
                         <h4 class="header-title">تصویر کد ملی:</h4>
                         <a href="" target="_blank">
                             @if($project['project']->meli_image != 'default')
-                            <img class="contract-image" src="{{ $project['project']->meli_image }}"
+                            <img class="contract-image" src="{{ showPicture('meli.image', $project['project']->meli_image) }}"
                                 alt="{{ $project['project']->name . " " . $project['project']->lastname }}">
                             @else
                             <img class="contract-image" src="{{ asset('admin/images/users/default.png') }}"
@@ -352,49 +352,7 @@
     <!-- Contractor Col End -->
     @endif
 
-    <!-- Category col Start -->
-    <div class="col-md-4">
-        <div class="card-box">
-            <div class="dropdown pull-right">
-                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
-                    <i class="zmdi zmdi-more-vert"></i>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="{{ route('categories.create') }}"><i class="fa fa-plus"></i> &nbsp;افزودن خدمت جدید</a>
-                    </li>
-
-                    <li><a href="{{ route('categories.index') }}"><i class="fa fa-list-ul"></i> &nbsp;لیست خدمات</a>
-                    </li>
-                </ul>
-            </div>
-
-            <h4 class="header-title m-t-0 m-b-30">
-                خدمات به کار گرفته شده
-                ({{ $project['categories']->count() . "مورد"}})
-            </h4>
-
-            <div>
-                @foreach($project['categories'] as $key => $category)
-                <div class="media m-b-10">
-                    <div class="media-left">
-                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="{{ $category->title }}"
-                                src="/admin/images/symbols/contract.png"> </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">{{ $category->title }}</h4>
-                        <p class="font-13 text-muted m-b-0">
-                            {{ $category->title }}
-                        </p>
-                    </div>
-
-                </div>
-                @endforeach
-
-            </div>
-        </div>
-    </div>
-    <!-- Category col End -->
-
+   
     <!-- Pay List col Start -->
     <div class="col-md-4">
         <div class="card-box">
@@ -650,6 +608,52 @@
         </div>
     </div>
     <!-- Contractor Pay  list col End -->
+
+     <!-- Category col Start -->
+     <div class="col-md-4">
+        <div class="card-box">
+            <div class="dropdown pull-right">
+                <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{ route('categories.create') }}"><i class="fa fa-plus"></i> &nbsp;افزودن خدمت جدید</a>
+                    </li>
+
+                    <li><a href="{{ route('categories.index') }}"><i class="fa fa-list-ul"></i> &nbsp;لیست خدمات</a>
+                    </li>
+                </ul>
+            </div>
+
+            <h4 class="header-title m-t-0 m-b-30">
+                خدمات به کار گرفته شده
+                ({{ $project['categories']->count() . "مورد"}})
+            </h4>
+
+            <div>
+                @foreach($project['categories'] as $key => $category)
+                <div class="media m-b-10">
+                    <div class="media-left">
+                        <a href="#"> <img class="media-object img-circle thumb-sm" alt="{{ $category->title }}"
+                                src="/admin/images/symbols/contract.png"> </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{ $category->title }}</h4>
+                        <p class="font-13 text-muted m-b-0">
+                            {{ $category->title }}
+                        </p>
+                    </div>
+
+                </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+    <!-- Category col End -->
+
+
+
 </div>
 
 @if(session()->has('ActiveProject'))
