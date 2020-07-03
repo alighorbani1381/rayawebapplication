@@ -95,7 +95,12 @@
                                     </div>
                                     @endif
 
-
+                                    @if($allProgress == 100)
+                                    <div class="alert alert-info" style="margin: 15px 0;">
+                                        <i class="fa fa-info-circle"></i>
+                                        <h5  style="display: inline-block; margin-right:8px;" >پروژه شما به اتمام رسیده است شما میتوانید از قسمت وضعیت انجام پروژه این پروژه را به حالت تکمیل یافته تغییر دهید.</h5>
+                                    </div>
+                                    @endif
                                     <div class="clearfix"></div>
                                     <div style="height: 20px;"></div>
                                     <div class="card-box items-box">
@@ -216,8 +221,18 @@
 
                 @if($isActive)
 
-                <!-- Divide Work Contractor box Start !-->
+                <!-- Contractor Progress Panel Start   -->
                 <div role="tabpanel" class="tab-pane fade" id="contractors" aria-labelledby="contractors-tab">
+                    @if($allProgress == 100)
+                    <div class="alert alert-info">
+                        <i class="fa fa-info-circle"></i>
+                        اگر کار شما با قسمت حسابداری این پروژه به اتمام رسیده روی گزینه زیر کلیک کنید تا این پروژه به
+                        حالت پایان یافته تغییر حالت دهد.
+                    </div>
+                    <button type="button" class="btn btn-primary btn-bordred waves-effect w-md waves-light m-b-5">
+                        اتمام پروژه
+                    </button>
+                    @endif
                     @foreach($project['contractors'] as $contractor)
                     @php
                     $fullName = $contractor->name . " " . $contractor->lastname;
@@ -265,19 +280,17 @@
                     </div>
                     @endforeach
                 </div>
-                <!-- Divide Work Contractor box End !-->
-
+                <!-- Contractor Progress Panel End   -->
                 @endif
-
-
             </div>
         </div>
     </div>
     <!-- Project Information End !-->
 
 
-    @if($project['project']->status == 'waiting')
-    <!-- Contractor Col Start   -->
+    @if(!$isActive)
+
+    <!-- Divide Work Contractor box Start !-->
     <div class="col-md-4">
         <div class="card-box">
             <div class="dropdown pull-right">
@@ -366,7 +379,7 @@
                 </div>
         </div>
     </div>
-    <!-- Contractor Col End -->
+    <!-- Divide Work Contractor box End !-->
     @endif
 
 
