@@ -69,7 +69,7 @@
                         </td>
 
                         <td class="tac">
-                            <a href="" class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
                                     class="fa fa-pencil"></i> </a>
                         </td>
                         <td class="tac">
