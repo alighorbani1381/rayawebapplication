@@ -5,10 +5,12 @@
 <script src="{{ asset('admin/js/customJS/projects.js') }} "></script>
 @endpush
 @section('content')
+@php $isActive = $project['project']->status != 'waiting'; @endphp
 <div class="row">
 
+
     <!-- Project Information Start !-->
-    <div class="col-md-10 col-md-offset-1">
+    <div class="@if($isActive){{"col-md-10 col-md-offset-1"}}@else{{"col-md-6"}}@endif">
         <div class="card-box">
 
             <ul class="nav nav-tabs nav-justified">
@@ -57,7 +59,7 @@
 
             <div class="tab-content">
 
-                {{-- Home Tab --}}
+                <!-- Global Project Informatino Start Panel !-->
                 <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
 
 
@@ -132,8 +134,9 @@
 
 
                 </div>
+                <!-- Global Project Informatino End Panel !-->
 
-                {{-- Home Tab --}}
+                <!-- Contract Start Panel !-->
                 <div role="tabpanel" class="tab-pane fade" id="contract" aria-labelledby="contract-tab">
                     <div class="card-box items-box">
                         <h4 class="header-title">تاریخ شروع قرارداد :</h4>
@@ -163,7 +166,9 @@
                         @endif
                     </div>
                 </div>
+                <!-- Contract End Panel !-->
 
+                <!-- Contractor Start Panel !-->
                 <div role="tabpanel" class="tab-pane fade" id="taskmaster" aria-labelledby="taskmaster-tab">
 
                     <div class="card-box items-box">
@@ -207,8 +212,11 @@
 
 
                 </div>
+                <!-- Contractor End Panel !-->
 
-                @if($project['project']->status != 'waiting')
+                @if($isActive)
+
+                <!-- Divide Work Contractor box Start !-->
                 <div role="tabpanel" class="tab-pane fade" id="contractors" aria-labelledby="contractors-tab">
                     @foreach($project['contractors'] as $contractor)
                     @php
@@ -257,6 +265,8 @@
                     </div>
                     @endforeach
                 </div>
+                <!-- Divide Work Contractor box End !-->
+
                 @endif
 
 
