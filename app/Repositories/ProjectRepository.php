@@ -2,16 +2,21 @@
 
 namespace App\Repositories;
 
-use App\Category;
 use App\Cost;
-use App\Project;
 use App\User;
-use Hekmatinasser\Verta\Facades\Verta;
+use App\Project;
+use App\Category;
 use Illuminate\Support\Facades\DB;
+use Hekmatinasser\Verta\Facades\Verta;
+use App\Http\Controllers\Admin\AdminController;
+use Carbon\Carbon;
 
-class ProjectRepository
+class ProjectRepository extends AdminController
 {
 
+    const CONTRACT_IMAGE_PATH = 'admin/images/projects/contracts';
+
+    const MELI_IMAGE_PATH = 'admin/images/projects/meli_code';
 
     /************************ Helper Function to Convert Persian date to Gregorian  ** ********************* */
 
@@ -60,7 +65,7 @@ class ProjectRepository
     /************************ Projects Functions  ** ********************* */
 
 
-    public static function createTaskMaster($request)
+    public static function createTaskMaster($request, $image)
     {
         return  DB::table('project_taskmaster')
             ->insertGetId([
@@ -68,7 +73,7 @@ class ProjectRepository
                 'lastname' => $request->lastname,
                 'father_name' => $request->father_name,
                 'meli_code' => $request->meli_code,
-                'meli_image' => 'none',
+                'meli_image' => $image,
                 'phone' => $request->phone,
                 'address' => $request->address,
             ]);
@@ -136,29 +141,33 @@ class ProjectRepository
             return false;
     }
 
-    public function createProject($request, $taskmaster)
+    public function createProject($request, $taskmaster, $image)
     {
+        # Convert Date to Gregorian 
         $dateStart = $this->convertToGregorian($request->date_start);
         $completedAt = $this->convertToGregorian($request->completed_at);
         $contractStarted = $this->convertToGregorian($request->contract_started);
 
-        $dateTime = date('Y:m:d h:m');
+        # Generate Extra stuff
+        $dateTime = Carbon::now();
         $uniqueId = $this->generateUniqueId();
+
+        # Insert row into DB
         return DB::table('projects')->insertGetId([
-            'project_creator' => '1',
-            'taskmaster' => $taskmaster,
-            'unique_id' => $uniqueId,
-            'title' => $request->title,
-            'description' => $request->description,
-            'price' => $request->price,
-            'contract_image' => 'default',
+            'project_creator' => auth()->user()->id,
+            'taskmaster'       => $taskmaster,
+            'unique_id'        => $uniqueId,
+            'title'            => $request->title,
+            'description'      => $request->description,
+            'price'            => $request->price,
+            'contract_image'   => $image,
             'contract_started' => $contractStarted,
-            'contract_ended' => $completedAt,
-            'status' => 'waiting',
-            'date_start' => $dateStart,
-            'complete_after' => $request->complete_after,
-            'created_at' => $dateTime,
-            'updated_at' => $dateTime,
+            'contract_ended'   => $completedAt,
+            'status'           => 'waiting',
+            'date_start'       => $dateStart,
+            'complete_after'   => $request->complete_after,
+            'created_at'       => $dateTime,
+            'updated_at'       => $dateTime,
         ]);
     }
 
@@ -270,11 +279,20 @@ class ProjectRepository
     public function projectCreateFull($request)
     {
         DB::transaction(function () use ($request) {
-            $taskmaster = $this->createTaskMaster($request);
-            $project = $this->createProject($request, $taskmaster);
+            $images = $this->projectImageUploade($request);
+            $taskmaster = $this->createTaskMaster($request, $images['meli_code']);
+            $project = $this->createProject($request, $taskmaster, $images['contract']);
             $this->setContractors($project, $request->contractors);
             $this->setCategories($project, $request->categories);
+            
         });
+    }
+
+    public function projectImageUploade($request)
+    { 
+        $result ['contract'] = $this->uplodeImage($request->meli_image, self::CONTRACT_IMAGE_PATH, 'Contract');
+        $result ['meli_code'] = $this->uplodeImage($request->meli_image, self::MELI_IMAGE_PATH, 'meliCode');
+        return $result;
     }
 
     public function getProjectFull($id)
