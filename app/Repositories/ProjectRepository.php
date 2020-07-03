@@ -27,7 +27,7 @@ class ProjectRepository extends AdminController
 
     public function explodeDate($orderdate)
     {
-        $explodeDate = explode('-', $orderdate);
+        $explodeDate = explode('/', $orderdate);
         $date[0]   = $explodeDate[0];
         $date[1] = $explodeDate[1];
         $date[2]  = $explodeDate[2];
@@ -290,7 +290,7 @@ class ProjectRepository extends AdminController
 
     public function projectImageUploade($request)
     { 
-        $result ['contract'] = $this->uplodeImage($request->meli_image, self::CONTRACT_IMAGE_PATH, 'Contract');
+        $result ['contract'] = $this->uplodeImage($request->contract_image, self::CONTRACT_IMAGE_PATH, 'Contract');
         $result ['meli_code'] = $this->uplodeImage($request->meli_image, self::MELI_IMAGE_PATH, 'meliCode');
         return $result;
     }
