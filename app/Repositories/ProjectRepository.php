@@ -88,35 +88,35 @@ class ProjectRepository extends AdminController
 
     private function deleteContractors($projectId)
     {
-       return DB::table('project_contractor')
+        return DB::table('project_contractor')
             ->where('project_contractor.project_id', $projectId)
             ->delete();
     }
 
     private function deleteCategories($projectId)
     {
-       return DB::table('project_category')
+        return DB::table('project_category')
             ->where('project_category.project_id', $projectId)
             ->delete();
     }
 
     private function deleteProject($projectId)
     {
-       return DB::table('projects')
+        return DB::table('projects')
             ->where('projects.id', $projectId)
             ->delete();
     }
 
     private function deleteEarning($projectId)
     {
-       return DB::table('earnings')
+        return DB::table('earnings')
             ->where('earnings.project_id', $projectId)
             ->delete();
     }
 
     private function deleteCosts($projectId)
     {
-       return DB::table('costs')
+        return DB::table('costs')
             ->where('costs.project_id', $projectId)
             ->delete();
     }
@@ -195,7 +195,7 @@ class ProjectRepository extends AdminController
             ->join('users', 'projects.project_creator', '=', 'users.id')
             ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
             ->orderBy('projects.id', 'desc')
-            ->select('projects.*', 'project_taskmaster.*', 'users.name AS creator_name', 'users.lastname AS creator_lastname', 'users.id AS creator_id')
+            ->select('project_taskmaster.*', 'projects.*', 'users.name AS creator_name', 'users.lastname AS creator_lastname', 'users.id AS creator_id')
             ->paginate(15);
     }
 
@@ -239,10 +239,11 @@ class ProjectRepository extends AdminController
         return $results;
     }
 
-    public static function getProject($id)
+    public function getProject($id)
     {
         return DB::table('projects')
             ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
+            ->select('project_taskmaster.*', 'projects.*')
             ->where('projects.id', $id)
             ->first();
     }
@@ -284,27 +285,34 @@ class ProjectRepository extends AdminController
             $project = $this->createProject($request, $taskmaster, $images['contract']);
             $this->setContractors($project, $request->contractors);
             $this->setCategories($project, $request->categories);
-            
         });
     }
 
     public function projectImageUploade($request)
-    { 
-        $result ['contract'] = $this->uplodeImage($request->contract_image, self::CONTRACT_IMAGE_PATH, 'Contract');
-        $result ['meli_code'] = $this->uplodeImage($request->meli_image, self::MELI_IMAGE_PATH, 'meliCode');
+    {
+        $result['contract'] = $this->uplodeImage($request->contract_image, self::CONTRACT_IMAGE_PATH, 'Contract');
+        $result['meli_code'] = $this->uplodeImage($request->meli_image, self::MELI_IMAGE_PATH, 'meliCode');
         return $result;
     }
 
     public function getProjectFull($id)
     {
         Project::findOrFail($id);
-        $project['project'] = $this->getProject($id);
-        $project['categories'] = $this->getCategories($id);
-        $project['contractors'] = $this->getProjectContractors($id);
-        $project['earnings'] = $this->getEarnings($id);
-        $project['base_costs'] = $this->getBaseProjectCosts($id);
+        $project['project']          = $this->getProject($id);
+        $project['earnings']         = $this->getEarnings($id);
+        $project['categories']       = $this->getCategories($id);
         $project['contractor_costs'] = $this->getContractorCosts($id);
+        $project['base_costs']       = $this->getBaseProjectCosts($id);
+        $project['contractors']      = $this->getProjectContractors($id);
         return $project;
+    }
+    public function deleteProjectImage($id)
+    {
+        $project = $this->getProjectFull($id)['project'];
+        $meliImage = self::MELI_IMAGE_PATH . '/' . $project->meli_image;
+        $contractImage = self::CONTRACT_IMAGE_PATH . '/' . $project->contract_image;
+        $this->imageDelete($meliImage);
+        $this->imageDelete($contractImage);
     }
 
     public function getBaseProjectCosts($id)
@@ -353,7 +361,9 @@ class ProjectRepository extends AdminController
 
     public function deleteFullProject($projectId)
     {
+        Project::findOrFail($projectId);
         DB::transaction(function () use ($projectId) {
+            $this->deleteProjectImage($projectId);
             $this->deleteTaskMaster($projectId);
             $this->deleteContractors($projectId);
             $this->deleteCategories($projectId);
@@ -362,7 +372,7 @@ class ProjectRepository extends AdminController
             $this->deleteProject($projectId);
         });
     }
-
+    
     public function updateTaskMaster($taskmasterId, $request)
     {
         $fileds = [
