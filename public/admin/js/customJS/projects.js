@@ -127,7 +127,7 @@ $(document).ready(function () {
     $('#finish-project').on('click', function () {
         Swal.fire({
             title: "آیا از اتمام (لاگ کردن) این پروژه مطمئن هستید؟!",
-            text: "در صورت تایید، اطلاعات این پروژه به صورت لاگ برای شما ذخیره می شود و در قسمت لیست پروژه ها آن را مشاهده نخواهید کرد. ",
+            text: "در صورت تایید، اطلاعات این پروژه به صورت لاگ برای شما ذخیره می شود. ",
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#d33',
