@@ -8,7 +8,7 @@
     <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
     <meta name="author" content="Coderthemes">
 
-    <link rel="shortcut icon" href="/admin/images/favicon.ico">
+    <link rel="icon" href="/admin/images/rayapro.ico">
 
     <title>@yield('title')</title>
 

@@ -8,7 +8,7 @@
     <meta name="author" content="Coderthemes">
 
     <!-- App Favicon -->
-    <link rel="shortcut icon" href="/admin/images/favicon.ico">
+    <link rel="shortcut icon" href="/admin/images/rayapro.ico">
 
     <!-- App title -->
     <title>ورود</title>
