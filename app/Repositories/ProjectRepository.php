@@ -194,6 +194,7 @@ class ProjectRepository extends AdminController
         return DB::table('projects')
             ->join('users', 'projects.project_creator', '=', 'users.id')
             ->join('project_taskmaster', 'projects.taskmaster', '=', 'project_taskmaster.id')
+            ->orderBy('projects.status', 'asc')
             ->orderBy('projects.id', 'desc')
             ->select('project_taskmaster.*', 'projects.*', 'users.name AS creator_name', 'users.lastname AS creator_lastname', 'users.id AS creator_id')
             ->paginate(15);
