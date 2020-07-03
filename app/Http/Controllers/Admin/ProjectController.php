@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Project;
 use Illuminate\Http\Request;
 use App\Request\ProjectRequest;
 use App\Repositories\ProjectRepository;
