@@ -26,6 +26,24 @@
                 <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                     <div class="clearfix"></div>
 
+                    <?php
+                    if( $allProgress < 25) $color="danger" ; 
+                    if($allProgress>= 25 && $allProgress < 50 ) $color="warning" ;
+                    if($allProgress>= 50 && $allProgress < 75 ) $color="info" ; 
+                    if($allProgress>= 75 && $allProgress <= 100 ) $color="success";
+                     ?>
+
+                    <div class="card-box items-box">
+                        <span class="header-title">درصد پیشرفت پروژه</span>
+                        <span class="text-{{$color}} pull-right">100%</span></p>
+                        <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
+                            <div class="progress-bar progress-bar-{{$color}} progress-bar-striped progress-animated wow animated animated "
+                                role="progressbar" aria-valuenow="{{$allProgress}}" aria-valuemin="0" aria-valuemax="100"
+                                style="width: {{$allProgress}}%; visibility: visible; animation-name: animationProgress;">
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card-box items-box">
                         <h4 class="header-title">عنوان پروژه :</h4>
                         <b> {{ $project['project']->title }} </b>
@@ -147,7 +165,6 @@
 
                         </div>
                         @endif
-
                     </div>
 
 
@@ -165,7 +182,9 @@
 
 @if(session()->has('dont-start'))
 <style>
-.swal2-popup{width:40%;}
+    .swal2-popup {
+        width: 40%;
+    }
 </style>
 
 <script>
