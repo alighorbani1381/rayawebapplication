@@ -8,7 +8,7 @@
 <div class="row">
 
     <!-- Project Information Start !-->
-    <div class="col-md-12">
+    <div class="col-md-10 col-md-offset-1">
         <div class="card-box">
 
             <ul class="nav nav-tabs nav-justified">
@@ -36,7 +36,7 @@
                     </a>
                 </li>
 
-                
+
 
                 @php
                 if($project['project']->status != 'waiting')
@@ -60,7 +60,7 @@
                 {{-- Home Tab --}}
                 <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
 
-                    
+
                     @if($project['project']->status == 'ongoing')
                     @php
 
@@ -74,8 +74,6 @@
                                             role="progressbar" aria-valuenow="{{ $allProgress }}" aria-valuemin="0"
                                             aria-valuemax="100"
                                             style="width: {{ $allProgress }}%; visibility: visible; animation-name: animationProgress;">
-
-
                                         </div>
                                     </div>
                                     @else
@@ -97,38 +95,39 @@
 
 
                                     <div class="clearfix"></div>
-                    <div class="card-box items-box">
-                        <h4 class="header-title">عنوان پروژه :</h4>
-                        <b> {{ $project['project']->title }} </b>
-                    </div>
+                                    <div style="height: 20px;"></div>
+                                    <div class="card-box items-box">
+                                        <h4 class="header-title">عنوان پروژه :</h4>
+                                        <b> {{ $project['project']->title }} </b>
+                                    </div>
 
-                    <div class="card-box items-box">
-                        <h4 class="header-title">قیمت : </h4>
-                        <b> {{ number_format($project['project']->price) . " تومان "}} </b>
-                    </div>
+                                    <div class="card-box items-box">
+                                        <h4 class="header-title">قیمت : </h4>
+                                        <b> {{ number_format($project['project']->price) . " تومان "}} </b>
+                                    </div>
 
-                    <div class="card-box items-box">
-                        <h4 class="header-title">شناسه پروژه : </h4>
-                        <b> {{ $project['project']->unique_id }} </b>
-                    </div>
+                                    <div class="card-box items-box">
+                                        <h4 class="header-title">شناسه پروژه : </h4>
+                                        <b> {{ $project['project']->unique_id }} </b>
+                                    </div>
 
 
 
-                    @php
-                    $paragraphs = explode('\n', $project['project']->description);
-                    @endphp
+                                    @php
+                                    $paragraphs = explode('\n', $project['project']->description);
+                                    @endphp
 
-                    <div class="card-box items-box">
-                        <h4 class="header-title">توضیحات پروژه : </h4>
+                                    <div class="card-box items-box">
+                                        <h4 class="header-title">توضیحات پروژه : </h4>
 
-                        @foreach($paragraphs as $paragraph)
-                        <p class="text-muted" style="text-align: justify;">
-                            {{ $paragraph . "."}}
-                        </p>
-                        @endforeach
-                    </div>
+                                        @foreach($paragraphs as $paragraph)
+                                        <p class="text-muted" style="text-align: justify;">
+                                            {{ $paragraph . "."}}
+                                        </p>
+                                        @endforeach
+                                    </div>
 
-                    <div class="m-b-20"></div>
+                                    <div class="m-b-20"></div>
 
 
 
@@ -138,7 +137,8 @@
                 <div role="tabpanel" class="tab-pane fade" id="contract" aria-labelledby="contract-tab">
                     <div class="card-box items-box">
                         <h4 class="header-title">تاریخ شروع قرارداد :</h4>
-                        <b class="date-show"> {{ verta($project['project']->contract_started)->formatJalaliDate() }} </b>
+                        <b class="date-show"> {{ verta($project['project']->contract_started)->formatJalaliDate() }}
+                        </b>
                     </div>
 
                     <div class="card-box items-box">
@@ -149,12 +149,16 @@
                     <div class="card-box items-box">
                         <h4 class="header-title">تصویر قرار داد :</h4>
                         @if(strtolower($project['project']->contract_image) != 'default')
-                        <a href="{{ showPicture('contract.image', $project['project']->contract_image) }}" target="_blank">
-                            <img class="contract-image" src="{{ showPicture('contract.image', $project['project']->contract_image) }}" alt="تصویر قرارداد">
+                        <a href="{{ showPicture('contract.image', $project['project']->contract_image) }}"
+                            target="_blank">
+                            <img class="contract-image"
+                                src="{{ showPicture('contract.image', $project['project']->contract_image) }}"
+                                alt="تصویر قرارداد">
                         </a>
                         @else
                         <a href="{{ asset('admin/images/symbols/contract-image.png') }}" target="_blank">
-                            <img class="contract-image" src="{{ asset('admin/images/symbols/contract-image.png') }}" alt="تصویر قرارداد">
+                            <img class="contract-image" src="{{ asset('admin/images/symbols/contract-image.png') }}"
+                                alt="تصویر قرارداد">
                         </a>
                         @endif
                     </div>
@@ -191,7 +195,8 @@
                         <h4 class="header-title">تصویر کد ملی:</h4>
                         <a href="" target="_blank">
                             @if($project['project']->meli_image != 'default')
-                            <img class="contract-image" src="{{ showPicture('meli.image', $project['project']->meli_image) }}"
+                            <img class="contract-image"
+                                src="{{ showPicture('meli.image', $project['project']->meli_image) }}"
                                 alt="{{ $project['project']->name . " " . $project['project']->lastname }}">
                             @else
                             <img class="contract-image" src="{{ asset('admin/images/users/default.png') }}"
@@ -302,13 +307,15 @@
                         <?php $contractorFullName = $contractor->name . " " . $contractor->lastname;?>
                         <div class="media m-b-10">
                             <div class="media-left">
-                                <a href="#"> 
-                                    @if($contractor->profile != 'default')                                    
-                                    <img class="media-object img-circle thumb-sm" alt="{{ $contractorFullName }}" src="{{ showPicture('user.profile', $contractor->profile) }}"> 
+                                <a href="#">
+                                    @if($contractor->profile != 'default')
+                                    <img class="media-object img-circle thumb-sm" alt="{{ $contractorFullName }}"
+                                        src="{{ showPicture('user.profile', $contractor->profile) }}">
                                     @else
-                                    <img class="media-object img-circle thumb-sm" alt="{{ $contractorFullName }}" src="/admin/images/users/default.png"> 
+                                    <img class="media-object img-circle thumb-sm" alt="{{ $contractorFullName }}"
+                                        src="/admin/images/users/default.png">
                                     @endif
-                                    </a>
+                                </a>
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">{{ $contractorFullName }}</h4>
@@ -352,7 +359,7 @@
     <!-- Contractor Col End -->
     @endif
 
-   
+
     <!-- Pay List col Start -->
     <div class="col-md-4">
         <div class="card-box">
@@ -385,7 +392,10 @@
 
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading" style="margin-bottom: 12px; margin-top:4px;">{{ $earning->title }}
+                        <h4 class="media-heading" style="margin-bottom: 12px; margin-top:4px;">
+                            <a href="{{ route('earnings.show', $earning->id)}}">
+                                {{ $earning->title }}
+                            </a>
                         </h4>
                         <p class="font-13 text-muted m-b-0" style="display: block; text-align:right;">
                             <span>تاریخ ثبت:</span>
@@ -405,11 +415,6 @@
                             <button class="btn btn-danger waves-effect waves-light btn-sm m-b-5">پرداخت نشده</button>
                             @endif
                         </div>
-                        <a href="{{ route('earnings.show', $earning->id)}}"
-                            class="btn btn-purple waves-effect submit-button">
-                            <i class="fa fa-eye"></i> &nbsp;
-                            مشاهده
-                        </a>
                     </div>
 
                 </div>
@@ -466,7 +471,11 @@
 
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading" style="margin-bottom: 12px; margin-top:4px;">{{ $cost->title }}</h4>
+                        <h4 class="media-heading" style="margin-bottom: 12px; margin-top:4px;">
+                            <a href="{{ route('costs.show', $cost->id)}}">
+                                {{ $cost->title }}
+                            </a>
+                        </h4>
 
                         <div class="date-show earning-time" style="margin: 12px 0;">
                             <span>نوع هزینه:</span>
@@ -478,23 +487,19 @@
                             <time dir="ltr" class="date-show">{{ verta($cost->created_at)->format('Y/n/j H:i') }}</time>
                         </p>
                         <div class="date-show earning-time" style="margin: 12px 0;">
-                            <span>میزان هزینه:</span>
+                            <span>میزان هزینه : </span>
                             <span style="font-weight: bold;">{{ number_format($cost->money_paid) . " تومان " }}</span>
                         </div>
 
 
                         <div>
-                            <span>وضعیت:</span>
+                            <span>وضعیت : </span>
                             @if($cost->status == 'paid')
                             <button class="btn btn-success waves-effect waves-light btn-sm m-b-5">پرداخت شده</button>
                             @else
                             <button class="btn btn-danger waves-effect waves-light btn-sm m-b-5">پرداخت نشده</button>
                             @endif
                         </div>
-                        <a href="{{ route('costs.show', $cost->id)}}" class="btn btn-purple waves-effect submit-button">
-                            <i class="fa fa-eye"></i> &nbsp;
-                            مشاهده
-                        </a>
                     </div>
 
                 </div>
@@ -552,40 +557,40 @@
 
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading" style="margin-bottom: 12px; margin-top:4px;">{{ $cost->title }}</h4>
+                        <h4 class="media-heading" style="margin-bottom: 12px; margin-top:4px;">
+                            <a href="{{ route('costs.show', $cost->id)}}">
+                                {{ $cost->title }}
+                            </a>
+                        </h4>
 
                         <div class="date-show earning-time" style="margin: 12px 0;">
                             <span>پرداخت شده به :</span>
                             <span style="font-weight: bold;">{{ $cost->name . " " . $cost->lastname }}</span>
                         </div>
-
+                        <br>
                         <div class="date-show earning-time" style="margin: 12px 0;">
-                            <span>نوع هزینه:</span>
+                            <span>نوع هزینه : </span>
                             <span style="font-weight: bold;">{{ $cost->type_title}}</span>
                         </div>
 
                         <p class="font-13 text-muted m-b-0" style="display: block; text-align:right;">
-                            <span>تاریخ ثبت:</span>
+                            <span>تاریخ ثبت :</span>
                             <time dir="ltr" class="date-show">{{ verta($cost->created_at)->format('Y/n/j H:i') }}</time>
                         </p>
                         <div class="date-show earning-time" style="margin: 12px 0;">
-                            <span>میزان هزینه:</span>
+                            <span>میزان هزینه : </span>
                             <span style="font-weight: bold;">{{ number_format($cost->money_paid) . " تومان " }}</span>
                         </div>
 
 
                         <div>
-                            <span>وضعیت:</span>
+                            <span>وضعیت : </span>
                             @if($cost->status == 'paid')
                             <button class="btn btn-success waves-effect waves-light btn-sm m-b-5">پرداخت شده</button>
                             @else
                             <button class="btn btn-danger waves-effect waves-light btn-sm m-b-5">پرداخت نشده</button>
                             @endif
                         </div>
-                        <a href="{{ route('costs.show', $cost->id)}}" class="btn btn-purple waves-effect submit-button">
-                            <i class="fa fa-eye"></i> &nbsp;
-                            مشاهده
-                        </a>
                     </div>
 
                 </div>
@@ -609,8 +614,8 @@
     </div>
     <!-- Contractor Pay  list col End -->
 
-     <!-- Category col Start -->
-     <div class="col-md-4">
+    <!-- Category col Start -->
+    <div class="col-md-4">
         <div class="card-box">
             <div class="dropdown pull-right">
                 <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
