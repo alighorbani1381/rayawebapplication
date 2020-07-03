@@ -203,11 +203,13 @@
 
                     <div class="card-box items-box">
                         <h4 class="header-title">تصویر کد ملی:</h4>
-                        <a href="" target="_blank">
+                        
                             @if($project['project']->meli_image != 'default')
+                            <a href="{{ showPicture('meli.image', $project['project']->meli_image) }}">
                             <img class="contract-image"
                                 src="{{ showPicture('meli.image', $project['project']->meli_image) }}"
                                 alt="{{ $project['project']->name . " " . $project['project']->lastname }}">
+                            </a>
                             @else
                             <img class="contract-image" src="{{ asset('admin/images/users/default.png') }}"
                                 alt="{{ $project['project']->name . " " . $project['project']->lastname }}">
@@ -229,7 +231,7 @@
                         اگر کار شما با قسمت حسابداری این پروژه به اتمام رسیده روی گزینه زیر کلیک کنید تا این پروژه به
                         حالت پایان یافته تغییر حالت دهد.
                     </div>
-                    <button type="button" class="btn btn-primary btn-bordred waves-effect w-md waves-light m-b-5">
+                    <button type="button" id="finish-project" class="btn btn-primary btn-bordred waves-effect w-md waves-dark m-b-10" style="float:left;">
                         اتمام پروژه
                     </button>
                     @endif
@@ -252,7 +254,7 @@
                             @endif
 
                             <h4 class="header-title">نام پیمانکار : </h4>
-                            <b>{{ $fullName }}</b>
+                            <a href="{{ route('users.show', $contractor->id) }}"><b>{{ $fullName }}</b></a>
                         </div>
 
                         <div style="margin-bottom:30px;">
