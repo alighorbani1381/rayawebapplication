@@ -37,6 +37,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin', 'isAdmin'], 'p
     Route::post('profile/change/image', 'ProfileController@changeImage')->name('admin.image.change');
     Route::get('profile', 'ProfileController@index')->name('admin.profile.index');
     Route::post('projects/contractors/divide', 'ProjectController@percentDivide')->name('projects.divide');
+    Route::post('projects/complete', 'ProjectController@complete')->name('projects.complete');
     Route::resource('projects', 'ProjectController');
     Route::resource('users', 'UserController');
     Route::get('give/contractor', 'UserController@getContractors');
