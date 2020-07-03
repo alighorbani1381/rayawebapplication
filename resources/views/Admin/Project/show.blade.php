@@ -272,20 +272,24 @@
                             <h4 class="header-title">درصد اختصاص یافته : </h4>
                             <b>{{ $contractor->progress_access . "%" }}</b>
                         </div>
-                        @php
-                        if( $progress < 25) $color="danger" ; if($progress>= 25 && $progress < 50 ) $color="warning" ;
-                                if($progress>= 50 && $progress < 75 ) $color="info" ; if($progress>= 75 && $progress <=
-                                        100 ) $color="success" ; @endphp <p class="font-600 m-b-5 text-{{$color}}">
-                                        پیشرفت کار این پیمانکار
-                                        <span class="text-{{$color}} pull-right">{{ $progress . "%"}}</span>
-                                        </p>
-                                        <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
-                                            <div class="progress-bar progress-bar-{{$color}} progress-bar-striped progress-animated wow animated animated "
-                                                role="progressbar" aria-valuenow="{{ $contractor->progress}}"
-                                                aria-valuemin="0" aria-valuemax="100"
-                                                style="width: {{ $contractor->progress}}%; visibility: visible; animation-name: animationProgress;">
-                                            </div>
-                                        </div>
+                        <?php
+                        if( $progress < 25) $color="danger" ; 
+                        if($progress>= 25 && $progress < 50 ) $color="warning" ;
+                        if($progress>= 50 && $progress < 75 ) $color="info" ; 
+                        if($progress>= 75 && $progress <= 100 ) $color="success";
+                         ?>
+
+                        <p class="font-600 m-b-5 text-{{$color}}">
+                            پیشرفت کار این پیمانکار
+                            <span class="text-{{$color}} pull-right">{{ $progress . "%"}}</span>
+                        </p>
+                        <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
+                            <div class="progress-bar progress-bar-{{$color}} progress-bar-striped progress-animated wow animated animated "
+                                role="progressbar" aria-valuenow="{{ $contractor->progress}}" aria-valuemin="0"
+                                aria-valuemax="100"
+                                style="width: {{ $contractor->progress}}%; visibility: visible; animation-name: animationProgress;">
+                            </div>
+                        </div>
                     </div>
                     @endforeach
                 </div>
