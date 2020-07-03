@@ -3,7 +3,7 @@
 @section('header', 'ویرایش پروژه')
 @section('content')
 <div class="row">
-    <div class="col-sm-10 col-lg-offset-1">
+    <div class="col-sm-10 col-sm-offset-1">
         <div class="card-box">
             <div class="row">
                 <form class="form-vertical" method="post"
@@ -90,7 +90,7 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-10 col-lg-offset-1">
+    <div class="col-sm-10 col-sm-offset-1">
         <div class="card-box">
             <div class="row">
                 <div class="col-lg-6">
@@ -277,8 +277,10 @@
 <script type="text/javascript">
     $(document).ready(function() {
       $(".persian-date").persianDatepicker({
-        format: 'YYYY-MM-DD',	
+        minDate: new persianDate().unix(),
+        format: 'YYYY/MM/DD',	
         initialValueType: 'gregorian',
+        autoClose: true,
         });
     });
 </script>
