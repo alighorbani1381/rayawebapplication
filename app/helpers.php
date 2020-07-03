@@ -28,6 +28,11 @@ function showPicture($type, $name)
                 $path = asset('profiles/admins') . '/' . $name;
                 return $path;
             break;
+
+            case 'contract.image':
+                $path = asset('admin/images/projects/contracts') . '/' . $name;
+                return $path;
+            break;
             
         default:
             return asset("admin/images/users/default.png");
