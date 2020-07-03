@@ -85,9 +85,13 @@ class ProjectController extends AdminController
     public function complete(Request $request)
     {
         $request->validate(['finished' => 'required|integer']);
+
+        $project = $this->repo->getProjectFull($request->finished);
+        $allProgress = $this->repo->getProgress($project);
         $project = Project::findOrFail($request->finished);
-        $project->update(['status' => 'finished']);
+        
+        if ($allProgress == 100)
+            $project->update(['status' => 'finished']);
         return redirect()->route('projects.index');
     }
-
 }
