@@ -1,10 +1,12 @@
 <?php
+
 namespace App\Repositories;
 
 use App\User;
 use Illuminate\Http\Request;
 
-class UserRepository{
+class UserRepository
+{
 
 
     public function userUpdate(Request $request, User $user)
@@ -17,4 +19,11 @@ class UserRepository{
         ]);
     }
 
+    public function getUsers($userId)
+    {
+        return User::where('id', "!=", $userId)
+            ->orderBy('type', 'asc')
+            ->orderBy('id', 'desc')
+            ->paginate(15);
+    }
 }
