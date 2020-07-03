@@ -16,7 +16,6 @@
             <a href="{{ route('projects.create') }}"
                 class="cbfl btn btn-info btn-bordred waves-effect waves-dark m-b-5"> <i class="fa fa-plus-circle"></i>
                 <span>افزودن جدید </span> </a>
-
             @if(hasMember($projects))
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>
@@ -82,7 +81,7 @@
                             <form method="post" action="{{ route('projects.destroy', $project->id) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" id="delete-project" class="delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i class="fa fa-remove"></i> </button>
+                                <button type="button" class="delete-project delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i class="fa fa-remove"></i> </button>
                             </form>
                         </td>
                     </tr>
