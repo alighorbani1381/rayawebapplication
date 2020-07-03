@@ -38,10 +38,8 @@ class ProjectController extends AdminController
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->request->validate($request);
-        return 'OK';
-        //$this->repo->projectCreateFull($request);
+        $this->repo->projectCreateFull($request);
         return redirect()->route('projects.index');
     }
 
@@ -71,7 +69,6 @@ class ProjectController extends AdminController
 
     public function destroy($project)
     {
-        Project::findOrFail($project);
         $this->repo->deleteFullProject($project);
         session()->flash('ProjectDelete');
         return back();
