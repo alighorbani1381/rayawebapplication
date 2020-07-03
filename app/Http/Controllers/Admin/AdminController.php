@@ -44,6 +44,13 @@ class AdminController extends Controller
         return "/Profile-" . $filename;
     }
 
+    public function uplodeImage($file, $pubpath = null, $prefix)
+    {
+        $filename = $prefix . '-' . time() . "-" . rand(2, 512) . "." . $file->getClientOriginalExtension();
+        $path = public_path($pubpath);
+        $files = $file->move($path, $filename);
+        return $filename;
+    }
 
 
     public function search($class = User::class, $field, $data, $pagin = 10)
