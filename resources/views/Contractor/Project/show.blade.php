@@ -73,13 +73,8 @@
                     <div class="clearfix"></div>
 
                     <div class="card-box items-box">
-                        <h4 class="header-title">تعداد مشارکت کننده ها :</h4>
-                        <b> {{ $project['contractors']->count() . " نفر " }} </b>
-                    </div>
-
-                    <div class="card-box items-box">
                         <div class="project-members m-b-20">
-                            <h4 class="header-title">مشارکت کننده های پروژه :</h4>
+                            <h4 class="header-title">مشارکت کننده های پروژه ({{ $project['contractors']->count() . " نفر " }}) :</h4>
 
                             @foreach($project['contractors'] as $contractor)
                             <a href="#" data-toggle="tooltip" data-placement="top" title=""
