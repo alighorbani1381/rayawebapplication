@@ -490,6 +490,7 @@ class ProjectRepository extends AdminController
         return DB::table('project_contractor')
             ->join('projects', 'project_contractor.project_id', '=', 'projects.id')
             ->where('contractor_id', $userId)
+            ->orderBy('projects.status', 'asc')
             ->orderBy('projects.id', 'desc')
             ->paginate(15);
     }
@@ -527,7 +528,6 @@ class ProjectRepository extends AdminController
         $isAccess = $this->isAccessToProject($projectId, $userId);
         if (!$isAccess) {
             abort('404');
-            return null;
         }
     }
 
@@ -548,10 +548,16 @@ class ProjectRepository extends AdminController
         return $progressInfo;
     }
 
-    public function updateProgress($id, $progress)
+    public function updateProgress($id, $projectId, $progress, $userId)
     {
+        # Authorization
+        $project = Project::findorFail($projectId);
+        $this->canUpdateProgress($project, $userId);
+
         return DB::table('project_contractor')
             ->where('id', $id)
+            ->where('project_id', $projectId)
+            ->where('contractor_id', $userId)
             ->update(['progress' => $progress]);
     }
 
@@ -561,5 +567,23 @@ class ProjectRepository extends AdminController
         $result['isFuture'] = $date->isFuture();
         $result['diff'] = $date->formatDifference();
         return $result;
+    }
+
+    public function canUpdateProgress($project, $userId)
+    {
+
+        # is Access to Project
+        $this->contractorGate($project->id, $userId);
+
+        # When User Don't Access to Change Progress => (Date Started > Now)
+        $result = $this->isAccessChangeProgress($project);
+
+        # When Project is Finished (Don't Access Contractor to Change)
+        $isFinished = $project->status == 'finished';
+
+        if ($result['isFuture'] || $isFinished) {
+            abort('404');
+            return null;
+        }
     }
 }
