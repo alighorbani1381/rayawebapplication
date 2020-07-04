@@ -64,7 +64,8 @@ class ProjectController extends MainController
 
     public function storeProgress(Request $request)
     {
-        $this->repo->updateProgress($request->id, $request->progress);
+        $request->validate(['id' => 'required', 'project' => 'required']);
+        $this->repo->updateProgress($request->id, $request->project, $request->progress, $this->user->id);
         session()->flash('ProgressChange');
         return redirect()->route('contractor.projects.ongoing');
     }
