@@ -8,47 +8,45 @@
     <div class="col-md-12">
         <div class="card-box">
 
+            <!-- Main Menu Start !-->
             <ul class="nav nav-tabs nav-justified">
                 <li role="presentation" class="active">
                     <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home"
-                        aria-expanded="true">اطلاعات کلی پروژه</a>
+                        aria-expanded="true">
+                        <i class="fa fa-info-circle i-fix"></i>
+                        <span>اطلاعات کلی پروژه</span>
+                    </a>
                 </li>
 
                 <li role="presentation" class="">
                     <a href="#contract" role="tab" id="contract-tab" data-toggle="tab" aria-controls="contract"
-                        aria-expanded="false">اطلاعات مربوط به زمان انجام پروژه</a>
+                        aria-expanded="false">
+                        <i class="fa fa-clock-o i-fix"></i>
+                        <span>اطلاعات مربوط به زمان انجام پروژه</span>
+                    </a>
+                </li>
+
+                <li role="presentation" class="">
+                    <a href="#statistic" role="tab" id="statistic-tab" data-toggle="tab" aria-controls="statistic"
+                        aria-expanded="false">
+                        <i class="fa fa-bar-chart-o i-fix"></i>
+                        <span>آمار مربوط به انجام پروژه</span>
+                    </a>
                 </li>
             </ul>
+            <!-- Main Menu End !-->
 
+            <!-- Tabs Start !-->
             <div class="tab-content">
 
                 {{-- Global Information Project Tab --}}
                 <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                     <div class="clearfix"></div>
 
-                    <?php
-                    if( $allProgress < 25) $color="danger" ; 
-                    if($allProgress>= 25 && $allProgress < 50 ) $color="warning" ;
-                    if($allProgress>= 50 && $allProgress < 75 ) $color="info" ; 
-                    if($allProgress>= 75 && $allProgress <= 100 ) $color="success";
-                     ?>
-
-                    <div class="card-box items-box">
-                        <span class="header-title">درصد پیشرفت پروژه</span>
-                        <span class="text-{{$color}} pull-right">100%</span></p>
-                        <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
-                            <div class="progress-bar progress-bar-{{$color}} progress-bar-striped progress-animated wow animated animated "
-                                role="progressbar" aria-valuenow="{{$allProgress}}" aria-valuemin="0" aria-valuemax="100"
-                                style="width: {{$allProgress}}%; visibility: visible; animation-name: animationProgress;">
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="card-box items-box">
                         <h4 class="header-title">عنوان پروژه :</h4>
                         <b> {{ $project['project']->title }} </b>
                     </div>
-
 
                     <div class="card-box items-box">
                         <h4 class="header-title">شناسه پروژه : </h4>
@@ -68,6 +66,85 @@
                         </p>
                         @endforeach
                     </div>
+                    <div class="m-b-20"></div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade in" id="statistic" aria-labelledby="statistic-tab">
+                    <div class="clearfix"></div>
+
+                    <div class="card-box items-box">
+                        <h4 class="header-title">تعداد مشارکت کننده ها :</h4>
+                        <b> {{ $project['contractors']->count() . " نفر " }} </b>
+                    </div>
+
+                    <div class="card-box items-box">
+                        <div class="project-members m-b-20">
+                            <h4 class="header-title">مشارکت کننده های پروژه :</h4>
+
+                            @foreach($project['contractors'] as $contractor)
+                            <a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                data-original-title="@if($contractor->id != auth()->user()->id){{ $contractor->name . ' ' . $contractor->lastname }}@else{{"شما"}}@endif">
+                                @if($contractor->profile != 'default')
+                                <img src="{{ showPicture('user.profile', $contractor->profile) }}"
+                                    class="img-circle thumb-sm" alt="friend">
+                                @else
+                                <img src="/admin/images/users/default.png" class="img-circle thumb-sm" alt="friend">
+                                @endif
+                            </a>
+                            @endforeach
+
+                        </div>
+                    </div>
+
+                    <?php
+                    if( $allProgress < 25) $color="danger" ; 
+                    if($allProgress>= 25 && $allProgress < 50 ) $color="warning" ;
+                    if($allProgress>= 50 && $allProgress < 75 ) $color="info" ; 
+                    if($allProgress>= 75 && $allProgress <= 100 ) $color="success";
+                     ?>
+
+                    <div class="card-box items-box">
+                        <span class="header-title">درصد پیشرفت کل پروژه</span>
+                        <span class="text-{{$color}} pull-right">{{$allProgress}}%</span></p>
+                        <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
+                            <div class="progress-bar progress-bar-{{$color}} progress-bar-striped progress-animated wow animated animated "
+                                role="progressbar" aria-valuenow="{{$allProgress}}" aria-valuemin="0"
+                                aria-valuemax="100"
+                                style="width: {{$allProgress}}%; visibility: visible; animation-name: animationProgress;">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <?php
+                    $selfProgress = $progressInfo->progress;
+                    if( $selfProgress < 25) $color="danger" ; 
+                    if($selfProgress>= 25 && $selfProgress < 50 ) $color="warning" ;
+                    if($selfProgress>= 50 && $selfProgress < 75 ) $color="info" ; 
+                    if($selfProgress>= 75 && $selfProgress <= 100 ) $color="success";
+                     ?>
+
+                    <div class="card-box items-box">
+                        <span class="header-title">درصد پیشرفت شما</span>
+                        <span class="text-{{$color}} pull-right">{{$selfProgress}}%</span></p>
+                        <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
+                            <div class="progress-bar progress-bar-{{$color}} progress-bar-striped progress-animated wow animated animated "
+                                role="progressbar" aria-valuenow="{{$selfProgress}}" aria-valuemin="0"
+                                aria-valuemax="100"
+                                style="width: {{$selfProgress}}%; visibility: visible; animation-name: animationProgress;">
+                            </div>
+                        </div>
+                    </div>
+                    @if($allProgress != 100)
+                    <div class="card-box items-box" style="position: relative; visibility: hidden;">
+                        <a href="{{ route('contractor.projects.show.progress', $project['project']->id) }}"
+                            class="btn btn-success waves-effect submit-button" style="position: absolute; display:block !important; margin-left:0; left:10px; visibility: visible;">
+                            
+                            <span>ویرایش میزان پیشرفت پروژه</span>
+                            <i class="fa fa-pencil m-l-5"></i>
+                        </a>
+                    </div>
+                    @endif
                     <div class="m-b-20"></div>
                 </div>
 
@@ -137,6 +214,8 @@
                 @endif
 
 
+
+
                 @if($percentLeft < 100) <span class="header-title">روز های باقی مانده بر حسب درصد</span>
                     <div class="card-box items-box">
                         <span class="text-{{$color}} pull-right">{{ $percentLeft }}%</span></p>
@@ -171,6 +250,8 @@
 
 
             </div>
+            <!-- Tabs End !-->
+
         </div>
     </div>
     <!-- Project Information End !-->
