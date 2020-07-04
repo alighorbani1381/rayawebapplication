@@ -47,7 +47,8 @@ class ProjectController extends MainController
         $this->repo->contractorGate($project, $this->user->id);
         $project = $this->repo->getProjectFull($project);
         $allProgress = $this->repo->getProgress($project);
-        return view('Contractor.Project.show', compact('project', 'allProgress'));
+        $progressInfo = $this->repo->getProgressInfo($project['project']->id, $this->user->id);        
+        return view('Contractor.Project.show', compact('project', 'allProgress', 'progressInfo'));
     }
 
     public function showProgress(Project $project)
