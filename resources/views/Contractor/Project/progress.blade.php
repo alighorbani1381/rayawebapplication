@@ -6,7 +6,6 @@
     <div class="col-md-12">
 
         <div class="card-box">
-
             <div class="dropdown pull-right">
                 <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
                     <i class="zmdi zmdi-more-vert"></i>
@@ -29,6 +28,7 @@
             <form class="form-horizontal" method="post" action="{{ route('contractor.projects.store.progress') }}">
                 @csrf
                 <input type="hidden" name="id" value="{{ $progressInfo->id }}">
+                <input type="hidden" name="project" value="{{ $progressInfo->project_id }}">
                 <div class="form-group">
                     <label for="range_01" class="col-sm-2 control-label">
                         پیشرفت تغییرات
