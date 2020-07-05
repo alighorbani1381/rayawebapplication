@@ -44,10 +44,27 @@ class UserRepository
             ->exists();
     }
 
+    private function hasContractorCost()
+    {
+        return DB::table('costs')
+            ->where('contractor_id', $this->id)
+            ->exists();
+    }
+
+    private function hasContractorDependency()
+    {
+        return $this->hasContractorCost();
+    }
+
+    private function hasAdminDependency()
+    {
+        return ($this->hasProject() || $this->isCreateProject() || $this->hasEarning() || $this->hasCost());
+    }
+
     public function hasDependency($userId)
     {
         $this->setUserId($userId);
-        return ($this->hasProject() || $this->isCreateProject() || $this->hasEarning() || $this->hasCost());
+        return ($this->hasAdminDependency() || $this->hasContractorDependency());
     }
 
     public function userUpdate(Request $request, User $user)
