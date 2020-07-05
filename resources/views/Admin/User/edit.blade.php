@@ -8,7 +8,7 @@
             <h4 class="header-title m-t-0 m-b-30">مشخصات کاربر</h4>
             <div class="row">
                 <div class="col-lg-11">
-                    <form class="form-horizontal" action="{{ route('users.index') }}" method="post">
+                    <form class="form-horizontal" action="{{ route('users.update', $user->id) }}" method="post">
                         @csrf
                         @method('PATCH')
                         <div class="form-group">
