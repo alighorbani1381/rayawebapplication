@@ -93,7 +93,7 @@ class CostRepository
             ->leftJoin('cost_statics', 'cost_statics.id', '=', 'costs.type')
             ->whereNotNull('project_id')
             ->where('contractor_id', null)
-            ->get();
+            ->paginate(15);
     }
 
     public function getContractorCosts()
@@ -104,14 +104,14 @@ class CostRepository
             ->orderBy('costs.id', 'desc')
             ->orderBy('costs.project_id')
             ->orderBy('costs.created_at')
-            ->get();
+            ->paginate(15);
     }
 
     public function getExtraCosts()
     {
         return Cost::where('project_id', null)
             ->where('contractor_id', null)
-            ->get();
+            ->paginate(15);
     }
 
     public function getCosts()
