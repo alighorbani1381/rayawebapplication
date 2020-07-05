@@ -2,13 +2,22 @@
 
 namespace App;
 
+use App\Repositories\UserRepository;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
     public $table = 'users';
+
     protected $guarded = [];
+
+    private $repo;
+
+    public function __construct()
+    {
+        $this->repo = resolve(UserRepository::class);
+    }
 
     public function getFullNameAttribute()
     {
@@ -37,5 +46,10 @@ class User extends Authenticatable
         else
             $status = false;
         return $status;
+    }
+
+    public function hasDependency()
+    {
+        return $this->repo->hasDependency($this->id);
     }
 }
