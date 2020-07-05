@@ -1,22 +1,17 @@
 @extends('Admin.Layout.main')
 @section('title', 'لیست در آمد ها')
 @section('header', 'لیست درآمد های شما')
-@push('js')
-<script src="{{ asset('admin/js/customJS/earnings.js') }} "></script>
-@endpush
 @section('content')
 <div class="row">
     <div class="col-sm-12">
         <div class="card-box table-responsive">
-
+            @if(hasMember($earnings))
             <h4 class="header-title m-t-0 m-b-30 inb">
-                لیست درآمد های شما</h4>
-
+                لیست درآمد های شما
+            </h4>
             <a href="{{ route('earnings.create') }}"
                 class="cbfl btn btn-info btn-bordred waves-effect waves-dark m-b-5"> <i class="fa fa-plus-circle"></i>
                 <span>افزودن جدید </span> </a>
-
-            @if(hasMember($earnings))
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                     <tr>
@@ -32,7 +27,6 @@
                         <th class="tac">حذف</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     @foreach ($earnings as $row => $earning)
                     <tr>
@@ -45,23 +39,27 @@
                         <td class="tac">
                             @if($earning->status == 'paid')
                             <button type="button"
-                                class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">پرداخت
-                                شده</button>
+                                class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">
+                                پرداخت شده
+                            </button>
                             @else
                             <button type="button"
-                                class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">پرداخت
-                                نشده</button>
+                                class="btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">
+                                پرداخت نشده
+                            </button>
                             @endif
                         </td>
                         <td class="tac">
                             <a href="{{ route('earnings.show', $earning->id) }}"
-                                class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i
-                                    class="fa fa-file-text-o"></i> </a>
+                                class="btn btn-icon waves-effect waves-light btn-primary m-b-5">
+                                <i class="fa fa-file-text-o"></i>
+                            </a>
                         </td>
                         <td class="tac">
                             <a href="{{ route('earnings.edit', $earning->id) }}"
-                                class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
-                                    class="fa fa-pencil"></i> </a>
+                                class="btn btn-icon waves-effect waves-light btn-info m-b-5">
+                                <i class="fa fa-pencil"></i>
+                            </a>
                         </td>
                         <td class="tac">
                             <form method="post" action="{{ route('earnings.destroy', $earning->id) }}">
@@ -74,22 +72,20 @@
                         </td>
                     </tr>
                     @endforeach
-
                 </tbody>
             </table>
             @else
             {!! recordMessage("شما تا کنون در آمدی ثبت نکرده اید") !!}
             @endif
-
             {{ $earnings->links() }}
         </div>
-    </div><!-- end col -->
+    </div>
 </div>
 
 @if(session()->has('DeleteEarning'))
 <script id="showMessage">
     minMbox('درآمد مورد نظر با موفقیت حذف شد.', 350);
-    setTimeout(function(){$("#showMessage").remove();}, 400);
+   setTimeout(function(){$("#showMessage").remove();}, 400);
 </script>
 @endif
 
@@ -98,4 +94,9 @@
     minMbox('درآمد مورد نظر با موفقیت ویرایش شد.', 350);
 </script>
 @endif
+
 @endsection
+
+@push('js')
+<script src="{{ asset('admin/js/customJS/earnings.js') }} "></script>
+@endpush
