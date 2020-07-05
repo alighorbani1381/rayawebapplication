@@ -13,6 +13,7 @@ class CreateProjectsTable extends Migration
      */
     public function up()
     {
+        # Create Project Tables
         Schema::create('projects', function (Blueprint $table) {
             $table->bigIncrements('id');
 
@@ -40,12 +41,14 @@ class CreateProjectsTable extends Migration
             $table->timestamps();
         });
 
+        # Create Pivot Table Connect Category to Project
         Schema::create('project_category', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('project_id');
             $table->integer('category_id');
         });
 
+        # Create Pivot Table Connect Contractor to Project
         Schema::create('project_contractor', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('project_id');
@@ -54,6 +57,7 @@ class CreateProjectsTable extends Migration
             $table->integer('progress')->nullable();
         });
 
+        # Create Continue of Project Table save taskmasterinfo
         Schema::create('project_taskmaster', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
