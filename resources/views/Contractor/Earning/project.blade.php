@@ -15,13 +15,13 @@
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th>ردیف</th>
+                        <th class="tac">ردیف</th>
                         <th>عنوان درآمد</th>
-                        <th>ثبت کننده این درآمد</th>
+                        <th class="tac">ثبت کننده این درآمد</th>
                         <th class="tac">تاریخ ثبت درآمد</th>
                         <th class="tac">زمان ثبت درآمد</th>
-                        <th>وضعیت</th>
-                        <th>میزان درآمد (تومان)</th>
+                        <th class="tac">وضعیت</th>
+                        <th class="tac">میزان درآمد (تومان)</th>
                         <th class="tac">جزئیات</th>
                     </tr>
                 </thead>
@@ -29,9 +29,9 @@
                 <tbody>
                     @foreach ($earnings as $row => $earning)
                     <tr>
-                        <td><?= $row  + 1 ?></td>
+                        <td class="tac"><?= $row  + 1 ?></td>
                         <td>{{ $earning->title }}</td>
-                        <td>{{ $earning->name . " " . $earning->lastname  }}</td>
+                        <td class="tac">{{ $earning->name . " " . $earning->lastname  }}</td>
                         <td class="tac date-show">{{ verta($earning->created_at)->formatJalaliDate() }}</td>
                         <td class="tac date-show">{{ verta($earning->created_at)->format('h:m') }}</td>
                         <td class="tac">
@@ -45,7 +45,7 @@
                             @endif
                         </td>
 
-                        <td>{{ number_format($earning->money_paid) }}</td>
+                        <td class="tac">{{ number_format($earning->money_paid) }}</td>
                         <td class="tac">
                             <a href="{{ route('contractor.earning.show', $earning->id) }}"
                                 class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i
