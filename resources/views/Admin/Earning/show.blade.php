@@ -64,12 +64,12 @@
             <ul class="list-inline task-dates m-b-0 m-t-20">
                 <li>
                     <h5 class="font-600 m-b-5">تاریخ ثبت پروژه</h5>
-                    <p class="date-show">{{ verta($earning->project_start) }}</p>
+                    <p class="date-show">{{ verta($earning->project_start)->format('Y/n/j H:i') }}</p>
                 </li>
 
                 <li>
                     <h5 class="font-600 m-b-5">تاریخ ثبت درآمد</h5>
-                    <p class="date-show">{{ verta($earning->created_at) }}</p>
+                    <p class="date-show">{{ verta($earning->created_at)->format('Y/n/j H:i') }}</p>
                 </li>
             </ul>
             <div class="clearfix"></div>
@@ -84,7 +84,7 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li>
-                        <a href="{{ route('contractor.projects.show', $earning->project_id) }}" target="_blank"> <i class="fa fa-eye"></i> &nbsp;&nbsp;
+                        <a href="{{ route('projects.show', $earning->project_id) }}" target="_blank"> <i class="fa fa-eye"></i> &nbsp;&nbsp;
                             مشاهده</a>
 
                     </li>
