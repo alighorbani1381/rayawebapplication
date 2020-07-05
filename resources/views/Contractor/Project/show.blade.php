@@ -41,6 +41,22 @@
 
                 {{-- Global Information Project Tab --}}
                 <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+
+                    @if($project['project']->status == "ongoing")
+                    <div class="alert alert-info">
+                        <i class="fa fa-info-circle"></i>
+                        این پروژه در دست اجرا می باشد.
+                    </div>
+                    @endif
+
+                    @if($project['project']->status == "finished")
+                    <div class="alert alert-danger">
+                        <i class="fa fa-info-circle"></i>
+                        این پروژه پایان یافته است.
+                    </div>
+                    @endif
+
+
                     <div class="clearfix"></div>
 
                     <div class="card-box items-box">
@@ -74,10 +90,12 @@
 
                     <div class="card-box items-box">
                         <div class="project-members m-b-20">
-                            <h4 class="header-title">مشارکت کننده های پروژه ({{ $project['contractors']->count() . " نفر " }}) :</h4>
+                            <h4 class="header-title">مشارکت کننده های پروژه
+                                ({{ $project['contractors']->count() . " نفر " }}) :</h4>
 
                             @foreach($project['contractors'] as $contractor)
-                        <a href=" @if($contractor->profile != 'default'){{ showPicture('user.profile', $contractor->profile) }}@else{{ "#" }}@endif" data-toggle="tooltip" data-placement="top" title=""
+                            <a href=" @if($contractor->profile != 'default'){{ showPicture('user.profile', $contractor->profile) }}@else{{ "#" }}@endif"
+                                data-toggle="tooltip" data-placement="top" title=""
                                 data-original-title="@if($contractor->id != auth()->user()->id){{ $contractor->name . ' ' . $contractor->lastname }}@else{{"شما"}}@endif">
                                 @if($contractor->profile != 'default')
                                 <img src="{{ showPicture('user.profile', $contractor->profile) }}"
@@ -133,8 +151,9 @@
                     @if($allProgress != 100)
                     <div class="card-box items-box" style="position: relative; visibility: hidden;">
                         <a href="{{ route('contractor.projects.show.progress', $project['project']->id) }}"
-                            class="btn btn-success waves-effect submit-button" style="position: absolute; display:block !important; margin-left:0; left:10px; visibility: visible;">
-                            
+                            class="btn btn-success waves-effect submit-button"
+                            style="position: absolute; display:block !important; margin-left:0; left:10px; visibility: visible;">
+
                             <span>ویرایش میزان پیشرفت پروژه</span>
                             <i class="fa fa-pencil m-l-5"></i>
                         </a>
@@ -210,8 +229,8 @@
 
 
 
-
-                @if($percentLeft < 100) <span class="header-title">روز های باقی مانده بر حسب درصد</span>
+                @if($percentLeft < 100 && $percentLeft !=0) <span class="header-title">روز های باقی مانده بر حسب
+                    درصد</span>
                     <div class="card-box items-box">
                         <span class="text-{{$color}} pull-right">{{ $percentLeft }}%</span></p>
                         <div class="progress progress-bar-{{$color}}-alt progress-md m-b-5">
@@ -221,35 +240,36 @@
                                 style="width: {{ $percentLeft }}%; visibility: visible; animation-name: animationProgress;">
                             </div>
                         </div>
-                        @else
-                        <div class="card-box items-box" style="background: #ffc800;color: black;">
-                            <span class="header-title" style="display:inline-block; margin-bottom:10px;">نکته
-                                مهم:</span>
-
-                            <b class="date-show">
-                                <?php $dateStart = verta($project['project']->date_start)?>
-                                این پروژه
-                                <span style="font-size:large; color:#e01c1c;">
-                                    {{ $dateStart->formatDifference() . " "}}
-                                </span>
-                                برای شما فعال می شود.
-
-                            </b>
-
-
-                        </div>
-                        @endif
                     </div>
+                    @endif
+
+                    @if($percentLeft != 0)
+                    <div class="card-box items-box" style="background: #ffc800;color: black;">
+                        <span class="header-title" style="display:inline-block; margin-bottom:10px;">نکته
+                            مهم:</span>
+
+                        <b class="date-show">
+                            <?php $dateStart = verta($project['project']->date_start)?>
+                            این پروژه
+                            <span style="font-size:large; color:#e01c1c;">
+                                {{ $dateStart->formatDifference() . " "}}
+                            </span>
+                            برای شما فعال می شود.
+                        </b>
+                    </div>
+            @endif
 
 
 
 
-            </div>
-            <!-- Tabs End !-->
+
 
         </div>
+        <!-- Tabs End !-->
+
     </div>
-    <!-- Project Information End !-->
+</div>
+<!-- Project Information End !-->
 
 
 </div>
