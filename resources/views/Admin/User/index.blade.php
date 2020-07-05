@@ -20,14 +20,14 @@
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th>ردیف</th>
-                        <th>مشخصات کاربر</th>
-                        <th>نوع کاربر</th>
+                        <th class="tac">ردیف</th>
+                        <th class="tac">مشخصات کاربر</th>
+                        <th class="tac">نوع کاربر</th>
                         <th class="tac">پروفایل کاربر</th>
-                        <th>شماره تماس</th>
-                        <th>نام کاربری</th>
-                        <th>رمزعبور</th>
-                        <th class="tac">جزیات</th>
+                        <th class="tac">شماره تماس</th>
+                        <th class="tac">نام کاربری</th>
+                        <th class="tac">رمزعبور</th>
+                        <th class="tac">جزئیات</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
                     </tr>
@@ -37,9 +37,9 @@
 
                     @foreach ($users as $row => $user)
                     <tr>
-                        <td>{{ $row + 1 }}</td>
-                        <td class="fullname">{{ $user->full_name}}</td>
-                        <td>
+                        <td class="tac">{{ $row + 1 }}</td>
+                        <td class="tac fullname">{{ $user->full_name}}</td>
+                        <td class="tac">
                             @if($user->type == "admin")
                             {{ "مدیر" }}
                             @else
@@ -53,9 +53,9 @@
                             <img class="tumb-pic-index" src="{{ showPicture(null, $user->profile) }}" alt="{{ $user->full_name}}" title="{{ $user->full_name}}">
                             @endif
                         </td>
-                        <td>{{ $user->phone}}</td>
-                        <td>{{ $user->username}}</td>
-                        <td>
+                        <td class="tac">{{ $user->phone}}</td>
+                        <td class="tac">{{ $user->username}}</td>
+                        <td class="tac">
                             @if(! Hash::check("raya-px724", $user->password))
                             {{ "Secret" }}
                             <i class="fa fa-lock"></i>
