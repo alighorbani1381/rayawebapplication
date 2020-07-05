@@ -58,7 +58,8 @@
 
 <!-- Project Container Start !-->
 <div class="row">
-
+    
+    @if(hasMember($projectStatistic['project']))
     <!-- Project Widget Start !-->
     <div class="col-lg-4 col-md-6">
         <div class="card-box">
@@ -75,7 +76,7 @@
                 وضعیت پیشرفت پروژه های در دست انجام
             </h4>
 
-            @if(count($projectStatistic['project']) != 0 )
+
             @foreach($projectStatistic['project'] as $key => $project)
             <?php
             $progress = $projectStatistic['progress'][$key]; 
@@ -102,16 +103,11 @@
 
         </div>
     </div>
-    @else
-    <div class="alert-alert info">
-        <i class="fa fa-info-cirlce"></i> &nbsp;
-        پروژه فعالی در سیستم وجود ندارد.
-    </div>
     <!-- Project Widget End !-->
     @endif
 
     <!-- Last Project  Widget Start !-->
-    <div class="col-lg-8">
+    <div class="@if(hasMember($latestProject)){{"col-lg-8"}}@else{{"col-lg-12"}}@endif">
         <div class="card-box">
             <div class="dropdown pull-right">
                 <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
@@ -125,6 +121,7 @@
 
             <h4 class="header-title m-t-0 m-b-30">آخرین پروژه های اجرا شده</h4>
 
+            @if(hasMember($latestProject))
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -173,9 +170,21 @@
                     </tbody>
                 </table>
             </div>
+            @else
+            <img class="project-not-found" src="{{ asset('admin/images/symbols/Notproject.png') }}"
+                alt="پروژه ای یافت نشد">
+            <div class="notfound-content">
+                <span style="font-size: large;">
+                    من که اینجا پروژه ای پیدا نکردم فک کنم باید اول یه پروژه رو ثبت کنی 
+                </span>
+            </div>
+            @endif
+
         </div>
     </div>
     <!-- Last Project  Widget End !-->
+
+
 </div>
 <!-- Project Container End !-->
 
