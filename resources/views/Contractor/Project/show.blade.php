@@ -77,7 +77,7 @@
                             <h4 class="header-title">مشارکت کننده های پروژه ({{ $project['contractors']->count() . " نفر " }}) :</h4>
 
                             @foreach($project['contractors'] as $contractor)
-                            <a href="#" data-toggle="tooltip" data-placement="top" title=""
+                        <a href=" @if($contractor->profile != 'default'){{ showPicture('user.profile', $contractor->profile) }}@else{{ "#" }}@endif" data-toggle="tooltip" data-placement="top" title=""
                                 data-original-title="@if($contractor->id != auth()->user()->id){{ $contractor->name . ' ' . $contractor->lastname }}@else{{"شما"}}@endif">
                                 @if($contractor->profile != 'default')
                                 <img src="{{ showPicture('user.profile', $contractor->profile) }}"
