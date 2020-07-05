@@ -488,7 +488,9 @@ class ProjectRepository extends AdminController
     public function getContractorProject($userId)
     {
         return DB::table('project_contractor')
+            ->select('projects.*', 'users.name', 'users.lastname')
             ->join('projects', 'project_contractor.project_id', '=', 'projects.id')
+            ->join('users', 'projects.project_creator', '=', 'users.id')
             ->where('contractor_id', $userId)
             ->orderBy('projects.status', 'asc')
             ->orderBy('projects.id', 'desc')
@@ -498,7 +500,9 @@ class ProjectRepository extends AdminController
     public function getContractorOngoingProject($userId)
     {
         return DB::table('project_contractor')
+            ->select('projects.*', 'users.name', 'users.lastname')
             ->join('projects', 'project_contractor.project_id', '=', 'projects.id')
+            ->join('users', 'projects.project_creator', '=', 'users.id')
             ->where('contractor_id', $userId)
             ->where('status', 'ongoing')
             ->orderBy('projects.id', 'desc')
