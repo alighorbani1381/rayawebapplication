@@ -15,6 +15,7 @@
                 <thead>
                     <tr>
                         <th>ردیف</th>
+                        <th>ایجاد شده توسط</th>
                         <th>عنوان پروژه</th>
                         <th>توضیحات پروژه (خلاصه)</th>
                         <th>شناسه پروژه</th>
@@ -27,6 +28,7 @@
                     @foreach ($projects as $row => $project)
                     <tr>
                         <td><?= $row  + 1 ?></td>
+                        <td>{{ $project->name . " " . $project->lastname }}</td>
                         <td class="projectName">{{ $project->title }}</td>
                         <td>{{ mb_substr($project->description,0 , 80) . "..." }}</td>
                         <td>{{ $project->unique_id }}</td>
