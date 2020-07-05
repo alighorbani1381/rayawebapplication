@@ -21,6 +21,7 @@ class CostRepository
 
     public function projectStorePay($request, $userId)
     {
+
         $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -28,7 +29,8 @@ class CostRepository
             'project_id' => 'required',
             'status' => 'required',
         ]);
-        $type =  ($request->type == 0) ? null : $request->type;
+        $type =  ($request->type == "0") ? null : $request->type;
+
 
         Cost::create([
             'generator' => $userId,
@@ -71,7 +73,8 @@ class CostRepository
             'status' => 'required',
         ]);
         $type =  ($request->type == 0) ? null : $request->type;
-        Cost::create([
+
+        return Cost::create([
             'generator' => $userId,
             'project_id' => $request->project_id,
             'contractor_id' => $request->contractor_id,
@@ -80,16 +83,15 @@ class CostRepository
             'money_paid' => $request->money_paid,
             'type' => $type,
             'status' => $request->status,
-
         ]);
     }
 
     public function getProjectBaseCosts()
     {
-        return Cost::join('projects', 'costs.project_id', '=', 'projects.id')
-            ->join('cost_statics', 'cost_statics.id', '=', 'costs.type')
-            ->select('projects.title AS project_title', 'costs.*', 'cost_statics.title AS cost_type')
-            ->where('project_id', '!=', null)
+        return Cost::select('projects.title AS project_title', 'costs.*', 'cost_statics.title AS cost_type')
+            ->leftJoin('projects', 'costs.project_id', '=', 'projects.id')
+            ->leftJoin('cost_statics', 'cost_statics.id', '=', 'costs.type')
+            ->whereNotNull('project_id')
             ->where('contractor_id', null)
             ->get();
     }
