@@ -63,7 +63,7 @@ class UserRequest
                 'lastname' => 'required|max:30',
                 'phone' => 'required|unique:App\User,phone|numeric|min:11',
                 'address' => 'required',
-                'username' => 'required|unique:App\User,username|regex:/^[a-zA-Z]+$/u|min:8',
+                'username' => 'required|unique:App\User,username|regex:/[a-z A-Z0-9\\_\\"]+$/|min:8',
             ];
         else
             $fileds = [
@@ -71,7 +71,7 @@ class UserRequest
                 'lastname' => 'required|max:30',
                 'phone' => 'required|numeric|min:11',
                 'address' => 'required',
-                'username' => 'required|regex:/^[a-zA-Z]+$/u|min:8',
+                'username' => 'required|regex:/[a-z A-Z0-9\\_\\"]+$/|min:8',
             ];
 
 
@@ -119,16 +119,8 @@ class UserController extends AdminController
     # User Store Data & Validate
     public function store(Request $request)
     {
-        UserRequest::userValidation($request);
-        User::create([
-            'name' => $request->name,
-            'lastname' => $request->lastname,
-            'phone' => $request->phone,
-            'address' => $request->address,
-            'type' => $request->type,
-            'username' => $request->username,
-            'password' => 'raya-px724',
-        ]);
+        $this->requ->userValidation($request);
+        $this->repo->createUser($request);
         return redirect()->route('users.index');
     }
 
