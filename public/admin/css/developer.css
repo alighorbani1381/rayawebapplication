@@ -194,7 +194,7 @@ h2#swal2-title {
     width: 140px;
 }
 .exists-record{
-    width: 14%;
+    width: 30%;
     margin-left:40px;
 }
 
@@ -202,7 +202,7 @@ h2#swal2-title {
     display: inline-block;
     padding: 41px;    
     border: 3px solid;
-    width:65%;
+    width:50%;
     color: white;
     border-color: #d1ccf7;
     border-radius: 100px 40px 40px 100px;
