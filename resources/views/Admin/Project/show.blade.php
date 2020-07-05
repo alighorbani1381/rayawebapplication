@@ -10,7 +10,7 @@
 
 
     <!-- Project Information Start !-->
-    <div class="@if($isActive){{"col-md-10 col-md-offset-1"}}@else{{"col-md-6"}}@endif">
+    <div class="@if($isActive){{"col-md-10 col-md-offset-1"}}@else{{"col-md-8"}}@endif">
         <div class="card-box">
 
             <ul class="nav nav-tabs nav-justified">
@@ -80,7 +80,7 @@
                                     </div>
                                     @endif
 
-                                    @if($project['project']->status != 'finished')
+                                    @if($project['project']->status == 'waiting')
                                     <div class="alert alert-danger war">
                                         <b>
                                             <i class="fa fa-warning"></i>&nbsp;
@@ -107,6 +107,14 @@
                                     @endif
                                     <div class="clearfix"></div>
                                     <div style="height: 20px;"></div>
+
+                                    @if($allProgress == 100 && $project['project']->status == 'finished')
+                                    <div class="alert alert-success">
+                                        <i class="fa fa-info-circle"></i>
+                                        این پروژه به اتمام رسیده و به صورت لاگ ذخیره شده.
+                                    </div>
+                                    @endif
+
                                     <div class="card-box items-box">
                                         <h4 class="header-title">عنوان پروژه :</h4>
                                         <b> {{ $project['project']->title }} </b>
@@ -231,12 +239,7 @@
                 <div role="tabpanel" class="tab-pane fade" id="contractors" aria-labelledby="contractors-tab">
 
 
-                    @if($allProgress == 100 && $project['project']->status != 'finished')
-                    <div class="alert alert-success">
-                        <i class="fa fa-info-circle"></i>
-                        این پروژه به اتمام رسیده و به صورت لاگ ذخیره شده.
-                    </div>
-                    @endif
+                  
 
                     @if($allProgress == 100 && $project['project']->status != 'finished')
                     <div class="alert alert-info">
@@ -253,6 +256,7 @@
                         </button>
                     </form>
                     @endif
+
                     @foreach($project['contractors'] as $contractor)
                     @php
                     $fullName = $contractor->name . " " . $contractor->lastname;
