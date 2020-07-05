@@ -5,7 +5,7 @@ $(document).ready(function () {
 
         Swal.fire({
             title: message,
-            text: "با حذف این کاربر اطلاعات مربوط به او از درون سیستم پاک می شود",
+            text: "شما تنها مجاز به حذف کاربرانی هستید که در سیستم شما مشارکتی نداشته اند",
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#d33',
