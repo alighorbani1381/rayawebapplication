@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository
 {
@@ -83,5 +84,25 @@ class UserRepository
             ->orderBy('type', 'asc')
             ->orderBy('id', 'desc')
             ->paginate(15);
+    }
+
+    private function generatePassword()
+    {
+        return bcrypt("raya-px724");
+    }
+
+    public function createUser(Request $request)
+    {
+        return DB::table('users')
+            ->insert([
+                'name' => $request->name,
+                'lastname' => $request->lastname,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'type' => $request->type,
+                'username' => $request->username,
+                'profile' => 'default',
+                'password' => $this->generatePassword(),
+            ]);
     }
 }
