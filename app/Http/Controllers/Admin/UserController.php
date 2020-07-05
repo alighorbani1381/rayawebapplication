@@ -159,8 +159,13 @@ class UserController extends AdminController
     # Remove User From System
     public function destroy(User $user)
     {
-        //$user->delete();
-        Session::flash('deleteUser');
+        if ($user->hasDependency()) {
+            Session::flash('NotDeleteUser');
+        } else {
+            $user->delete();
+            Session::flash('deleteUser');
+        }
+
         return redirect()->route('users.index');
     }
 
