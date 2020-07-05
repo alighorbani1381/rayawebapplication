@@ -14,11 +14,10 @@
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                     <tr>
-                        <th>ردیف</th>
+                        <th class="tac">ردیف</th>
                         <th>ایجاد شده توسط</th>
                         <th>عنوان پروژه</th>
                         <th>توضیحات پروژه (خلاصه)</th>
-                        <th class="tac">شناسه پروژه</th>
                         <th class="tac">تاریخ ثبت</th>
                         <th class="tac">تاریخ شروع</th>
                         <th class="tac">مدت زمان تحویل </th>
@@ -31,11 +30,10 @@
                 <tbody>
                     @foreach ($projects as $row => $project)
                     <tr>
-                        <td><?= $row  + 1 ?></td>
+                        <td class="tac"><?= $row  + 1 ?></td>
                         <td>{{ $project->name . " " . $project->lastname }}</td>
                         <td class="projectName">{{ $project->title }}</td>
                         <td>{{ mb_substr($project->description,0 , 80) . "..." }}</td>
-                        <td class="tac">{{ $project->unique_id }}</td>
                         <td class="tac">{{ verta($project->created_at)->formatJalaliDate() }}</td>
                         <td class="tac">{{ verta($project->date_start)->formatJalaliDate() }}</td>
                         <td class="tac">{{ $project->complete_after . " روز " }}</td>
