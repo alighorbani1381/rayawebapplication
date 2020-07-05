@@ -5,9 +5,20 @@
 <script src="{{ asset('admin/js/customJS/users.js') }} "></script>
 @endpush
 @section('content')
+
 @if(session()->has('deleteUser'))
 <script>
     $(document).ready(function(){showUserDeleteMessage();}); 
+</script>
+@endif
+
+@if(session()->has('NotDeleteUser'))
+<script>
+    var title= "حذف این کاربر ممکن نیست!";
+    var message = "شما تنها به مجاز به حذف کاربرانی هستید که در سیستم شما تغییراتی ایجاد نکنند";
+    var icon = "error";
+    var btn = "باشه";
+    maxMbox(title, message, icon, btn);
 </script>
 @endif
 
