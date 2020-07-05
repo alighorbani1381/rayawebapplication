@@ -222,6 +222,7 @@ class ProjectRepository extends AdminController
     public function getLatestExecutedProject()
     {
         $projects = $this->getLatestSixProject();
+        $result = [];
         foreach ($projects as $project) {
             $project = $this->getProjectFull($project->id);
             $result[] = $project['project'];
@@ -231,6 +232,9 @@ class ProjectRepository extends AdminController
     public function getStatisticProject()
     {
         $actives = $this->getActiveProjects();
+        $results['project'] = null;
+        $results['progress'] = null;
+
         foreach ($actives as $active) {
             $project = $this->getProjectFull($active->id);
             $allProgress = $this->getProgress($project);
