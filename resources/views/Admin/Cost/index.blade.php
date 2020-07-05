@@ -45,12 +45,12 @@
                <table id="datatable" class="table table-striped table-bordered">
                   <thead>
                      <tr>
-                        <th>ردیف</th>
+                        <th class="tac">ردیف</th>
                         <th>عنوان هزینه</th>
                         <th>توضیحات (خلاصه)</th>
                         <th class="tac">وضعیت</th>
                         <th class="tac">زمان ثبت</th>
-                        <th>نوع هزینه</th>
+                        <th class="tac">نوع هزینه</th>
                         <th class="tac">جزئیات</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
@@ -59,7 +59,7 @@
                   <tbody>
                      @foreach ($costs['extra'] as $row => $cost)
                      <tr>
-                        <td><?= $row  + 1 ?></td>
+                        <td class="tac"><?= $row  + 1 ?></td>
                         <td class="costTitle" type="extra">{{ $cost->title }}</td>
                         <td>{{ $cost->sub_desc }}</td>
                         <td class="tac">
@@ -77,7 +77,7 @@
                         </td>
                         @php $time = verta($cost->created_at); @endphp
                         <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
-                        <td>{{ $cost->type_title }}</td>
+                        <td class="tac">{{ $cost->type_title }}</td>
                         <td class="tac">
                            <a href="{{ route('costs.show', $cost->id) }}"
                                class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i
@@ -113,13 +113,13 @@
                <table id="datatable" class="table table-striped table-bordered">
                   <thead>
                      <tr>
-                        <th>ردیف</th>
+                        <th class="tac">ردیف</th>
                         <th>عنوان هزینه</th>
                         <th>توضیحات (خلاصه)</th>
                         <th class="tac">عنوان پروژه</th>
                         <th class="tac">وضعیت</th>
                         <th class="tac">زمان ثبت</th>
-                        <th>نوع هزینه</th>
+                        <th class="tac">نوع هزینه</th>
                         <th class="tac">جزئیات</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
@@ -128,7 +128,7 @@
                   <tbody>
                      @foreach ($costs['project_base'] as $row => $cost)
                      <tr>
-                        <td><?= $row  + 1 ?></td>
+                        <td class="tac"><?= $row  + 1 ?></td>
                         <td class="costTitle" type="project_base">{{ $cost->title }}</td>
                         <td>{{ $cost->sub_desc }}</td>
                         <td class="tac projectName">{{ $cost->project_title }}</td>
@@ -145,7 +145,7 @@
                         </td>
                         @php $time = verta($cost->created_at); @endphp
                         <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
-                        <td>{{ $cost->type_title }}</td>
+                        <td class="tac">{{ $cost->type_title }}</td>
                         <td class="tac">
                            <a href="{{ route('costs.show', $cost->id) }}" class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> 
                               <i class="fa fa-file-text-o"></i>
@@ -182,14 +182,14 @@
                <table id="datatable" class="table table-striped table-bordered">
                   <thead>
                      <tr>
-                        <th>ردیف</th>
+                        <th class="tac">ردیف</th>
                         <th>عنوان هزینه</th>
                         <th>پرداخت شده به</th>
                         <th>توضیحات (خلاصه)</th>
                         <th>عنوان پروژه</th>
                         <th class="tac">وضعیت</th>
                         <th class="tac">زمان ثبت</th>
-                        <th>نوع هزینه</th>
+                        <th class="tac">نوع هزینه</th>
                         <th class="tac">جزئیات</th>
                         <th class="tac">ویرایش</th>
                         <th class="tac">حذف</th>
@@ -198,7 +198,7 @@
                   <tbody>
                      @foreach ($costs['contractor'] as $row => $cost)
                      <tr>
-                        <td><?= $row  + 1 ?></td>
+                        <td class="tac"><?= $row  + 1 ?></td>
                         <td class="costTitle" type="contractor">{{ $cost->title }}</td>
                         <td class="userName">{{ $cost->user_name . " " . $cost->user_lastname  }}</td>
                         <td>{{ $cost->sub_desc }}</td>
@@ -218,7 +218,7 @@
                         </td>
                         @php $time = verta($cost->created_at); @endphp
                         <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
-                        <td>{{ $cost->type_title }}</td>
+                        <td class="tac">{{ $cost->type_title }}</td>
                         <td class="tac">
                            <a href="{{ route('costs.show', $cost->id) }}"
                                class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i
