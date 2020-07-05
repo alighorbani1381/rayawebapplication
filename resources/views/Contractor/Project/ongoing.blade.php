@@ -15,9 +15,13 @@
                 <thead>
                     <tr>
                         <th>ردیف</th>
+                        <th>ایجاد شده توسط</th>
                         <th>عنوان پروژه</th>
                         <th>توضیحات پروژه (خلاصه)</th>
-                        <th>شناسه پروژه</th>
+                        <th class="tac">شناسه پروژه</th>
+                        <th class="tac">تاریخ ثبت</th>
+                        <th class="tac">تاریخ شروع</th>
+                        <th class="tac">مدت زمان تحویل </th>
                         <th class="tac">مشاهده جزئیات</th>
                         <th class="tac">ویرایش درصد پیشرفت</th>
                         <th class="tac">میزان درآمد شما</th>
@@ -28,9 +32,13 @@
                     @foreach ($projects as $row => $project)
                     <tr>
                         <td><?= $row  + 1 ?></td>
+                        <td>{{ $project->name . " " . $project->lastname }}</td>
                         <td class="projectName">{{ $project->title }}</td>
                         <td>{{ mb_substr($project->description,0 , 80) . "..." }}</td>
-                        <td>{{ $project->unique_id }}</td>
+                        <td class="tac">{{ $project->unique_id }}</td>
+                        <td class="tac">{{ verta($project->created_at)->formatJalaliDate() }}</td>
+                        <td class="tac">{{ verta($project->date_start)->formatJalaliDate() }}</td>
+                        <td class="tac">{{ $project->complete_after . " روز " }}</td>
                         <td class="tac">
                             <a href="{{ route('contractor.projects.show', $project->id) }}"
                                 class="btn btn-icon waves-effect waves-light btn-primary m-b-5">
