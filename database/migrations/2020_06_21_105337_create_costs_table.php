@@ -11,12 +11,12 @@ class CreateCostsTable extends Migration
     {
         Schema::create('costs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('generator');
-            $table->integer('project_id')->nullable();
-            $table->integer('contractor_id')->nullable();
+            $table->integer('generator')->unsigned();
+            $table->integer('project_id')->unsigned()->nullable();
+            $table->integer('contractor_id')->unsigned()->nullable();
             $table->string('title');
             $table->text('description');
-            $table->integer('money_paid');
+            $table->integer('money_paid')->unsigned();
             $table->enum('status', ['paid', 'unpaid']);
             $table->string('type')->nullable();
             $table->timestamps();

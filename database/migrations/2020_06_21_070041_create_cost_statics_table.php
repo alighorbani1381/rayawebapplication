@@ -14,7 +14,7 @@ class CreateCostStaticsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description')->nullable();
-            $table->integer('child')->default(0);
+            $table->integer('child')->unsigned()->default(0);
             $table->timestamps();
         });
     }

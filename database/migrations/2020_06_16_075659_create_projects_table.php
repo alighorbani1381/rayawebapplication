@@ -22,7 +22,7 @@ class CreateProjectsTable extends Migration
             // Detail
             $table->string('title')->index();
             $table->text('description');
-            $table->integer('price');
+            $table->integer('price')->unsigned();
 
             // Contract Data
             $table->string('contract_image')->default('default');
@@ -41,17 +41,17 @@ class CreateProjectsTable extends Migration
         # Create Pivot Table Connect Category to Project
         Schema::create('project_category', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('project_id');
-            $table->integer('category_id');
+            $table->integer('project_id')->unsigned();
+            $table->integer('category_id')->unsigned();
         });
 
         # Create Pivot Table Connect Contractor to Project
         Schema::create('project_contractor', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('project_id');
-            $table->integer('contractor_id');
-            $table->integer('progress_access')->nullable();
-            $table->integer('progress')->nullable();
+            $table->integer('project_id')->unsigned();
+            $table->integer('contractor_id')->unsigned();
+            $table->integer('progress_access')->unsigned()->nullable();
+            $table->integer('progress')->unsigned()->nullable();
         });
 
         # Create Continue of Project Table save taskmasterinfo

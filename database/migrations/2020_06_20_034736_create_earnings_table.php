@@ -12,7 +12,7 @@ class CreateEarningsTable extends Migration
     {
         Schema::create('earnings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('generator')->unsigned();;
+            $table->integer('generator')->unsigned();
             $table->integer('project_id')->unsigned();
             $table->string('title');
             $table->text('description')->nullable();
