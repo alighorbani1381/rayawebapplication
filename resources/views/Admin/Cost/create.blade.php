@@ -5,6 +5,11 @@
 <script src="{{ asset('admin/js/customJS/costs.js') }} "></script>
 @endpush
 @section('content')
+@php 
+$existsProject = $projects->count() != 0; 
+$existsUser = ($contractors != 0);
+@endphp
+
 
 @if($errors->any())
 @foreach($errors->all() as $error)
@@ -127,6 +132,7 @@
 
 {{-- Modals Start --}}
 
+
 <!-- Modal Pay Projet & User Start End -->
 <div class="row">
     <!-- Modal Pay User Cost Start -->
@@ -205,11 +211,28 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12" style="margin: 11px -8px;">
+
+                                @if(!$existsProject)
                                 <div class="form-group">
+                                    <label class="control-label" style="color: red">هشدار</label>
+                                    <div class="alert alert-danger">
+                                        <i class="fa fa-warning"></i>
+                                        برای استفاده کامل از موارد ثبت هزینه برای پروژه ابتدا باید پروژه ای ثبت کنید
+                                        در حال حاضر تنها میتونید پرداخت غیر پروژه ای داشته باشید
+                                    </div>
+                                </div>
+                                @endif
+
+                                <div class="form-group">
+
                                     <label class="col-md-2 control-label">پرداخت به کارمند</label>
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-paid" id="project-pay" type="radio" name="contractor_pay" required
-                                            value="true">
+                                        @if($existsProject)
+                                        <input class="earning-paid" id="project-pay" type="radio" name="contractor_pay"
+                                            required value="true">
+                                        @else
+                                        <input class="earning-paid" disabled type="radio" name="%">
+                                        @endif
 
                                         <div class="state p-success">
                                             <label>پرداخت بابت پروژه</label> &nbsp; &nbsp; &nbsp; &nbsp;
@@ -217,9 +240,11 @@
                                         </div>
                                     </div>
 
+
+
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-paid" id="normal-pay" type="radio" name="contractor_pay" required
-                                            value="without-project">
+                                        <input class="earning-paid" id="normal-pay" type="radio" name="contractor_pay"
+                                            required value="without-project">
 
                                         <div class="state p-success">
                                             <label>پرداخت غیر از پروژه</label> &nbsp; &nbsp; &nbsp; &nbsp;
@@ -227,20 +252,25 @@
                                         </div>
                                     </div>
 
-
                                     <div class="pretty p-icon p-round p-pulse">
-                                        <input class="earning-unpaid" id="deactive" type="radio" name="contractor_pay" required
-                                            checked value="false">
+                                        @if($existsProject)
+                                        <input class="earning-unpaid" id="deactive" type="radio" name="contractor_pay"
+                                            required checked value="false">
+                                        @else
+                                        <input class="earning-unpaid" disabled type="radio" name="%">
+                                        @endif
 
                                         <div class="state p-danger">
                                             <label>عدم پرداخت</label> &nbsp; &nbsp; &nbsp; &nbsp;
                                             <i class="icon mdi mdi-check"></i>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
 
+                        @if($existsProject)
                         <div class="row" id="project-box">
                             <div class="col-md-12">
                                 <div class="form-group no-margin">
@@ -267,6 +297,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
 
                         <div class="row" id="contractor-mainbox" style="display: none;">
                             <div class="col-md-12">

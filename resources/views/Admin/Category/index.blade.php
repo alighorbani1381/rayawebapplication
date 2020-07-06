@@ -8,15 +8,21 @@
 <div class="row">
    <div class="col-sm-12">
       <div class="card-box table-responsive">
-         @if(hasMember($categories))
+
+
          <h4 class="header-title m-t-0 m-b-30 inb">
+            @if(hasMember($categories))
             لیست خدمات شما
+            @else
+            افزودن خدمات
+            @endif
          </h4>
-         <a href="{{ route('categories.create') }}"
-            class="cbfl btn btn-info btn-bordred waves-effect waves-dark m-b-5"> <i class="fa fa-plus-circle"></i>
-         <span>افزودن جدید </span>
+         <a href="{{ route('categories.create') }}" class="cbfl btn btn-info btn-bordred waves-effect waves-dark m-b-5">
+            <i class="fa fa-plus-circle"></i>
+            <span>افزودن جدید </span>
          </a>
 
+         @if(hasMember($categories))
          <!-- Table Start !-->
          <table id="datatable" class="table table-striped table-bordered">
             <thead>
@@ -38,8 +44,7 @@
                   <td>{{ $category->main_group }}</td>
                   <td class="tac">
                      <a href="{{ route('categories.edit', $category->id) }}"
-                        class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
-                        class="fa fa-pencil"></i> </a>
+                        class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i class="fa fa-pencil"></i> </a>
                   </td>
                   <td class="tac">
                      <form method="post" action="{{ route('categories.destroy', $category->id) }}">
@@ -47,7 +52,7 @@
                         @method('DELETE')
                         <button type="button"
                            class="delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
-                           class="fa fa-remove"></i> </button>
+                              class="fa fa-remove"></i> </button>
                      </form>
                   </td>
                </tr>

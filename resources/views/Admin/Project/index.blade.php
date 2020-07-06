@@ -9,13 +9,19 @@
    <div class="col-sm-12">
       <div class="card-box table-responsive">
           
-         @if(hasMember($projects))
+         
          <h4 class="header-title m-t-0 m-b-30 inb">
+            @if(hasMember($projects))
             لیست پروژه ها
+            @else
+            افزودن پروژه
+            @endif
          </h4>
          <a href="{{ route('projects.create') }}"
             class="cbfl btn btn-info btn-bordred waves-effect waves-dark m-b-5"> <i class="fa fa-plus-circle"></i>
-         <span>افزودن جدید </span> </a>
+         <span>افزودن جدید </span>
+       </a>
+       @if(hasMember($projects))
          <table id="datatable" class="table table-striped table-bordered">
             <thead>
                <tr>
