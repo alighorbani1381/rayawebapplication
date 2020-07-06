@@ -40,7 +40,7 @@ class ACLController extends Controller
         $request->validate(['name' => 'required', 'title' => 'required', 'permission_id' => 'array']);
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permission_id'));
-        return redirect()->route('roles.create');
+        return redirect()->route('roles.index');
     }
 
 }
