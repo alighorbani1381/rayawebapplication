@@ -103,7 +103,8 @@ $user = auth()->user();
                         </span> <span class="menu-arrow fa-angle-left"></span></a>
                     <ul class="list-unstyled">
                         <li><a href="{{ route('per.create') }}">افزودن سطح دسترسی</a></li>
-                        <li><a href="{{ route('users.create') }}">افزودن کاربر جدید</a></li>
+                        <li><a href="{{ route('roles.index') }}">لیست نقش ها</a></li>
+                        <li><a href="{{ route('roles.create') }}">افزودن نقش جدید</a></li>
                     </ul>
                 </li>
 
