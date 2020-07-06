@@ -31,6 +31,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin', 'isAdmin'], 'p
     # ACL Routes
 
     // Permission Route
+    Route::get('permissions', 'ACLController@indexPermission')->name('per.index');
     Route::get('permissions/create', 'ACLController@createPermission')->name('per.create');
     Route::post('permissions/store', 'ACLController@storePermission')->name('per.store');
 
