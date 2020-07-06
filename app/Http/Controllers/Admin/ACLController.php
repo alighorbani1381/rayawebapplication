@@ -53,7 +53,12 @@ class ACLController extends Controller
     public function userRole(User $user)
     {
         $roles = Role::get();
-        return view('Admin.ACL.User.index', compact('roles', 'user'));
+        return view('Admin.ACL.Role.user', compact('roles', 'user'));
+    }
+
+    public function userRoleStore()
+    {
+        
     }
 
 }
