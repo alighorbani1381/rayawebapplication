@@ -16,6 +16,13 @@
                                 class="fa fa-pencil"></i>&nbsp;&nbsp;ویرایش</a>
                     </li>
 
+                    @if($user->type == 'admin')
+                    <li>
+                        <a href="{{ route('roles.user.create', $user->id) }}"><i
+                                class="fa fa-shield"></i>&nbsp;&nbsp;سطح دسترسی</a>
+                    </li>
+                    @endif
+
                 </ul>
             </div>
             <h4 class="header-title m-t-0 m-b-30">
