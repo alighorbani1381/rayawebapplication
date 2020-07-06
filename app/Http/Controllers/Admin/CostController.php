@@ -6,6 +6,7 @@ use App\Cost;
 use App\Project;
 use App\Repositories\CostRepository;
 use App\Request\CostRequest;
+use App\User;
 use Illuminate\Http\Request;
 
 
@@ -32,7 +33,8 @@ class CostController extends AdminController
     {
         $types = $this->repo->getCostTypes();
         $projects = Project::where('status', '!=', 'finished')->orderBy('id', 'desc')->get();
-        return view('Admin.Cost.create', compact('projects', 'types'));
+        $contractors = User::count();        
+        return view('Admin.Cost.create', compact('projects', 'types', 'contractors'));
     }
 
     public function store(Request $request)
