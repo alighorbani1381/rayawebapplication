@@ -20,4 +20,15 @@ class ACLController extends Controller
         Permission::create($request->all());
     }
 
+    public function createRole()
+    {
+        $permissions = Permission::get();
+        return view('Admin.ACL.Role.create', compact('permissions'));
+    }
+
+    public function storeRole(Request $request)
+    {
+        # code...
+    }
+
 }
