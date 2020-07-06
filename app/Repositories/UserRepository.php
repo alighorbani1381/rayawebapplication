@@ -93,6 +93,7 @@ class UserRepository
 
     public function createUser(Request $request)
     {
+        $time = date("Y-m-d h:m:s");
         return DB::table('users')
             ->insert([
                 'name' => $request->name,
@@ -103,6 +104,7 @@ class UserRepository
                 'username' => $request->username,
                 'profile' => 'default',
                 'password' => $this->generatePassword(),
+                'created_at'=> $time,
             ]);
     }
 }
