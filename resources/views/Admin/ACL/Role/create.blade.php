@@ -8,7 +8,7 @@
          <h4 class="header-title m-t-0 m-b-30">افزودن نقش جدید</h4>
          <div class="row">
             <div class="col-lg-11">
-               <form class="form-horizontal" role="form" action="{{ route('per.store') }}" method="post">
+               <form class="form-horizontal" role="form" action="{{ route('roles.store') }}" method="post">
                   @csrf
 
                   <!-- Permission Title Box !-->

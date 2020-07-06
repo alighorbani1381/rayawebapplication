@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Role;
 use App\Permission;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ACLController extends Controller
 {
@@ -28,7 +29,10 @@ class ACLController extends Controller
 
     public function storeRole(Request $request)
     {
-        # code...
+        $request->validate(['name' => 'required', 'title' => 'required', 'permission_id' => 'array']);
+        $role = Role::create($request->all());
+        $role->permissions()->sync($request->input('permission_id'));
+        return redirect()->route('roles.create');
     }
 
 }
