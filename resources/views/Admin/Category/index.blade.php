@@ -57,7 +57,7 @@
          <!-- Table End !-->
 
          @else
-         {!! recordMessage('دسته بندی برای نمایش وجود ندارد') !!}
+         {!! recordMessage('هیچ خدماتی توی سیستم ثبت نشده') !!}
          @endif
       </div>
    </div>

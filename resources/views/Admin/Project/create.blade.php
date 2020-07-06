@@ -128,13 +128,20 @@
         </div>
     </div>
     @else
-    <div class="col-sm-10 col-sm-offset-2">
-    <img class="project-not-found" style="width:20%;" src="{{ asset('admin/images/symbols/Notproject.png') }}" alt="پروژه ای یافت نشد">
-    <div class="notfound-content">
-        <span style="font-size: large;">
-         خب برای ایجاد پروژه لازمه که شما علاوه بر خدماتی که ثبت می کنید از قسمت کاربران باید کارمندان خود را نیز ثبت کنید
-        </span>
-    </div>
+    <div class="col-sm-12">
+        <div class="card-box">
+            <div class="row">
+                <img class="project-not-found" style="width:20%;"
+                    src="{{ asset('admin/images/symbols/Notproject.png') }}" alt="پروژه ای یافت نشد">
+                <div class="notfound-content">
+                    <span style="font-size: large;">
+                        خب برای ایجاد پروژه لازمه که شما علاوه بر خدماتی که ثبت می کنید از قسمت کاربران باید کارمندان
+                        خود را
+                        نیز ثبت کنید
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
     @endif
 

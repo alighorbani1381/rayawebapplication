@@ -25,6 +25,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card-box table-responsive">
+            @if(hasMember($users))
             <h4 class="header-title m-t-0 m-b-30 inb">لیست کاربران</h4>
             <a href="{{ route('users.create') }}" class="cbfl btn btn-info btn-bordred waves-effect waves-dark m-b-5">
                 <i class="fa fa-plus-circle"></i> <span>افزودن جدید </span> </a>
@@ -96,6 +97,9 @@
 
                 </tbody>
             </table>
+            @else
+            {!! recordMessage('شما هنوز کاربری ثبت نکرده اید') !!}
+            @endif
             {{ $users->links() }}
 
         </div>
