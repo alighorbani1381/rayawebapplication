@@ -110,7 +110,7 @@
                 <li>
 
                     <h5 class="font-600 m-b-5">مدت زمان ثبت نام</h5>
-                    <p class="date-show">{{ verta($user->created_at)->formatDifference() }}</p>
+                    <p>{{ verta($user->created_at)->formatDifference() }}</p>
                 </li>
 
                 <li>
