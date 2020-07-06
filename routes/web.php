@@ -27,6 +27,13 @@ Route::group(['namespace' => 'Admin'], function () {
 
 # Administrator Routes
 Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin', 'isAdmin'], 'prefix' => 'admin'], function () {
+
+    # ACL Routes
+    Route::get('permissions/create', 'ACLController@createPermission')->name('per.create');
+    Route::get('permissions/store', 'ACLController@storePermission')->name('per.store');
+
+
+
     Route::resource('costs/static', 'CoststaticController');
     Route::resource('costs', 'CostController');
     Route::get('dashborad', 'IndexController@index')->name('admin.dashboard');
