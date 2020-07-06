@@ -52,13 +52,14 @@ class ACLController extends Controller
 
     public function userRole(User $user)
     {
+        if (!$user->isAdmin())
+            abort(404);
+
         $roles = Role::get();
         return view('Admin.ACL.Role.user', compact('roles', 'user'));
     }
 
     public function userRoleStore()
     {
-        
     }
-
 }
