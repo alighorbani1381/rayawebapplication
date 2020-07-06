@@ -6,6 +6,7 @@ use App\Role;
 use App\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class ACLController extends Controller
 {
@@ -29,7 +30,6 @@ class ACLController extends Controller
     }
 
 
-    
     public function indexRole()
     {
         $roles = Role::get();
@@ -48,6 +48,12 @@ class ACLController extends Controller
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permission_id'));
         return redirect()->route('roles.index');
+    }
+
+    public function userRole(User $user)
+    {
+        $roles = Role::get();
+        return view('Admin.ACL.User.index', compact('roles', 'user'));
     }
 
 }
