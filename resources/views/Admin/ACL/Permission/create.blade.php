@@ -13,7 +13,7 @@
 
                   <!-- Permission Title Box !-->
                   <div class="form-group">
-                     <label class="col-md-2 control-label">عنوان سطح دسترسی</label>
+                     <label class="col-md-2 control-label">عنوان سطح دسترسی (فارسی)</label>
                      <div class="col-md-10">
                         <input type="text" name="title" required class="form-control" value="{{ old('title') }}"
                            placeholder="عنوان سطح دسترسی را وارد کنید ...">
@@ -25,11 +25,11 @@
 
                   <!-- Permission Name Box !-->
                   <div class="form-group">
-                     <label class="col-md-2 control-label">متن سطح دسترسی</label>
+                     <label class="col-md-2 control-label">نام سطح دسترسی (انگلیسی)</label>
                      <div class="col-md-10">
-                        <input type="text" name="text" required class="form-control" value="{{ old('title') }}"
+                        <input type="name" name="name" required class="form-control" value="{{ old('title') }}"
                            placeholder="متن سطح دسترسی را وارد کنید ...">
-                        @error('text')
+                        @error('name')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                      </div>
