@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Project;
+use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use App\Request\ProjectRequest;
 use App\Repositories\ProjectRepository;
@@ -19,6 +20,7 @@ class ProjectController extends AdminController
     {
         $this->repo = resolve(ProjectRepository::class);
         $this->request = resolve(ProjectRequest::class);
+        $this->categories = resolve(CategoryRepository::class);
     }
 
     public function index()
@@ -31,8 +33,9 @@ class ProjectController extends AdminController
     public function create()
     {
         $mainCategories = $this->repo->getMainCategories();
+        $anyCategory = $this->categories->hasCategories();
         $contractors = $this->repo->getContractors();
-        return view('Admin.Project.create', compact('mainCategories', 'contractors'));
+        return view('Admin.Project.create', compact('mainCategories', 'contractors', 'anyCategory'));
     }
 
 
