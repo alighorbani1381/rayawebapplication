@@ -52,23 +52,23 @@ class ACLController extends Controller
 
     public function userRole(User $user)
     {
-        if (!$user->isAdmin())
+        if (!$user->isAdmin() && $user->id == auth()->user()->id)
             abort(404);
 
+        $userRoles = $user->roles()->get();
         $roles = Role::get();
-        return view('Admin.ACL.Role.user', compact('roles', 'user'));
+        return view('Admin.ACL.Role.user', compact('roles', 'user', 'userRoles'));
     }
 
     public function userRoleStore(Request $request)
     {
         $user = User::findOrFail($request->user_id);
 
-        if (!$user->isAdmin())
+        if (!$user->isAdmin() && $user->id == auth()->user()->id)
             abort(404);
 
         $user->roles()->sync($request->input('role_id'));
 
         return redirect()->route('users.index');
     }
-
 }
