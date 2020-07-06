@@ -54,6 +54,11 @@ class User extends Authenticatable
         return $status;
     }
 
+    public function isAdmin()
+    {
+        return ($this->type == 'admin') ? true : false;
+    }
+
     public function hasDependency()
     {
         return $this->repo->hasDependency($this->id);
