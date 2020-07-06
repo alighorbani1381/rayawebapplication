@@ -10,6 +10,12 @@ use App\Http\Controllers\Controller;
 class ACLController extends Controller
 {
 
+    public function indexPermission()
+    {
+        $permissions = Permission::get();
+        return view('Admin.ACL.Permission.index', compact('permissions'));
+    }
+
     public function createPermission()
     {
         return view('Admin.ACL.Permission.create');
@@ -19,6 +25,7 @@ class ACLController extends Controller
     {
         $request->validate(['name' => 'required', 'title' => 'required']);
         Permission::create($request->all());
+        return redirect()->route('per.index');
     }
 
 
