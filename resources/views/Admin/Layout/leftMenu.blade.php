@@ -102,7 +102,9 @@ $user = auth()->user();
                     <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-delicious"></i> <span> مدیریت سطوح دسترسی
                         </span> <span class="menu-arrow fa-angle-left"></span></a>
                     <ul class="list-unstyled">
+                        <li><a href="{{ route('per.index') }}">لیست سطح دسترسی</a></li>
                         <li><a href="{{ route('per.create') }}">افزودن سطح دسترسی</a></li>
+                        <li><a href="#">*******************</a></li>
                         <li><a href="{{ route('roles.index') }}">لیست نقش ها</a></li>
                         <li><a href="{{ route('roles.create') }}">افزودن نقش جدید</a></li>
                     </ul>
