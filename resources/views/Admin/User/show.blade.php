@@ -18,8 +18,9 @@
 
                     @if($user->type == 'admin')
                     <li>
-                        <a href="{{ route('roles.user.create', $user->id) }}"><i
-                                class="fa fa-shield"></i>&nbsp;&nbsp;سطح دسترسی</a>
+                        <a href="{{ route('roles.user.create', $user->id) }}"><i class="fa fa-shield"></i>&nbsp;&nbsp;
+                            مدیریت سطح دسترسی
+                        </a>
                     </li>
                     @endif
 
@@ -29,14 +30,14 @@
                 جزئیات کاربر
             </h4>
             <div class="media m-b-20">
-                
+
                 @if($user->profile != 'default')
-                    <a href="{{ showPicture('user.profile', $user->profile) }}">
-                        <img class="media-object img-circle" alt="{{ $user->name . " " . $user->lastname }}"
-                            src="{{ showPicture('user.profile', $user->profile) }}"
-                            style="width: 20%; border:1px solid #ddd; vertical-align:-3px;">
-                        @else
-                        <a href="#">
+                <a href="{{ showPicture('user.profile', $user->profile) }}">
+                    <img class="media-object img-circle" alt="{{ $user->name . " " . $user->lastname }}"
+                        src="{{ showPicture('user.profile', $user->profile) }}"
+                        style="width: 20%; border:1px solid #ddd; vertical-align:-3px;">
+                    @else
+                    <a href="#">
                         <img class="media-object img-circle" alt="{{ $user->name . " " . $user->lastname }}"
                             src="{{ showPicture(null, $user->profile) }}"
                             style="width: 20%; border:1px solid #ddd; vertical-align:-3px;">
@@ -93,12 +94,12 @@
                     <div class="t">
                         <h4 class="font-600"
                             style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
-                            آدرس  :
+                            آدرس :
                         </h4>
                         <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $user->address }}</h4>
                     </div>
 
-                
+
             </div>
 
 
