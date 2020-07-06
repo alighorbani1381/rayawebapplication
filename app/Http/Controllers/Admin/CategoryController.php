@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
-use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Repositories\CategoryRepository;
 
 class CategoryRequest
 {
@@ -49,7 +49,7 @@ class CategoryController extends AdminController
     public function store(Request $request)
     {
         CategoryRequest::store($request);
-        Category::create($request->all());
+        $this->repo->createCategory($request);
         return redirect()->route('categories.index');
     }
 
