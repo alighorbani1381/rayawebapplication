@@ -97,6 +97,18 @@ $user = auth()->user();
                     </ul>
                 </li>
 
+
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-delicious"></i> <span> مدیریت سطوح دسترسی
+                        </span> <span class="menu-arrow fa-angle-left"></span></a>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route('per.create') }}">افزودن سطح دسترسی</a></li>
+                        <li><a href="{{ route('users.create') }}">افزودن کاربر جدید</a></li>
+                    </ul>
+                </li>
+
+
+            
                 <li>
                     <a href="{{ route('admin.profile.index') }}" class="waves-effect">
                         <i class="fa fa-user"></i>
