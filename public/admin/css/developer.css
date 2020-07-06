@@ -249,3 +249,7 @@ h2#swal2-title {
     background: url('../images/symbols/clockTime.gif') center no-repeat #ff9811;
   }
 
+  .permission-list{
+      padding: 2%;
+  }
+
