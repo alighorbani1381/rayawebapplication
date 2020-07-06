@@ -19,6 +19,12 @@ class User extends Authenticatable
         $this->repo = resolve(UserRepository::class);
     }
 
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
     public function getFullNameAttribute()
     {
         $fullName = $this->name . " " . $this->lastname;
