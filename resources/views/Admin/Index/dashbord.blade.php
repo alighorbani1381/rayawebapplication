@@ -171,7 +171,7 @@
                 </table>
             </div>
             @else
-            <img class="project-not-found" src="{{ asset('admin/images/symbols/Notproject.png') }}"
+            <img class="exists-record" src="{{ asset('admin/images/symbols/Notproject.png') }}"
                 alt="پروژه ای یافت نشد">
             <div class="notfound-content">
                 <span style="font-size: large;">
