@@ -6,11 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateProjectsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
+    
     public function up()
     {
         # Create Project Tables
@@ -70,11 +67,8 @@ class CreateProjectsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
+    # Drop Projects Table
     public function down()
     {
         Schema::dropIfExists('projects');

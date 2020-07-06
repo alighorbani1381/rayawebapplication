@@ -6,11 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateEarningsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
+    # Create Earning Table
     public function up()
     {
         Schema::create('earnings', function (Blueprint $table) {
@@ -25,11 +22,7 @@ class CreateEarningsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    # Drop Earning Table
     public function down()
     {
         Schema::dropIfExists('earnings');

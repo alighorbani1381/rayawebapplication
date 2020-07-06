@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePermissionAndRole extends Migration
 {
-
+    # Create Permissions & Roles Table
     public function up()
     {
         Schema::create('permissions', function (Blueprint $table) {
@@ -22,10 +22,9 @@ class CreatePermissionAndRole extends Migration
             $table->string('title');
             $table->timestamps();
         });
-
     }
 
-
+    #  Drop Permissions & Roles Table
     public function down()
     {
         Schema::dropIfExists('permissions');

@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCostsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    #  Create Costs Table
     public function up()
     {
         Schema::create('costs', function (Blueprint $table) {
@@ -27,11 +23,7 @@ class CreateCostsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    #  Drop Costs Table
     public function down()
     {
         Schema::dropIfExists('costs');

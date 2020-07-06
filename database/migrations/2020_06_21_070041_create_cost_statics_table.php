@@ -6,11 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCostStaticsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+  
+    # Create Cost Static Table
     public function up()
     {
         Schema::create('cost_statics', function (Blueprint $table) {
@@ -22,11 +19,7 @@ class CreateCostStaticsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    # Drop Cost Static Table
     public function down()
     {
         Schema::dropIfExists('cost_statics');
