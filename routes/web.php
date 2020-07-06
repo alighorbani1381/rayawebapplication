@@ -29,8 +29,14 @@ Route::group(['namespace' => 'Admin'], function () {
 Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin', 'isAdmin'], 'prefix' => 'admin'], function () {
 
     # ACL Routes
+
+    // Permission Route
     Route::get('permissions/create', 'ACLController@createPermission')->name('per.create');
-    Route::get('permissions/store', 'ACLController@storePermission')->name('per.store');
+    Route::post('permissions/store', 'ACLController@storePermission')->name('per.store');
+
+    // Role Route
+    Route::get('roles/create', 'ACLController@createRole')->name('roles.create');
+    Route::post('roles/store', 'ACLController@storeRole')->name('roles.store');
 
 
 
