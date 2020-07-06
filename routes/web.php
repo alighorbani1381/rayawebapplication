@@ -35,8 +35,11 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['isLogin', 'isAdmin'], 'p
     Route::post('permissions/store', 'ACLController@storePermission')->name('per.store');
 
     // Role Route
+    Route::get('roles', 'ACLController@indexRole')->name('roles.index');
     Route::get('roles/create', 'ACLController@createRole')->name('roles.create');
     Route::post('roles/store', 'ACLController@storeRole')->name('roles.store');
+    Route::get('roles/{role}/edit', 'ACLController@storeRole')->name('roles.edit');
+    Route::delete('roles/delete', 'ACLController@storeRole')->name('roles.destroy');
 
 
 
