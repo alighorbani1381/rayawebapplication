@@ -6,6 +6,8 @@ use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Repositories\CategoryRepository;
+use Illuminate\Support\Facades\Gate;
+
 
 class CategoryRequest
 {
@@ -27,6 +29,17 @@ class CategoryController extends AdminController
 
     private $repo;
 
+    const INDEX = "Index-Category";
+    const CREATE = "Index-Category";
+    const EDIT = "Edit-Category";
+    const DELETE = "Index-Category";
+
+    private function checkAccess($gateName)
+    {
+        if (Gate::denies($gateName))
+            abort(404);
+    }
+
     public function __construct()
     {
         $this->repo = resolve(CategoryRepository::class);
@@ -34,6 +47,7 @@ class CategoryController extends AdminController
 
     public function index()
     {
+        $this->checkAccess(self::INDEX);
         $categories = Category::orderBy('id')->paginate(15);
         return view('Admin.Category.index', compact('categories'));
     }
@@ -41,6 +55,7 @@ class CategoryController extends AdminController
 
     public function create()
     {
+        $this->checkAccess(self::CREATE);
         $mainCategories = Category::where('child', '0')->get();
         return view('Admin.Category.create', compact('mainCategories'));
     }
@@ -48,6 +63,7 @@ class CategoryController extends AdminController
 
     public function store(Request $request)
     {
+        $this->checkAccess(self::CREATE);
         CategoryRequest::store($request);
         $this->repo->createCategory($request);
         return redirect()->route('categories.index');
@@ -56,11 +72,13 @@ class CategoryController extends AdminController
 
     public function show(Category $category)
     {
+        $this->checkAccess(self::CREATE);
         return redirect()->route('categories.index');
     }
 
     public function edit(Category $category)
     {
+        $this->checkAccess(self::EDIT);
         $mainCategories = Category::where('child', '0')->where('id', '!=', $category->id)->get();
         return view('Admin.Category.edit', compact('category', 'mainCategories'));
     }
@@ -68,13 +86,13 @@ class CategoryController extends AdminController
 
     public function update(Request $request, Category $category)
     {
+        $this->checkAccess(self::EDIT);
         CategoryRequest::store($request);
         $subCatsCount = count($category->sub_cats);
 
         if ($subCatsCount != 0 && $request->child != 0) {
             Session::flash('CategoryUpdateFail');
-            return back();
-            return null;
+            return back();            
         }
 
         $category->update($request->all());
@@ -85,15 +103,17 @@ class CategoryController extends AdminController
 
     public function destroy(Category $category)
     {
-        if ($category->hasSubCategory()){
+        $this->checkAccess(self::DELETE);
+
+        if ($category->hasSubCategory()) {
             Session::flash('Error-Sub', $category->getCountSub());
             return redirect()->route('categories.index');
         }
 
-        if($category->hasProjects()){
+        if ($category->hasProjects()) {
             Session::flash('Error-Project', $category->getProjectCount());
             return redirect()->route('projects.index');
-        }        
+        }
 
 
         $category->delete();
