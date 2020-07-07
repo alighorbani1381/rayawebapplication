@@ -13,7 +13,7 @@ class ACLController extends Controller
 
     public function indexPermission()
     {
-        $permissions = Permission::orderBy('id', 'desc')->get();
+        $permissions = Permission::orderBy('id', 'asc')->get();
         return view('Admin.ACL.Permission.index', compact('permissions'));
     }
 
@@ -26,7 +26,7 @@ class ACLController extends Controller
     {
         $request->validate(['name' => 'required', 'title' => 'required']);
         Permission::create($request->all());
-        return redirect()->route('per.index');
+        return redirect()->route('per.create');
     }
 
 
