@@ -252,4 +252,14 @@ h2#swal2-title {
   .permission-list{
       padding: 2%;
   }
+ .acl-param{
+    position: absolute;
+    left: 25%;
+    top:25%;
+    margin: 0 !important;
+  }
+  .acl-item{
+    position: relative;
+    padding: 1.2em !important;
+  }
 
