@@ -95,10 +95,10 @@ class UserController extends AdminController
     # Get Contractors from Ajax Request
     public function getContractors(Request $request)
     {
-        if (!$request->ajax()){
+        if (!$request->ajax()) {
             abort(404);
         }
-            
+
 
         $projectId = $request->get('project_id');
 
