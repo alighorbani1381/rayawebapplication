@@ -73,7 +73,7 @@ class CreateProjectsTable extends Migration
     {
         Schema::dropIfExists('projects');
         Schema::dropIfExists('project_category');
-        Schema::dropIfExists('project_contractors');
+        Schema::dropIfExists('project_contractor');
         Schema::dropIfExists('project_taskmaster');
     }
 }

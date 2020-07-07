@@ -22,7 +22,9 @@ class CreatePivotPermission extends Migration
 
             $table->foreign('role_id')
             ->references('id')
-            ->on('roles');
+            ->on('roles')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
 
             $table->primary(['permission_id', 'role_id']);
         });
@@ -37,7 +39,9 @@ class CreatePivotPermission extends Migration
 
             $table->foreign('user_id')
             ->references('id')
-            ->on('users');
+            ->on('users')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
 
             $table->primary(['role_id', 'user_id']);
         });
