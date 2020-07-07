@@ -8,23 +8,21 @@ use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
 {
-    public function __construct()
-    {
-        // auth()->loginUsingId(1);
-    }
-
+    # Check Access With Gates
     protected function checkAccess($gateName)
     {
         if (Gate::denies($gateName))
             abort(404);
     }
 
+    # Create Absolute Standard Path
     public function standardPath()
     {
         $standard = str_replace('\\', '/', public_path());
         return $standard;
     }
 
+    # Delete Image if Exists
     public function imageDelete($path)
     {
         $path = public_path($path);
@@ -33,6 +31,7 @@ class AdminController extends Controller
             $delete = unlink($path);
     }
 
+    # Profile Uploade Image & Resize it
     public function imageUploade($file, $pubpath = null)
     {
         if ($pubpath == null)
@@ -51,6 +50,7 @@ class AdminController extends Controller
         return "/Profile-" . $filename;
     }
 
+    # Uploade Any Image
     public function uplodeImage($file, $pubpath = null, $prefix)
     {
         $filename = $prefix . '-' . time() . "-" . rand(2, 512) . "." . $file->getClientOriginalExtension();
@@ -59,16 +59,4 @@ class AdminController extends Controller
         return $filename;
     }
 
-
-    public function search($class = User::class, $field, $data, $pagin = 10)
-    {
-        $results = $class::latest()->orderBy($field[0], $field[1])->paginate($pagin);
-        if (sizeof($data) > 0 && array_key_exists('search', $data))
-            $results = $class::where($field, 'like', '%' . $data['search'] . '%')
-                ->orderBy($field)
-                ->paginate($pagin);
-
-
-        return $results;
-    }
 }
