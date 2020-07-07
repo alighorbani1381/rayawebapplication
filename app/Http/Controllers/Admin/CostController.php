@@ -18,11 +18,19 @@ class CostController extends AdminController
 
     public function __construct()
     {
+        # Encapsolation Repository & Request 
         $this->repo =  resolve(CostRepository::class);
         $this->requ =  resolve(CostRequest::class);
+
+        # Set User into This Class
+        $this->middleware(function ($request, $next) {
+            $this->user = auth()->user();
+            return $next($request);
+        });
     }
 
 
+    # Show List of Costs
     public function index()
     {
         $costs = $this->repo->getCosts();
@@ -30,6 +38,7 @@ class CostController extends AdminController
     }
 
 
+    # Create Cost
     public function create()
     {
         $types = $this->repo->getCostTypes();
@@ -38,20 +47,22 @@ class CostController extends AdminController
         return view('Admin.Cost.create', compact('projects', 'types', 'contractors'));
     }
 
+    # Store Cost
     public function store(Request $request)
     {
         $request->validate(['storeType' => 'required']);
-        $userId = auth()->user()->id;
-        $this->repo->costStore($request->get('storeType'), $request, $userId);
+        $this->repo->costStore($request->get('storeType'), $request, $this->user->id);
         return redirect()->route('costs.index');
     }
 
+    # Show Cost Detail
     public function show(Cost $cost)
     {
         $cost = $this->repo->getCost($cost->id);
         return view('Admin.Cost.show', compact('cost'));
     }
 
+    # Edit Cost
     public function edit(Cost $cost)
     {
         $types = $this->repo->getCostTypes();
@@ -59,6 +70,7 @@ class CostController extends AdminController
         return view('Admin.Cost.edit', compact('cost', 'types'));
     }
 
+    # Update Cost
     public function update(Request $request, Cost $cost)
     {
         $this->requ->update($request);
@@ -66,6 +78,7 @@ class CostController extends AdminController
         return $this->requ->redirectUpdate($cost);
     }
 
+    # Remove Cost
     public function destroy(Cost $cost)
     {
         $cost->delete();
