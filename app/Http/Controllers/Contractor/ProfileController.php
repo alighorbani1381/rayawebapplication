@@ -12,19 +12,23 @@ class ProfileController extends MainController
     const USERS_PROFILE_FOLDER = 'profiles\users\\';
 
     private $repo;
-    
+
     private $user;
-    
+
     private $password;
 
     public function __construct()
     {
+
+        # Encapsolation Repository
+        $this->repo = resolve(ProfileRepository::class);
+
+        # Set User in this Controller
         $this->middleware(function ($request, $next) {
             $this->user = auth()->user();
             $this->password = $this->user->password;
             return $next($request);
         });
-        $this->repo = resolve(ProfileRepository::class);
     }
 
     # Show User Info
@@ -38,14 +42,14 @@ class ProfileController extends MainController
     public function changePassword(Request $request)
     {
         ProfileRequest::adminCheckParam($request);
-   
+
         if (!$this->repo->isValidPassword($request->old_password, $this->password)) {
             return back();
         }
 
         return $this->repo->isValidNewPassword($request->old_password, $request->new_password, $request->repeat_password);
     }
-   
+
     # Change Contractor Image Profile
     public function changeImage(Request $request)
     {
