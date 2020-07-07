@@ -37,20 +37,31 @@
 
                   <!-- Permissions Box !-->
                   <div class="form-group">
-                     <label style="height: 100%; margin-right:4%;">
-                        سطوح دسترسی این نقش
+                     <label class="col-md-2 control-label">
+                        سطوح دسترسی
                      </label>
 
-                     <div class="permission-list">
-                        @foreach($permissions as $key => $permission)
-                        <div class="pretty p-icon p-round p-pulse" style="margin: 8px;">
-                           <input type="checkbox" name="permission_id[]" value="{{$permission->id}}">
-                           <div class="state p-success">
-                              <label>{{ $permission->title}}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              <i class="icon mdi mdi-check"></i>
-                           </div>
-                        </div>
-                        @endforeach
+                     <div class="col-md-10">
+                        <table id="datatable" class="table table-striped table-bordered">
+                           @foreach($permissions as $key => $permission)
+                           @if($key % 2 == 0)
+                           <tr>
+                            @endif
+
+                              <td class="acl-item">
+                                 <div class="acl-param pretty p-icon p-round p-pulse" style="margin: 8px;">
+                                    <input type="checkbox" name="permission_id[]" value="{{$permission->id}}">
+                                    <div class="state p-success">
+                                       <label>{{ $permission->title}}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                       <i class="icon mdi mdi-check"></i>
+                                    </div>
+                                 </div>
+                              </td>
+                              @if($key+1 % 4 == 0)
+                           </tr>
+                           @endif
+                           @endforeach
+                        </table>
                      </div>
                   </div>
 
