@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Cost;
-use App\Project;
 use App\Repositories\CostRepository;
 use App\Request\CostRequest;
 use App\User;
@@ -14,6 +13,7 @@ class CostController extends AdminController
 {
 
     private $repo;
+
     private $requ;
 
     public function __construct()
@@ -22,18 +22,19 @@ class CostController extends AdminController
         $this->requ =  resolve(CostRequest::class);
     }
 
+
     public function index()
     {
-
         $costs = $this->repo->getCosts();
         return view('Admin.Cost.index', compact('costs'));
     }
 
+
     public function create()
     {
         $types = $this->repo->getCostTypes();
-        $projects = Project::where('status', '!=', 'finished')->orderBy('id', 'desc')->get();
-        $contractors = User::count();        
+        $projects = $this->repo->getActiveProjects();
+        $contractors = User::count();
         return view('Admin.Cost.create', compact('projects', 'types', 'contractors'));
     }
 
@@ -41,8 +42,7 @@ class CostController extends AdminController
     {
         $request->validate(['storeType' => 'required']);
         $userId = auth()->user()->id;
-        $type = $request->get('storeType');
-        $this->repo->costStore($type, $request, $userId);
+        $this->repo->costStore($request->get('storeType'), $request, $userId);
         return redirect()->route('costs.index');
     }
 

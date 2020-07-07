@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\CostStatic;
 use App\Cost;
+use App\Project;
 
 class CostRepository
 {
@@ -160,5 +161,10 @@ class CostRepository
             $this->projectStore($request, $userId);
         else
             $this->externalStore($request, $userId);
+    }
+
+    public function getActiveProjects()
+    {
+        return Project::where('status', '!=', 'finished')->orderBy('id', 'desc')->get();
     }
 }
