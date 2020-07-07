@@ -14,18 +14,20 @@ class CategoryController extends AdminController
 
     private $repo;
 
+    # Define Acess Gate
     const INDEX = "Index-Category";
     const CREATE = "Index-Category";
     const EDIT = "Edit-Category";
     const DELETE = "Index-Category";
 
     
-
     public function __construct()
     {
+        # Encapsolation Repository
         $this->repo = resolve(CategoryRepository::class);
     }
 
+    # Show List of Categories
     public function index()
     {
         $this->checkAccess(self::INDEX);
@@ -34,6 +36,7 @@ class CategoryController extends AdminController
     }
 
 
+    # Create Categories View
     public function create()
     {
         $this->checkAccess(self::CREATE);
@@ -41,7 +44,7 @@ class CategoryController extends AdminController
         return view('Admin.Category.create', compact('mainCategories'));
     }
 
-
+    # Store Categories
     public function store(Request $request)
     {
         $this->checkAccess(self::CREATE);
@@ -51,12 +54,14 @@ class CategoryController extends AdminController
     }
 
 
+    # Show Categories
     public function show(Category $category)
     {
         $this->checkAccess(self::CREATE);
         return redirect()->route('categories.index');
     }
 
+    # Edit Categories
     public function edit(Category $category)
     {
         $this->checkAccess(self::EDIT);
@@ -65,6 +70,7 @@ class CategoryController extends AdminController
     }
 
 
+    # Update Categories
     public function update(Request $request, Category $category)
     {
         $this->checkAccess(self::EDIT);
@@ -82,6 +88,7 @@ class CategoryController extends AdminController
     }
 
 
+    # Remove Categories with Depencendy
     public function destroy(Category $category)
     {
         $this->checkAccess(self::DELETE);
