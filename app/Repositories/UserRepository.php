@@ -107,4 +107,24 @@ class UserRepository
                 'created_at'=> $time,
             ]);
     }
+
+    public function getProjectContractors($projectId)
+    {
+        DB::table('project_contractor')
+        ->where('project_contractor.project_id', $projectId)
+        ->join('users', 'project_contractor.contractor_id', '=', 'users.id')
+        ->select('users.id', 'users.name', 'users.lastname')
+        ->orderBy('project_contractor.progress', 'desc')
+        ->get();
+    }
+
+    public function getContractors()
+    {
+        return User::where('type', 'contractor')->select('id', 'name', 'lastname')->get();
+    }
+
+    public function getAdmins()
+    {
+        return User::where('type', 'admin')->select('id', 'name', 'lastname')->get();
+    }
 }

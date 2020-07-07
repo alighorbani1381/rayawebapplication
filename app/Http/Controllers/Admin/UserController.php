@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use Illuminate\Http\Request;
 use App\Request\UserRequest;
-use Illuminate\Support\Facades\DB;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -96,23 +95,20 @@ class UserController extends AdminController
     # Get Contractors from Ajax Request
     public function getContractors(Request $request)
     {
-        if (!$request->ajax())
-            return abort(404);
+        if (!$request->ajax()){
+            abort(404);
+        }
+            
 
         $projectId = $request->get('project_id');
 
         if ($projectId != null) {
-            $projectContractors =  DB::table('project_contractor')
-                ->where('project_contractor.project_id', $projectId)
-                ->join('users', 'project_contractor.contractor_id', '=', 'users.id')
-                ->select('users.id', 'users.name', 'users.lastname')
-                ->orderBy('project_contractor.progress', 'desc')
-                ->get();
+            $projectContractors = $this->repo->getProjectContractors($projectId);
             return response()->json(['contractors' => $projectContractors]);
         }
 
-        $contractors = User::where('type', 'contractor')->select('id', 'name', 'lastname')->get();
-        $admins = User::where('type', 'admin')->select('id', 'name', 'lastname')->get();
+        $contractors = $this->repo->getContractors();
+        $admins = $this->repo->getAdmins();
         return response()->json(['contractors' => $contractors, 'admins' => $admins]);
     }
 
