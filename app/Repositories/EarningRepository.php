@@ -56,7 +56,10 @@ class EarningRepository
         return $projects;
     }
 
-
+    public function getActiveProject()
+    {
+        return Project::where('status', '!=', 'finished')->get();
+    }
     /*************** Earning Method For Contractor ************ */
 
     public function getContractorEarnings($userId)

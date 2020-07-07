@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Earning;
-use App\Repositories\EarningRepository;
 use App\Project;
-use App\Request\EarningRequest;
+use App\Earning;
 use Illuminate\Http\Request;
+use App\Request\EarningRequest;
+use App\Repositories\EarningRepository;
 
 
 class EarningController extends AdminController
@@ -16,7 +16,14 @@ class EarningController extends AdminController
 
     public function __construct()
     {
+        # Configuratio of Repository
         $this->repo =  resolve(EarningRepository::class);
+
+        # Set User into This Class
+        $this->middleware(function ($request, $next) {
+            $this->user = auth()->user();
+            return $next($request);
+        });
     }
 
     public function index()
@@ -29,6 +36,7 @@ class EarningController extends AdminController
     public function create($earning = null)
     {
         $projects = $this->repo->getProjectWant($earning);  
+
         if ($projects->count() != 0)
             return view('Admin.Earning.create', compact('projects'));
 
@@ -40,8 +48,7 @@ class EarningController extends AdminController
     public function store(Request $request)
     {
         EarningRequest::storeValidate($request);
-        $generator = auth()->user()->id;
-        $this->repo->createEarning($request, $generator);
+        $this->repo->createEarning($request, $this->user->id);
         return redirect()->route('earnings.index');
     }
 
@@ -55,7 +62,7 @@ class EarningController extends AdminController
 
     public function edit(Earning $earning)
     {
-        $projects  = Project::where('status', '!=', 'finished')->get();
+        $projects  = $this->repo->getActiveProject();
         return view('Admin.Earning.edit', compact('projects', 'earning'));
     }
 
