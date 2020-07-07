@@ -3,25 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use CategoryRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Repositories\CategoryRepository;
-use Illuminate\Support\Facades\Gate;
-
-
-class CategoryRequest
-{
-
-    public static function store($request)
-    {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'child' => 'required',
-        ]);
-    }
-}
-
 
 
 class CategoryController extends AdminController
@@ -34,11 +19,7 @@ class CategoryController extends AdminController
     const EDIT = "Edit-Category";
     const DELETE = "Index-Category";
 
-    private function checkAccess($gateName)
-    {
-        if (Gate::denies($gateName))
-            abort(404);
-    }
+    
 
     public function __construct()
     {
@@ -48,7 +29,7 @@ class CategoryController extends AdminController
     public function index()
     {
         $this->checkAccess(self::INDEX);
-        $categories = Category::orderBy('id')->paginate(15);
+        $categories = $this->repo->getCategories();
         return view('Admin.Category.index', compact('categories'));
     }
 
@@ -56,7 +37,7 @@ class CategoryController extends AdminController
     public function create()
     {
         $this->checkAccess(self::CREATE);
-        $mainCategories = Category::where('child', '0')->get();
+        $mainCategories = $this->repo->getMainCategories();
         return view('Admin.Category.create', compact('mainCategories'));
     }
 
@@ -79,7 +60,7 @@ class CategoryController extends AdminController
     public function edit(Category $category)
     {
         $this->checkAccess(self::EDIT);
-        $mainCategories = Category::where('child', '0')->where('id', '!=', $category->id)->get();
+        $mainCategories = $this->repo->getSpecialCategory($category->id);
         return view('Admin.Category.edit', compact('category', 'mainCategories'));
     }
 

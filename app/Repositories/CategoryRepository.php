@@ -65,4 +65,19 @@ class CategoryRepository
     {
         return Category::where('child', '!=', '0')->get();
     }
+
+    public function getCategories()
+    {
+        return Category::orderBy('id')->paginate(15);
+    }
+
+    public function getMainCategories()
+    {
+        return Category::where('child', '0')->get();
+    }
+
+    public function getSpecialCategory($id)
+    {
+        Category::where('child', '0')->where('id', '!=', $id)->get();
+    }
 }
