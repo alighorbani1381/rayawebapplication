@@ -13,7 +13,7 @@ class ACLController extends Controller
 
     public function indexPermission()
     {
-        $permissions = Permission::get();
+        $permissions = Permission::orderBy('id', 'desc')->get();
         return view('Admin.ACL.Permission.index', compact('permissions'));
     }
 
