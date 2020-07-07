@@ -24,13 +24,15 @@ class ProfileRepository{
     public function isValidNewPassword($oldPass, $newPass, $repeatPass, $userId)
     {
         $user = User::where('id', $userId)->first();
+        
         $isValid =  ($newPass == $repeatPass) ? true : false;
+        
         if (!$isValid) {
             session()->flash('newpass-Wrong', $oldPass);
             return back();
         }
-        User::where('id', $userId)
-            ->update(['password' =>  Hash::make($newPass)]);
+
+        $this->changePassword($user->id, Hash::make($newPass));
         session()->flash('changed-password');
 
         if ($user == 'admin')
@@ -44,10 +46,16 @@ class ProfileRepository{
         return User::where('id', $id)->first();
     }
 
-    public function updateAdminProfile($id, $profile)
+    public function updateProfile($id, $profile)
     {
         User::where('id', $id)
             ->update(['profile' => $profile]);
+    }
+
+    public function changePassword($userId, $newPass)
+    {
+        User::where('id', $userId)
+            ->update(['password' => $newPass ]);
     }
 
 }

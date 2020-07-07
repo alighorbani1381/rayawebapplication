@@ -13,7 +13,7 @@ class ProfileRequest
         ]);
     }
 
-    static function adminCheckProfile($request)
+    static function CheckProfile($request)
     {
         return $request->validate(['profile' => 'required|image']);
     }

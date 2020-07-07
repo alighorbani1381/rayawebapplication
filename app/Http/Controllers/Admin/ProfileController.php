@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
 use Illuminate\Http\Request;
 use App\Request\ProfileRequest;
 use App\Repositories\ProfileRepository;
@@ -45,14 +44,14 @@ class ProfileController extends AdminController
 
     public function changeImage(Request $request)
     {
-        ProfileRequest::adminCheckProfile($request);
+        ProfileRequest::CheckProfile($request);
 
         if ($this->user->profile != 'default')
             parent::imageDelete(self::ADMIN_PROFILE_FOLDER . $this->user->profile);
 
         $image = parent::imageUploade($request->profile, self::ADMIN_PROFILE_FOLDER);
 
-        $this->repo->updateAdminProfile($this->user->id, $image);
+        $this->repo->updateProfile($this->user->id, $image);
 
         session()->flash('profile-changed');
         return redirect()->route('admin.dashboard');
