@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
@@ -10,6 +11,12 @@ class AdminController extends Controller
     public function __construct()
     {
         // auth()->loginUsingId(1);
+    }
+
+    protected function checkAccess($gateName)
+    {
+        if (Gate::denies($gateName))
+            abort(404);
     }
 
     public function standardPath()
