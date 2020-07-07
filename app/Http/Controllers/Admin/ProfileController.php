@@ -9,6 +9,7 @@ use App\Repositories\ProfileRepository;
 class ProfileController extends AdminController
 {
 
+    # Define Profile Path
     const ADMIN_PROFILE_FOLDER = 'profiles\admins\\';
 
     private $user;
@@ -17,20 +18,25 @@ class ProfileController extends AdminController
 
     public function __construct()
     {
+
+        # Encapsolation Repository 
+        $this->repo = resolve(ProfileRepository::class);
+
+        # Set User into This Class
         $this->middleware(function ($request, $next) {
             $this->user = auth()->user();
             return $next($request);
         });
-
-        $this->repo = resolve(ProfileRepository::class);
     }
 
+    # Show User Profile (Edit Profile Page)
     public function index()
     {
         $user = $this->repo->getUserProfile($this->user->id);
         return view('Admin.User.profile', compact('user'));
     }
 
+    # Change Password Method
     public function changePassword(Request $request)
     {
         ProfileRequest::adminCheckParam($request);
@@ -38,10 +44,11 @@ class ProfileController extends AdminController
         if (!$this->repo->isValidPassword($request->old_password, $this->user->password)) {
             return back();
         }
-        
+
         return $this->repo->isValidNewPassword($request->old_password, $request->new_password, $request->repeat_password, $this->user->id);
     }
 
+    # Change Profile Image 
     public function changeImage(Request $request)
     {
         ProfileRequest::CheckProfile($request);
