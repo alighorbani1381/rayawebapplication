@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 class CostStaticRepository
 {
 
-
     public function getStaticCosts()
     {
         return CostStatic::orderBy('child')->paginate(15);
@@ -60,7 +59,8 @@ class CostStaticRepository
             ->delete();
     }
 
-    private function getSubCost($costStatic){
+    private function getSubCost($costStatic)
+    {
         return CostStatic::where('child', $costStatic->id)->select('id')->get();
     }
 }

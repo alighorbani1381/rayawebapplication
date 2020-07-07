@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\CostStatic;
-use App\Repositories\CostStaticRepository;
 use Illuminate\Http\Request;
+use App\Repositories\CostStaticRepository;
 
 class CoststaticController extends AdminController
 {
@@ -38,11 +38,10 @@ class CoststaticController extends AdminController
     }
 
 
-    public function show(CostStatic $costStatic)
+    public function show()
     {
         return redirect()->route('static.index');
     }
-
 
 
     public function edit($costStatic)
@@ -52,8 +51,6 @@ class CoststaticController extends AdminController
         return view('Admin.CostStatic.edit', compact('costStatic', 'mainCategories'));
     }
 
-
-
     public function update(Request $request, $costStatic)
     {
         $costStatic = $this->repo->getCostStatic();
@@ -61,7 +58,6 @@ class CoststaticController extends AdminController
         session()->flash('UpdateCostStatic');
         return redirect()->route('static.index');
     }
-
 
     public function destroy($costStatic)
     {
