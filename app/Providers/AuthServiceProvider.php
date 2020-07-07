@@ -19,8 +19,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        /*
-        if (Schema::hasTable('Permission')) {
+        # Configuration ACL (Access Control List) & Create Gates
+        if (Schema::hasTable('permissions')) {
             $permissions = $this->getPermissions();
             foreach ($permissions as $permission) {
                 Gate::define($permission->name, function ($user) use ($permission) {
@@ -28,7 +28,6 @@ class AuthServiceProvider extends ServiceProvider
                 });
             }
         }
-        */
         
     }
 
