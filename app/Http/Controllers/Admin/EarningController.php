@@ -15,7 +15,7 @@ class EarningController extends AdminController
 
     public function __construct()
     {
-        # Configuratio of Repository
+        # Configuration of Repository
         $this->repo =  resolve(EarningRepository::class);
 
         # Set User into This Class
