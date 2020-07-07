@@ -2,12 +2,12 @@
 $fullName = auth()->user()->name . " " . auth()->user()->lastname;
 $user = auth()->user();
 
-$accessCategory = ACL::getCategories();
-$accessProject = ACL::getProjects();
-$accessEarning = ACL::getEarnings();
-$accessCost = ACL::getCosts();
+$accessCategory   = ACL::getCategories();
+$accessProject    = ACL::getProjects();
+$accessEarning    = ACL::getEarnings();
+$accessCost       = ACL::getCosts();
 $accessCostStatic = ACL::getCostStatic();
-$accessUser = ACL::getUsers();
+$accessUser       = ACL::getUsers();
 @endphp
 <!-- ========== Left Sidebar Start ========== -->
 <div class="left side-menu">
