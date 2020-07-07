@@ -204,4 +204,9 @@ class ProjectRequest
         $fileds = ['progress.*' => 'required|numeric|min:1|max:100'];
         $request->validate($fileds);
     }
+
+    public function completeValidate($request)
+    {
+        $request->validate(['finished' => 'required|integer']);
+    }
 }
