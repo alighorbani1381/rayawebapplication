@@ -39,4 +39,15 @@ class ProfileRepository{
             return redirect()->route('contractor.dashbord');
     }
 
+    public function getUserProfile($id)
+    {
+        return User::where('id', $id)->first();
+    }
+
+    public function updateAdminProfile($id, $profile)
+    {
+        User::where('id', $id)
+            ->update(['profile' => $profile]);
+    }
+
 }

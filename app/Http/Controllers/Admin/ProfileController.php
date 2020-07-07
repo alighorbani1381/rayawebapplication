@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Repositories\ProfileRepository;
 use App\User;
 use Illuminate\Http\Request;
+use App\Request\ProfileRequest;
+use App\Repositories\ProfileRepository;
 
 class ProfileController extends AdminController
 {
@@ -27,41 +28,31 @@ class ProfileController extends AdminController
 
     public function index()
     {
-        $user = User::where('id', $this->user->id)->first();
+        $user = $this->repo->getUserProfile($this->user->id);
         return view('Admin.User.profile', compact('user'));
     }
 
     public function changePassword(Request $request)
     {
-        // return $request->all();
-
-        $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required',
-            'repeat_password' => 'required',
-        ]);
+        ProfileRequest::adminCheckParam($request);
 
         if (!$this->repo->isValidPassword($request->old_password, $this->user->password)) {
             return back();
         }
-
-        $oldPass = $request->old_password;
-        $newPass = $request->new_password;
-        $reaptPass = $request->repeat_password;
-        return $this->repo->isValidNewPassword($oldPass, $newPass, $reaptPass, $this->user->id);
+        
+        return $this->repo->isValidNewPassword($request->old_password, $request->new_password, $request->repeat_password, $this->user->id);
     }
 
     public function changeImage(Request $request)
     {
-        $request->validate(['profile' => 'required|image']);
+        ProfileRequest::adminCheckProfile($request);
 
         if ($this->user->profile != 'default')
             parent::imageDelete(self::ADMIN_PROFILE_FOLDER . $this->user->profile);
 
         $image = parent::imageUploade($request->profile, self::ADMIN_PROFILE_FOLDER);
 
-        User::where('id', $this->user->id)
-            ->update(['profile' => $image]);
+        $this->repo->updateAdminProfile($this->user->id, $image);
 
         session()->flash('profile-changed');
         return redirect()->route('admin.dashboard');
