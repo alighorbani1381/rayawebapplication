@@ -10,6 +10,13 @@ use App\Repositories\EarningRepository;
 
 class EarningController extends AdminController
 {
+    # Define Acess Gate
+    const INDEX = "Index-Earning";
+    const CREATE = "Create-Earning";
+    const SHOW = "Show-Earning";
+    const EDIT = "Edit-Earning";
+    const DELETE = "Delete-Earning";
+    
 
     private $repo;
 
@@ -28,6 +35,7 @@ class EarningController extends AdminController
     # Show List of Earnings
     public function index()
     {
+        $this->checkAccess(self::INDEX);
         $earnings = $this->repo->getEarningsList();
         return view('Admin.Earning.index', compact('earnings'));
     }
@@ -35,6 +43,8 @@ class EarningController extends AdminController
     # Create Earning 
     public function create($earning = null)
     {
+        $this->checkAccess(self::CREATE);
+
         $projects = $this->repo->getProjectWant($earning);
 
         if ($projects->count() != 0)
@@ -47,6 +57,7 @@ class EarningController extends AdminController
     # Store Earning
     public function store(Request $request)
     {
+        $this->checkAccess(self::CREATE);
         EarningRequest::storeValidate($request);
         $this->repo->createEarning($request, $this->user->id);
         return redirect()->route('earnings.index');
@@ -55,6 +66,7 @@ class EarningController extends AdminController
     # Show Earning Detail
     public function show($earning)
     {
+        $this->checkAccess(self::SHOW);
         $earning = $this->repo->getEarning($earning);
         return view('Admin.Earning.show', compact('earning'));
     }
@@ -62,6 +74,7 @@ class EarningController extends AdminController
     # Edit Earnings
     public function edit(Earning $earning)
     {
+        $this->checkAccess(self::EDIT);
         $projects  = $this->repo->getActiveProject();
         return view('Admin.Earning.edit', compact('projects', 'earning'));
     }
@@ -69,6 +82,7 @@ class EarningController extends AdminController
     # Update Earning
     public function update(Request $request, Earning $earning)
     {
+        $this->checkAccess(self::EDIT);
         $earning->update($request->all());
         session()->flash('UpdateEarning');
         return redirect()->route('earnings.show', $earning->id);
@@ -77,6 +91,7 @@ class EarningController extends AdminController
     # Remove Earning
     public function destroy(Earning $earning)
     {
+        $this->checkAccess(self::DELETE);
         $earning->delete();
         session()->flash('DeleteEarning');
         return redirect()->route('earnings.index');
