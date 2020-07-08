@@ -11,6 +11,12 @@ use App\Http\Controllers\Controller;
 class ACLController extends Controller
 {
 
+    private function isAccessChangeRole(User $user)
+    {
+        if (!$user->isAdmin() && $user->id == auth()->user()->id)
+            abort(404);
+    }
+
     public function indexPermission()
     {
         $permissions = Permission::orderBy('id', 'asc')->get();
@@ -67,9 +73,7 @@ class ACLController extends Controller
 
     public function userRole(User $user)
     {
-        if (!$user->isAdmin() && $user->id == auth()->user()->id)
-            abort(404);
-
+        $this->isAccessChangeRole($user);
         $userRoles = $user->roles()->get();
         $roles = Role::get();
         return view('Admin.ACL.Role.user', compact('roles', 'user', 'userRoles'));
@@ -79,8 +83,7 @@ class ACLController extends Controller
     {
         $user = User::findOrFail($request->user_id);
 
-        if (!$user->isAdmin() && $user->id == auth()->user()->id)
-            abort(404);
+        $this->isAccessChangeRole($user);
 
         $user->roles()->sync($request->input('role_id'));
 
