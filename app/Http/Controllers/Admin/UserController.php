@@ -65,8 +65,8 @@ class UserController extends AdminController
     {
         $this->checkAccess(self::CREATE);
         $this->requ->userValidation($request);
-        $this->repo->createUser($request);
-        return redirect()->route('users.index');
+        $user = $this->repo->createUser($request);
+        return redirect()->route('users.show', $user);
     }
 
     # Show User Detail
