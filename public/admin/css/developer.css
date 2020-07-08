@@ -263,8 +263,16 @@ h2#swal2-title {
     padding: 1.2em !important;
 }
 
+.acl-list {
+    font-size: larger;
+    color: white;
+}
+
 .user-pic {
     width: 20%;
     border: 1px solid #ddd;
     vertical-align: -3px;
+}
+.tac-table td {
+    text-align: center !important;
 }
