@@ -24,7 +24,7 @@ class ACLController extends Controller
 
     public function storePermission(Request $request)
     {
-        $request->validate(['name' => 'required', 'title' => 'required']);
+        $request->validate(['name' => 'required', 'title' => 'required', 'permission_id' => 'array']);
         Permission::create($request->all());
         return redirect()->route('per.create');
     }
@@ -47,6 +47,14 @@ class ACLController extends Controller
     {
         $permissions = Permission::get();
         return view('Admin.ACL.Role.create', compact('permissions'));
+    }
+
+    public function updateRole(Request $request, Role $role)
+    {
+        $request->validate(['name' => 'required', 'title' => 'required', 'permission_id' => 'array']);
+        $role->update($request->all());
+        $role->permissions()->sync($request->input('permission_id'));
+        return redirect()->route('roles.index');
     }
 
     public function storeRole(Request $request)
