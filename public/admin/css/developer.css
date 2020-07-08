@@ -169,97 +169,102 @@ h2#swal2-title {
     border-bottom: 2px solid #64ce76;
     padding-bottom: 15px;
 }
-.earning-box:last-child{
+.earning-box:last-child {
     border-bottom: none !important;
     padding-bottom: 0 !important;
 }
-.sep-line{
+.sep-line {
     border-bottom: 2px solid #ddd;
 }
-.pay-moeny{
+.pay-moeny {
     padding: 10px;
 }
 
-.costs-button{
+.costs-button {
     width: 100%;
     margin: 0 auto;
     font-size: large;
     display: block;
 }
-.welcome-login{
+.welcome-login {
     border-bottom: 2px solid #5412d4;
     padding-bottom: 9px;
 }
-.login-logo{
+.login-logo {
     width: 140px;
 }
-.exists-record{
+.exists-record {
     width: 30%;
-    margin-left:40px;
+    margin-left: 40px;
 }
 
-.notfound-content{    
+.notfound-content {
     display: inline-block;
-    padding: 41px;    
+    padding: 41px;
     border: 3px solid;
-    width:50%;
+    width: 50%;
     color: white;
     border-color: #d1ccf7;
     border-radius: 100px 40px 40px 100px;
-    background-image: linear-gradient(45deg, #4776E6, #8E54E9);
+    background-image: linear-gradient(45deg, #4776e6, #8e54e9);
     box-shadow: 0px 0px 15px -4px #908585;
     vertical-align: -17px;
 }
-.notfound-header h3{
-    color:white !important;
+.notfound-header h3 {
+    color: white !important;
     line-height: 35px;
 }
 
-.change-pass{
-    border:1px solid #ddd;
+.change-pass {
+    border: 1px solid #ddd;
     margin-left: 20px;
 }
 
-.cont-dash{
+.cont-dash {
     vertical-align: 3px;
     display: inline-block;
     margin-right: 5px;
 }
 
-#contractor-username{
+#contractor-username {
     transition: 0.3s;
 }
 
-#contractor-username:hover{
+#contractor-username:hover {
     cursor: text;
-    background:#3d4aa7;
+    background: #3d4aa7;
 }
 
-.i-fix{
+.i-fix {
     vertical-align: -1px;
     margin-left: 3px;
 }
 
-.preloader{
+.preloader {
     position: fixed;
     margin: 0 auto;
     width: 100%;
     height: 100%;
     z-index: 999999;
-    background: url('../images/symbols/clockTime.gif') center no-repeat #ff9811;
-  }
+    background: url("../images/symbols/clockTime.gif") center no-repeat #ff9811;
+}
 
-  .permission-list{
-      padding: 2%;
-  }
- .acl-param{
+.permission-list {
+    padding: 2%;
+}
+.acl-param {
     position: absolute;
     left: 25%;
-    top:25%;
+    top: 25%;
     margin: 0 !important;
-  }
-  .acl-item{
+}
+.acl-item {
     position: relative;
     padding: 1.2em !important;
-  }
+}
 
+.user-pic {
+    width: 20%;
+    border: 1px solid #ddd;
+    vertical-align: -3px;
+}
