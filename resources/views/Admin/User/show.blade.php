@@ -142,7 +142,7 @@
         <div class="card-box task-detail">
             <h4 class="header-title m-t-0 m-b-30">
                 <i class="fa fa-shield i-fix"></i>
-                <span>نقش ها و سطوح دسترسی</span>
+                <span>نقش ها و سطوح دسترسی مدیر</span>
             </h4>
 
             <table id="datatable" class="tac-table table table-striped table-bordered" style="border: 1px solid #dcdcdcdd;">

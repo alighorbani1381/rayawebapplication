@@ -87,6 +87,6 @@ class ACLController extends Controller
 
         $user->roles()->sync($request->input('role_id'));
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.show', $user->id);
     }
 }
