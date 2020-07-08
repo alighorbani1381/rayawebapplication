@@ -27,6 +27,7 @@
                 </ul>
             </div>
             <h4 class="header-title m-t-0 m-b-30">
+                <i class="i-fix fa fa-user"></i>
                 جزئیات کاربر
                 @if($user->type == 'contractor')
                 (کارمند)
@@ -140,10 +141,11 @@
     <div class="col-md-7">
         <div class="card-box task-detail">
             <h4 class="header-title m-t-0 m-b-30">
-                نقش ها و سطوح دسترسی
+                <i class="fa fa-shield i-fix"></i>
+                <span>نقش ها و سطوح دسترسی</span>
             </h4>
 
-            <table id="datatable" class="tac-table table table-striped" style="border: 1px solid #dcdcdcdd;">
+            <table id="datatable" class="tac-table table table-striped table-bordered" style="border: 1px solid #dcdcdcdd;">
                 <tr class="tac">
                     <td class="acl-list" style="background:#018c86;" colspan="4">نقش ها</td>
                 </tr>
@@ -154,7 +156,7 @@
                 @endforeach
             </table>
 
-            <table id="datatable" class="tac-table table table-striped" style="border: 1px solid #dcdcdcdd;">
+            <table id="datatable" class="tac-table table table-striped table-bordered" style="border: 1px solid #dcdcdcdd !important;">
                 <tr class="tac">
                     <td class="acl-list" style="background:#6eaaf5;" colspan="4">سطوح دسترسی</td>
                 </tr>
