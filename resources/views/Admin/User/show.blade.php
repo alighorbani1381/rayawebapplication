@@ -3,7 +3,7 @@
 @section('header', 'جزئیات کاربر')
 @section('content')
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="@if($user->type == 'contractor'){{"col-md-8 col-md-offset-2"}}@else{{"col-md-5"}}@endif">
         <div class="card-box task-detail">
             <div class="dropdown pull-right">
                 <a href="#" class="dropdown-toggle card-drop" data-toggle="dropdown" aria-expanded="false">
@@ -28,76 +28,89 @@
             </div>
             <h4 class="header-title m-t-0 m-b-30">
                 جزئیات کاربر
+                @if($user->type == 'contractor')
+                (کارمند)
+                @else
+                (مدیر)
+                @endif
             </h4>
             <div class="media m-b-20">
 
-                @if($user->profile != 'default')
+                @if($user->profile != 'default' && $user->type == 'contractor')
                 <a href="{{ showPicture('user.profile', $user->profile) }}">
-                    <img class="media-object img-circle" alt="{{ $user->name . " " . $user->lastname }}"
-                        src="{{ showPicture('user.profile', $user->profile) }}"
-                        style="width: 20%; border:1px solid #ddd; vertical-align:-3px;">
-                    @else
-                    <a href="#">
-                        <img class="media-object img-circle" alt="{{ $user->name . " " . $user->lastname }}"
-                            src="{{ showPicture(null, $user->profile) }}"
-                            style="width: 20%; border:1px solid #ddd; vertical-align:-3px;">
+                    <img class="user-pic media-object img-circle" alt="{{ $user->name . " " . $user->lastname }}"
+                        src="{{ showPicture('user.profile', $user->profile) }}">
+                </a>
+                @endif
+
+                @if($user->profile != 'default' && $user->type == 'admin')
+                <a href="{{ showPicture('admin.profile', $user->profile) }}">
+                    <img class="user-pic media-object img-circle" alt="{{ $user->name . " " . $user->lastname }}"
+                        src="{{ showPicture('admin.profile', $user->profile) }}">
+                </a>
+                @endif
+
+                @if($user->profile == 'default')
+                <a href="#">
+                    <img class="user-pic media-object img-circle" alt="{{ $user->name . " " . $user->lastname }}"
+                        src="{{ showPicture(null, $user->profile) }}">
+                </a>
+                @endif
+
+                <div class="t">
+                    <h4 class="font-600"
+                        style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
+                        نام :
+                    </h4>
+                    <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $user->name }}</h4>
+                </div>
+
+                <div class="t">
+                    <h4 class="font-600"
+                        style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
+                        نام خانوادگی :
+                    </h4>
+                    <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $user->lastname }}</h4>
+                </div>
+
+                <div class="t">
+                    <h4 class="font-600"
+                        style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
+                        نام کاربری :
+                    </h4>
+                    <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $user->username }}</h4>
+                </div>
+
+                <div class="t">
+                    <h4 class="font-600"
+                        style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
+                        رمز عبور :
+                    </h4>
+                    <h4 class="font-600 m-b-20" style="display: inline-block;">
+                        @if(! Hash::check("raya-px724", $user->password))
+                        {{ "Secret" }}
+                        <i class="fa fa-lock"></i>
+                        @else
+                        {{ "raya-px724" }}
                         @endif
-                    </a>
+                    </h4>
+                </div>
 
-                    <div class="t">
-                        <h4 class="font-600"
-                            style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
-                            نام :
-                        </h4>
-                        <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $user->name }}</h4>
-                    </div>
+                <div class="t">
+                    <h4 class="font-600"
+                        style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
+                        شماره تماس :
+                    </h4>
+                    <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $user->phone }}</h4>
+                </div>
 
-                    <div class="t">
-                        <h4 class="font-600"
-                            style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
-                            نام خانوادگی :
-                        </h4>
-                        <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $user->lastname }}</h4>
-                    </div>
-
-                    <div class="t">
-                        <h4 class="font-600"
-                            style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
-                            نام کاربری :
-                        </h4>
-                        <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $user->username }}</h4>
-                    </div>
-
-                    <div class="t">
-                        <h4 class="font-600"
-                            style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
-                            رمز عبور :
-                        </h4>
-                        <h4 class="font-600 m-b-20" style="display: inline-block;">
-                            @if(! Hash::check("raya-px724", $user->password))
-                            {{ "Secret" }}
-                            <i class="fa fa-lock"></i>
-                            @else
-                            {{ "raya-px724" }}
-                            @endif
-                        </h4>
-                    </div>
-
-                    <div class="t">
-                        <h4 class="font-600"
-                            style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
-                            شماره تماس :
-                        </h4>
-                        <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $user->phone }}</h4>
-                    </div>
-
-                    <div class="t">
-                        <h4 class="font-600"
-                            style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
-                            آدرس :
-                        </h4>
-                        <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $user->address }}</h4>
-                    </div>
+                <div class="t">
+                    <h4 class="font-600"
+                        style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
+                        آدرس :
+                    </h4>
+                    <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $user->address }}</h4>
+                </div>
 
 
             </div>
@@ -123,8 +136,26 @@
     </div>
 
 
+    @if($user->type == 'admin')
+    <div class="col-md-5 col-md-offset-1">
+        <div class="card-box task-detail">
+            <h4 class="header-title m-t-0 m-b-30">
+                نقش ها و سطوح دسترسی
+            </h4>
 
-
+            <div class="media m-b-20">
+                <div class="t">
+                    <h4 class="font-600"
+                        style="display: inline-block;margin-left:5px; font-weight:bold; color:rgb(0, 0, 59);">
+                        آدرس :
+                    </h4>
+                    <h4 class="font-600 m-b-20" style="display: inline-block;">{{ $user->address }}</h4>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    @endif
 
 </div>
 
