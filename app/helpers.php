@@ -80,3 +80,15 @@ function showPicture($type, $name)
             break;
     }
 }
+
+function openTr($key, $row)
+{
+    return ($key % $row == 0);
+}
+
+function closeTr($key, $row)
+{
+    $row*=2;
+    $key+1 % $row == 0;
+}
+
