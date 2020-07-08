@@ -93,9 +93,9 @@ class UserRepository
 
     public function createUser(Request $request)
     {
-        $time = date("Y-m-d h:m:s");
+        $time = date("Y-m-d H:m:s");
         return DB::table('users')
-            ->insert([
+            ->insertGetId([
                 'name' => $request->name,
                 'lastname' => $request->lastname,
                 'phone' => $request->phone,
@@ -105,6 +105,7 @@ class UserRepository
                 'profile' => 'default',
                 'password' => $this->generatePassword(),
                 'created_at' => $time,
+                'updated_at' => $time,
             ]);
     }
 
