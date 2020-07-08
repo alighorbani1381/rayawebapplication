@@ -5,13 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\User;
 use Illuminate\Http\Request;
 use App\Request\UserRequest;
-use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
+use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Session;
 
 
 class UserController extends AdminController
 {
+
+    # Define Acess Gate
+    const INDEX = "Index-User";
+    
+    const CREATE = "Create-User";
+    
+    const SHOW = "Show-User";
+    
+    const EDIT = "Edit-User";
+    
+    const DELETE = "Delete-User";
 
     private $user;
 
@@ -37,6 +48,7 @@ class UserController extends AdminController
     # Show List of Users
     public function index()
     {
+        $this->checkAccess(self::INDEX);
         $users = $this->repo->getUsers($this->user->id);
         return view('Admin.User.index', compact('users'));
     }
@@ -44,12 +56,14 @@ class UserController extends AdminController
     # User Create View
     public function create()
     {
+        $this->checkAccess(self::CREATE);
         return view('Admin.User.create');
     }
 
     # User Store Data & Validate
     public function store(Request $request)
     {
+        $this->checkAccess(self::CREATE);
         $this->requ->userValidation($request);
         $this->repo->createUser($request);
         return redirect()->route('users.index');
@@ -58,6 +72,7 @@ class UserController extends AdminController
     # Show User Detail
     public function show(User $user)
     {
+        $this->checkAccess(self::SHOW);
         $permissions = $user->isAdmin() ? $this->repo->getPermissionsName($user) : $this->repo->empty();
         $roles = $user->isAdmin() ? $this->repo->getUserRoles($user) : $this->repo->empty();
         return view('Admin.User.show', compact('user', 'roles', 'permissions'));
@@ -66,12 +81,14 @@ class UserController extends AdminController
     # User Edit View
     public function edit(User $user)
     {
+        $this->checkAccess(self::EDIT);
         return view('Admin.User.edit', compact('user'));
     }
 
     # User Update Method
     public function update(Request $request, User $user)
     {
+        $this->checkAccess(self::EDIT);
         $this->requ->userValidation($request, 'updateValidation');
         $this->requ->checkUniqueItem($user, $request);
         $this->repo->userUpdate($request, $user);
@@ -84,6 +101,7 @@ class UserController extends AdminController
     # Remove User From System
     public function destroy(User $user)
     {
+        $this->checkAccess(self::EDIT);
         if ($user->hasDependency()) {
             Session::flash('NotDeleteUser');
         } else {
@@ -100,7 +118,6 @@ class UserController extends AdminController
         if (!$request->ajax()) {
             abort(404);
         }
-
 
         $projectId = $request->get('project_id');
 
