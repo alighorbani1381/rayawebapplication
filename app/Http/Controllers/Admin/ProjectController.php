@@ -3,14 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Project;
-use App\Request\ProjectRequest;
 use Illuminate\Http\Request;
+use App\Request\ProjectRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProjectRepository;
 
 
 class ProjectController extends AdminController
 {
+    # Define Acess Gate
+    const INDEX = "Index-Project";
+    
+    const CREATE = "Create-Project";
+    
+    const SHOW = "Show-Project";
+    
+    const EDIT = "Edit-Project";
+    
+    const DELETE = "Delete-Project";
 
     private $repo;
 
@@ -27,6 +37,7 @@ class ProjectController extends AdminController
     # Show Latest 15th Project
     public function index()
     {
+        $this->checkAccess(self::INDEX);
         $projects = $this->repo->getProjects();
         return view('Admin.Project.index', compact('projects'));
     }
@@ -34,6 +45,7 @@ class ProjectController extends AdminController
     # Create Project Page
     public function create()
     {
+        $this->checkAccess(self::CREATE);
         $mainCategories = $this->repo->getMainCategories();
         $anyCategory = $this->categories->hasCategories();
         $contractors = $this->repo->getContractors();
@@ -43,6 +55,7 @@ class ProjectController extends AdminController
     # Store Project
     public function store(Request $request)
     {
+        $this->checkAccess(self::CREATE);
         $this->request->validate($request);
         $this->repo->projectCreateFull($request);
         return redirect()->route('projects.index');
@@ -51,6 +64,7 @@ class ProjectController extends AdminController
     # Show Detail & Progress Project
     public function show($project)
     {
+        $this->checkAccess(self::SHOW);
         $project = $this->repo->getProjectFull($project);
         $allProgress = $this->repo->getProgress($project);
         return view('Admin.Project.show', compact('project', 'allProgress'));
@@ -59,6 +73,7 @@ class ProjectController extends AdminController
     # Edit Project
     public function edit($project)
     {
+        $this->checkAccess(self::EDIT);
         $project = $this->repo->getProjectFull($project);
         return view('Admin.Project.edit', compact('project'));
     }
@@ -66,6 +81,7 @@ class ProjectController extends AdminController
     # Update Project Info
     public function update(Request $request, $project)
     {
+        $this->checkAccess(self::EDIT);
         $this->repo->updateProjectFull($project, $request);
         session()->flash('ProjectUpdate');
         return redirect()->route('projects.index');
@@ -74,6 +90,7 @@ class ProjectController extends AdminController
     # Remove Project With Dependencies
     public function destroy($project)
     {
+        $this->checkAccess(self::DELETE);
         $this->repo->deleteFullProject($project);
         session()->flash('ProjectDelete');
         return back();
@@ -82,6 +99,7 @@ class ProjectController extends AdminController
     # Percent Divide Between Contractors
     public function percentDivide(Request $request)
     {
+        $this->checkAccess(self::SHOW);
         $this->request->percentValidate($request);
         $this->repo->dividePercnets($request);
         session()->flash('ActiveProject');
@@ -91,6 +109,7 @@ class ProjectController extends AdminController
     # Change Project Status to Completed => LOG
     public function complete(Request $request)
     {
+        $this->checkAccess(self::SHOW);
         $this->request->completeValidate($request);
 
         $project = $this->repo->getProjectFull($request->finished);
