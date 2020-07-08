@@ -138,12 +138,15 @@ class UserRepository
         foreach ($permissions as $permission)
             foreach ($permission as $item)
                 $titles[] = $item->title;
+        return $titles;
     }
 
     public function getPermissions($roles)
     {
         foreach ($roles as $role)
             $permissions[] = $role->permissions()->get();
+
+        return $permissions;
     }
 
     public function getUniqueTitle($titles)
