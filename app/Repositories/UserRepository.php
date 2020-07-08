@@ -104,18 +104,18 @@ class UserRepository
                 'username' => $request->username,
                 'profile' => 'default',
                 'password' => $this->generatePassword(),
-                'created_at'=> $time,
+                'created_at' => $time,
             ]);
     }
 
     public function getProjectContractors($projectId)
     {
         DB::table('project_contractor')
-        ->where('project_contractor.project_id', $projectId)
-        ->join('users', 'project_contractor.contractor_id', '=', 'users.id')
-        ->select('users.id', 'users.name', 'users.lastname')
-        ->orderBy('project_contractor.progress', 'desc')
-        ->get();
+            ->where('project_contractor.project_id', $projectId)
+            ->join('users', 'project_contractor.contractor_id', '=', 'users.id')
+            ->select('users.id', 'users.name', 'users.lastname')
+            ->orderBy('project_contractor.progress', 'desc')
+            ->get();
     }
 
     public function getContractors()
@@ -126,5 +126,42 @@ class UserRepository
     public function getAdmins()
     {
         return User::where('type', 'admin')->select('id', 'name', 'lastname')->get();
+    }
+
+    public function getUserRoles(User $user)
+    {
+        return $user->roles()->get();
+    }
+
+    public function getTitles($permissions)
+    {
+        foreach ($permissions as $permission)
+            foreach ($permission as $item)
+                $titles[] = $item->title;
+    }
+
+    public function getPermissions($roles)
+    {
+        foreach ($roles as $role)
+            $permissions[] = $role->permissions()->get();
+    }
+
+    public function getUniqueTitle($titles)
+    {
+        $col = collect($titles);
+        return $col->unique();
+    }
+
+    public function getPermissionsName(User $user)
+    {
+        $roles = $this->getUserRoles($user);
+        $permissions = $this->getPermissions($roles);
+        $titles = $this->getTitles($permissions);
+        return $this->getUniqueTitle($titles);
+    }
+
+    public function empty()
+    {
+        return collect([]);
     }
 }
