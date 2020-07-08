@@ -145,6 +145,7 @@
                 <span>نقش ها و سطوح دسترسی مدیر</span>
             </h4>
 
+            @if(hasMember($roles))
             <table id="datatable" class="tac-table table table-striped table-bordered" style="border: 1px solid #dcdcdcdd;">
                 <tr class="tac">
                     <td class="acl-list" style="background:#018c86;" colspan="4">نقش ها</td>
@@ -166,6 +167,9 @@
                     @if(closeTr($key, 4))</tr>@endif
                 @endforeach
             </table>
+            @else
+            {!! recordMessage('هیچ سطح دسترسی برای این مدیر تعریف نشده است') !!}
+            @endif
             <div class="clearfix"></div>
         </div>
     </div>
