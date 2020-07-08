@@ -30,8 +30,8 @@
                 لیست کاربران
             </h4>
             <a href="{{ route('users.create') }}" class="cbfl btn btn-info btn-bordred waves-effect waves-dark m-b-5">
-                <i class="fa fa-plus-circle"></i> 
-                <span>افزودن جدید </span> 
+                <i class="fa fa-plus-circle"></i>
+                <span>افزودن جدید </span>
             </a>
             @if(hasMember($users))
             <table id="datatable" class="table table-striped table-bordered">
@@ -64,11 +64,21 @@
                             @endif
                         </td>
                         <td class="tac">
-                            @if($user->profile != 'default')
-                            <img class="tumb-pic-index" src="{{ showPicture('user.profile', $user->profile) }}" alt="{{ $user->full_name}}" title="{{ $user->full_name}}">
-                            @else
-                            <img class="tumb-pic-index" src="{{ showPicture(null, $user->profile) }}" alt="{{ $user->full_name}}" title="{{ $user->full_name}}">
+                            @if($user->profile != 'default' && $user->type == 'contractor')
+                            <img class="tumb-pic-index" src="{{ showPicture('user.profile', $user->profile) }}"
+                                alt="{{ $user->full_name}}" title="{{ $user->full_name}}">
                             @endif
+
+                            @if($user->profile != 'default' && $user->type == 'admin')
+                            <img class="tumb-pic-index" src="{{ showPicture('admin.profile', $user->profile) }}"
+                                alt="{{ $user->full_name}}" title="{{ $user->full_name}}">
+                            @endif
+
+                            @if($user->profile == 'default')
+                            <img class="tumb-pic-index" src="{{ showPicture(null, $user->profile) }}"
+                                alt="{{ $user->full_name}}" title="{{ $user->full_name}}">
+                            @endif
+
                         </td>
                         <td class="tac">{{ $user->phone}}</td>
                         <td class="tac">{{ $user->username}}</td>
@@ -80,13 +90,16 @@
                             {{ "raya-px724" }}
                             @endif
                         </td>
-                        
+
                         <td class="tac">
-                            <a href="{{ route('users.show', $user->id) }}"class="btn btn-icon waves-effect waves-light btn-success m-b-5"> <i class="fa fa-eye"></i> </a>
+                            <a href="{{ route('users.show', $user->id) }}"
+                                class="btn btn-icon waves-effect waves-light btn-success m-b-5"> <i
+                                    class="fa fa-eye"></i> </a>
                         </td>
 
                         <td class="tac">
-                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
+                            <a href="{{ route('users.edit', $user->id) }}"
+                                class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
                                     class="fa fa-pencil"></i> </a>
                         </td>
                         <td class="tac">
