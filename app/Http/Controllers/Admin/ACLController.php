@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use App\Role;
 use App\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
 
 class ACLController extends Controller
 {
@@ -32,8 +32,15 @@ class ACLController extends Controller
 
     public function indexRole()
     {
-        $roles = Role::get();
+        $roles = Role::get();        
         return view('Admin.ACL.Role.index', compact('roles'));
+    }
+
+    public function editRole(Role $role)
+    {
+        $permissions = Permission::get();
+        $rolePermissions = $role->permissions()->get();
+        return view('Admin.ACL.Role.edit', compact('role', 'permissions', 'rolePermissions'));
     }
 
     public function createRole()
