@@ -34,9 +34,14 @@
 
                             <select multiple class="form-control" name="role_id[]" required>
                                 @foreach($roles as $key => $role)
-                                    @foreach ($userRoles as $userRole)
-                                        <option @if($userRole->id == $role->id){{"selected"}}@endif value="{{ $role->id }}">{{ $role->title }}</option>
-                                    @endforeach
+                                @php
+                                $hasRole = "";
+                                foreach ($userRoles as $userRole):
+                                if($userRole->id == $role->id)
+                                $hasRole = "selected";
+                                endforeach;
+                                @endphp
+                                <option value="{{ $role->id }}" {{$hasRole}}>{{ $role->title }}</option>
                                 @endforeach
                             </select>
                         </div>
