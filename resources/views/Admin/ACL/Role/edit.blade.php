@@ -8,9 +8,9 @@
          <h4 class="header-title m-t-0 m-b-30">افزودن نقش جدید</h4>
          <div class="row">
             <div class="col-lg-11">
-               <form class="form-horizontal" role="form" action="{{ route('roles.store') }}" method="post">
+               <form class="form-horizontal" role="form" action="{{ route('roles.update', $role->id) }}" method="post">
                   @csrf
-
+                  @method('PATCH')
                   <!-- Alert Box !-->
                   <div class="form-group">
                      <label class="col-md-2 control-label">نکته بسیار مهم</label>
