@@ -58,7 +58,9 @@ class UserController extends AdminController
     # Show User Detail
     public function show(User $user)
     {
-        return view('Admin.User.show', compact('user'));
+        $permissions = $user->isAdmin() ? $this->repo->getPermissionsName($user) : $this->repo->empty();
+        $roles = $user->isAdmin() ? $this->repo->getUserRoles($user) : $this->repo->empty();
+        return view('Admin.User.show', compact('user', 'roles', 'permissions'));
     }
 
     # User Edit View
