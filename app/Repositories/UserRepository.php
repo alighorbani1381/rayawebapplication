@@ -135,6 +135,8 @@ class UserRepository
 
     public function getTitles($permissions)
     {
+        $permissions = [];
+        $titles = [];
         foreach ($permissions as $permission)
             foreach ($permission as $item)
                 $titles[] = $item->title;
@@ -143,6 +145,7 @@ class UserRepository
 
     public function getPermissions($roles)
     {
+        $permissions = [];
         foreach ($roles as $role)
             $permissions[] = $role->permissions()->get();
 
