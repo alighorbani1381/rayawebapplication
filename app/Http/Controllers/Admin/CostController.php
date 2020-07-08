@@ -3,14 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Cost;
-use App\Repositories\CostRepository;
-use App\Request\CostRequest;
 use App\User;
 use Illuminate\Http\Request;
+use App\Request\CostRequest;
+use App\Repositories\CostRepository;
 
 
 class CostController extends AdminController
 {
+
+    # Define Acess Gate
+    const INDEX = "Index-Cost";
+    const CREATE = "Create-Cost";
+    const SHOW = "Show-Cost";
+    const EDIT = "Edit-Cost";
+    const DELETE = "Delete-Cost";
+    
 
     private $repo;
 
@@ -33,6 +41,7 @@ class CostController extends AdminController
     # Show List of Costs
     public function index()
     {
+        $this->checkAccess(self::INDEX);
         $costs = $this->repo->getCosts();
         return view('Admin.Cost.index', compact('costs'));
     }
@@ -41,6 +50,7 @@ class CostController extends AdminController
     # Create Cost
     public function create()
     {
+        $this->checkAccess(self::CREATE);
         $types = $this->repo->getCostTypes();
         $projects = $this->repo->getActiveProjects();
         $contractors = User::count();
@@ -50,6 +60,7 @@ class CostController extends AdminController
     # Store Cost
     public function store(Request $request)
     {
+        $this->checkAccess(self::CREATE);
         $request->validate(['storeType' => 'required']);
         $this->repo->costStore($request->get('storeType'), $request, $this->user->id);
         return redirect()->route('costs.index');
@@ -58,6 +69,7 @@ class CostController extends AdminController
     # Show Cost Detail
     public function show(Cost $cost)
     {
+        $this->checkAccess(self::SHOW);
         $cost = $this->repo->getCost($cost->id);
         return view('Admin.Cost.show', compact('cost'));
     }
@@ -65,6 +77,7 @@ class CostController extends AdminController
     # Edit Cost
     public function edit(Cost $cost)
     {
+        $this->checkAccess(self::EDIT);
         $types = $this->repo->getCostTypes();
         $cost = $this->repo->getCost($cost->id);
         return view('Admin.Cost.edit', compact('cost', 'types'));
@@ -73,6 +86,7 @@ class CostController extends AdminController
     # Update Cost
     public function update(Request $request, Cost $cost)
     {
+        $this->checkAccess(self::EDIT);
         $this->requ->update($request);
         $cost->update($request->all());
         return $this->requ->redirectUpdate($cost);
@@ -81,6 +95,7 @@ class CostController extends AdminController
     # Remove Cost
     public function destroy(Cost $cost)
     {
+        $this->checkAccess(self::DELETE);
         $cost->delete();
         session()->flash('DeleteCost');
         return back();
