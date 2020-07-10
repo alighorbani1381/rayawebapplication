@@ -24,6 +24,8 @@ class UserController extends AdminController
     
     const DELETE = "Delete-User";
 
+    const MULTI_ACCESS = [self::INDEX, self::CREATE, self::SHOW, self::EDIT, self::DELETE];
+
     private $user;
 
     private $requ;
@@ -48,7 +50,7 @@ class UserController extends AdminController
     # Show List of Users
     public function index()
     {
-        $this->checkAccess(self::INDEX);
+        $this->checkMultiAccess(self::MULTI_ACCESS);
         $users = $this->repo->getUsers($this->user->id);
         return view('Admin.User.index', compact('users'));
     }
