@@ -29,10 +29,14 @@
             <h4 class="header-title m-t-0 m-b-30 inb">
                 لیست کاربران
             </h4>
+
+            @can('Create-User')
             <a href="{{ route('users.create') }}" class="cbfl btn btn-info btn-bordred waves-effect waves-dark m-b-5">
                 <i class="fa fa-plus-circle"></i>
                 <span>افزودن جدید </span>
             </a>
+            @endcan
+
             @if(hasMember($users))
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>
@@ -44,9 +48,18 @@
                         <th class="tac">شماره تماس</th>
                         <th class="tac">نام کاربری</th>
                         <th class="tac">رمزعبور</th>
+
+                        @can('Show-User')
                         <th class="tac">جزئیات</th>
+                        @endcan
+
+                        @can('Edit-User')
                         <th class="tac">ویرایش</th>
+                        @endcan
+
+                        @can('Delete-User')
                         <th class="tac">حذف</th>
+                        @endcan
                     </tr>
                 </thead>
 
@@ -91,25 +104,37 @@
                             @endif
                         </td>
 
+                        @can('Show-User')
                         <td class="tac">
                             <a href="{{ route('users.show', $user->id) }}"
-                                class="btn btn-icon waves-effect waves-light btn-success m-b-5"> <i
-                                    class="fa fa-eye"></i> </a>
+                                class="btn btn-icon waves-effect waves-light btn-success m-b-5">
+                                <i class="fa fa-eye"></i>
+                            </a>
                         </td>
+                        @endcan
 
+                        @can('Edit-User')
                         <td class="tac">
                             <a href="{{ route('users.edit', $user->id) }}"
-                                class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
-                                    class="fa fa-pencil"></i> </a>
+                                class="btn btn-icon waves-effect waves-light btn-info m-b-5">
+                                <i class="fa fa-pencil"></i>
+                            </a>
                         </td>
+                        @endcan
+
+                        @can('Delete-User')
                         <td class="tac">
                             <form method="post" action="{{ route('users.destroy', $user->id) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button class="delete-user btn btn-icon waves-effect waves-light btn-danger m-b-5"
-                                    type="button"> <i class="fa fa-remove"></i> </button>
+                                    type="button">
+                                    <i class="fa fa-remove"></i>
+                                </button>
                             </form>
                         </td>
+                        @endcan
+
                     </tr>
                     @endforeach
 
