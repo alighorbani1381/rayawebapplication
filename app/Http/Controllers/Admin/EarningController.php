@@ -12,10 +12,16 @@ class EarningController extends AdminController
 {
     # Define Acess Gate
     const INDEX = "Index-Earning";
+
     const CREATE = "Create-Earning";
+
     const SHOW = "Show-Earning";
+
     const EDIT = "Edit-Earning";
+
     const DELETE = "Delete-Earning";
+
+    const MULTI_ACCESS = [self::INDEX, self::CREATE, self::SHOW, self::EDIT, self::DELETE];
     
 
     private $repo;
@@ -35,7 +41,7 @@ class EarningController extends AdminController
     # Show List of Earnings
     public function index()
     {
-        $this->checkAccess(self::INDEX);
+        $this->checkMultiAccess(self::MULTI_ACCESS);
         $earnings = $this->repo->getEarningsList();
         return view('Admin.Earning.index', compact('earnings'));
     }
