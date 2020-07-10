@@ -17,10 +17,13 @@
             افزودن خدمات
             @endif
          </h4>
+
+         @can('Create-Category')
          <a href="{{ route('categories.create') }}" class="cbfl btn btn-info btn-bordred waves-effect waves-dark m-b-5">
             <i class="fa fa-plus-circle"></i>
             <span>افزودن جدید </span>
          </a>
+         @endcan
 
          @if(hasMember($categories))
          <!-- Table Start !-->
@@ -31,8 +34,14 @@
                   <th>عنوان خدمت</th>
                   <th>توضیحات (خلاصه)</th>
                   <th>سرگروه</th>
+
+                  @can('Edit-Category')
                   <th class="tac">ویرایش</th>
+                  @endcan
+
+                  @can('Delete-Category')
                   <th class="tac">حذف</th>
+                  @endcan
                </tr>
             </thead>
             <tbody>
@@ -42,10 +51,15 @@
                   <td class="categoryName">{{ $category->title }}</td>
                   <td>{{ $category->sub_desc }}</td>
                   <td>{{ $category->main_group }}</td>
+
+                  @can('Edit-Category')
                   <td class="tac">
                      <a href="{{ route('categories.edit', $category->id) }}"
                         class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i class="fa fa-pencil"></i> </a>
                   </td>
+                  @endcan
+
+                  @can('Delete-Category')
                   <td class="tac">
                      <form method="post" action="{{ route('categories.destroy', $category->id) }}">
                         @csrf
@@ -55,6 +69,8 @@
                               class="fa fa-remove"></i> </button>
                      </form>
                   </td>
+                  @endcan
+
                </tr>
                @endforeach
             </tbody>
