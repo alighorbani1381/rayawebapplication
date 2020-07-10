@@ -11,10 +11,16 @@ class CoststaticController extends AdminController
 
     # Define Acess Gate
     const INDEX = "Index-Cost-Static";
+
     const CREATE = "Create-Cost-Static";
+
     const SHOW = "Show-Cost";
+
     const EDIT = "Edit-Cost-Static";
+
     const DELETE = "Delete-Cost-Static";
+
+    const MULTI_ACCESS = [self::INDEX, self::CREATE, self::SHOW, self::EDIT, self::DELETE];
     
 
     private $repo;
@@ -28,7 +34,7 @@ class CoststaticController extends AdminController
     # Show Cost Static List
     public function index()
     {
-        $this->checkAccess(self::INDEX);
+        $this->checkMultiAccess(self::MULTI_ACCESS);
         $staticCosts = $this->repo->getStaticCosts();
         return view('Admin.CostStatic.index', compact('staticCosts'));
     }
