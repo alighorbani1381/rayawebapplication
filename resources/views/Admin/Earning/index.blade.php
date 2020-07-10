@@ -9,10 +9,13 @@
             <h4 class="header-title m-t-0 m-b-30 inb">
                 لیست درآمد های شما
             </h4>
+
+            @can('Create-Earning')
             <a href="{{ route('earnings.create') }}" class="cbfl btn btn-info btn-bordred waves-effect waves-dark m-b-5">
                 <i class="fa fa-plus-circle"></i>
                 <span>افزودن جدید </span>
             </a>
+            @endcan
 
             @if(hasMember($earnings))
             <table id="datatable" class="table table-striped table-bordered">
@@ -25,9 +28,18 @@
                         <th>میزان درآمد (تومان)</th>
                         <th>قیمت پروژه (تومان)</th>
                         <th class="tac">وضعیت</th>
+
+                        @can('Show-Earning')
                         <th class="tac">جزئیات</th>
+                        @endcan
+
+                        @can('Edit-Earning')
                         <th class="tac">ویرایش</th>
+                        @endcan
+
+                        @can('Delete-Earning')
                         <th class="tac">حذف</th>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
@@ -52,18 +64,26 @@
                             </button>
                             @endif
                         </td>
+
+                        @can('Show-Earning')
                         <td class="tac">
                             <a href="{{ route('earnings.show', $earning->id) }}"
                                 class="btn btn-icon waves-effect waves-light btn-primary m-b-5">
                                 <i class="fa fa-file-text-o"></i>
                             </a>
                         </td>
+                        @endcan
+
+                        @can('Edit-Earning')
                         <td class="tac">
                             <a href="{{ route('earnings.edit', $earning->id) }}"
                                 class="btn btn-icon waves-effect waves-light btn-info m-b-5">
                                 <i class="fa fa-pencil"></i>
                             </a>
                         </td>
+                        @endcan
+
+                        @can('Delete-Earning')
                         <td class="tac">
                             <form method="post" action="{{ route('earnings.destroy', $earning->id) }}">
                                 @csrf
@@ -73,6 +93,8 @@
                                         class="fa fa-remove"></i> </button>
                             </form>
                         </td>
+                        @endcan
+                        
                     </tr>
                     @endforeach
                 </tbody>
