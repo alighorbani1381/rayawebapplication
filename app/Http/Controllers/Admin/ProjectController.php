@@ -17,10 +17,14 @@ class ProjectController extends AdminController
     const CREATE = "Create-Project";
     
     const SHOW = "Show-Project";
+
+    const PAY = "Create-Earning-Project";
     
     const EDIT = "Edit-Project";
     
     const DELETE = "Delete-Project";
+
+    const MULTI_ACCESS = [self::INDEX, self::CREATE, self::SHOW, self::PAY, self::EDIT, self::DELETE];
 
     private $repo;
 
@@ -34,10 +38,10 @@ class ProjectController extends AdminController
         $this->categories = resolve(CategoryRepository::class);
     }
 
-    # Show Latest 15th Project
+    # Show Latest 15th Projects
     public function index()
     {
-        $this->checkAccess(self::INDEX);
+        $this->checkMultiAccess(self::MULTI_ACCESS);
         $projects = $this->repo->getProjects();
         return view('Admin.Project.index', compact('projects'));
     }
