@@ -13,9 +13,12 @@
                 لیست هزینه های ثابت شما
             </h4>
 
+            @can('Create-Cost-Static')
             <a href="{{ route('static.create') }}" class="cbfl btn btn-info btn-bordred waves-effect waves-dark m-b-5">
                 <i class="fa fa-plus-circle"></i>
-                <span>افزودن جدید </span> </a>
+                <span>افزودن جدید </span>
+            </a>
+            @endcan
 
             @if(hasMember($staticCosts))
             <table id="datatable" class="table table-striped table-bordered">
@@ -25,8 +28,14 @@
                         <th>عنوان هزینه</th>
                         <th>توضیحات (خلاصه)</th>
                         <th>سرگروه</th>
+
+                        @can('Edit-Cost-Static')
                         <th class="tac">ویرایش</th>
+                        @endcan
+
+                        @can('Delete-Cost-Static')
                         <th class="tac">حذف</th>
+                        @endcan
                     </tr>
                 </thead>
 
@@ -34,27 +43,36 @@
                     @foreach ($staticCosts as $row => $cost)
                     <tr>
                         <td><?= $row  + 1 ?></td>
-                        <td class="costStatic" child="{{ $cost->child }}" >{{ $cost->title }}</td>
+                        <td class="costStatic" child="{{ $cost->child }}">{{ $cost->title }}</td>
                         @if($cost->description == "" || $cost->description == null )
                         <td>-</td>
                         @else
                         <td>{{ $cost->sub_desc }}</td>
                         @endif
                         <td>{{ $cost->main_group }}</td>
+
+                        @can('Edit-Cost-Static')
                         <td class="tac">
                             <a href="{{ route('static.edit', $cost->id) }}"
-                                class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
-                                    class="fa fa-pencil"></i> </a>
+                                class="btn btn-icon waves-effect waves-light btn-info m-b-5">
+                                <i class="fa fa-pencil"></i>
+                            </a>
                         </td>
+                        @endcan
+
+                        @can('Delete-Cost-Static')
                         <td class="tac">
                             <form method="post" action="{{ route('static.destroy', $cost->id) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button"
-                                    class="delete-cost-static delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5"> <i
-                                        class="fa fa-remove"></i> </button>
+                                    class="delete-cost-static delete-button btn btn-icon waves-effect waves-light btn-danger m-b-5">
+                                    <i class="fa fa-remove"></i>
+                                </button>
                             </form>
                         </td>
+                        @endcan
+
                     </tr>
                     @endforeach
 
@@ -65,8 +83,9 @@
             @endif
             {{ $staticCosts->links() }}
         </div>
-    </div><!-- end col -->
+    </div>
 </div>
+
 @if(session()->has('DeleteCategoryFail'))
 <script>
     maxMbox("حذف این مورد با شکست مواجه شد!", "این خدمت دارای زیر گروه است و نمی توان آن را حذف کرد", "error", "آها",350 );
