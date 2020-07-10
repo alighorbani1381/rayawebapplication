@@ -2,33 +2,40 @@
 
 use Illuminate\Support\Facades\Gate;
 
+# ACL Check Class use to 
 class ACL{
 
+    # Check Users Access
     static function getUsers()
     {
         return ( Gate::allows('Index-User') || Gate::allows('Edit-User') || Gate::allows('Delete-User'));
     }
 
+    # Check CostStatic Access
     static function getCostStatic()
     {
         return ( Gate::allows('Index-Cost-Static') || Gate::allows('Edit-Cost-Static') || Gate::allows('Delete-Cost-Static') || Gate::allows('Delete-Cost'));
     }
 
+    # Check Costs Access
     static function getCosts()
     {
         return ( Gate::allows('Index-Cost') || Gate::allows('Show-Cost') || Gate::allows('Edit-Cost') || Gate::allows('Delete-Cost'));
     }
 
+    # Check Earnings Access
     static function getEarnings()
     {
         return ( Gate::allows('Index-Earning') || Gate::allows('Show-Earning') || Gate::allows('Edit-Earning') || Gate::allows('Delete-Earning'));
     }
 
+    # Check Project Access
     static function getProjects()
     {
         return  ( Gate::allows('Index-Project') || Gate::allows('Create-Earning-Project') || Gate::allows('Show-Project') || Gate::allows('Edit-Project') || Gate::allows('Delete-Project') );        
     }
 
+    # Check Categories Access
     static function getCategories()
     {
         return ( Gate::allows('Index-Category') || Gate::allows('Edit-Category') || Gate::allows('Delete-Category'));
@@ -36,11 +43,13 @@ class ACL{
 
 }
 
+# Helper method to Check @reurn collection
 function hasMember($collection)
 {
     return is_countable($collection) && count($collection) != 0;
 }
 
+# Show Default Message When Don't Exists Record
 function recordMessage($message = 'موردی جهت نمایش یافت نشد.')
 {
     $part1 = '<div class="col-lg-offset-2"><img class="exists-record" src="' . asset('admin/images/symbols/cherry.png') . '" alt="record Not Found!"><div class="notfound-content"><div class="notfound-header">';
@@ -50,6 +59,7 @@ function recordMessage($message = 'موردی جهت نمایش یافت نشد.
     return $finalMessage;
 }
 
+# URL Generator get picture name and fixed URL
 function showPicture($type, $name)
 {
     $type = strtolower($type);
@@ -81,6 +91,7 @@ function showPicture($type, $name)
     }
 }
 
+# TR Fixed Method in Loop
 function openTr($key, $row)
 {
     return ($key % $row == 0);

@@ -6,13 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class CostStatic extends Model
 {
+    # Fixed Fillable (Guarded)
     protected $guarded = [];
     
+    # Mutator Sub Description 
     public function getSubDescAttribute()
     {
         return mb_substr($this->description, 0, 50) . " ...";
     }
         
+    # Get MainGroup Name
     public function getMainGroupAttribute()
     {
         if ($this->child != 0){
@@ -25,6 +28,7 @@ class CostStatic extends Model
             return $mainCategory;
     }
 
+    # Get Sub CostStatics
     public function getSubCatsAttribute()
     {
         if ($this->child == 0)
