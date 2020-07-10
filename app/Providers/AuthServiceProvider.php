@@ -18,9 +18,13 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+        $this->generateDynamicGates();       
+    }
 
-        # Configuration ACL (Access Control List) & Create Gates
-        if (Schema::hasTable('permissions')) {
+    # Configuration ACL (Access Control List) & Create Gates
+    private function generateDynamicGates()
+    {
+         if (Schema::hasTable('permissions')) {
             $permissions = $this->getPermissions();
             foreach ($permissions as $permission) {
                 Gate::define($permission->name, function ($user) use ($permission) {
@@ -28,10 +32,10 @@ class AuthServiceProvider extends ServiceProvider
                 });
             }
         }
-        
     }
 
-    public function getPermissions()
+    # Get All Permission has Roles
+    private function getPermissions()
     {
         return Permission::with('roles')->get();
     }
