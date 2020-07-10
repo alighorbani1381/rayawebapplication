@@ -15,6 +15,25 @@ class AdminController extends Controller
             abort(404);
     }
 
+    # Check Access With Multiple Gates
+    protected function checkMultiAccess($gatesName)
+    {
+        if ($this->getResult($gatesName))
+            abort(404);
+    }
+
+    # Check Multiple Acess Gate
+    private function getResult($gatesName)
+    {
+        $isNotAccess = true;
+        foreach ($gatesName as $gate) {
+            $isNotAccess = ($isNotAccess && Gate::denies($gate));
+        }
+        return $isNotAccess;
+    }
+
+    
+
     # Create Absolute Standard Path
     public function standardPath()
     {
@@ -58,5 +77,4 @@ class AdminController extends Controller
         $files = $file->move($path, $filename);
         return $filename;
     }
-
 }
