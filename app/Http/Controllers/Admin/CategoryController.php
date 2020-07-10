@@ -16,11 +16,15 @@ class CategoryController extends AdminController
 
     # Define Acess Gate
     const INDEX = "Index-Category";
-    const CREATE = "Index-Category";
-    const EDIT = "Edit-Category";
-    const DELETE = "Index-Category";
 
-    
+    const CREATE = "Create-Category";
+
+    const EDIT = "Edit-Category";
+
+    const DELETE = "Delete-Category";
+
+    const MULTI_ACCESS = [self::INDEX, self::CREATE, self::EDIT, self::DELETE];
+
     public function __construct()
     {
         # Encapsolation Repository
@@ -30,7 +34,7 @@ class CategoryController extends AdminController
     # Show List of Categories
     public function index()
     {
-        $this->checkAccess(self::INDEX);
+        $this->checkMultiAccess(self::MULTI_ACCESS);
         $categories = $this->repo->getCategories();
         return view('Admin.Category.index', compact('categories'));
     }
