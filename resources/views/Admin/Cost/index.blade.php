@@ -13,14 +13,14 @@
             <li role="presentation" class="active">
                <a href="#extra" id="extra-costs" role="tab" data-toggle="tab" aria-controls="extra"
                   aria-expanded="true">
-               هزینه های جانبی
+                  هزینه های جانبی
                </a>
             </li>
             <li role="presentation" class="dropdown">
                <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown"
                   aria-controls="myTabDrop1-contents">
-               هزینه های مربوط به پروژه
-               <span class="caret"></span>
+                  هزینه های مربوط به پروژه
+                  <span class="caret"></span>
                </a>
                <ul class="dropdown-menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">
                   <li>
@@ -35,7 +35,7 @@
             </li>
          </ul>
 
-         
+
          <div class="tab-content">
 
             {{--  Extra Costs Start --}}
@@ -51,9 +51,18 @@
                         <th class="tac">وضعیت</th>
                         <th class="tac">زمان ثبت</th>
                         <th class="tac">نوع هزینه</th>
+
+                        @can('Show-Cost')
                         <th class="tac">جزئیات</th>
+                        @endcan
+
+                        @can('Edit-Cost')
                         <th class="tac">ویرایش</th>
+                        @endcan
+
+                        @can('Delete-Cost')
                         <th class="tac">حذف</th>
+                        @endcan
                      </tr>
                   </thead>
                   <tbody>
@@ -66,42 +75,56 @@
                            @if ($cost->status == 'paid')
                            <button type="button"
                               class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">
-                           پرداخت شده
+                              پرداخت شده
                            </button>
                            @else
                            <button type="button"
                               class="tac btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">در
-                           پرداخت نشده
+                              پرداخت نشده
                            </button>
                            @endif
                         </td>
                         @php $time = verta($cost->created_at); @endphp
                         <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
                         <td class="tac">{{ $cost->type_title }}</td>
+
+                        @can('Show-Cost')
                         <td class="tac">
                            <a href="{{ route('costs.show', $cost->id) }}"
-                               class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i
-                                   class="fa fa-file-text-o"></i> </a>
-                       </td>
+                              class="btn btn-icon waves-effect waves-light btn-primary m-b-5">
+                              <i class="fa fa-file-text-o"></i>
+                           </a>
+                        </td>
+                        @endcan
+
+                        @can('Edit-Cost')
                         <td class="tac">
                            <a href="{{ route('costs.edit', $cost->id) }}"
-                              class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
-                              class="fa fa-pencil"></i> </a>
+                              class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i class="fa fa-pencil"></i>
+                           </a>
                         </td>
+                        @endcan
+
+
+                        @can('Delete-Cost')
                         <td class="tac">
                            <form method="post" action="{{ route('costs.destroy', $cost->id) }}">
                               @csrf
                               @method('DELETE')
-                              <button type="button" class="delete-cost btn btn-icon waves-effect waves-light btn-danger m-b-5">
-                              <i class="fa fa-remove"></i> </button>
+                              <button type="button"
+                                 class="delete-cost btn btn-icon waves-effect waves-light btn-danger m-b-5">
+                                 <i class="fa fa-remove"></i>
+                              </button>
                            </form>
                         </td>
+                        @endcan
+
                      </tr>
                      @endforeach
                   </tbody>
                </table>
                @else
-               {!! recordMessage() !!}
+               {!! recordMessage('تا کنون هزینه جانبی به ثبت نرسیده') !!}
                @endif
 
             </div>
@@ -120,9 +143,19 @@
                         <th class="tac">وضعیت</th>
                         <th class="tac">زمان ثبت</th>
                         <th class="tac">نوع هزینه</th>
+
+                        @can('Show-Cost')
                         <th class="tac">جزئیات</th>
+                        @endcan
+
+                        @can('Edit-Cost')
                         <th class="tac">ویرایش</th>
+                        @endcan
+
+                        @can('Delete-Cost')
                         <th class="tac">حذف</th>
+                        @endcan
+
                      </tr>
                   </thead>
                   <tbody>
@@ -134,43 +167,57 @@
                         <td class="tac projectName">{{ $cost->project_title }}</td>
                         <td class="tac">
                            @if ($cost->status == 'paid')
-                           <button type="button" class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">
-                           پرداخت شده
+                           <button type="button"
+                              class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">
+                              پرداخت شده
                            </button>
                            @else
-                           <button type="button" class="tac btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">
-                           پرداخت نشده
+                           <button type="button"
+                              class="tac btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">
+                              پرداخت نشده
                            </button>
                            @endif
                         </td>
                         @php $time = verta($cost->created_at); @endphp
                         <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
                         <td class="tac">{{ $cost->type_title }}</td>
+                        
+                        @can('Show-Cost')
                         <td class="tac">
-                           <a href="{{ route('costs.show', $cost->id) }}" class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> 
+                           <a href="{{ route('costs.show', $cost->id) }}"
+                              class="btn btn-icon waves-effect waves-light btn-primary m-b-5">
                               <i class="fa fa-file-text-o"></i>
-                            </a>
-                       </td>
-                        <td class="tac">
-                           <a href="{{ route('costs.edit', $cost->id) }}" class="btn btn-icon waves-effect waves-light btn-info m-b-5">
-                            <i class="fa fa-pencil"></i> 
                            </a>
                         </td>
+                        @endcan
+
+                        @can('Edit-Cost')
+                        <td class="tac">
+                           <a href="{{ route('costs.edit', $cost->id) }}"
+                              class="btn btn-icon waves-effect waves-light btn-info m-b-5">
+                              <i class="fa fa-pencil"></i>
+                           </a>
+                        </td>
+                        @endcan
+
+                        @can('Delete-Cost')
                         <td class="tac">
                            <form method="post" action="{{ route('costs.destroy', $cost->id) }}">
                               @csrf
                               @method('DELETE')
                               <button type="button"
                                  class="delete-cost btn btn-icon waves-effect waves-light btn-danger m-b-5">
-                              <i class="fa fa-remove"></i> </button>
+                                 <i class="fa fa-remove"></i> </button>
                            </form>
                         </td>
+                        @endcan
+
                      </tr>
                      @endforeach
                   </tbody>
                </table>
                @else
-               {!! recordMessage() !!}
+               {!! recordMessage('تا کنون هزینه ثابت برای پروژه ای ثبت نشده') !!}
                @endif
 
             </div>
@@ -190,9 +237,19 @@
                         <th class="tac">وضعیت</th>
                         <th class="tac">زمان ثبت</th>
                         <th class="tac">نوع هزینه</th>
+
+                        @can('Show-Cost')
                         <th class="tac">جزئیات</th>
+                        @endcan
+
+                        @can('Edit-Cost')
                         <th class="tac">ویرایش</th>
+                        @endcan
+
+                        @can('Delete-Cost')
                         <th class="tac">حذف</th>
+                        @endcan
+
                      </tr>
                   </thead>
                   <tbody>
@@ -207,43 +264,53 @@
                            @if ($cost->status == 'paid')
                            <button type="button"
                               class="btn btn-success btn-rounded w-md waves-effect waves-light m-b-5">
-                           پرداخت شده
+                              پرداخت شده
                            </button>
                            @else
                            <button type="button"
                               class="tac btn btn-danger btn-rounded w-md waves-effect waves-light m-b-5">
-                           پرداخت نشده
+                              پرداخت نشده
                            </button>
                            @endif
                         </td>
                         @php $time = verta($cost->created_at); @endphp
                         <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
                         <td class="tac">{{ $cost->type_title }}</td>
+
+                        @can('Show-Cost')
                         <td class="tac">
                            <a href="{{ route('costs.show', $cost->id) }}"
-                               class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i
-                                   class="fa fa-file-text-o"></i> </a>
-                       </td>
+                              class="btn btn-icon waves-effect waves-light btn-primary m-b-5"> <i
+                                 class="fa fa-file-text-o"></i> </a>
+                        </td>
+                        @endcan
+
+                        @can('Edit-Cost')
                         <td class="tac">
                            <a href="{{ route('costs.edit', $cost->id) }}"
-                              class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i
-                              class="fa fa-pencil"></i> </a>
+                              class="btn btn-icon waves-effect waves-light btn-info m-b-5"> <i class="fa fa-pencil"></i>
+                           </a>
                         </td>
+                        @endcan
+
+                        @can('Delete-Cost')
                         <td class="tac">
                            <form method="post" action="{{ route('costs.destroy', $cost->id) }}">
                               @csrf
                               @method('DELETE')
                               <button type="button"
                                  class="delete-cost btn btn-icon waves-effect waves-light btn-danger m-b-5">
-                              <i class="fa fa-remove"></i> </button>
+                                 <i class="fa fa-remove"></i> </button>
                            </form>
                         </td>
+                        @endcan
+
                      </tr>
                      @endforeach
                   </tbody>
                </table>
                @else
-               {!! recordMessage() !!}
+               {!! recordMessage('تا کنون دست مزدی برای کارمندان خود ثبت نکرده اید') !!}
                @endif
             </div>
             {{--  Project Costs Start --}}
