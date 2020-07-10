@@ -61,9 +61,9 @@ $accessUser       = ACL::getUsers();
                     </a>
                     <ul class="list-unstyled" style="display: none;">
 
-                        @can('Index-Category')
+                        @if($accessCategory)
                         <li><a href="{{ route('categories.index') }}">لیست خدمات</a></li>
-                        @endcan
+                        @endif
 
                         @can('Create-Category')
                         <li><a href="{{ route('categories.create') }}">افزودن خدمات جدید</a></li>
