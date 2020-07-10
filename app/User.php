@@ -56,7 +56,7 @@ class User extends Authenticatable
     #Check User Has a Default Password => (raya-px724)
     public function getIsDefaultPasswordAttribute()
     {
-        if (Hash::check(Self::DEFAULT_PASSWORD, $this->password))
+        if (Hash::check(self::DEFAULT_PASSWORD, $this->password))
             $status = true;
         else
             $status = false;
