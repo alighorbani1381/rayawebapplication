@@ -12,6 +12,7 @@
 
          <h4 class="header-title m-t-0 m-b-30 inb">
             @if(hasMember($categories))
+            <i class="fa fa-shopping-bag i-fix"></i>
             لیست خدمات شما
             @else
             افزودن خدمات

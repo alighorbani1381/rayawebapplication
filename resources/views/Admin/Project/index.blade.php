@@ -12,6 +12,7 @@
 
          <h4 class="header-title m-t-0 m-b-30 inb">
             @if(hasMember($projects))
+            <i class="fa fa-cubes i-fix"></i>
             لیست پروژه ها
             @else
             افزودن پروژه
