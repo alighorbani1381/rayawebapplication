@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
-use CategoryRequest;
 use Illuminate\Http\Request;
+use App\Request\CategoryRequest;
 use Illuminate\Support\Facades\Session;
 use App\Repositories\CategoryRepository;
 
