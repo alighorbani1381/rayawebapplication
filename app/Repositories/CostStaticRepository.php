@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Cost;
 use App\CostStatic;
 use Illuminate\Support\Facades\DB;
 
@@ -28,28 +29,42 @@ class CostStaticRepository
         return CostStatic::findOrFail($costId);
     }
 
+    /*
     private function deleteSubCost($costStatic)
     {
         $subCosts = $this->getSubCost($costStatic);
         foreach ($subCosts as $cost)
             $this->deleteCost($cost->id);
     }
+    */
 
     public function deleteSubOrSetFlash($costStatic)
     {
-        if (!$this->isMain($costStatic))
-            session()->flash('DeleteCostStatic');
+        $isMain = $this->isMain($costStatic);
+        $hasCost = $this->hasCost($costStatic);
 
-        if ($this->isMain($costStatic)) {
-            $this->deleteSubCost($costStatic);
-            session()->flash('DeleteCostStaticAllMember');
-        }
-        $costStatic->delete();
+        if ($isMain)
+            session()->flash('CantDeleteCostStaticMain');
+
+        if ($hasCost)
+            session()->flash('CantDeleteCostStatic');
+
+        if ($hasCost || $isMain)
+            return redirect()->route('static.index');
+
+        session()->flash('DeleteCostStatic');
+        //$costStatic->delete();
+        return back();
     }
 
     public function isMain($costStatic)
     {
         return ($costStatic->child == 0);
+    }
+
+    public function hasCost($costStatic)
+    {
+        return Cost::where('type', $costStatic->id)->exists();
     }
 
     private function deleteCost($costId)
