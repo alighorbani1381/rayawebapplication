@@ -27,7 +27,8 @@
         <div class="card-box table-responsive">
 
             <h4 class="header-title m-t-0 m-b-30 inb">
-                لیست کاربران
+                <i class="fa fa-users i-fix"></i>
+                <span>لیست کاربران</span>
             </h4>
 
             @can('Create-User')

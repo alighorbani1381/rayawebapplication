@@ -10,7 +10,8 @@
         <div class="card-box table-responsive">
 
             <h4 class="header-title m-t-0 m-b-30 inb">
-                لیست هزینه های ثابت شما
+                <i class="fa fa-barcode i-fix"></i>
+                <span>لیست هزینه های ثابت شما</span>
             </h4>
 
             @can('Create-Cost-Static')

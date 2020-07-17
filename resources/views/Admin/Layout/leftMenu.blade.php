@@ -221,7 +221,7 @@ $accessUser       = ACL::getUsers();
                 <!-- Profile Item Start !-->
                 <li>
                     <a href="{{ route('admin.profile.index') }}" class="waves-effect">
-                        <i class="fa fa-user"></i>
+                        <i class="fa fa-male"></i>
                         <span>پروفایل</span>
                     </a>
                 </li>

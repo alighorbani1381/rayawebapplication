@@ -13,13 +13,15 @@
             <li role="presentation" class="active">
                <a href="#extra" id="extra-costs" role="tab" data-toggle="tab" aria-controls="extra"
                   aria-expanded="true">
-                  هزینه های جانبی
+                  <i class="fa fa-credit-card i-fix"></i>
+                  <span>هزینه های جانبی</span>
                </a>
             </li>
             <li role="presentation" class="dropdown">
                <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown"
                   aria-controls="myTabDrop1-contents">
-                  هزینه های مربوط به پروژه
+                  <i class="fa fa-book i-fix"></i>
+                  <span>هزینه های مربوط به پروژه</span>
                   <span class="caret"></span>
                </a>
                <ul class="dropdown-menu" aria-labelledby="myTabDrop1" id="myTabDrop1-contents">

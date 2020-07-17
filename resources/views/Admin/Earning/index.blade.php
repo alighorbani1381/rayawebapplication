@@ -7,7 +7,8 @@
         <div class="card-box table-responsive">
 
             <h4 class="header-title m-t-0 m-b-30 inb">
-                لیست درآمد های شما
+                <i class="fa fa-money i-fix"></i>
+                <span>لیست درآمد های شما</span>
             </h4>
 
             @can('Create-Earning')
