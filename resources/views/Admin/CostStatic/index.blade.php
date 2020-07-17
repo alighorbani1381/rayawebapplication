@@ -87,9 +87,17 @@
     </div>
 </div>
 
-@if(session()->has('DeleteCategoryFail'))
+
+@if(session()->has('CantDeleteCostStatic'))
 <script>
-    maxMbox("حذف این مورد با شکست مواجه شد!", "این خدمت دارای زیر گروه است و نمی توان آن را حذف کرد", "error", "آها",350 );
+    maxMbox("حذف این مورد با شکست مواجه شد!", "این هزینه ثابت را نمی توان حذف کرد زیرا برای آن هزینه هایی ثبت شده است", "error", "اوکی",350 );
+</script>
+@endif
+
+
+@if(session()->has('CantDeleteCostStaticMain'))
+<script>
+    maxMbox("در حال حاضر نمی توانید این مورد را حذف کنید!", "این هزینه ثابت را نمی توان حذف کرد زیرا برای آن زیر گروه هایی ثبت شده است", "warning", "اوکی",350 );
 </script>
 @endif
 
@@ -100,9 +108,10 @@
 </script>
 @endif
 
-@if(session()->has('DeleteCostStaticAllMember'))
+
+@if(session()->has('CreateCostStatic'))
 <script>
-    minMbox('سرگروه مورد نظر به همراه تمامی زیر گروه هایش حدف شد.', 350);
+    minMbox('هزینه ثابت مورد نظر با موفقیت ثبت شد.', 350);
 </script>
 @endif
 
