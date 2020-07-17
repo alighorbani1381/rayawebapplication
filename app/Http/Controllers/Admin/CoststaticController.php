@@ -53,6 +53,7 @@ class CoststaticController extends AdminController
         $this->checkAccess(self::CREATE);
         $request->validate(['title' => 'required', 'child' => 'required']);
         CostStatic::create($request->all());
+        session()->flash('CreateCostStatic');
         return redirect()->route('static.index');
     }
 
@@ -86,7 +87,7 @@ class CoststaticController extends AdminController
     {
         $this->checkAccess(self::DELETE);
         $costStatic = $this->repo->getCostStatic($costStatic);
-        $this->repo->deleteSubOrSetFlash($costStatic);
-        return back();
+        $deletedResult = $this->repo->deleteSubOrSetFlash($costStatic);
+        return $deletedResult;
     }
 }
