@@ -163,7 +163,7 @@
                 </tr>
                 @foreach($permissions as $key => $permission)
                     @if(openTr($key, 4))<tr>@endif
-                        <td>{{ $permission }}</td>
+                        <td>{{ $permission->title }}</td>
                     @if(closeTr($key, 4))</tr>@endif
                 @endforeach
             </table>
