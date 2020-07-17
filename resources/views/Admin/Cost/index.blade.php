@@ -48,11 +48,11 @@
                   <thead>
                      <tr>
                         <th class="tac">ردیف</th>
+                        <th class="tac">نوع هزینه</th>
                         <th>عنوان هزینه</th>
                         <th>توضیحات (خلاصه)</th>
                         <th class="tac">وضعیت</th>
                         <th class="tac">زمان ثبت</th>
-                        <th class="tac">نوع هزینه</th>
 
                         @can('Show-Cost')
                         <th class="tac">جزئیات</th>
@@ -71,6 +71,7 @@
                      @foreach ($costs['extra'] as $row => $cost)
                      <tr>
                         <td class="tac"><?= $row  + 1 ?></td>
+                        <td class="tac">{{ $cost->type_title }}</td>
                         <td class="costTitle" type="extra">{{ $cost->title }}</td>
                         <td>{{ $cost->sub_desc }}</td>
                         <td class="tac">
@@ -88,7 +89,7 @@
                         </td>
                         @php $time = verta($cost->created_at); @endphp
                         <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
-                        <td class="tac">{{ $cost->type_title }}</td>
+                        
 
                         @can('Show-Cost')
                         <td class="tac">
@@ -139,12 +140,12 @@
                   <thead>
                      <tr>
                         <th class="tac">ردیف</th>
+                        <th class="tac">نوع هزینه</th>
                         <th>عنوان هزینه</th>
                         <th>توضیحات (خلاصه)</th>
                         <th class="tac">عنوان پروژه</th>
                         <th class="tac">وضعیت</th>
                         <th class="tac">زمان ثبت</th>
-                        <th class="tac">نوع هزینه</th>
 
                         @can('Show-Cost')
                         <th class="tac">جزئیات</th>
@@ -164,6 +165,7 @@
                      @foreach ($costs['project_base'] as $row => $cost)
                      <tr>
                         <td class="tac"><?= $row  + 1 ?></td>
+                        <td class="tac">{{ $cost->type_title }}</td>
                         <td class="costTitle" type="project_base">{{ $cost->title }}</td>
                         <td>{{ $cost->sub_desc }}</td>
                         <td class="tac projectName">{{ $cost->project_title }}</td>
@@ -182,7 +184,7 @@
                         </td>
                         @php $time = verta($cost->created_at); @endphp
                         <td class="tac date-show">{{ $time->format('Y/n/j H:i') }}</td>
-                        <td class="tac">{{ $cost->type_title }}</td>
+                        
                         
                         @can('Show-Cost')
                         <td class="tac">
