@@ -107,7 +107,7 @@ class UserController extends AdminController
         if ($user->hasDependency()) {
             Session::flash('NotDeleteUser');
         } else {
-            $user->delete();
+            $this->repo->fullDelete($user);
             Session::flash('deleteUser');
         }
 
