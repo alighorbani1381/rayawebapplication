@@ -165,6 +165,6 @@ class CostRepository
 
     public function getActiveProjects()
     {
-        return Project::where('status', '!=', 'finished')->orderBy('id', 'desc')->get();
+        return Project::where('status', 'ongoing')->orderBy('id', 'desc')->get();
     }
 }
