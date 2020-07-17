@@ -134,26 +134,16 @@ class UserRepository
         return $user->roles()->get();
     }
 
-    public function getTitles($permissions)
-    {
-        $permissions = [];
-        $titles = [];
-        foreach ($permissions as $permission)
-            foreach ($permission as $item)
-                $titles[] = $item->title;
-        return $titles;
-    }
-
     public function getPermissions($roles)
     {
-        $permissions = [];
+        $permissions = collect([]);
         foreach ($roles as $role)
-            $permissions[] = $role->permissions()->get();
+            $permissions = $role->permissions()->get();
 
         return $permissions;
     }
 
-    public function getUniqueTitle($titles)
+    public function getUnique($titles)
     {
         $col = collect($titles);
         return $col->unique();
@@ -163,12 +153,31 @@ class UserRepository
     {
         $roles = $this->getUserRoles($user);
         $permissions = $this->getPermissions($roles);
-        $titles = $this->getTitles($permissions);
-        return $this->getUniqueTitle($titles);
+        return $this->getUnique($permissions);
     }
 
     public function empty()
     {
         return collect([]);
+    }
+
+    public function getUserProfile(User $user)
+    {
+        $rootFolder = ($user->isAdmin()) ?  "profiles\admins\\" : "profiles\users\\";
+        $fullPath = public_path($rootFolder . $user->profile);
+        return $fullPath;
+    }
+
+    public function removeProfile(User $user)
+    {
+        $fullPath = $this->getUserProfile($user);        
+        if (file_exists($fullPath))
+            unlink($fullPath);
+    }
+
+    public function fullDelete(User $user)
+    {
+        $this->removeProfile($user);
+        $user->delete();
     }
 }
