@@ -3,6 +3,7 @@
 @section('header', 'لیست کاربران')
 @push('js')
 <script src="{{ asset('admin/js/customJS/users.js') }} "></script>
+<script src="{{ asset('admin/js/jquery.copy-to-clipboard.js') }} "></script>
 @endpush
 @section('content')
 
@@ -95,7 +96,12 @@
 
                         </td>
                         <td class="tac">{{ $user->phone}}</td>
-                        <td class="tac">{{ $user->username}}</td>
+                        <td class="tac user-username">
+                            <button type="button" class="btn btn-default" data-container="body" title="" data-toggle="popover" data-placement="top" data-content="کپی شد" data-original-title="" aria-describedby="popover163315">
+                                {{ $user->username}}
+                            </button>
+                            
+                        </td>
                         <td class="tac">
                             @if(! Hash::check("raya-px724", $user->password))
                             {{ "Secret" }}
@@ -149,4 +155,13 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('.user-username').click(function(){
+           $(this).CopyToClipboard();
+           setTimeout(function() {
+               $(".popover").fadeOut('slow');
+        }, 1000);
+       });
+   </script>
 @endsection
