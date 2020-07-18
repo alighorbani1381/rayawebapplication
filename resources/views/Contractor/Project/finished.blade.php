@@ -3,11 +3,12 @@
 @section('header', 'پروژه های پایان یافته')
 @section('content')
 <div class="row">    
-    <div class="@if(hasMember($projects)){{'col-sm-12'}}@else{{'col-sm-8 col-sm-offset-2'}}@endif">
+    <div class="col-sm-12">
         <div class="card-box table-responsive">
             @if(hasMember($projects))
             <h4 class="header-title m-t-0 m-b-30 inb">
-                لیست پروژه های پایان یافته شما
+                <i class="fa fa-coffee i-fix"></i>
+                <span>لیست پروژه های پایان یافته شما</span>
             </h4>
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>

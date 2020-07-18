@@ -7,7 +7,8 @@
       <div class="card-box table-responsive">
          @if(hasMember($earnings))
          <h4 class="header-title m-t-0 m-b-30 inb">
-            لیست درآمد های شما
+            <i class="fa fa-money i-fix"></i>
+            <span>لیست درآمد های شما</span>
          </h4>
          <table id="datatable" class="table table-striped table-bordered">
             <thead>

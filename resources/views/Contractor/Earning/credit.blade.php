@@ -7,7 +7,8 @@
       <div class="card-box table-responsive">
          @if(hasMember($credits))
          <h4 class="header-title m-t-0 m-b-30 inb">
-            لیست بستانکاری های شما
+            <i class="fa fa-dollar i-fix"></i>
+            <span>لیست بستانکاری های شما</span>
          </h4>
 
          <!-- Table Start !-->

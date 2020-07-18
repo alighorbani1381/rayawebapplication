@@ -8,7 +8,8 @@
             
             @if(hasMember($projects))
             <h4 class="header-title m-t-0 m-b-30 inb">
-                لیست پروژه های در دست اجرا
+                <i class="fa fa-keyboard-o i-fix"></i>
+                <span>لیست پروژه های در دست اجرا</span>
             </h4>
 
             <table id="datatable" class="table table-striped table-bordered">
