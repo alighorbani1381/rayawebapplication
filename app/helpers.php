@@ -103,6 +103,7 @@ function closeTr($key, $row)
     $key + 1 % $row == 0;
 }
 
+# Get Status Color (use for Progress bar)
 function getStatusColor(int $percent)
 {
     $color = "";
