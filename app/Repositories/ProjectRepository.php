@@ -6,10 +6,10 @@ use App\Cost;
 use App\User;
 use App\Project;
 use App\Category;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Hekmatinasser\Verta\Facades\Verta;
 use App\Http\Controllers\Admin\AdminController;
-use Carbon\Carbon;
 
 class ProjectRepository extends AdminController
 {
@@ -385,11 +385,10 @@ class ProjectRepository extends AdminController
             'lastname' => $request->lastname,
             'father_name' => $request->father_name,
             'meli_code' => $request->meli_code,
-            'meli_image' => 'default',
             'phone' => $request->phone,
             'address' => $request->address,
         ];
-        return DB::table('project_taskmaster')
+        DB::table('project_taskmaster')
             ->where('id', $taskmasterId)
             ->update($fileds);
     }
@@ -404,7 +403,6 @@ class ProjectRepository extends AdminController
             'title' => $request->title,
             'description' => $request->description,
             'price' => $request->price,
-            'contract_image' => 'default',
             'contract_started' => $contractStarted,
             'contract_ended' => $completedAt,
             'date_start' => $dateStart,
@@ -427,9 +425,6 @@ class ProjectRepository extends AdminController
 
         $result['meli_image'] =  ($project->meli_image  != null)     ?  $project->meli_image     : 'default';
         $result['contract']   =  ($project->contract_image != null) ?  $project->contract_image : 'default';
-
-        // dd($request->all());
-        // dd($result);
 
         if ($request->has('meli_image')) {
             $oldImage = $this->getOldMeliPicture($project->meli_image);
@@ -465,20 +460,26 @@ class ProjectRepository extends AdminController
 
     public function updateProjectFull($projectId, $request)
     {
+        # Get Old Data about this project
         $project = $this->getProjectFull($projectId)['project'];
+
+        # Change Picture if Exists
         $this->updateImages($request, $project);
 
-        // DB::transaction(function () use ($project, $request) {
-        //     $this->updateTaskMaster($project->taskmaster, $request);
-        //     $this->updateProject($project->id, $request);
-        // });
+        # Update data in DB
+        DB::transaction(function () use ($project, $request) {
+            $this->updateTaskMaster($project->taskmaster, $request);
+            $this->updateProject($project->id, $request);
+        });
     }
 
+    # Get Main Category (don't use to submit project)
     public function getMainCategories()
     {
         return Category::where('child', '0')->get();
     }
 
+    # Get All Contractors
     public function getContractors()
     {
         return User::where('type', 'contractor')->get();
