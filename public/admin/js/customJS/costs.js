@@ -123,7 +123,7 @@ $(document).ready(function () {
         hideContractorBox();
         getProjectContractors(projectId);
         $('#project').prop('selectedIndex', 0);
-        renameProjectSubmit('ثبت هزینه برای پیمانکار');
+        renameProjectSubmit('ثبت هزینه برای کارمند');
     });
 
     $('input[type="radio"]#normal-pay').on('click change', function (e) {
