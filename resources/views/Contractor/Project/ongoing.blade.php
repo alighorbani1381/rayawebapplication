@@ -21,6 +21,7 @@
                         <th class="tac">تاریخ ثبت</th>
                         <th class="tac">تاریخ شروع</th>
                         <th class="tac">مدت زمان تحویل </th>
+                        <th class="tac">تاریخ تحویل</th>
                         <th class="tac">مشاهده جزئیات</th>
                         <th class="tac">ویرایش درصد پیشرفت</th>
                         <th class="tac">میزان درآمد شما</th>
@@ -29,14 +30,16 @@
 
                 <tbody>
                     @foreach ($projects as $row => $project)
+                    <?php $projectStart = verta($project->date_start);?>
                     <tr>
                         <td class="tac"><?= $row  + 1 ?></td>
                         <td>{{ $project->name . " " . $project->lastname }}</td>
                         <td class="projectName">{{ $project->title }}</td>
                         <td>{{ mb_substr($project->description,0 , 80) . "..." }}</td>
                         <td class="tac">{{ verta($project->created_at)->formatJalaliDate() }}</td>
-                        <td class="tac">{{ verta($project->date_start)->formatJalaliDate() }}</td>
+                        <td class="tac">{{ $projectStart->formatJalaliDate() }}</td>
                         <td class="tac">{{ $project->complete_after . " روز " }}</td>
+                        <td class="tac">{{ $projectStart->addDays($project->complete_after)->formatJalaliDate() }}</td>
                         <td class="tac">
                             <a href="{{ route('contractor.projects.show', $project->id) }}"
                                 class="btn btn-icon waves-effect waves-light btn-primary m-b-5">
