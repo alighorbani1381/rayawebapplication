@@ -110,10 +110,7 @@
                     </div>
 
                     <?php
-                    if( $allProgress < 25) $color="danger" ; 
-                    if($allProgress>= 25 && $allProgress < 50 ) $color="warning" ;
-                    if($allProgress>= 50 && $allProgress < 75 ) $color="info" ; 
-                    if($allProgress>= 75 && $allProgress <= 100 ) $color="success";
+                        $color = getStatusColor($allProgress);    
                      ?>
 
                     <div class="card-box items-box">
@@ -131,10 +128,7 @@
 
                     <?php
                     $selfProgress = $progressInfo->progress;
-                    if( $selfProgress < 25) $color="danger" ; 
-                    if($selfProgress>= 25 && $selfProgress < 50 ) $color="warning" ;
-                    if($selfProgress>= 50 && $selfProgress < 75 ) $color="info" ; 
-                    if($selfProgress>= 75 && $selfProgress <= 100 ) $color="success";
+                    $color = getStatusColor($selfProgress);
                      ?>
 
                     <div class="card-box items-box">
@@ -197,13 +191,7 @@
                     $dayLefts = verta()->diffDays($dateFinish);
                     $pastDate = $dateFinish->formatDifference(verta());
                     $percentLeft = ($dayLefts * 100) / $daysAfter;
-                    $color = "";
-                    if($percentLeft < 25) $color="danger"; 
-                    if($percentLeft>= 25 && $percentLeft < 50 ) $color="warning"; 
-                    if($percentLeft>= 50 && $percentLeft < 75 ) $color="info";
-                    if($percentLeft>= 75 && $percentLeft <= 100 ) $color="success";     
-
-                    
+                    $color = getStatusColor($percentLeft);    
                     ?>
 
                     @if($percentLeft < 100) <div class="card-box items-box">
@@ -257,21 +245,13 @@
                             برای شما فعال می شود.
                         </b>
                     </div>
-            @endif
-
-
-
-
-
+                    @endif
+            </div>
+            <!-- Tabs End !-->
 
         </div>
-        <!-- Tabs End !-->
-
     </div>
-</div>
-<!-- Project Information End !-->
-
-
+    <!-- Project Information End !-->
 </div>
 
 
