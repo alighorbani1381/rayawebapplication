@@ -276,3 +276,14 @@ h2#swal2-title {
 .tac-table td {
     text-align: center !important;
 }
+
+.progress-change {
+    position: absolute;
+    display: block !important;
+    margin-left: 0;
+    left: 10px;
+    visibility: visible;
+}
+.exists-record-message{
+    font-size: x-large;
+}
