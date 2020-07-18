@@ -111,10 +111,10 @@ class UserRepository
 
     public function getProjectContractors($projectId)
     {
-        DB::table('project_contractor')
-            ->where('project_contractor.project_id', $projectId)
-            ->join('users', 'project_contractor.contractor_id', '=', 'users.id')
+        return DB::table('project_contractor')
             ->select('users.id', 'users.name', 'users.lastname')
+            ->join('users', 'project_contractor.contractor_id', '=', 'users.id')
+            ->where('project_contractor.project_id', $projectId)
             ->orderBy('project_contractor.progress', 'desc')
             ->get();
     }
@@ -170,7 +170,7 @@ class UserRepository
 
     public function removeProfile(User $user)
     {
-        $fullPath = $this->getUserProfile($user);        
+        $fullPath = $this->getUserProfile($user);
         if (file_exists($fullPath))
             unlink($fullPath);
     }
