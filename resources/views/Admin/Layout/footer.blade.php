@@ -19,11 +19,9 @@
 <script type="text/javascript" src="admin/plugins/jquery-knob/excanvas.js"></script>
 <script src="{{ asset('admin/plugins/jquery-knob/jquery.knob.js') }}"></script>
 
-<!--Morris Chart-->
-
-     {{-- <script src="{{ asset('admin/plugins/morris/morris.min.js') }}"></script> --}}
-     
-     {{-- <script src="{{ asset('admin/plugins/raphael/raphael-min.js') }}"></script>  --}}
+<!-- Counter Up  -->
+<script src="{{ asset('admin/plugins/waypoints/lib/jquery.waypoints.js') }}"></script>
+<script src="{{ asset('admin/plugins/counterup/jquery.counterup.min.js') }}"></script>
 
 
 <!-- Dashboard init -->
