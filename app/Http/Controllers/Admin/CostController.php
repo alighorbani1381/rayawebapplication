@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Cost;
+use App\Http\Requests\StoreCost;
 use App\User;
 use Illuminate\Http\Request;
 use App\Request\CostRequest;
@@ -64,10 +65,9 @@ class CostController extends AdminController
     }
 
     # Store Cost
-    public function store(Request $request)
+    public function store(StoreCost $request)
     {
         $this->checkAccess(self::CREATE);
-        $request->validate(['storeType' => 'required']);
         $this->repo->costStore($request->get('storeType'), $request, $this->user->id);
         return redirect()->route('costs.index');
     }
