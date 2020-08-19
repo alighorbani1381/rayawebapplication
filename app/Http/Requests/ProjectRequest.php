@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Request;
+namespace App\Http\Requests;
 
 use Illuminate\Http\Request;
 use Hekmatinasser\Verta\Facades\Verta;
