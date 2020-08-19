@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ChangeProfile;
-use Illuminate\Http\Request;
-use App\Request\ProfileRequest;
+use App\Http\Requests\ChangeProfilePicture;
 use App\Repositories\ProfileRepository;
 
 class ProfileController extends AdminController
@@ -48,10 +47,8 @@ class ProfileController extends AdminController
     }
 
     # Change Profile Image 
-    public function changeImage(Request $request)
+    public function changeImage(ChangeProfilePicture $request)
     {
-        ProfileRequest::CheckProfile($request);
-
         if ($this->user->profile != 'default')
             parent::imageDelete(self::ADMIN_PROFILE_FOLDER . $this->user->profile);
 

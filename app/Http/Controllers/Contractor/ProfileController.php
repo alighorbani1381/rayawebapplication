@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Contractor;
 
 use App\Http\Requests\ChangeProfile;
-use Illuminate\Http\Request;
-use App\Request\ProfileRequest;
+use App\Http\Requests\ChangeProfilePicture;
 use App\Repositories\ProfileRepository;
 
 class ProfileController extends MainController
@@ -51,10 +50,8 @@ class ProfileController extends MainController
     }
 
     # Change Contractor Image Profile
-    public function changeImage(Request $request)
+    public function changeImage(ChangeProfilePicture $request)
     {
-        ProfileRequest::CheckProfile($request);
-
         if ($this->user->profile != 'default') {
             parent::imageDelete(self::USERS_PROFILE_FOLDER . $this->user->profile);
         }
