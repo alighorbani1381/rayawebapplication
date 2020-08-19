@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
-use Illuminate\Http\Request;
-use App\Request\CategoryRequest;
+use App\Http\Requests\StoreCategory;
 use Illuminate\Support\Facades\Session;
 use App\Repositories\CategoryRepository;
 
@@ -49,10 +48,9 @@ class CategoryController extends AdminController
     }
 
     # Store Categories
-    public function store(Request $request)
+    public function store(StoreCategory $request)
     {
         $this->checkAccess(self::CREATE);
-        CategoryRequest::store($request);
         $this->repo->createCategory($request);
         return redirect()->route('categories.index');
     }
@@ -75,10 +73,9 @@ class CategoryController extends AdminController
 
 
     # Update Categories
-    public function update(Request $request, Category $category)
+    public function update(StoreCategory $request, Category $category)
     {
-        $this->checkAccess(self::EDIT);
-        CategoryRequest::store($request);
+        $this->checkAccess(self::EDIT);        
         $subCatsCount = count($category->sub_cats);
 
         if ($subCatsCount != 0 && $request->child != 0) {
