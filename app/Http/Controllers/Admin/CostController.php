@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Cost;
 use App\Http\Requests\StoreCost;
+use App\Http\Requests\UpdateCost;
 use App\User;
-use Illuminate\Http\Request;
-use App\Request\CostRequest;
 use App\Repositories\CostRepository;
 
 
@@ -29,13 +28,10 @@ class CostController extends AdminController
 
     private $repo;
 
-    private $requ;
-
     public function __construct()
     {
         # Encapsolation Repository & Request 
-        $this->repo =  resolve(CostRepository::class);
-        $this->requ =  resolve(CostRequest::class);
+        $this->repo =  resolve(CostRepository::class);        
 
         # Set User into This Class
         $this->middleware(function ($request, $next) {
@@ -90,10 +86,9 @@ class CostController extends AdminController
     }
 
     # Update Cost
-    public function update(Request $request, Cost $cost)
+    public function update(UpdateCost $request, Cost $cost)
     {
         $this->checkAccess(self::EDIT);
-        $this->requ->update($request);
         $cost->update($request->all());
         return $this->redirectAfterUpdate($cost);
     }
