@@ -14,10 +14,10 @@ class ProjectController extends MainController
 
     private $user;
 
-    public function __construct()
+    public function __construct(ProjectRepository $projectRepository)
     {
         # Encapsolation Repository
-        $this->repo = resolve(ProjectRepository::class);
+        $this->repo = $projectRepository;
 
         # Set Users
         $this->middleware(function ($request, $next) {
@@ -53,7 +53,7 @@ class ProjectController extends MainController
         $this->repo->contractorGate($project, $this->user->id);
         $project = $this->repo->getProjectFull($project);
         $allProgress = $this->repo->getProgress($project);
-        $progressInfo = $this->repo->getProgressInfo($project['project']->id, $this->user->id);        
+        $progressInfo = $this->repo->getProgressInfo($project['project']->id, $this->user->id);
         return view('Contractor.Project.show', compact('project', 'allProgress', 'progressInfo'));
     }
 
@@ -62,7 +62,7 @@ class ProjectController extends MainController
     {
         $isValid = $this->repo->isAccessChangeProgress($project);
 
-        if($isValid['isFuture']){
+        if ($isValid['isFuture']) {
             session()->flash('dont-start', $isValid['diff']);
             return redirect()->route('contractor.projects.show', $project->id);
         }

@@ -17,11 +17,11 @@ class ProfileController extends MainController
 
     private $password;
 
-    public function __construct()
+    public function __construct(ProfileRepository $repository)
     {
 
         # Encapsolation Repository
-        $this->repo = resolve(ProfileRepository::class);
+        $this->repo = $repository;
 
         # Set User in this Controller
         $this->middleware(function ($request, $next) {
@@ -40,7 +40,7 @@ class ProfileController extends MainController
 
     # Change Contractor Password
     public function changePassword(ChangeProfile $request)
-    {        
+    {
 
         if (!$this->repo->isValidPassword($request->old_password, $this->password)) {
             return back();

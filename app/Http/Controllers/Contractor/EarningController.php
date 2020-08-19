@@ -10,10 +10,10 @@ class EarningController extends Controller
 {
     private $repo;
 
-    public function __construct()
+    public function __construct(EarningRepository $repository)
     {
         # Encapsulation Repository
-        $this->repo = resolve(EarningRepository::class);
+        $this->repo = $repository;
 
         # Encapsulation User
         $this->middleware(function ($request, $next) {
