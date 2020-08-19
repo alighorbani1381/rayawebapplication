@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Contractor;
 
+use App\Http\Requests\ChangeProfile;
 use Illuminate\Http\Request;
 use App\Request\ProfileRequest;
 use App\Repositories\ProfileRepository;
@@ -39,9 +40,8 @@ class ProfileController extends MainController
     }
 
     # Change Contractor Password
-    public function changePassword(Request $request)
-    {
-        ProfileRequest::adminCheckParam($request);
+    public function changePassword(ChangeProfile $request)
+    {        
 
         if (!$this->repo->isValidPassword($request->old_password, $this->password)) {
             return back();

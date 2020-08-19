@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ChangeProfile;
 use Illuminate\Http\Request;
 use App\Request\ProfileRequest;
 use App\Repositories\ProfileRepository;
@@ -37,10 +38,8 @@ class ProfileController extends AdminController
     }
 
     # Change Password Method
-    public function changePassword(Request $request)
-    {
-        ProfileRequest::adminCheckParam($request);
-
+    public function changePassword(ChangeProfile $request)
+    {        
         if (!$this->repo->isValidPassword($request->old_password, $this->user->password)) {
             return back();
         }
