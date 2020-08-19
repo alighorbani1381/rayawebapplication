@@ -53,22 +53,20 @@ class UserRequest
     public function userValidation(Request $request, $username = null)
     {
 
-        if ($username == null)
-            $fileds = [
-                'name' => 'required|max:20',
-                'lastname' => 'required|max:30',
-                'phone' => 'required|unique:App\User,phone|numeric|min:11',
-                'address' => 'required',
-                'username' => 'required|unique:App\User,username|regex:/[a-z A-Z0-9\\_\\"]+$/|min:8',
-            ];
-        else
-            $fileds = [
-                'name' => 'required|max:20',
-                'lastname' => 'required|max:30',
-                'phone' => 'required|numeric|min:11',
-                'address' => 'required',
-                'username' => 'required|regex:/[a-z A-Z0-9\\_\\"]+$/|min:8',
-            ];
+        $fileds = [
+            'name' => 'required|max:20',
+            'lastname' => 'required|max:30',
+            'address' => 'required',
+        ];
+
+        if ($username == null) {
+            $fileds['phone'] = 'required|unique:App\User,phone|numeric|min:11';
+            $fileds['username'] = 'required|unique:App\User,username|regex:/[a-z A-Z0-9\\_\\"]+$/|min:8';
+        } else {
+
+            $fileds['phone'] = 'required|numeric|min:11';
+            $fileds['username'] = 'required|regex:/[a-z A-Z0-9\\_\\"]+$/|min:8';
+        }
 
 
         $request->validate($fileds, $this->getRuleMessage());
