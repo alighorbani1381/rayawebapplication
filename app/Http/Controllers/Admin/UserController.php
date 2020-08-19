@@ -15,13 +15,13 @@ class UserController extends AdminController
 
     # Define Acess Gate
     const INDEX = "Index-User";
-    
+
     const CREATE = "Create-User";
-    
+
     const SHOW = "Show-User";
-    
+
     const EDIT = "Edit-User";
-    
+
     const DELETE = "Delete-User";
 
     const MULTI_ACCESS = [self::INDEX, self::CREATE, self::SHOW, self::EDIT, self::DELETE];
@@ -32,13 +32,13 @@ class UserController extends AdminController
 
     private $repo;
 
-    public function __construct()
+    public function __construct(UserRepository $userRepository, UserRequest $request)
     {
         # Connect Repository
-        $this->repo = resolve(UserRepository::class);
+        $this->repo = $userRepository;
 
         # Connect Request Handler
-        $this->requ = resolve(UserRequest::class);
+        $this->requ = $request;
 
         # Encapsulation User in this Controller
         $this->middleware(function ($request, $next) {

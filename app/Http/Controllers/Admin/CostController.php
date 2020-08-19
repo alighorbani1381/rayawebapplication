@@ -24,14 +24,14 @@ class CostController extends AdminController
     const DELETE = "Delete-Cost";
 
     const MULTI_ACCESS = [self::INDEX, self::CREATE, self::SHOW, self::EDIT, self::DELETE];
-    
+
 
     private $repo;
 
-    public function __construct()
+    public function __construct(CostRepository $repository)
     {
         # Encapsolation Repository & Request 
-        $this->repo =  resolve(CostRepository::class);        
+        $this->repo = $repository;
 
         # Set User into This Class
         $this->middleware(function ($request, $next) {

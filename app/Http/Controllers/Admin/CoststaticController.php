@@ -21,14 +21,14 @@ class CoststaticController extends AdminController
     const DELETE = "Delete-Cost-Static";
 
     const MULTI_ACCESS = [self::INDEX, self::CREATE, self::SHOW, self::EDIT, self::DELETE];
-    
+
 
     private $repo;
 
-    public function __construct()
+    public function __construct(CostStaticRepository $repository)
     {
         # Configuration of Repository
-        $this->repo = resolve(CostStaticRepository::class);
+        $this->repo = $repository;
     }
 
     # Show Cost Static List

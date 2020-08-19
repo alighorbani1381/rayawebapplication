@@ -13,15 +13,15 @@ class ProjectController extends AdminController
 {
     # Define Acess Gate
     const INDEX = "Index-Project";
-    
+
     const CREATE = "Create-Project";
-    
+
     const SHOW = "Show-Project";
 
     const PAY = "Create-Earning-Project";
-    
+
     const EDIT = "Edit-Project";
-    
+
     const DELETE = "Delete-Project";
 
     const MULTI_ACCESS = [self::INDEX, self::CREATE, self::SHOW, self::PAY, self::EDIT, self::DELETE];
@@ -30,12 +30,12 @@ class ProjectController extends AdminController
 
     private $request;
 
-    public function __construct()
+    public function __construct(ProjectRepository $repository, ProjectRequest $request, CategoryRepository $category)
     {
         # Configuration of Repositories
-        $this->repo = resolve(ProjectRepository::class);
-        $this->request = resolve(ProjectRequest::class);
-        $this->categories = resolve(CategoryRepository::class);
+        $this->repo = $repository;
+        $this->request = $request;
+        $this->categories = $category;
     }
 
     # Show Latest 15th Projects

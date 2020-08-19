@@ -24,10 +24,9 @@ class CategoryController extends AdminController
 
     const MULTI_ACCESS = [self::INDEX, self::CREATE, self::EDIT, self::DELETE];
 
-    public function __construct()
+    public function __construct(CategoryRepository $repository)
     {
-        # Encapsolation Repository
-        $this->repo = resolve(CategoryRepository::class);
+        $this->repo = $repository;
     }
 
     # Show List of Categories
@@ -75,12 +74,12 @@ class CategoryController extends AdminController
     # Update Categories
     public function update(StoreCategory $request, Category $category)
     {
-        $this->checkAccess(self::EDIT);        
+        $this->checkAccess(self::EDIT);
         $subCatsCount = count($category->sub_cats);
 
         if ($subCatsCount != 0 && $request->child != 0) {
             Session::flash('CategoryUpdateFail');
-            return back();            
+            return back();
         }
 
         $category->update($request->all());

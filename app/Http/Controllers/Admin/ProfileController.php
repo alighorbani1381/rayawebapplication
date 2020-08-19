@@ -16,11 +16,11 @@ class ProfileController extends AdminController
 
     private $repo;
 
-    public function __construct()
+    public function __construct(ProfileRepository $profile)
     {
 
         # Encapsolation Repository 
-        $this->repo = resolve(ProfileRepository::class);
+        $this->repo = $profile;
 
         # Set User into This Class
         $this->middleware(function ($request, $next) {
@@ -38,7 +38,7 @@ class ProfileController extends AdminController
 
     # Change Password Method
     public function changePassword(ChangeProfile $request)
-    {        
+    {
         if (!$this->repo->isValidPassword($request->old_password, $this->user->password)) {
             return back();
         }

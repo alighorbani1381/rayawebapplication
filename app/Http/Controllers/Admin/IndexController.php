@@ -12,11 +12,11 @@ class IndexController extends AdminController
 
     private $statistic;
 
-    public function __construct()
+    public function __construct(ProjectRepository $project, StatisticRepository $statistic)
     {
         # Encapsolation Repositories
-        $this->project = resolve(ProjectRepository::class);
-        $this->statistic = resolve(StatisticRepository::class);
+        $this->project = $project;
+        $this->statistic = $statistic;
     }
 
     # Show Index View With All Statistics

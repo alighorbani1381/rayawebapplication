@@ -22,14 +22,14 @@ class EarningController extends AdminController
     const DELETE = "Delete-Earning";
 
     const MULTI_ACCESS = [self::INDEX, self::CREATE, self::SHOW, self::EDIT, self::DELETE];
-    
+
 
     private $repo;
 
-    public function __construct()
+    public function __construct(EarningRepository $repository)
     {
         # Configuration of Repository
-        $this->repo =  resolve(EarningRepository::class);
+        $this->repo =  $repository;
 
         # Set User into This Class
         $this->middleware(function ($request, $next) {
