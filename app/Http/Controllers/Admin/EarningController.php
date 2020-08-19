@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Earning;
+use App\Http\Requests\StoreEarning;
 use Illuminate\Http\Request;
-use App\Request\EarningRequest;
 use App\Repositories\EarningRepository;
 
 
@@ -61,10 +61,9 @@ class EarningController extends AdminController
     }
 
     # Store Earning
-    public function store(Request $request)
+    public function store(StoreEarning $request)
     {
         $this->checkAccess(self::CREATE);
-        EarningRequest::storeValidate($request);
         $this->repo->createEarning($request, $this->user->id);
         return redirect()->route('earnings.index');
     }
