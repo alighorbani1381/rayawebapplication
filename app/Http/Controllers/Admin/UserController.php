@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\UserRequest;
 use App\User;
 use Illuminate\Http\Request;
-use App\Request\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Session;

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ProjectRequest;
 use App\Project;
 use Illuminate\Http\Request;
-use App\Request\ProjectRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProjectRepository;
 
