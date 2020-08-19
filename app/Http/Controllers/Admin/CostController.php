@@ -95,7 +95,7 @@ class CostController extends AdminController
         $this->checkAccess(self::EDIT);
         $this->requ->update($request);
         $cost->update($request->all());
-        return $this->requ->redirectUpdate($cost);
+        return $this->redirectAfterUpdate($cost);
     }
 
     # Remove Cost
@@ -105,5 +105,14 @@ class CostController extends AdminController
         $cost->delete();
         session()->flash('DeleteCost');
         return back();
+    }
+
+    public function redirectAfterUpdate($cost)
+    {
+        session()->flash('UpdateCost');
+        if (session()->has('SendWithProject') || session()->has('SendWithShow'))
+            return back();
+        else
+            return redirect()->route('costs.show', $cost->id);
     }
 }
