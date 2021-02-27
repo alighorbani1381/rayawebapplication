@@ -1,7 +1,6 @@
+*.html linguist-detectable=false
 * text=auto
 *.css linguist-vendored
 *.scss linguist-vendored
-*.html linguist-vendored
-*.blade linguist-vendored
 *.js linguist-vendored
 CHANGELOG.md export-ignore
